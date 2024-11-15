@@ -7,7 +7,7 @@ import GavelIcon from '@mui/icons-material/Gavel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import PendingIcon from '@mui/icons-material/Pending';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Legend, Cell } from 'recharts';
 
 // Define the Case interface
 interface Case {
@@ -17,7 +17,7 @@ interface Case {
   lastUpdate?: string;
 }
 
-// Sample data for the chart
+// Sample data for the charts
 const caseTrendData = [
   { month: 'Jan', cases: 30 },
   { month: 'Feb', cases: 45 },
@@ -31,6 +31,12 @@ const caseTrendData = [
   { month: 'Oct', cases: 120 },
   { month: 'Nov', cases: 110 },
   { month: 'Dec', cases: 130 },
+];
+
+const caseStatusData = [
+  { status: 'Resolved', value: 320 },
+  { status: 'Pending', value: 90 },
+  { status: 'New', value: 40 },
 ];
 
 function Dashboard() {
@@ -79,44 +85,44 @@ function Dashboard() {
         <Grid container spacing={3}>
           {/* Summary Cards */}
           <Grid item xs={12} sm={6} md={3}>
-            <Card sx={{ backgroundColor: '#e0f7fa' }}>
+            <Card sx={{ backgroundColor: '#0288d1', color: 'white' }}>
               <CardContent>
                 <Typography variant="h6">Total Cases</Typography>
                 <Box display="flex" alignItems="center">
-                  <GavelIcon color="primary" sx={{ mr: 1 }} />
+                  <GavelIcon color="inherit" sx={{ mr: 1 }} />
                   <Typography variant="h4">450</Typography>
                 </Box>
               </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Card sx={{ backgroundColor: '#e8f5e9' }}>
+            <Card sx={{ backgroundColor: '#388e3c', color: 'white' }}>
               <CardContent>
                 <Typography variant="h6">Resolved Cases</Typography>
                 <Box display="flex" alignItems="center">
-                  <CheckCircleIcon color="success" sx={{ mr: 1 }} />
+                  <CheckCircleIcon color="inherit" sx={{ mr: 1 }} />
                   <Typography variant="h4">320</Typography>
                 </Box>
               </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Card sx={{ backgroundColor: '#fff3e0' }}>
+            <Card sx={{ backgroundColor: '#f57c00', color: 'white' }}>
               <CardContent>
                 <Typography variant="h6">Pending Cases</Typography>
                 <Box display="flex" alignItems="center">
-                  <PendingIcon color="warning" sx={{ mr: 1 }} />
+                  <PendingIcon color="inherit" sx={{ mr: 1 }} />
                   <Typography variant="h4">90</Typography>
                 </Box>
               </CardContent>
             </Card>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Card sx={{ backgroundColor: '#e0e0e0' }}>
+            <Card sx={{ backgroundColor: '#fbc02d', color: 'white' }}>
               <CardContent>
                 <Typography variant="h6">New Cases This Month</Typography>
                 <Box display="flex" alignItems="center">
-                  <TrendingUpIcon color="secondary" sx={{ mr: 1 }} />
+                  <TrendingUpIcon color="inherit" sx={{ mr: 1 }} />
                   <Typography variant="h4">40</Typography>
                 </Box>
               </CardContent>
@@ -134,8 +140,34 @@ function Dashboard() {
                     <XAxis dataKey="month" />
                     <YAxis />
                     <Tooltip />
-                    <Line type="monotone" dataKey="cases" stroke="#8884d8" activeDot={{ r: 8 }} />
+                    <Line type="monotone" dataKey="cases" stroke="#0288d1" activeDot={{ r: 8 }} />
                   </LineChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Case Status Breakdown Pie Chart */}
+          <Grid item xs={12} md={4}>
+            <Card sx={{ backgroundColor: '#ffffff' }}>
+              <CardContent>
+                <Typography variant="h6">Case Status Breakdown</Typography>
+                <ResponsiveContainer width="100%" height={300}>
+                  <PieChart>
+                    <Pie
+                      data={caseStatusData}
+                      dataKey="value"
+                      nameKey="status"
+                      outerRadius={80}
+                      fill="#8884d8"
+                      label
+                    >
+                      {caseStatusData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.status === 'Resolved' ? '#388e3c' : entry.status === 'Pending' ? '#f57c00' : '#0288d1'} />
+                      ))}
+                    </Pie>
+                    <Legend />
+                  </PieChart>
                 </ResponsiveContainer>
               </CardContent>
             </Card>
@@ -163,6 +195,35 @@ function Dashboard() {
                 ) : (
                   <Typography variant="body2">No recent cases</Typography>
                 )}
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Team Overview with Bar Chart */}
+          <Grid item xs={12} md={4}>
+            <Card sx={{ backgroundColor: '#ffffff' }}>
+              <CardContent>
+                <Typography variant="h6" gutterBottom>Team Overview</Typography>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={caseStatusData} margin={{ top: 10, right: 30, left: 20, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="status" />
+                    <YAxis />
+                    <Tooltip />
+                    <Bar dataKey="value" fill="#0288d1" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Notifications */}
+          <Grid item xs={12} md={4}>
+            <Card sx={{ backgroundColor: '#f3f4f6' }}>
+              <CardContent>
+                <Typography variant="h6" gutterBottom>Notifications</Typography>
+                <Typography variant="body2">New case filed by John Doe</Typography>
+                <Typography variant="body2">Case #12345 updated status to Resolved</Typography>
               </CardContent>
             </Card>
           </Grid>

@@ -19,7 +19,7 @@ const HeaderComponent = () => {
   };
 
   return (
-    <AppBar position="fixed" style={{ backgroundColor: 'transparent' }}>
+    <AppBar position="fixed" style={{ backgroundColor: 'white' }}>
       <Toolbar>
         {/* Menu Icon */}
         <IconButton edge="start" color="primary" aria-label="menu" sx={{ mr: 2 }}>
