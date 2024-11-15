@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText, Typography, Toolbar, CssBaseline, Grid, Paper, Card, CardContent } from '@mui/material';
+import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText, Typography, Toolbar, CssBaseline, Grid, Paper, Card, CardContent, TextField, Button } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -76,8 +76,12 @@ function Dashboard() {
             <ListItemText primary="Dashboard" />
           </ListItem>
           <ListItem sx={{ cursor: 'pointer' }} component={Link} to="/users">
+          <ListItemIcon><PersonIcon /></ListItemIcon>
+          <ListItemText primary="Users List" />
+          </ListItem>
+          <ListItem sx={{ cursor: 'pointer' }} component={Link} to="/register">
             <ListItemIcon><PersonIcon /></ListItemIcon>
-            <ListItemText primary="Users" />
+            <ListItemText primary="User Registration" />
           </ListItem>
           <ListItem sx={{ cursor: 'pointer' }} component={Link} to="/settings">
             <ListItemIcon><SettingsIcon /></ListItemIcon>
@@ -100,7 +104,7 @@ function Dashboard() {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={4}>
-            <Card style={{backgroundColor: 'burlywood',}}>
+            <Card style={{backgroundColor: 'burlywood'}}>
               <CardContent>
                 <Typography variant="h6">User Information</Typography>
                 {user ? (
@@ -116,7 +120,7 @@ function Dashboard() {
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <Card style={{backgroundColor: 'yellow',}}>
+            <Card style={{backgroundColor: 'yellow'}}>
               <CardContent>
                 <Typography variant="h6">Account Info</Typography>
                 {user ? (
