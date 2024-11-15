@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText, Typography, Toolbar, CssBaseline, Grid, Paper, Card, CardContent, TextField, Button } from '@mui/material';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PersonIcon from '@mui/icons-material/Person';
-import SettingsIcon from '@mui/icons-material/Settings';
-import InfoIcon from '@mui/icons-material/Info';
-import LogoutIcon from '@mui/icons-material/Logout';
-import { Link, useNavigate } from 'react-router-dom';
-
-const drawerWidth = 240;
-
+import { Box, Grid, Paper, Card, CardContent, Typography, Toolbar, CssBaseline } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import DrawerComponent from '../components/DrawerComponent'; // Import Drawer component
+import HeaderComponent from '../components/HeaderComponent';
 // Define the User interface
 interface User {
   name: string;
@@ -53,50 +47,10 @@ function Dashboard() {
       <CssBaseline />
 
       {/* Sidebar Drawer */}
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-          },
-        }}
-        variant="permanent"
-        anchor="left"
-      >
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-            My Dashboard
-          </Typography>
-        </Toolbar>
-        <List>
-          <ListItem sx={{ cursor: 'pointer' }} component={Link} to="/dashboard">
-            <ListItemIcon><DashboardIcon /></ListItemIcon>
-            <ListItemText primary="Dashboard" />
-          </ListItem>
-          <ListItem sx={{ cursor: 'pointer' }} component={Link} to="/users">
-          <ListItemIcon><PersonIcon /></ListItemIcon>
-          <ListItemText primary="Users List" />
-          </ListItem>
-          <ListItem sx={{ cursor: 'pointer' }} component={Link} to="/register">
-            <ListItemIcon><PersonIcon /></ListItemIcon>
-            <ListItemText primary="User Registration" />
-          </ListItem>
-          <ListItem sx={{ cursor: 'pointer' }} component={Link} to="/settings">
-            <ListItemIcon><SettingsIcon /></ListItemIcon>
-            <ListItemText primary="Settings" />
-          </ListItem>
-          <ListItem sx={{ cursor: 'pointer' }} component={Link} to="/about">
-            <ListItemIcon><InfoIcon /></ListItemIcon>
-            <ListItemText primary="About" />
-          </ListItem>
-          <ListItem sx={{ cursor: 'pointer' }} component={Link} to="/logout">
-            <ListItemIcon><LogoutIcon /></ListItemIcon>
-            <ListItemText primary="Logout" />
-          </ListItem>
-        </List>
-      </Drawer>
+      <DrawerComponent /> {/* Use the Drawer component here */}
+
+      {/* Header */}
+      <HeaderComponent /> {/* Add HeaderComponent here */}
 
       {/* Main Content Area */}
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
@@ -104,7 +58,7 @@ function Dashboard() {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={4}>
-            <Card style={{backgroundColor: 'burlywood'}}>
+            <Card style={{ backgroundColor: 'burlywood' }}>
               <CardContent>
                 <Typography variant="h6">User Information</Typography>
                 {user ? (
@@ -120,7 +74,7 @@ function Dashboard() {
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <Card style={{backgroundColor: 'yellow'}}>
+            <Card style={{ backgroundColor: 'yellow' }}>
               <CardContent>
                 <Typography variant="h6">Account Info</Typography>
                 {user ? (

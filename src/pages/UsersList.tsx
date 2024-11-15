@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText, Typography, Toolbar, Table, TableBody, TableCell, TableHead, TableRow, CircularProgress } from '@mui/material';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PersonIcon from '@mui/icons-material/Person';
-import SettingsIcon from '@mui/icons-material/Settings';
-import InfoIcon from '@mui/icons-material/Info';
-import LogoutIcon from '@mui/icons-material/Logout';
-import { Link } from 'react-router-dom';
-
-const drawerWidth = 240;
+import { Box, Table, TableBody, TableCell, TableHead, TableRow, Typography, CircularProgress } from '@mui/material';
+import Layout from '../components/Layout'; // Import Layout component
+import HeaderComponent from '../components/HeaderComponent'; // Import Header component
 
 interface User {
   id: number;
@@ -40,97 +34,59 @@ const UsersList = () => {
     fetchUsers();
   }, []);
 
-  return (
-    <Box sx={{ display: 'flex' }}>
-      {/* Drawer Navigation */}
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-          },
-        }}
-        variant="permanent"
-        anchor="left"
-      >
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-            My Dashboard
+  if (loading) {
+    return (
+      <Layout>
+        <HeaderComponent /> {/* Add Header here */}
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+          <CircularProgress />
+        </Box>
+      </Layout>
+    );
+  }
+
+  if (error) {
+    return (
+      <Layout>
+        <HeaderComponent /> {/* Add Header here */}
+        <Box sx={{ textAlign: 'center', mt: 5 }}>
+          <Typography variant="h6" color="error">
+            {error}
           </Typography>
-        </Toolbar>
-        <List>
-          <ListItem sx={{ cursor: 'pointer' }} component={Link} to="/dashboard">
-            <ListItemIcon><DashboardIcon /></ListItemIcon>
-            <ListItemText primary="Dashboard" />
-          </ListItem>
-          <ListItem sx={{ cursor: 'pointer' }} component={Link} to="/users">
-          <ListItemIcon><PersonIcon /></ListItemIcon>
-          <ListItemText primary="Users List" />
-          </ListItem>
-          <ListItem component={Link} to="/register">
-            <ListItemIcon><PersonIcon /></ListItemIcon>
-            <ListItemText primary="User Registration" />
-          </ListItem>
-          <ListItem sx={{ cursor: 'pointer' }} component={Link} to="/settings">
-            <ListItemIcon><SettingsIcon /></ListItemIcon>
-            <ListItemText primary="Settings" />
-          </ListItem>
-          <ListItem sx={{ cursor: 'pointer' }} component={Link} to="/about">
-            <ListItemIcon><InfoIcon /></ListItemIcon>
-            <ListItemText primary="About" />
-          </ListItem>
-          <ListItem sx={{ cursor: 'pointer' }} component={Link} to="/logout">
-            <ListItemIcon><LogoutIcon /></ListItemIcon>
-            <ListItemText primary="Logout" />
-          </ListItem>
-        </List>
-      </Drawer>
+        </Box>
+      </Layout>
+    );
+  }
 
-      {/* Main Content Area */}
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Toolbar />
-
-        {loading ? (
-          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            <CircularProgress />
-          </Box>
-        ) : error ? (
-          <Box sx={{ textAlign: 'center', mt: 5 }}>
-            <Typography variant="h6" color="error">
-              {error}
-            </Typography>
-          </Box>
-        ) : (
-          <Box>
-            <Typography variant="h4" component="h1" gutterBottom>
-              Users List
-            </Typography>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>ID</TableCell>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Email</TableCell>
-                  <TableCell>Role</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {users.map((user) => (
-                  <TableRow key={user.id}>
-                    <TableCell>{user.id}</TableCell>
-                    <TableCell>{user.name}</TableCell>
-                    <TableCell>{user.email}</TableCell>
-                    <TableCell>{user.role || 'N/A'}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </Box>
-        )}
+  return (
+    <Layout>
+      <HeaderComponent /> {/* Add Header here */}
+      <Box sx={{ p: 3, marginTop: '64px' }}> {/* Added marginTop to adjust for the fixed header */}
+        <Typography variant="h4" component="h1" gutterBottom>
+          Users List
+        </Typography>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>ID</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Email</TableCell>
+              <TableCell>Role</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {users.map((user) => (
+              <TableRow key={user.id}>
+                <TableCell>{user.id}</TableCell>
+                <TableCell>{user.name}</TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell>{user.role || 'N/A'}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </Box>
-    </Box>
+    </Layout>
   );
 };
 

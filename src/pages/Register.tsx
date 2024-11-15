@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
-import { Box, TextField, Button, Typography, Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, CssBaseline } from '@mui/material';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PersonIcon from '@mui/icons-material/Person';
-import SettingsIcon from '@mui/icons-material/Settings';
-import InfoIcon from '@mui/icons-material/Info';
-import LogoutIcon from '@mui/icons-material/Logout';
-import { Link } from 'react-router-dom';
-
-const drawerWidth = 240;
+import { Box, TextField, Button, Typography, CssBaseline, Toolbar } from '@mui/material';
+import DrawerComponent from '../components/DrawerComponent'; // Import the Drawer component
+import HeaderComponent from '../components/HeaderComponent'; // Import Header component
 
 function Register() {
   const [name, setName] = useState('');
@@ -23,7 +17,7 @@ function Register() {
         },
         body: JSON.stringify({ name, email, password }),
       });
-      
+
       if (response.ok) {
         alert('User registered successfully!');
       } else {
@@ -37,57 +31,15 @@ function Register() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-
+      
       {/* Sidebar Drawer */}
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-          },
-        }}
-        variant="permanent"
-        anchor="left"
-      >
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-            My Dashboard
-          </Typography>
-        </Toolbar>
-        <List>
-          <ListItem component={Link} to="/dashboard">
-            <ListItemIcon><DashboardIcon /></ListItemIcon>
-            <ListItemText primary="Dashboard" />
-          </ListItem>
-          <ListItem sx={{ cursor: 'pointer' }} component={Link} to="/users">
-          <ListItemIcon><PersonIcon /></ListItemIcon>
-          <ListItemText primary="Users List" />
-          </ListItem>
-          <ListItem component={Link} to="/register">
-            <ListItemIcon><PersonIcon /></ListItemIcon>
-            <ListItemText primary="User Registration" />
-          </ListItem>
-          <ListItem component={Link} to="/settings">
-            <ListItemIcon><SettingsIcon /></ListItemIcon>
-            <ListItemText primary="Settings" />
-          </ListItem>
-          <ListItem component={Link} to="/about">
-            <ListItemIcon><InfoIcon /></ListItemIcon>
-            <ListItemText primary="About" />
-          </ListItem>
-          <ListItem component={Link} to="/logout">
-            <ListItemIcon><LogoutIcon /></ListItemIcon>
-            <ListItemText primary="Logout" />
-          </ListItem>
-        </List>
-      </Drawer>
+      <DrawerComponent /> {/* Use the Drawer component here */}
 
       {/* Main Content Area */}
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <HeaderComponent /> {/* Add HeaderComponent here */}
         <Toolbar />
-
+        
         {/* Registration Form */}
         <Box sx={{ maxWidth: 400, mx: 'auto', mt: 5 }}>
           <Typography variant="h4" component="h1" gutterBottom>
