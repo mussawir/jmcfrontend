@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard'; // Assuming you have a Dashboard page
 import UsersList from './pages/UsersList';
 import Register from './pages/Register'; // Import the Register component
 import './App.css';
+import UserData from './pages/UserData'; // Import the Register component
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/users" element={<UsersList />} />
         <Route path="/register" element={<Register />} /> {/* Add Register route */}
+        <Route path="/userdata" element={<UserData />} /> {/* Add Register route */}
+
       </Routes>
     </div>
   );

@@ -1,0 +1,125 @@
+import React, { useState } from 'react';
+import { Box, TextField, Button, Typography, CircularProgress, Toolbar } from '@mui/material';
+import DrawerComponent from '../components/DrawerComponent'; // Import the Drawer component
+import HeaderComponent from '../components/HeaderComponent'; // Import the Header component
+
+const UserData = () => {
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [caseDetails, setCaseDetails] = useState('');
+  const [image, setImage] = useState<File | null>(null);
+  const [pdf, setPdf] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>, setter: React.Dispatch<React.SetStateAction<File | null>>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setter(e.target.files[0]);
+    }
+  };
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('age', age);
+    formData.append('caseDetails', caseDetails);
+    if (image) formData.append('image', image);
+    if (pdf) formData.append('pdf', pdf);
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        alert('User data uploaded successfully!');
+        // Reset the form
+        setName('');
+        setAge('');
+        setCaseDetails('');
+        setImage(null);
+        setPdf(null);
+      } else {
+        alert('Error uploading data');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Box sx={{ display: 'flex' }}>
+      {/* Drawer */}
+      <DrawerComponent />
+
+      {/* Main Content */}
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        {/* Header */}
+        <HeaderComponent />
+
+        {/* Content Area */}
+        <Toolbar /> {/* Adds spacing below the fixed header */}
+        <Box sx={{ maxWidth: 500, mx: 'auto', mt: 5 }}>
+          <Typography variant="h4" component="h1" gutterBottom>
+            Upload User Data
+          </Typography>
+
+          <TextField
+            label="Name"
+            fullWidth
+            margin="normal"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <TextField
+            label="Age"
+            type="number"
+            fullWidth
+            margin="normal"
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+          />
+          <TextField
+            label="Case Details"
+            fullWidth
+            margin="normal"
+            value={caseDetails}
+            onChange={(e) => setCaseDetails(e.target.value)}
+          />
+          <Box sx={{ mt: 2 }}>
+            <Typography variant="subtitle1">Upload Image</Typography>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => handleFileUpload(e, setImage)}
+            />
+          </Box>
+          <Box sx={{ mt: 2 }}>
+            <Typography variant="subtitle1">Upload PDF</Typography>
+            <input
+              type="file"
+              accept=".pdf"
+              onChange={(e) => handleFileUpload(e, setPdf)}
+            />
+          </Box>
+
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            sx={{ mt: 3 }}
+            onClick={handleSubmit}
+            disabled={loading}
+          >
+            {loading ? <CircularProgress size={24} /> : 'Submit'}
+          </Button>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+export default UserData;

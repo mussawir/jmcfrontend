@@ -54,6 +54,12 @@ const DrawerComponent = () => {
           </ListItemIcon>
           <ListItemText primary="User Registration" />
         </ListItem>
+        <ListItem component={Link} to="/userdata">
+          <ListItemIcon>
+            <InfoIcon />
+          </ListItemIcon>
+          <ListItemText primary="Users Data" />
+        </ListItem>
         <ListItem component={Link} to="/settings">
           <ListItemIcon>
             <SettingsIcon />
