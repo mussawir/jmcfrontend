@@ -8,6 +8,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from 'react-router-dom';
 import logojmc from '../images/jmcvc-dark-logo.png';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
 const drawerWidth = 240;
 
@@ -44,7 +45,7 @@ const DrawerComponent = () => {
         </ListItem>
         <ListItem component={Link} to="/users">
           <ListItemIcon>
-            <PersonIcon />
+            <FormatListBulletedIcon />
           </ListItemIcon>
           <ListItemText primary="Users List" />
         </ListItem>

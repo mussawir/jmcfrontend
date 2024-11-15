@@ -7,8 +7,15 @@ import SearchIcon from '@mui/icons-material/Search';
 
 const HeaderComponent = () => {
   const handleLogout = () => {
-    // Handle logout functionality here (e.g., clearing the localStorage or redirecting)
-    alert('Logging out...');
+    // Clear authentication tokens or session storage
+    localStorage.removeItem('authToken'); // Example for token storage
+    sessionStorage.clear(); // Clear session storage
+
+    // Redirect to login page
+    window.location.href = '/'; // Replace '/login' with your login route
+
+    // Notify user about logout
+    alert('You have been logged out.');
   };
 
   return (
@@ -18,8 +25,6 @@ const HeaderComponent = () => {
         <IconButton edge="start" color="primary" aria-label="menu" sx={{ mr: 2 }}>
           <MenuIcon />
         </IconButton>
-
-       
 
         {/* Search Bar */}
         <Box sx={{ ml: 'auto', width: '350px' }}>
@@ -35,8 +40,9 @@ const HeaderComponent = () => {
             }}
           />
         </Box>
-         {/* Notifications Button */}
-         <IconButton color="success" sx={{ mr: 2 }}>
+
+        {/* Notifications Button */}
+        <IconButton color="success" sx={{ mr: 2 }}>
           <Badge badgeContent={4} color="error">
             <NotificationsIcon />
           </Badge>
@@ -48,7 +54,7 @@ const HeaderComponent = () => {
         </IconButton>
 
         {/* Logout Button */}
-        <IconButton color="primary" onClick={handleLogout} >
+        <IconButton color="primary" onClick={handleLogout}>
           <LogoutIcon />
         </IconButton>
       </Toolbar>
