@@ -6,6 +6,10 @@ import UsersList from './pages/UsersList';
 import Register from './pages/Register'; // Import the Register component
 import './App.css';
 import UserData from './pages/UserData'; // Import the Register component
+import Document from './pages/Document'; // Import the Register component
+import Projects from './pages/Projects'; // Import the Register component
+
+
 
 function App() {
   return (
@@ -16,6 +20,9 @@ function App() {
         <Route path="/users" element={<UsersList />} />
         <Route path="/register" element={<Register />} /> {/* Add Register route */}
         <Route path="/userdata" element={<UserData />} /> {/* Add Register route */}
+        <Route path="/document" element={<Document/>} />
+        <Route path="/projects" element={<Projects/>} />
+
 
       </Routes>
     </div>
