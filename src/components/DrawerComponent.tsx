@@ -1,14 +1,15 @@
 import React from 'react';
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography, Box } from '@mui/material';
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Box } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import PersonIcon from '@mui/icons-material/Person';
+import WorkIcon from '@mui/icons-material/Work'; // For Projects
+import DescriptionIcon from '@mui/icons-material/Description'; // For Documents
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'; // For Checklist
+import PeopleIcon from '@mui/icons-material/People'; // For Team
 import SettingsIcon from '@mui/icons-material/Settings';
 import InfoIcon from '@mui/icons-material/Info';
 import LogoutIcon from '@mui/icons-material/Logout';
-import HomeIcon from '@mui/icons-material/Home';
 import { Link } from 'react-router-dom';
 import logojmc from '../images/jmcvc-dark-logo.png';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
 const drawerWidth = 240;
 
@@ -31,7 +32,7 @@ const DrawerComponent = () => {
       {/* Logo */}
       <Toolbar style={{ justifyContent: 'center', display: 'flex' }}>
         <div>
-          <img src={logojmc} width={120} style={{ marginTop: 20 }} alt="" />
+          <img src={logojmc} width={120} style={{ marginTop: 20 }} alt="Logo" />
         </div>
       </Toolbar>
 
@@ -43,36 +44,49 @@ const DrawerComponent = () => {
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
-        <ListItem component={Link} to="/users">
+
+        <ListItem component={Link} to="/projects">
+          <ListItemIcon>
+            <WorkIcon />
+          </ListItemIcon>
+          <ListItemText primary="Projects" />
+        </ListItem>
+
+        <ListItem component={Link} to="/documents">
+          <ListItemIcon>
+            <DescriptionIcon />
+          </ListItemIcon>
+          <ListItemText primary="Documents" />
+        </ListItem>
+
+        <ListItem component={Link} to="/checklist">
           <ListItemIcon>
             <FormatListBulletedIcon />
           </ListItemIcon>
-          <ListItemText primary="Users List" />
+          <ListItemText primary="Checklist" />
         </ListItem>
-        <ListItem component={Link} to="/register">
+
+        <ListItem component={Link} to="/team">
           <ListItemIcon>
-            <PersonIcon />
+            <PeopleIcon />
           </ListItemIcon>
-          <ListItemText primary="User Registration" />
+          <ListItemText primary="Team" />
         </ListItem>
-        <ListItem component={Link} to="/userdata">
-          <ListItemIcon>
-            <InfoIcon />
-          </ListItemIcon>
-          <ListItemText primary="Users Data" />
-        </ListItem>
+
         <ListItem component={Link} to="/settings">
           <ListItemIcon>
             <SettingsIcon />
           </ListItemIcon>
           <ListItemText primary="Settings" />
         </ListItem>
+
         <ListItem component={Link} to="/about">
           <ListItemIcon>
             <InfoIcon />
           </ListItemIcon>
           <ListItemText primary="About" />
         </ListItem>
+
         <ListItem component={Link} to="/logout">
           <ListItemIcon>
             <LogoutIcon />
@@ -94,16 +108,12 @@ const DrawerComponent = () => {
           backgroundColor: '#f7f7f7',
         }}
       >
-        <ListItem component={Link} to="/home" sx={{ justifyContent: 'center' }}>
-          <ListItemIcon sx={{ minWidth: 'auto' }}>
-            <HomeIcon />
-          </ListItemIcon>
-        </ListItem>
         <ListItem component={Link} to="/dashboard" sx={{ justifyContent: 'center' }}>
           <ListItemIcon sx={{ minWidth: 'auto' }}>
             <DashboardIcon />
           </ListItemIcon>
         </ListItem>
+
         <ListItem component={Link} to="/settings" sx={{ justifyContent: 'center' }}>
           <ListItemIcon sx={{ minWidth: 'auto' }}>
             <SettingsIcon />
