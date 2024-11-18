@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, TextField, Button, Typography, CircularProgress, Toolbar } from '@mui/material';
-import DrawerComponent from '../components/DrawerComponent'; // Import the Drawer component
-import HeaderComponent from '../components/HeaderComponent'; // Import the Header component
+import DrawerComponent from '../components/DrawerComponent';
+import HeaderComponent from '../components/HeaderComponent';
 
 const UserData = () => {
   const [name, setName] = useState('');
@@ -34,7 +34,6 @@ const UserData = () => {
 
       if (response.ok) {
         alert('User data uploaded successfully!');
-        // Reset the form
         setName('');
         setAge('');
         setCaseDetails('');
@@ -51,19 +50,14 @@ const UserData = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      {/* Drawer */}
+    <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'background.default' }}>
       <DrawerComponent />
-
-      {/* Main Content */}
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        {/* Header */}
         <HeaderComponent />
+        <Toolbar />
 
-        {/* Content Area */}
-        <Toolbar /> {/* Adds spacing below the fixed header */}
-        <Box sx={{ maxWidth: 500, mx: 'auto', mt: 5 }}>
-          <Typography variant="h4" component="h1" gutterBottom>
+        <Box sx={{ maxWidth: 500, mx: 'auto', mt: 5, p: 3, bgcolor: 'background.paper', borderRadius: 2, boxShadow: 2 }}>
+          <Typography variant="h4" component="h1" gutterBottom sx={{ textAlign: 'center', mb: 3 }}>
             Upload User Data
           </Typography>
 
@@ -73,6 +67,7 @@ const UserData = () => {
             margin="normal"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            sx={{ mb: 2 }}
           />
           <TextField
             label="Age"
@@ -81,6 +76,7 @@ const UserData = () => {
             margin="normal"
             value={age}
             onChange={(e) => setAge(e.target.value)}
+            sx={{ mb: 2 }}
           />
           <TextField
             label="Case Details"
@@ -88,33 +84,53 @@ const UserData = () => {
             margin="normal"
             value={caseDetails}
             onChange={(e) => setCaseDetails(e.target.value)}
+            multiline
+            rows={4}
+            sx={{ mb: 2 }}
           />
-          <Box sx={{ mt: 2 }}>
-            <Typography variant="subtitle1">Upload Image</Typography>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => handleFileUpload(e, setImage)}
-            />
+
+          <Box sx={{ mt: 2, mb: 3 }}>
+            <Typography variant="subtitle1" sx={{ mb: 1 }}>Upload Image</Typography>
+            <Button variant="outlined" component="label" sx={{ width: '100%', textAlign: 'center' }}>
+              {image ? image.name : 'Choose Image'}
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleFileUpload(e, setImage)}
+                hidden
+              />
+            </Button>
           </Box>
-          <Box sx={{ mt: 2 }}>
-            <Typography variant="subtitle1">Upload PDF</Typography>
-            <input
-              type="file"
-              accept=".pdf"
-              onChange={(e) => handleFileUpload(e, setPdf)}
-            />
+
+          <Box sx={{ mt: 2, mb: 3 }}>
+            <Typography variant="subtitle1" sx={{ mb: 1 }}>Upload PDF</Typography>
+            <Button variant="outlined" component="label" sx={{ width: '100%', textAlign: 'center' }}>
+              {pdf ? pdf.name : 'Choose PDF'}
+              <input
+                type="file"
+                accept=".pdf"
+                onChange={(e) => handleFileUpload(e, setPdf)}
+                hidden
+              />
+            </Button>
           </Box>
 
           <Button
             variant="contained"
             color="primary"
             fullWidth
-            sx={{ mt: 3 }}
             onClick={handleSubmit}
             disabled={loading}
+            sx={{
+              mt: 2,
+              py: 1,
+              bgcolor: loading ? 'grey.500' : 'primary.main',
+              '&:hover': {
+                bgcolor: loading ? 'grey.500' : 'primary.dark'
+              }
+            }}
           >
-            {loading ? <CircularProgress size={24} /> : 'Submit'}
+            {loading ? <CircularProgress size={24} color="inherit" /> : 'Submit'}
           </Button>
         </Box>
       </Box>
