@@ -6,8 +6,16 @@ import UsersList from './pages/UsersList';
 import Register from './pages/Register'; // Import the Register component
 import './App.css';
 import UserData from './pages/UserData'; // Import the Register component
-import Document from './pages/Document'; // Import the Register component
+import Documents from './pages/Document'; // Import the Register component
 import Projects from './pages/Projects'; // Import the Register component
+import Checklist from './pages/Checklist'; // Import the Register component
+import Team from './pages/Team'; // Import the Register component
+import Settings from './pages/Settings'; // Import the Register component
+import About from './pages/About'; // Import the Register component
+import Logout from './pages/Logout';
+
+
+
 
 
 
@@ -20,8 +28,13 @@ function App() {
         <Route path="/users" element={<UsersList />} />
         <Route path="/register" element={<Register />} /> {/* Add Register route */}
         <Route path="/userdata" element={<UserData />} /> {/* Add Register route */}
-        <Route path="/document" element={<Document/>} />
+        <Route path="/documents" element={<Documents/>} />
         <Route path="/projects" element={<Projects/>} />
+        <Route path="/checklist" element={<Checklist/>} />
+        <Route path="/team" element={<Team/>} />
+        <Route path="/settings" element={<Settings/>} />
+        <Route path="/about" element={<About/>} />
+        <Route path="/logout" element={<Logout />} />
 
 
       </Routes>
