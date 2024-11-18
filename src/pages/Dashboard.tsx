@@ -15,6 +15,7 @@ interface Case {
   status: string;
   dateFiled?: string;
   lastUpdate?: string;
+  documents?: string[]; // New property for associated documents
 }
 
 // Sample data for the charts
@@ -189,6 +190,9 @@ function Dashboard() {
                         <Typography variant="body2" color="textSecondary">
                           Last Update: {caseItem.lastUpdate}
                         </Typography>
+                        <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
+                          Documents: {caseItem.documents ? caseItem.documents.join(', ') : 'No documents available'}
+                        </Typography>
                       </CardContent>
                     </Card>
                   ))
@@ -219,11 +223,11 @@ function Dashboard() {
 
           {/* Notifications */}
           <Grid item xs={12} md={4}>
-            <Card sx={{ backgroundColor: '#f3f4f6' }}>
+            <Card sx={{ backgroundColor: '#f9f9f9' }}>
               <CardContent>
                 <Typography variant="h6" gutterBottom>Notifications</Typography>
-                <Typography variant="body2">New case filed by John Doe</Typography>
-                <Typography variant="body2">Case #12345 updated status to Resolved</Typography>
+                {/* Add notifications or messages here */}
+                <Typography variant="body2">No new notifications</Typography>
               </CardContent>
             </Card>
           </Grid>
