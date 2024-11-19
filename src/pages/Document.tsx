@@ -116,6 +116,9 @@ function Document() {
       <HeaderComponent />
 
       <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 15, }}>
+        <Typography>
+          Generate Your Projects Document PDF
+        </Typography>
         <Button variant="contained" color="primary" onClick={generatePDF}>
           Generate Document
         </Button>

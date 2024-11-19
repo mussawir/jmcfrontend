@@ -51,13 +51,14 @@ const DrawerComponent = () => {
           </ListItemIcon>
           <ListItemText primary="Projects" />
         </ListItem>
-
-        <ListItem component={Link} to="/documents">
+        <ListItem component={Link} to="/tabspage">
           <ListItemIcon>
-            <DescriptionIcon />
+            <FormatListBulletedIcon />
           </ListItemIcon>
-          <ListItemText primary="Documents" />
+          <ListItemText primary="TabsPage" />
         </ListItem>
+
+      
 
         <ListItem component={Link} to="/checklist">
           <ListItemIcon>
@@ -73,19 +74,26 @@ const DrawerComponent = () => {
           <ListItemText primary="Team" />
         </ListItem>
 
-        <ListItem component={Link} to="/settings">
+        <ListItem component={Link} to="/documents">
+          <ListItemIcon>
+            <DescriptionIcon />
+          </ListItemIcon>
+          <ListItemText primary="Documents" />
+        </ListItem>
+
+        {/* <ListItem component={Link} to="/settings">
           <ListItemIcon>
             <SettingsIcon />
           </ListItemIcon>
           <ListItemText primary="Settings" />
-        </ListItem>
+        </ListItem> */}
 
-        <ListItem component={Link} to="/about">
+        {/* <ListItem component={Link} to="/about">
           <ListItemIcon>
             <InfoIcon />
           </ListItemIcon>
           <ListItemText primary="About" />
-        </ListItem>
+        </ListItem> */}
 
         <ListItem component={Link} to="/logout">
           <ListItemIcon>
