@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, TextField, Button, CircularProgress, Typography, Box } from '@mui/material';
 import api from '../api';
-import logojmc from "../images/jmcvc-logo.svg";
+import logojmc from "../images/jmcvc-dark-logo.png";
 
 interface LoginResponse {
   access_token: string;  // Define the shape of the response data
@@ -38,20 +38,19 @@ function LoginForm() {
 
   return (
     <>
-    <div style={{backgroundColor: 'black',}}>   
+    <div>   
      <div>
-        <img src={logojmc} alt="" />
+        <img src={logojmc} width={200} style={{marginTop: 20,}} alt="" />
     </div>
     <Box
       sx={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100vh',
-        backgroundColor: '#f5f5f5',
+        height: '80vh',
       }}
     >
-      <Card sx={{ p: 4, width: 400, boxShadow: 3 }}>
+      <Card sx={{ p: 4, width: 400, boxShadow: 3, }}>
         <Typography variant="h3" textAlign="center" mb={2}>Login</Typography>
         {error && (
           <Typography color="error" textAlign="center" mb={2}>
