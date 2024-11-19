@@ -226,7 +226,7 @@ function Projects() {
                   <TableCell>Builder Name</TableCell>
                   <TableCell>Purchaser Name</TableCell>
                   <TableCell>Property Name</TableCell>
-                  <TableCell>Status</TableCell>
+                  {/* <TableCell>Status</TableCell> */}
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -236,7 +236,7 @@ function Projects() {
                     <TableCell>{files.builderName}</TableCell>
                     <TableCell>{files.purchaserName}</TableCell>
                     <TableCell>{files.propertyName}</TableCell>
-                    <TableCell>{files.status}</TableCell>
+                    {/* <TableCell>{files.status}</TableCell> */}
                   </TableRow>
                 ))}
               </TableBody>
