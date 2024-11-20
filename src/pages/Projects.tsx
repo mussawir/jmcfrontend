@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, TextField, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Box, Typography, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, TextField, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import { SelectChangeEvent } from '@mui/material';
+import axios from 'axios';
 
 function Projects() {
   // Form states
@@ -15,6 +16,7 @@ function Projects() {
   const [selectedValue, setSelectedValue] = useState<string>('Select Schedule');
   const [showForm, setShowForm] = useState<boolean>(false);
   const [projects, setProjects] = useState<any[]>([]);
+  const [crewResult, setCrewResult] = useState<any>(null);
   const navigate = useNavigate();
 
   // Fetch projects from backend when the component mounts
@@ -33,7 +35,7 @@ function Projects() {
             Authorization: `Bearer ${token}`,
           },
         });
-        
+
         if (response.ok) {
           const data = await response.json();
           setProjects(data);
@@ -50,7 +52,7 @@ function Projects() {
 
   // Handle file upload change
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
+    if (event.target.files && event.target.files[0]) {
       setPdfFile(event.target.files[0]);
     }
   };
@@ -71,51 +73,73 @@ function Projects() {
   // Handle form submission
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
+  
     if (!projectName || !builderName || !purchaserName || !propertyName || !selectedValue) {
       alert('Please fill in all the fields');
       return;
     }
-
+  
+    if (!pdfFile) {
+      alert('Please select a file to upload');
+      return;
+    }
+  
     const formData = new FormData();
     formData.append('name', projectName);
     formData.append('builderName', builderName);
     formData.append('purchaserName', purchaserName);
     formData.append('propertyName', propertyName);
-
-    if (pdfFile) {
-      formData.append('pdf', pdfFile);
+    formData.append('pdf', pdfFile);
+  
+    // Log the FormData to check the contents
+    for (let [key, value] of formData.entries()) {
+      console.log(key, value);
     }
-
+  
     try {
       const token = localStorage.getItem('ACCESS_TOKEN');
       if (!token) {
         navigate('/login');
         return;
       }
-
-      const response = await fetch('http://127.0.0.1:5000/users', {
-        method: 'POST',
+  
+      const response = await axios.post('http://127.0.0.1:5000/upload', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
+          // Don't manually set Content-Type when using FormData
         },
-        body: formData,
       });
-
-      if (response.ok) {
-        alert('Project Created Successfully!');
-        // You can redirect or clear the form here if needed
-        const data = await response.json();
-        setProjects((prevProjects) => [...prevProjects, data]);
-      } else {
-        const errorData = await response.json();
-        alert(`Error: ${errorData.message}`);
-      }
+  
+      alert('Project Created Successfully!');
+      setProjects((prevProjects) => [...prevProjects, response.data]);
     } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('Error submitting form.');
+      if (axios.isAxiosError(error)) {
+        console.error('Error submitting form:', error.response?.data || error.message);
+        alert(`Error: ${error.response?.data?.message || 'Form submission failed.'}`);
+      } else {
+        console.error('Unexpected error:', error);
+        alert('An unexpected error occurred.');
+      }
     }
   };
+  
+
+  const fetchCrewResult = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/upload', {
+        // Add any required data or files to the request body
+      });
+      const crewResult = response.data.result;
+      console.log(crewResult);
+      setCrewResult(crewResult);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCrewResult();
+  }, []);
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -156,7 +180,6 @@ function Projects() {
             </Select>
           </FormControl>
         )}
-
 
         {/* Show form when Schedule H is selected */}
         {showForm && (
@@ -202,7 +225,7 @@ function Projects() {
                   />
                   <Button variant="outlined" component="label" fullWidth sx={{ marginBottom: 2 }}>
                     Select File
-                    <input type="file" hidden onChange={handleFileChange} />
+                    <input type="file" hidden accept="application/pdf" onChange={handleFileChange} />
                   </Button>
                   <Button variant="contained" color="primary" fullWidth type="submit">
                     Create Project
@@ -213,36 +236,15 @@ function Projects() {
           </center>
         )}
 
-       {/* Display Projects Table */}
-       <Box sx={{ marginTop: 4 }}>
-          <Typography variant="h6" gutterBottom>
-            List of Projects
-          </Typography>
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Project Name</TableCell>
-                  <TableCell>Builder Name</TableCell>
-                  <TableCell>Purchaser Name</TableCell>
-                  <TableCell>Property Name</TableCell>
-                  {/* <TableCell>Status</TableCell> */}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {projects.map((files, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{files.name}</TableCell>
-                    <TableCell>{files.builderName}</TableCell>
-                    <TableCell>{files.purchaserName}</TableCell>
-                    <TableCell>{files.propertyName}</TableCell>
-                    {/* <TableCell>{files.status}</TableCell> */}
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Box>
+        {/* Display crew result below dropdown menu */}
+        {!showForm && crewResult && (
+          <Box sx={{ marginTop: 2 }}>
+            <Typography variant="h6" gutterBottom>
+              Crew Result:
+            </Typography>
+            <pre>{JSON.stringify(crewResult, null, 2)}</pre>
+          </Box>
+        )}
       </Box>
     </Box>
   );
