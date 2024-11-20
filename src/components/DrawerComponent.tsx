@@ -9,6 +9,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
 import logojmc from '../images/jmcvc-dark-logo.png';
+import InfoIcon from '@mui/icons-material/Info';
 
 const drawerWidth = 240;
 
@@ -80,19 +81,19 @@ const DrawerComponent = () => {
           <ListItemText primary="Documents" />
         </ListItem>
 
-        {/* <ListItem component={Link} to="/settings">
+        <ListItem component={Link} to="/settings">
           <ListItemIcon>
             <SettingsIcon />
           </ListItemIcon>
           <ListItemText primary="Settings" />
-        </ListItem> */}
+        </ListItem> 
 
-        {/* <ListItem component={Link} to="/about">
+         <ListItem component={Link} to="/about">
           <ListItemIcon>
             <InfoIcon />
           </ListItemIcon>
           <ListItemText primary="About" />
-        </ListItem> */}
+        </ListItem> 
 
         <ListItem component={Link} to="/logout">
           <ListItemIcon>
