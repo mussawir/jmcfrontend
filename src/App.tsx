@@ -13,8 +13,7 @@ import Team from './pages/Team'; // Import the Register component
 import Settings from './pages/Settings'; // Import the Register component
 import About from './pages/About'; // Import the Register component
 import Logout from './pages/Logout';
-
-
+import TabsPage from './pages/TabsPage';
 
 
 
@@ -32,6 +31,7 @@ function App() {
         <Route path="/projects" element={<Projects/>} />
         <Route path="/checklist" element={<Checklist/>} />
         <Route path="/team" element={<Team/>} />
+        <Route path="/tabspage" element={<TabsPage/>} />
         <Route path="/settings" element={<Settings/>} />
         <Route path="/about" element={<About/>} />
         <Route path="/logout" element={<Logout />} />
