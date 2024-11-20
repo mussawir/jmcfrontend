@@ -10,7 +10,7 @@ const Logout: React.FC = () => {
     sessionStorage.removeItem("userSession");
     
     // Redirect to login page
-    navigate("/login");
+    navigate("/");
   }, [navigate]);
 
   return (
