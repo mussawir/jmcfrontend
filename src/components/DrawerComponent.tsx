@@ -1,40 +1,30 @@
-import React from 'react';
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Box } from '@mui/material';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import WorkIcon from '@mui/icons-material/Work'; // For Projects
-import DescriptionIcon from '@mui/icons-material/Description'; // For Documents
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'; // For Checklist
-import PeopleIcon from '@mui/icons-material/People'; // For Team
-import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
-import CardGiftcardIcon from '@mui/icons-material/CardGiftcard'; // For Cards
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'; // For Ecommerce
-import WidgetsIcon from '@mui/icons-material/Widgets'; // For Components
+import React, { useState } from 'react';
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material';
+import EmojiSymbolsOutlinedIcon from '@mui/icons-material/EmojiSymbolsOutlined';
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined'; // For Documents
+import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined'; // For Checklist
+import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined'; // For Team
+import CardGiftcardOutlinedIcon from '@mui/icons-material/CardGiftcardOutlined'; // For Cards
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'; // For Ecommerce
+import WidgetsOutlinedIcon from '@mui/icons-material/WidgetsOutlined'; // For Components
 import IconButton from '@mui/material/IconButton';
-import ContactMailIcon from '@mui/icons-material/ContactMail'; // For Forms
-import TableChartIcon from '@mui/icons-material/TableChart'; // For Tables
-import AppsIcon from '@mui/icons-material/Apps'; // For Apps
-import LockIcon from '@mui/icons-material/Lock'; // For Authentication
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'; // For User Profile
-import TimelineIcon from '@mui/icons-material/Timeline'; // For Timeline
-import PagesIcon from '@mui/icons-material/Pages'; // For Pages
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline'; // For FAQ
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney'; // For Pricing
-
-// New icons for Charts, Maps, Menu Levels, Documentation, and Support
-import BarChartIcon from '@mui/icons-material/BarChart'; // For Charts
-import MapIcon from '@mui/icons-material/Map'; // For Maps
-import MenuIcon from '@mui/icons-material/Menu'; // For Menu Levels
-import BookIcon from '@mui/icons-material/Book'; // For Documentation
-import SupportIcon from '@mui/icons-material/Support'; // For Support
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'; // Right Arrow Icon
-
+import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined'; // For Forms
+import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined'; // For Tables
+import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined'; // For Apps
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'; // Already outlined
 import { Link } from 'react-router-dom';
 import logojmc from '../images/jmcvc-dark-logo.png';
-
+import FolderCopyOutlinedIcon from '@mui/icons-material/FolderCopyOutlined';
 const drawerWidth = 240;
 
 const DrawerComponent = () => {
+  const [selectedItem, setSelectedItem] = useState<string>('');
+
+  // Handle item click
+  const handleItemClick = (item: string) => {
+    setSelectedItem(item);
+  };
   return (
     <Drawer
       sx={{
@@ -57,201 +47,433 @@ const DrawerComponent = () => {
         </div>
       </Toolbar>
 
-      {/* Menu List */}
       <List sx={{ flexGrow: 1 }}>
-        <ListItem component={Link} to="/dashboard">
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText primary="Dashboard" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
+      <ListItem
+  component={Link}
+  to="/dashboard"
+  onClick={() => handleItemClick('Dashboard')} // Set 'Dashboard' as the selected item
+  sx={{
+    backgroundColor: selectedItem === 'Dashboard' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
+    color: selectedItem === 'Dashboard' ? '#1E90FF' : '#212529', // Icon and text color if selected
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'Dashboard' ? '#1E90FF' : '#212529' }}>
+    <HomeOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '16px',
+          fontWeight: 500,
+          fontFamily: '"Noto Sans", sans-serif',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#212529', // Text color when selected
+        }}
+      >
+        Dashboard
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Dashboard' ? '#1E90FF' : '#212529' }} />
+      </ListItem>
 
-        <ListItem component={Link} to="/projects">
-          <ListItemIcon>
-            <WorkIcon />
-          </ListItemIcon>
-          <ListItemText primary="Projects" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
+      <ListItem
+  component={Link}
+  to="/projects"
+  onClick={() => handleItemClick('Projects')} // Set 'Projects' as the selected item
+  sx={{
+    backgroundColor: selectedItem === 'Projects' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
+    color: selectedItem === 'Projects' ? '#1E90FF' : '#212529', // Icon and text color if selected
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'Projects' ? '#1E90FF' : '#212529' }}>
+    <FolderCopyOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '16px',
+          fontWeight: 500,
+          fontFamily: '"Noto Sans", sans-serif',
+          color: selectedItem === 'Projects' ? '#1E90FF' : '#212529', // Text color when selected
+        }}
+      >
+        Projects
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#212529' }} />
+</ListItem>
 
-        <ListItem component={Link} to="/tabspage">
-          <ListItemIcon>
-            <FormatListBulletedIcon />
-          </ListItemIcon>
-          <ListItemText primary="TabsPage" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
 
-        <ListItem component={Link} to="/checklist">
-          <ListItemIcon>
-            <FormatListBulletedIcon />
-          </ListItemIcon>
-          <ListItemText primary="Checklist" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
+<ListItem
+  component={Link}
+  to="/tabspage"
+  onClick={() => handleItemClick('TabsPage')} // Set 'TabsPage' as the selected item
+  sx={{
+    backgroundColor: selectedItem === 'TabsPage' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
+    color: selectedItem === 'TabsPage' ? '#1E90FF' : '#212529', // Icon and text color if selected
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'TabsPage' ? '#1E90FF' : '#212529' }}>
+    <FormatListBulletedOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '16px',
+          fontWeight: 500,
+          fontFamily: '"Noto Sans", sans-serif',
+          color: selectedItem === 'TabsPage' ? '#1E90FF' : '#212529', // Text color when selected
+        }}
+      >
+        TabsPage
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'TabsPage' ? '#1E90FF' : '#212529' }} />
+</ListItem>
 
-        <ListItem component={Link} to="/team">
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText primary="Team" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
 
-        <ListItem component={Link} to="/documents">
-          <ListItemIcon>
-            <DescriptionIcon />
-          </ListItemIcon>
-          <ListItemText primary="Documents" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
+<ListItem
+  component={Link}
+  to="/checklist"
+  onClick={() => handleItemClick('Checklist')} // Set 'Checklist' as the selected item
+  sx={{
+    backgroundColor: selectedItem === 'Checklist' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
+    color: selectedItem === 'Checklist' ? '#1E90FF' : '#212529', // Icon and text color if selected
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'Checklist' ? '#1E90FF' : '#212529' }}>
+    <FormatListBulletedOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '16px',
+          fontWeight: 500,
+          fontFamily: '"Noto Sans", sans-serif',
+          color: selectedItem === 'Checklist' ? '#1E90FF' : '#212529', // Text color when selected
+        }}
+      >
+        Checklist
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Checklist' ? '#1E90FF' : '#212529' }} />
+</ListItem>
 
-        {/* New Sections */}
-        <p style={{ color: '#B0B0B0', textAlign: 'left', marginLeft: 20 }}>UI ELEMENTS</p>
-        <ListItem component={Link} to="/cards">
-          <ListItemIcon>
-            <CardGiftcardIcon />
-          </ListItemIcon>
-          <ListItemText primary="Cards" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
 
-        <ListItem component={Link} to="/ecommerce">
-          <ListItemIcon>
-            <ShoppingCartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Ecommerce" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
+<ListItem
+  component={Link}
+  to="/team"
+  onClick={() => handleItemClick('Team')} // Set 'Team' as the selected item
+  sx={{
+    backgroundColor: selectedItem === 'Team' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
+    color: selectedItem === 'Team' ? '#1E90FF' : '#212529', // Icon and text color if selected
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'Team' ? '#1E90FF' : '#212529' }}>
+    <PeopleOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '16px',
+          fontWeight: 500,
+          fontFamily: '"Noto Sans", sans-serif',
+          color: selectedItem === 'Team' ? '#1E90FF' : '#212529', // Text color when selected
+        }}
+      >
+        Team
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Team' ? '#1E90FF' : '#212529' }} />
+</ListItem>
 
-        <ListItem component={Link} to="/components">
-          <ListItemIcon>
-            <WidgetsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Components" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
 
-        <ListItem component={Link} to="/icons">
-          <ListItemIcon>
-            <IconButton />
-          </ListItemIcon>
-          <ListItemText primary="Icons" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
+<ListItem
+  component={Link}
+  to="/documents"
+  onClick={() => handleItemClick('Documents')} // Set 'Documents' as the selected item
+  sx={{
+    backgroundColor: selectedItem === 'Documents' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
+    color: selectedItem === 'Documents' ? '#1E90FF' : '#212529', // Icon and text color if selected
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'Documents' ? '#1E90FF' : '#212529' }}>
+    <DescriptionOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '16px',
+          fontWeight: 500,
+          fontFamily: '"Noto Sans", sans-serif',
+          color: selectedItem === 'Documents' ? '#1E90FF' : '#212529', // Text color when selected
+        }}
+      >
+        Documents
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Documents' ? '#1E90FF' : '#212529' }} />
+</ListItem>
 
-        <p style={{ color: '#B0B0B0', textAlign: 'left', marginLeft: 20 }}>Forms & Tables</p>
+     {/* New Sections */}
+<p style={{ color: '#B0B0B0', textAlign: 'left', marginLeft: 20 }}>UI ELEMENTS</p>
 
-        <ListItem component={Link} to="/forms">
-          <ListItemIcon>
-            <ContactMailIcon />
-          </ListItemIcon>
-          <ListItemText primary="Forms" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
+<ListItem
+  component={Link}
+  to="/cards"
+  onClick={() => handleItemClick('Cards')} // Set 'Cards' as the selected item
+  sx={{
+    backgroundColor: selectedItem === 'Cards' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
+    color: selectedItem === 'Cards' ? '#1E90FF' : '#212529', // Icon and text color if selected
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'Cards' ? '#1E90FF' : '#212529' }}>
+    <CardGiftcardOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '16px',
+          fontWeight: 500,
+          fontFamily: '"Noto Sans", sans-serif',
+          color: selectedItem === 'Cards' ? '#1E90FF' : '#212529', // Text color when selected
+        }}
+      >
+        Cards
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Cards' ? '#1E90FF' : '#212529' }} />
+</ListItem>
 
-        <ListItem component={Link} to="/tables">
-          <ListItemIcon>
-            <TableChartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Tables" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
+<ListItem
+  component={Link}
+  to="/ecommerce"
+  onClick={() => handleItemClick('Ecommerce')}
+  sx={{
+    backgroundColor: selectedItem === 'Ecommerce' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+    color: selectedItem === 'Ecommerce' ? '#1E90FF' : '#212529',
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)',
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'Ecommerce' ? '#1E90FF' : '#212529' }}>
+    <ShoppingCartOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '16px',
+          fontWeight: 500,
+          fontFamily: '"Noto Sans", sans-serif',
+          color: selectedItem === 'Ecommerce' ? '#1E90FF' : '#212529',
+        }}
+      >
+        Ecommerce
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Ecommerce' ? '#1E90FF' : '#212529' }} />
+</ListItem>
 
-        <ListItem component={Link} to="/apps">
-          <ListItemIcon>
-            <AppsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Apps" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
+<ListItem
+  component={Link}
+  to="/components"
+  onClick={() => handleItemClick('Components')}
+  sx={{
+    backgroundColor: selectedItem === 'Components' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+    color: selectedItem === 'Components' ? '#1E90FF' : '#212529',
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)',
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'Components' ? '#1E90FF' : '#212529' }}>
+    <WidgetsOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '16px',
+          fontWeight: 500,
+          fontFamily: '"Noto Sans", sans-serif',
+          color: selectedItem === 'Components' ? '#1E90FF' : '#212529',
+        }}
+      >
+        Components
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Components' ? '#1E90FF' : '#212529' }} />
+</ListItem>
 
-        <p style={{ color: '#B0B0B0', textAlign: 'left', marginLeft: 20 }}>Pages</p>
+<ListItem
+  component={Link}
+  to="/icons"
+  onClick={() => handleItemClick('Icons')}
+  sx={{
+    backgroundColor: selectedItem === 'Icons' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+    color: selectedItem === 'Icons' ? '#1E90FF' : '#212529',
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)',
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'Icons' ? '#1E90FF' : '#212529' }}>
+    <EmojiSymbolsOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '16px',
+          fontWeight: 500,
+          fontFamily: '"Noto Sans", sans-serif',
+          color: selectedItem === 'Icons' ? '#1E90FF' : '#212529',
+        }}
+      >
+        Icons
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Icons' ? '#1E90FF' : '#212529' }} />
+</ListItem>
 
-        <ListItem component={Link} to="/authentication">
-          <ListItemIcon>
-            <LockIcon />
-          </ListItemIcon>
-          <ListItemText primary="Authentication" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
+<p style={{ color: '#B0B0B0', textAlign: 'left', marginLeft: 20 }}>Forms & Tables</p>
 
-        <ListItem component={Link} to="/userprofile">
-          <ListItemIcon>
-            <AccountCircleIcon />
-          </ListItemIcon>
-          <ListItemText primary="User Profile" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
+<ListItem
+  component={Link}
+  to="/forms"
+  onClick={() => handleItemClick('Forms')}
+  sx={{
+    backgroundColor: selectedItem === 'Forms' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+    color: selectedItem === 'Forms' ? '#1E90FF' : '#212529',
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)',
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'Forms' ? '#1E90FF' : '#212529' }}>
+    <ContactMailOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '16px',
+          fontWeight: 500,
+          fontFamily: '"Noto Sans", sans-serif',
+          color: selectedItem === 'Forms' ? '#1E90FF' : '#212529',
+        }}
+      >
+        Forms
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Forms' ? '#1E90FF' : '#212529' }} />
+</ListItem>
 
-        <ListItem component={Link} to="/timeline">
-          <ListItemIcon>
-            <TimelineIcon />
-          </ListItemIcon>
-          <ListItemText primary="Timeline" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
+<ListItem
+  component={Link}
+  to="/tables"
+  onClick={() => handleItemClick('Tables')}
+  sx={{
+    backgroundColor: selectedItem === 'Tables' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+    color: selectedItem === 'Tables' ? '#1E90FF' : '#212529',
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)',
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'Tables' ? '#1E90FF' : '#212529' }}>
+    <TableChartOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '16px',
+          fontWeight: 500,
+          fontFamily: '"Noto Sans", sans-serif',
+          color: selectedItem === 'Tables' ? '#1E90FF' : '#212529',
+        }}
+      >
+        Tables
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Tables' ? '#1E90FF' : '#212529' }} />
+</ListItem>
 
-        <ListItem component={Link} to="/pages">
-          <ListItemIcon>
-            <PagesIcon />
-          </ListItemIcon>
-          <ListItemText primary="Pages" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
+<ListItem
+  component={Link}
+  to="/apps"
+  onClick={() => handleItemClick('Apps')}
+  sx={{
+    backgroundColor: selectedItem === 'Apps' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+    color: selectedItem === 'Apps' ? '#1E90FF' : '#212529',
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)',
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'Apps' ? '#1E90FF' : '#212529' }}>
+    <AppsOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '16px',
+          fontWeight: 500,
+          fontFamily: '"Noto Sans", sans-serif',
+          color: selectedItem === 'Apps' ? '#1E90FF' : '#212529',
+        }}
+      >
+        Apps
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Apps' ? '#1E90FF' : '#212529' }} />
+</ListItem>
 
-        <ListItem component={Link} to="/faq">
-          <ListItemIcon>
-            <HelpOutlineIcon />
-          </ListItemIcon>
-          <ListItemText primary="FAQ" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
-
-        <ListItem component={Link} to="/pricing">
-          <ListItemIcon>
-            <AttachMoneyIcon />
-          </ListItemIcon>
-          <ListItemText primary="Pricing" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
-
-        <p style={{ color: '#B0B0B0', textAlign: 'left', marginLeft: 20 }}>Charts & Maps</p>
-
-        <ListItem component={Link} to="/charts">
-          <ListItemIcon>
-            <BarChartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Charts" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
-
-        <ListItem component={Link} to="/maps">
-          <ListItemIcon>
-            <MapIcon />
-          </ListItemIcon>
-          <ListItemText primary="Maps" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
-
-        <p style={{ color: '#B0B0B0', textAlign: 'left', marginLeft: 20 }}>Support</p>
-
-        <ListItem component={Link} to="/support">
-          <ListItemIcon>
-            <SupportIcon />
-          </ListItemIcon>
-          <ListItemText primary="Support" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
-
-        <ListItem component={Link} to="/documentation">
-          <ListItemIcon>
-            <BookIcon />
-          </ListItemIcon>
-          <ListItemText primary="Documentation" />
-          <ArrowForwardIcon sx={{ marginLeft: 'auto' }} />
-        </ListItem>
+        {/* Add other new sections as needed */}
       </List>
     </Drawer>
   );
