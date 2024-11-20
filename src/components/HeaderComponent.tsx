@@ -27,19 +27,25 @@ const HeaderComponent = () => {
         </IconButton>
 
         {/* Search Bar */}
-        <Box sx={{ ml: 'auto', width: '350px' }}>
-          <TextField
-            placeholder="Search..."
-            variant="outlined"
-            size="small"
-            fullWidth
-            InputProps={{
-              startAdornment: (
-                <SearchIcon style={{ marginRight: '8px', color: 'gray' }} />
-              ),
-            }}
-          />
-        </Box>
+        <Box sx={{ ml: 'auto', width: '550px' }}>
+  <TextField
+    placeholder="Search..."
+    variant="outlined"
+    size="small"
+    fullWidth
+    sx={{
+      '& .MuiOutlinedInput-root': {
+        borderRadius: '26px', // Apply rounded border to the root
+      },
+    }}
+    InputProps={{
+      startAdornment: (
+        <SearchIcon style={{ marginRight: '8px', color: 'gray' }} />
+      ),
+    }}
+  />
+</Box>
+
 
         {/* Notifications Button */}
         <IconButton color="success" sx={{ mr: 2 }}>

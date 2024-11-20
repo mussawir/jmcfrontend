@@ -52,7 +52,7 @@ web_modules/
 .npm
 
 # Optional packages-lock.json file
-packages-lock.json
+#packages-lock.json
 
 # Optional eslint cache
 .eslintcache

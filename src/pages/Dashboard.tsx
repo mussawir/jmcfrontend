@@ -72,7 +72,7 @@ function Dashboard() {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', backgroundColor:'#eff1f3' }}>
       <CssBaseline />
       <DrawerComponent />
       <HeaderComponent />
