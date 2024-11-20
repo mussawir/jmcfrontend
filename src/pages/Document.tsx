@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Grid, Card, CardContent, Typography, Toolbar, CssBaseline } from '@mui/material';
+import { Box, Button, Grid, Card, CardContent, Typography, CssBaseline } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { jsPDF } from 'jspdf';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
-import GavelIcon from '@mui/icons-material/Gavel';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import PendingIcon from '@mui/icons-material/Pending';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Legend, Cell } from 'recharts';
 
 // Define the Case interface
 interface Case {
@@ -17,28 +12,6 @@ interface Case {
   dateFiled?: string;
   lastUpdate?: string;
 }
-
-// Sample data for the charts
-const caseTrendData = [
-  { month: 'Jan', cases: 30 },
-  { month: 'Feb', cases: 45 },
-  { month: 'Mar', cases: 60 },
-  { month: 'Apr', cases: 80 },
-  { month: 'May', cases: 90 },
-  { month: 'Jun', cases: 75 },
-  { month: 'Jul', cases: 100 },
-  { month: 'Aug', cases: 85 },
-  { month: 'Sep', cases: 95 },
-  { month: 'Oct', cases: 120 },
-  { month: 'Nov', cases: 110 },
-  { month: 'Dec', cases: 130 },
-];
-
-const caseStatusData = [
-  { status: 'Resolved', value: 320 },
-  { status: 'Pending', value: 90 },
-  { status: 'New', value: 40 },
-];
 
 function Document() {
   const [cases, setCases] = useState<Case[]>([]);
@@ -93,11 +66,6 @@ function Document() {
     // Case Status Chart Data (Pie Chart for Case Status)
     doc.addPage();
     doc.text('Case Status Overview', 20, 20);
-
-    const pieData = caseStatusData.map(item => ({
-      name: item.status,
-      value: item.value,
-    }));
 
     // Example: Rendering Pie Chart (you would need to generate this using a separate library or render to canvas first)
     doc.text('Insert chart here (generated with Recharts)', 20, 40);

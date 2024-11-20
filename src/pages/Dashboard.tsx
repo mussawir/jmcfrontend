@@ -8,7 +8,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import PendingIcon from '@mui/icons-material/Pending';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Legend, Cell } from 'recharts';
-import Tabs from '../components/Tabs';
+
 // Define the Case interface
 interface Case {
   title: string;

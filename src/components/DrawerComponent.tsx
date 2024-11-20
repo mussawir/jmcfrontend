@@ -6,7 +6,6 @@ import DescriptionIcon from '@mui/icons-material/Description'; // For Documents
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'; // For Checklist
 import PeopleIcon from '@mui/icons-material/People'; // For Team
 import SettingsIcon from '@mui/icons-material/Settings';
-import InfoIcon from '@mui/icons-material/Info';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
 import logojmc from '../images/jmcvc-dark-logo.png';
