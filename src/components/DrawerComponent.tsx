@@ -7,7 +7,6 @@ import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined'; // For Team
 import CardGiftcardOutlinedIcon from '@mui/icons-material/CardGiftcardOutlined'; // For Cards
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'; // For Ecommerce
 import WidgetsOutlinedIcon from '@mui/icons-material/WidgetsOutlined'; // For Components
-import IconButton from '@mui/material/IconButton';
 import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined'; // For Forms
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined'; // For Tables
 import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined'; // For Apps
