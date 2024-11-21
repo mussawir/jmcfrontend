@@ -52,8 +52,10 @@ function Projects() {
 
   // Handle file upload change
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
+    if (event.target.files && event.target.files.length > 0) {
       setPdfFile(event.target.files[0]);
+    } else {
+      setPdfFile(null);
     }
   };
 
@@ -89,12 +91,12 @@ function Projects() {
     formData.append('builderName', builderName);
     formData.append('purchaserName', purchaserName);
     formData.append('propertyName', propertyName);
-    formData.append('pdf', pdfFile);
+    formData.append('pdffile', pdfFile);
   
     // Log the FormData to check the contents
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
+    // for (let [key, value] of formData.entries()) {
+    //   console.log(key, value);
+    // }
   
     try {
       const token = localStorage.getItem('ACCESS_TOKEN');
@@ -106,11 +108,13 @@ function Projects() {
       const response = await axios.post('http://127.0.0.1:5000/upload', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-          // Don't manually set Content-Type when using FormData
+          'Content-Type': 'multipart/form-data',
         },
       });
-  
-      alert('Project Created Successfully!');
+
+
+      console.log('API Response:', response.data); // Log the response data
+      // alert('Project Created Successfully!');
       setProjects((prevProjects) => [...prevProjects, response.data]);
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -124,22 +128,22 @@ function Projects() {
   };
   
 
-  const fetchCrewResult = async () => {
-    try {
-      const response = await axios.post('http://localhost:5000/upload', {
-        // Add any required data or files to the request body
-      });
-      const crewResult = response.data.result;
-      console.log(crewResult);
-      setCrewResult(crewResult);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const fetchCrewResult = async () => {
+  //   try {
+  //     const response = await axios.post('http://localhost:5000/upload', {
+  //       // Add any required data or files to the request body
+  //     });
+  //     const crewResult = response.data.result;
+  //     console.log(crewResult);
+  //     setCrewResult(crewResult);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchCrewResult();
-  }, []);
+  // useEffect(() => {
+  //   fetchCrewResult();
+  // }, []);
 
   return (
     <Box sx={{ display: 'flex' }}>
