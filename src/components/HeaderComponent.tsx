@@ -27,7 +27,7 @@ const HeaderComponent = () => {
         </IconButton>
 
         {/* Search Bar */}
-        <Box sx={{ ml: 'auto', width: '550px' }}>
+        <Box sx={{ ml: 'auto', width: '790px', marginRight: '20px',         }}>
   <TextField
     placeholder="Search..."
     variant="outlined"
@@ -48,14 +48,14 @@ const HeaderComponent = () => {
 
 
         {/* Notifications Button */}
-        <IconButton color="success" sx={{ mr: 2 }}>
+        <IconButton color="success" sx={{ mr: 4 }}>
           <Badge badgeContent={4} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
 
         {/* Profile Avatar */}
-        <IconButton color="inherit" sx={{ mr: 2 }}>
+        <IconButton color="inherit" sx={{ mr: 4 }}>
           <Avatar alt="Profile" src="/path/to/profile-image.jpg" />
         </IconButton>
 

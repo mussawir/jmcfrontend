@@ -41,9 +41,9 @@ const DrawerComponent = () => {
       anchor="left"
     >
       {/* Logo */}
-      <Toolbar style={{ justifyContent: 'center', display: 'flex' }}>
+      <Toolbar style={{ justifyContent: 'left', display: 'flex' }}>
         <div>
-          <img src={logojmc} width={120} style={{ marginTop: 20 }} alt="Logo" />
+          <img src={logojmc} width={100} style={{ marginTop: 20, marginLeft: 10 , justifyContent: 'left', display: 'flex' }} alt="Logo" />
         </div>
       </Toolbar>
 
@@ -54,30 +54,31 @@ const DrawerComponent = () => {
   onClick={() => handleItemClick('Dashboard')} // Set 'Dashboard' as the selected item
   sx={{
     backgroundColor: selectedItem === 'Dashboard' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
-    color: selectedItem === 'Dashboard' ? '#1E90FF' : '#212529', // Icon and text color if selected
+    color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Dashboard' ? '#1E90FF' : '#212529' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f' }}>
     <HomeOutlinedIcon />
   </ListItemIcon>
   <ListItemText
     primary={
       <Typography
         sx={{
-          fontSize: '16px',
+          fontSize: '16px', 
           fontWeight: 500,
-          fontFamily: '"Noto Sans", sans-serif',
-          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#212529', // Text color when selected
+          letterSpacing: '0.8px',
+          fontFamily: ' sans-serif',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', // Text color when selected
         }}
       >
         Dashboard
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Dashboard' ? '#1E90FF' : '#212529' }} />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f' }} />
       </ListItem>
 
       <ListItem
@@ -86,30 +87,31 @@ const DrawerComponent = () => {
   onClick={() => handleItemClick('Projects')} // Set 'Projects' as the selected item
   sx={{
     backgroundColor: selectedItem === 'Projects' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
-    color: selectedItem === 'Projects' ? '#1E90FF' : '#212529', // Icon and text color if selected
+    color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Projects' ? '#1E90FF' : '#212529' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }}>
     <FolderCopyOutlinedIcon />
   </ListItemIcon>
   <ListItemText
     primary={
       <Typography
         sx={{
-          fontSize: '16px',
+          fontSize: '16px', 
           fontWeight: 500,
-          fontFamily: '"Noto Sans", sans-serif',
-          color: selectedItem === 'Projects' ? '#1E90FF' : '#212529', // Text color when selected
+          letterSpacing: '0.8px',
+          fontFamily: ' sans-serif',
+          color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f', // Text color when selected
         }}
       >
         Projects
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#212529' }} />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
 
 
@@ -119,30 +121,31 @@ const DrawerComponent = () => {
   onClick={() => handleItemClick('TabsPage')} // Set 'TabsPage' as the selected item
   sx={{
     backgroundColor: selectedItem === 'TabsPage' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
-    color: selectedItem === 'TabsPage' ? '#1E90FF' : '#212529', // Icon and text color if selected
+    color: selectedItem === 'TabsPage' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'TabsPage' ? '#1E90FF' : '#212529' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'TabsPage' ? '#1E90FF' : '#5f5f5f' }}>
     <FormatListBulletedOutlinedIcon />
   </ListItemIcon>
   <ListItemText
     primary={
       <Typography
         sx={{
-          fontSize: '16px',
-          fontWeight: 500,
-          fontFamily: '"Noto Sans", sans-serif',
-          color: selectedItem === 'TabsPage' ? '#1E90FF' : '#212529', // Text color when selected
+      fontSize: '16px', 
+      fontWeight: 500,
+      letterSpacing: '0.8px',
+       fontFamily: ' sans-serif',
+          color: selectedItem === 'TabsPage' ? '#1E90FF' : '#5f5f5f', // Text color when selected
         }}
       >
         TabsPage
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'TabsPage' ? '#1E90FF' : '#212529' }} />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'TabsPage' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
 
 
@@ -152,30 +155,31 @@ const DrawerComponent = () => {
   onClick={() => handleItemClick('Checklist')} // Set 'Checklist' as the selected item
   sx={{
     backgroundColor: selectedItem === 'Checklist' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
-    color: selectedItem === 'Checklist' ? '#1E90FF' : '#212529', // Icon and text color if selected
+    color: selectedItem === 'Checklist' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Checklist' ? '#1E90FF' : '#212529' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'Checklist' ? '#1E90FF' : '#5f5f5f' }}>
     <FormatListBulletedOutlinedIcon />
   </ListItemIcon>
   <ListItemText
     primary={
       <Typography
         sx={{
-          fontSize: '16px',
-          fontWeight: 500,
-          fontFamily: '"Noto Sans", sans-serif',
-          color: selectedItem === 'Checklist' ? '#1E90FF' : '#212529', // Text color when selected
+      fontSize: '16px', 
+      fontWeight: 500,
+      letterSpacing: '0.8px',
+       fontFamily: ' sans-serif',
+          color: selectedItem === 'Checklist' ? '#1E90FF' : '#5f5f5f', // Text color when selected
         }}
       >
         Checklist
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Checklist' ? '#1E90FF' : '#212529' }} />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Checklist' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
 
 
@@ -185,30 +189,31 @@ const DrawerComponent = () => {
   onClick={() => handleItemClick('Team')} // Set 'Team' as the selected item
   sx={{
     backgroundColor: selectedItem === 'Team' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
-    color: selectedItem === 'Team' ? '#1E90FF' : '#212529', // Icon and text color if selected
+    color: selectedItem === 'Team' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Team' ? '#1E90FF' : '#212529' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'Team' ? '#1E90FF' : '#5f5f5f' }}>
     <PeopleOutlinedIcon />
   </ListItemIcon>
   <ListItemText
     primary={
       <Typography
         sx={{
-          fontSize: '16px',
-          fontWeight: 500,
-          fontFamily: '"Noto Sans", sans-serif',
-          color: selectedItem === 'Team' ? '#1E90FF' : '#212529', // Text color when selected
+      fontSize: '16px', 
+      fontWeight: 500,
+      letterSpacing: '0.8px',
+       fontFamily: ' sans-serif',
+          color: selectedItem === 'Team' ? '#1E90FF' : '#5f5f5f', // Text color when selected
         }}
       >
         Team
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Team' ? '#1E90FF' : '#212529' }} />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Team' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
 
 
@@ -218,30 +223,31 @@ const DrawerComponent = () => {
   onClick={() => handleItemClick('Documents')} // Set 'Documents' as the selected item
   sx={{
     backgroundColor: selectedItem === 'Documents' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
-    color: selectedItem === 'Documents' ? '#1E90FF' : '#212529', // Icon and text color if selected
+    color: selectedItem === 'Documents' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Documents' ? '#1E90FF' : '#212529' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'Documents' ? '#1E90FF' : '#5f5f5f' }}>
     <DescriptionOutlinedIcon />
   </ListItemIcon>
   <ListItemText
     primary={
       <Typography
         sx={{
-          fontSize: '16px',
-          fontWeight: 500,
-          fontFamily: '"Noto Sans", sans-serif',
-          color: selectedItem === 'Documents' ? '#1E90FF' : '#212529', // Text color when selected
+      fontSize: '16px', 
+      fontWeight: 500,
+      letterSpacing: '0.8px',
+       fontFamily: ' sans-serif',
+          color: selectedItem === 'Documents' ? '#1E90FF' : '#5f5f5f', // Text color when selected
         }}
       >
         Documents
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Documents' ? '#1E90FF' : '#212529' }} />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Documents' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
 
      {/* New Sections */}
@@ -253,30 +259,31 @@ const DrawerComponent = () => {
   onClick={() => handleItemClick('Cards')} // Set 'Cards' as the selected item
   sx={{
     backgroundColor: selectedItem === 'Cards' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
-    color: selectedItem === 'Cards' ? '#1E90FF' : '#212529', // Icon and text color if selected
+    color: selectedItem === 'Cards' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Cards' ? '#1E90FF' : '#212529' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'Cards' ? '#1E90FF' : '#5f5f5f' }}>
     <CardGiftcardOutlinedIcon />
   </ListItemIcon>
   <ListItemText
     primary={
       <Typography
         sx={{
-          fontSize: '16px',
-          fontWeight: 500,
-          fontFamily: '"Noto Sans", sans-serif',
-          color: selectedItem === 'Cards' ? '#1E90FF' : '#212529', // Text color when selected
+      fontSize: '16px', 
+      fontWeight: 500,
+      letterSpacing: '0.8px',
+       fontFamily: ' sans-serif',
+          color: selectedItem === 'Cards' ? '#1E90FF' : '#5f5f5f', // Text color when selected
         }}
       >
         Cards
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Cards' ? '#1E90FF' : '#212529' }} />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Cards' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
 
 <ListItem
@@ -285,30 +292,31 @@ const DrawerComponent = () => {
   onClick={() => handleItemClick('Ecommerce')}
   sx={{
     backgroundColor: selectedItem === 'Ecommerce' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
-    color: selectedItem === 'Ecommerce' ? '#1E90FF' : '#212529',
+    color: selectedItem === 'Ecommerce' ? '#1E90FF' : '#5f5f5f',
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)',
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Ecommerce' ? '#1E90FF' : '#212529' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'Ecommerce' ? '#1E90FF' : '#5f5f5f' }}>
     <ShoppingCartOutlinedIcon />
   </ListItemIcon>
   <ListItemText
     primary={
       <Typography
         sx={{
-          fontSize: '16px',
-          fontWeight: 500,
-          fontFamily: '"Noto Sans", sans-serif',
-          color: selectedItem === 'Ecommerce' ? '#1E90FF' : '#212529',
+      fontSize: '16px', 
+      fontWeight: 500,
+      letterSpacing: '0.8px',
+       fontFamily: ' sans-serif',
+          color: selectedItem === 'Ecommerce' ? '#1E90FF' : '#5f5f5f',
         }}
       >
         Ecommerce
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Ecommerce' ? '#1E90FF' : '#212529' }} />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Ecommerce' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
 
 <ListItem
@@ -317,30 +325,31 @@ const DrawerComponent = () => {
   onClick={() => handleItemClick('Components')}
   sx={{
     backgroundColor: selectedItem === 'Components' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
-    color: selectedItem === 'Components' ? '#1E90FF' : '#212529',
+    color: selectedItem === 'Components' ? '#1E90FF' : '#5f5f5f',
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)',
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Components' ? '#1E90FF' : '#212529' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'Components' ? '#1E90FF' : '#5f5f5f' }}>
     <WidgetsOutlinedIcon />
   </ListItemIcon>
   <ListItemText
     primary={
       <Typography
         sx={{
-          fontSize: '16px',
-          fontWeight: 500,
-          fontFamily: '"Noto Sans", sans-serif',
-          color: selectedItem === 'Components' ? '#1E90FF' : '#212529',
+      fontSize: '16px', 
+      fontWeight: 500,
+      letterSpacing: '0.8px',
+       fontFamily: ' sans-serif',
+          color: selectedItem === 'Components' ? '#1E90FF' : '#5f5f5f',
         }}
       >
         Components
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Components' ? '#1E90FF' : '#212529' }} />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Components' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
 
 <ListItem
@@ -349,30 +358,31 @@ const DrawerComponent = () => {
   onClick={() => handleItemClick('Icons')}
   sx={{
     backgroundColor: selectedItem === 'Icons' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
-    color: selectedItem === 'Icons' ? '#1E90FF' : '#212529',
+    color: selectedItem === 'Icons' ? '#1E90FF' : '#5f5f5f',
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)',
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Icons' ? '#1E90FF' : '#212529' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'Icons' ? '#1E90FF' : '#5f5f5f' }}>
     <EmojiSymbolsOutlinedIcon />
   </ListItemIcon>
   <ListItemText
     primary={
       <Typography
         sx={{
-          fontSize: '16px',
-          fontWeight: 500,
-          fontFamily: '"Noto Sans", sans-serif',
-          color: selectedItem === 'Icons' ? '#1E90FF' : '#212529',
+      fontSize: '16px', 
+      fontWeight: 500,
+      letterSpacing: '0.8px',
+       fontFamily: ' sans-serif',
+          color: selectedItem === 'Icons' ? '#1E90FF' : '#5f5f5f',
         }}
       >
         Icons
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Icons' ? '#1E90FF' : '#212529' }} />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Icons' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
 
 <p style={{ color: '#B0B0B0', textAlign: 'left', marginLeft: 20 }}>Forms & Tables</p>
@@ -383,30 +393,31 @@ const DrawerComponent = () => {
   onClick={() => handleItemClick('Forms')}
   sx={{
     backgroundColor: selectedItem === 'Forms' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
-    color: selectedItem === 'Forms' ? '#1E90FF' : '#212529',
+    color: selectedItem === 'Forms' ? '#1E90FF' : '#5f5f5f',
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)',
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Forms' ? '#1E90FF' : '#212529' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'Forms' ? '#1E90FF' : '#5f5f5f' }}>
     <ContactMailOutlinedIcon />
   </ListItemIcon>
   <ListItemText
     primary={
       <Typography
         sx={{
-          fontSize: '16px',
-          fontWeight: 500,
-          fontFamily: '"Noto Sans", sans-serif',
-          color: selectedItem === 'Forms' ? '#1E90FF' : '#212529',
+      fontSize: '16px', 
+      fontWeight: 500,
+      letterSpacing: '0.8px',
+       fontFamily: ' sans-serif',
+          color: selectedItem === 'Forms' ? '#1E90FF' : '#5f5f5f',
         }}
       >
         Forms
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Forms' ? '#1E90FF' : '#212529' }} />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Forms' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
 
 <ListItem
@@ -415,30 +426,31 @@ const DrawerComponent = () => {
   onClick={() => handleItemClick('Tables')}
   sx={{
     backgroundColor: selectedItem === 'Tables' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
-    color: selectedItem === 'Tables' ? '#1E90FF' : '#212529',
+    color: selectedItem === 'Tables' ? '#1E90FF' : '#5f5f5f',
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)',
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Tables' ? '#1E90FF' : '#212529' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'Tables' ? '#1E90FF' : '#5f5f5f' }}>
     <TableChartOutlinedIcon />
   </ListItemIcon>
   <ListItemText
     primary={
       <Typography
         sx={{
-          fontSize: '16px',
-          fontWeight: 500,
-          fontFamily: '"Noto Sans", sans-serif',
-          color: selectedItem === 'Tables' ? '#1E90FF' : '#212529',
+      fontSize: '16px', 
+      fontWeight: 500,
+      letterSpacing: '0.8px',
+       fontFamily: ' sans-serif',
+          color: selectedItem === 'Tables' ? '#1E90FF' : '#5f5f5f',
         }}
       >
         Tables
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Tables' ? '#1E90FF' : '#212529' }} />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Tables' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
 
 <ListItem
@@ -447,30 +459,31 @@ const DrawerComponent = () => {
   onClick={() => handleItemClick('Apps')}
   sx={{
     backgroundColor: selectedItem === 'Apps' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
-    color: selectedItem === 'Apps' ? '#1E90FF' : '#212529',
+    color: selectedItem === 'Apps' ? '#1E90FF' : '#5f5f5f',
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)',
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Apps' ? '#1E90FF' : '#212529' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'Apps' ? '#1E90FF' : '#5f5f5f' }}>
     <AppsOutlinedIcon />
   </ListItemIcon>
   <ListItemText
     primary={
       <Typography
         sx={{
-          fontSize: '16px',
-          fontWeight: 500,
-          fontFamily: '"Noto Sans", sans-serif',
-          color: selectedItem === 'Apps' ? '#1E90FF' : '#212529',
+      fontSize: '16px', 
+      fontWeight: 500,
+      letterSpacing: '0.8px',
+       fontFamily: ' sans-serif',
+          color: selectedItem === 'Apps' ? '#1E90FF' : '#5f5f5f',
         }}
       >
         Apps
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Apps' ? '#1E90FF' : '#212529' }} />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Apps' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
 
         {/* Add other new sections as needed */}

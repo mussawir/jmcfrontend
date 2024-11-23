@@ -16,7 +16,7 @@ function Projects() {
   const [selectedValue, setSelectedValue] = useState<string>('Select Schedule');
   const [showForm, setShowForm] = useState<boolean>(false);
   const [projects, setProjects] = useState<any[]>([]);
-  const [crewResult, setCrewResult] = useState<any>(null);
+  const [crewResult, setCrewResult] = useState<string | null>(null);  // Changed type to string for text display
   const navigate = useNavigate();
 
   // Fetch projects from backend when the component mounts
@@ -75,75 +75,32 @@ function Projects() {
   // Handle form submission
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-  
-    if (!projectName || !builderName || !purchaserName || !propertyName || !selectedValue) {
-      alert('Please fill in all the fields');
-      return;
-    }
-  
-    if (!pdfFile) {
-      alert('Please select a file to upload');
-      return;
-    }
-  
+
     const formData = new FormData();
-    formData.append('name', projectName);
-    formData.append('builderName', builderName);
-    formData.append('purchaserName', purchaserName);
-    formData.append('propertyName', propertyName);
-    formData.append('pdffile', pdfFile);
-  
-    // Log the FormData to check the contents
-    // for (let [key, value] of formData.entries()) {
-    //   console.log(key, value);
-    // }
-  
+
+    // Assuming `fileInput` is the reference to your file input element
+    const fileInput = document.getElementById("fileInput") as HTMLInputElement;
+    if (fileInput?.files?.length) {
+      formData.append("file", fileInput.files[0]); // Append the file to the FormData object
+    } else {
+      alert("Please select a file.");
+      return;
+    }
+
     try {
-      const token = localStorage.getItem('ACCESS_TOKEN');
-      if (!token) {
-        navigate('/login');
-        return;
-      }
-  
-      const response = await axios.post('http://127.0.0.1:5000/upload', formData, {
+      const response = await axios.post("http://127.0.0.1:5000/upload", formData, {
         headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
         },
       });
 
-
-      console.log('API Response:', response.data); // Log the response data
-      // alert('Project Created Successfully!');
-      setProjects((prevProjects) => [...prevProjects, response.data]);
+      console.log("File uploaded successfully:", response.data);
+      alert('Project created successfully');
+      setCrewResult(response.data.extracted_data); // Extracted data is in 'extracted_data'
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.error('Error submitting form:', error.response?.data || error.message);
-        alert(`Error: ${error.response?.data?.message || 'Form submission failed.'}`);
-      } else {
-        console.error('Unexpected error:', error);
-        alert('An unexpected error occurred.');
-      }
+      console.error("Error submitting form:", error);
     }
   };
-  
-
-  // const fetchCrewResult = async () => {
-  //   try {
-  //     const response = await axios.post('http://localhost:5000/upload', {
-  //       // Add any required data or files to the request body
-  //     });
-  //     const crewResult = response.data.result;
-  //     console.log(crewResult);
-  //     setCrewResult(crewResult);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchCrewResult();
-  // }, []);
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -229,7 +186,7 @@ function Projects() {
                   />
                   <Button variant="outlined" component="label" fullWidth sx={{ marginBottom: 2 }}>
                     Select File
-                    <input type="file" hidden accept="application/pdf" onChange={handleFileChange} />
+                    <input type="file" id="fileInput" name="file" hidden accept="application/pdf" onChange={handleFileChange} />
                   </Button>
                   <Button variant="contained" color="primary" fullWidth type="submit">
                     Create Project
@@ -240,13 +197,13 @@ function Projects() {
           </center>
         )}
 
-        {/* Display crew result below dropdown menu */}
-        {!showForm && crewResult && (
+        {/* Display extracted data below the form */}
+        {crewResult && (
           <Box sx={{ marginTop: 2 }}>
             <Typography variant="h6" gutterBottom>
-              Crew Result:
+              Extracted Data:
             </Typography>
-            <pre>{JSON.stringify(crewResult, null, 2)}</pre>
+            <pre>{crewResult}</pre>
           </Box>
         )}
       </Box>
