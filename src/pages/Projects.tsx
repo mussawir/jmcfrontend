@@ -268,8 +268,7 @@ function Projects() {
   const [selectedValue, setSelectedValue] = useState<string>('Select Schedule');
   const [showForm, setShowForm] = useState<boolean>(false);
   const [projects, setProjects] = useState<any[]>([]);
-  const [crewResult, setCrewResult] = useState<string | null>(null);  // Changed type to string for text display
-  const [questions, setQuestions] = useState(Array(10).fill('')); // State to handle questions input
+  const [crewResult, setCrewResult] = useState<any>(null);
   const navigate = useNavigate();
 
   // Fetch projects from backend when the component mounts
@@ -346,20 +345,27 @@ function Projects() {
       alert("Please select a file.");
       return;
     }
-
-    // Add project details to the form data
-    formData.append('projectName', projectName);
+  
+    const formData = new FormData();
+    formData.append('name', projectName);
     formData.append('builderName', builderName);
     formData.append('purchaserName', purchaserName);
     formData.append('propertyName', propertyName);
-
-    // Add questions to the FormData
-    questions.forEach((question, index) => {
-      formData.append(`question_${index + 1}`, question);
-    });
-
+    formData.append('pdffile', pdfFile);
+  
+    // Log the FormData to check the contents
+    // for (let [key, value] of formData.entries()) {
+    //   console.log(key, value);
+    // }
+  
     try {
-      const response = await axios.post("http://127.0.0.1:5000/upload", formData, {
+      const token = localStorage.getItem('ACCESS_TOKEN');
+      if (!token) {
+        navigate('/login');
+        return;
+      }
+  
+      const response = await axios.post('http://127.0.0.1:5000/upload', formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
         },
@@ -369,10 +375,33 @@ function Projects() {
       alert('Project created successfully');
       setCrewResult(response.data.extracted_data); // Extracted data is in 'extracted_data'
     } catch (error) {
-      alert('Form submitting error');
-      console.error("Error submitting form:", error);
+      if (axios.isAxiosError(error)) {
+        console.error('Error submitting form:', error.response?.data || error.message);
+        alert(`Error: ${error.response?.data?.message || 'Form submission failed.'}`);
+      } else {
+        console.error('Unexpected error:', error);
+        alert('An unexpected error occurred.');
+      }
     }
   };
+  
+
+  // const fetchCrewResult = async () => {
+  //   try {
+  //     const response = await axios.post('http://localhost:5000/upload', {
+  //       // Add any required data or files to the request body
+  //     });
+  //     const crewResult = response.data.result;
+  //     console.log(crewResult);
+  //     setCrewResult(crewResult);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchCrewResult();
+  // }, []);
 
   return (
     <Box sx={{ display: 'flex' }}>
