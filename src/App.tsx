@@ -14,6 +14,7 @@ import Settings from './pages/Settings'; // Import the Register component
 import About from './pages/About'; // Import the Register component
 import Logout from './pages/Logout';
 import TabsPage from './pages/TabsPage';
+import FileUpload from './pages/FileUpload';
 
 
 
@@ -35,6 +36,7 @@ function App() {
         <Route path="/settings" element={<Settings/>} />
         <Route path="/about" element={<About/>} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/fileUpload" element={<FileUpload />} />
 
 
       </Routes>
