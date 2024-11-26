@@ -1,260 +1,8 @@
-// import React, { useState, useEffect } from 'react';
-// import { Box, Typography, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, TextField, Button } from '@mui/material';
-// import { useNavigate } from 'react-router-dom';
-// import DrawerComponent from '../components/DrawerComponent';
-// import HeaderComponent from '../components/HeaderComponent';
-// import { SelectChangeEvent } from '@mui/material';
-// import axios from 'axios';
-
-// function Projects() {
-//   // Form states
-//   const [projectName, setProjectName] = useState('');
-//   const [builderName, setBuilderName] = useState('');
-//   const [purchaserName, setPurchaserName] = useState('');
-//   const [propertyName, setPropertyName] = useState('');
-//   const [pdfFile, setPdfFile] = useState<File | null>(null);
-//   const [selectedValue, setSelectedValue] = useState<string>('Select Schedule');
-//   const [showForm, setShowForm] = useState<boolean>(false);
-//   const [projects, setProjects] = useState<any[]>([]);
-//   const [crewResult, setCrewResult] = useState<string | null>(null);  // Changed type to string for text display
-//   const [questions, setQuestions] = useState(Array(10).fill('')); // State to handle questions input
-//   const navigate = useNavigate();
-
-//   // Fetch projects from backend when the component mounts
-//   useEffect(() => {
-//     const fetchProjects = async () => {
-//       const token = localStorage.getItem('ACCESS_TOKEN');
-//       if (!token) {
-//         navigate('/login');
-//         return;
-//       }
-
-//       try {
-//         const response = await fetch('http://127.0.0.1:5000/projects', {
-//           method: 'GET',
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//           },
-//         });
-
-//         if (response.ok) {
-//           const data = await response.json();
-//           setProjects(data);
-//         } else {
-//           alert('Failed to fetch projects');
-//         }
-//       } catch (error) {
-//         console.error('Error fetching projects:', error);
-//       }
-//     };
-
-//     fetchProjects();
-//   }, [navigate]);
-
-//   // Handle file upload change
-//   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-//     if (event.target.files && event.target.files.length > 0) {
-//       setPdfFile(event.target.files[0]);
-//     } else {
-//       setPdfFile(null);
-//     }
-//   };
-
-//   // Handle schedule selection
-//   const handleSelectChange = (event: SelectChangeEvent<string>) => {
-//     const value = event.target.value;
-//     setSelectedValue(value);
-
-//     // When Schedule H is selected, show the form
-//     if (value === 'Schedule H') {
-//       setShowForm(true);
-//     } else {
-//       setShowForm(false);
-//     }
-//   };
-
-//   // Handle question input change
-//   const handleQuestionChange = (index: number, value: string) => {
-//     const newQuestions = [...questions];
-//     newQuestions[index] = value;
-//     setQuestions(newQuestions);
-//   };
-
-//   // Handle form submission (including project details and questions)
-//   const handleSubmit = async (event: React.FormEvent) => {
-//     event.preventDefault();
-
-//     const formData = new FormData();
-
-//     // Assuming `fileInput` is the reference to your file input element
-//     const fileInput = document.getElementById("fileInput") as HTMLInputElement;
-//     if (fileInput?.files?.length) {
-//       formData.append("file", fileInput.files[0]); // Append the file to the FormData object
-//     } else {
-//       alert("Please select a file.");
-//       return;
-//     }
-
-//     // Add project details to the form data
-//     formData.append('projectName', projectName);
-//     formData.append('builderName', builderName);
-//     formData.append('purchaserName', purchaserName);
-//     formData.append('propertyName', propertyName);
-
-//     // Add questions to the FormData
-//     questions.forEach((question, index) => {
-//       formData.append(`question_${index + 1}`, question);
-//     });
-
-//     try {
-//       const response = await axios.post("http://127.0.0.1:5000/upload", formData, {
-//         headers: {
-//           "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
-//         },
-//       });
-
-//       console.log("File uploaded successfully:", response.data);
-//       alert('Project created successfully');
-//       setCrewResult(response.data.extracted_data); // Extracted data is in 'extracted_data'
-//     } catch (error) {
-//       alert('Form submitting error');
-//       console.error("Error submitting form:", error);
-//     }
-//   };
-
-//   return (
-//     <Box sx={{ display: 'flex' }}>
-//       <CssBaseline />
-//       <DrawerComponent />
-//       <HeaderComponent />
-
-//       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-//         <Toolbar />
-
-//         {/* Show Projects Management headline only when form is not visible */}
-//         {!showForm && (
-//           <Typography variant="h4" gutterBottom>
-//             Projects Management
-//           </Typography>
-//         )}
-
-//         {/* Dropdown menu */}
-//         {!showForm && (
-//           <FormControl fullWidth>
-//             <InputLabel id="dropdown-label">Select Schedule</InputLabel>
-//             <Select
-//               labelId="dropdown-label"
-//               id="dropdown-select"
-//               value={selectedValue}
-//               label="Select Schedule"
-//               onChange={handleSelectChange}
-//             >
-//               <MenuItem value="Select Schedule">Select Schedule</MenuItem>
-//               <MenuItem value="Schedule A">Schedule A</MenuItem>
-//               <MenuItem value="Schedule B">Schedule B</MenuItem>
-//               <MenuItem value="Schedule C">Schedule C</MenuItem>
-//               <MenuItem value="Schedule D">Schedule D</MenuItem>
-//               <MenuItem value="Schedule E">Schedule E</MenuItem>
-//               <MenuItem value="Schedule F">Schedule F</MenuItem>
-//               <MenuItem value="Schedule G">Schedule G</MenuItem>
-//               <MenuItem value="Schedule H">Schedule H</MenuItem>
-//             </Select>
-//           </FormControl>
-//         )}
-
-//         {/* Show form when Schedule H is selected */}
-//         {showForm && (
-//           <center>
-//             <Box sx={{ marginTop: 2, width: 400, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-//               <Box sx={{ width: '100%', textAlign: 'center' }}>
-//                 <Typography variant="h5" gutterBottom>
-//                   Enter Project Details
-//                 </Typography>
-
-//                 <form onSubmit={handleSubmit}>
-//                   <TextField
-//                     label="Project Name"
-//                     fullWidth
-//                     variant="outlined"
-//                     value={projectName}
-//                     onChange={(e) => setProjectName(e.target.value)}
-//                     sx={{ marginBottom: 2 }}
-//                   />
-//                   <TextField
-//                     label="Builder Name"
-//                     fullWidth
-//                     variant="outlined"
-//                     value={builderName}
-//                     onChange={(e) => setBuilderName(e.target.value)}
-//                     sx={{ marginBottom: 2 }}
-//                   />
-//                   <TextField
-//                     label="Purchaser Name"
-//                     fullWidth
-//                     variant="outlined"
-//                     value={purchaserName}
-//                     onChange={(e) => setPurchaserName(e.target.value)}
-//                     sx={{ marginBottom: 2 }}
-//                   />
-//                   <TextField
-//                     label="Property Name"
-//                     fullWidth
-//                     variant="outlined"
-//                     value={propertyName}
-//                     onChange={(e) => setPropertyName(e.target.value)}
-//                     sx={{ marginBottom: 2 }}
-//                   />
-
-//                   {/* Question Inputs */}
-//                   <Typography variant="h6" sx={{ marginBottom: 2 }}>
-//                     Enter Your Questions (Up to 10):
-//                   </Typography>
-//                   {questions.map((question, index) => (
-//                     <TextField
-//                       key={index}
-//                       label={`Question ${index + 1}`}
-//                       fullWidth
-//                       variant="outlined"
-//                       value={question}
-//                       onChange={(e) => handleQuestionChange(index, e.target.value)}
-//                       sx={{ marginBottom: 2 }}
-//                     />
-//                   ))}
-
-//                   <Button variant="outlined" component="label" fullWidth sx={{ marginBottom: 2 }}>
-//                     Select File
-//                     <input type="file" id="fileInput" name="file" hidden accept="application/pdf" onChange={handleFileChange} />
-//                   </Button>
-//                   <Button variant="contained" color="primary" fullWidth type="submit">
-//                     Create Project
-//                   </Button>
-//                 </form>
-//               </Box>
-//             </Box>
-//           </center>
-//         )}
-
-//         {/* Display extracted data below the form */}
-//         {crewResult && (
-//           <Box sx={{ marginTop: 2 }}>
-//             <Typography variant="h6" gutterBottom>
-//               Extracted Data:
-//             </Typography>
-//             <pre>{crewResult}</pre>
-//           </Box>
-//         )}
-//       </Box>
-//     </Box>
-//   );
-// }
-
-// export default Projects;
-
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, TextField, Button, Tabs, Tab } from '@mui/material';
+import { Box, Typography, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, TextField, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import DrawerComponent from '../components/DrawerComponent';
-import HeaderComponent from '../components/HeaderComponent';
+import HeaderComponent from '../components/HeaderComponent';  
 import { SelectChangeEvent } from '@mui/material';
 import axios from 'axios';
 
@@ -268,8 +16,8 @@ function Projects() {
   const [selectedValue, setSelectedValue] = useState<string>('Select Schedule');
   const [showForm, setShowForm] = useState<boolean>(false);
   const [projects, setProjects] = useState<any[]>([]);
-  const [crewResult, setCrewResult] = useState<string | null>(null);  // Changed type to string for text display
-  const [questions, setQuestions] = useState(Array(10).fill('')); // State to handle questions input
+  const [crewResult, setCrewResult] = useState<any | null>(null);  // To store extracted data as an object
+  const [questions, setQuestions] = useState(Array(10).fill(''));
   const navigate = useNavigate();
 
   // Fetch projects from backend when the component mounts
@@ -325,13 +73,6 @@ function Projects() {
     }
   };
 
-  // Handle question input change
-  const handleQuestionChange = (index: number, value: string) => {
-    const newQuestions = [...questions];
-    newQuestions[index] = value;
-    setQuestions(newQuestions);
-  };
-
   // Handle form submission (including project details and questions)
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -353,11 +94,6 @@ function Projects() {
     formData.append('purchaserName', purchaserName);
     formData.append('propertyName', propertyName);
 
-    // Add questions to the FormData
-    questions.forEach((question, index) => {
-      formData.append(`question_${index + 1}`, question);
-    });
-
     try {
       const response = await axios.post("http://127.0.0.1:5000/upload", formData, {
         headers: {
@@ -372,6 +108,43 @@ function Projects() {
       alert('Form submitting error');
       console.error("Error submitting form:", error);
     }
+  };
+
+  // Update form fields if extracted data exists
+  useEffect(() => {
+    if (crewResult) {
+      setProjectName(crewResult.projectName || '');
+      setBuilderName(crewResult.builderName || '');
+      setPurchaserName(crewResult.purchaserName || '');
+      setPropertyName(crewResult.propertyName || '');
+      setQuestions(crewResult.questions || Array(2).fill('')); // Update the questions if extracted data is present
+    }
+  }, [crewResult]);
+
+  // Handle update of extracted data form
+  const handleUpdate = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const updatedData = {
+      projectName,
+      builderName,
+      purchaserName,
+      propertyName,
+      questions,
+    };
+
+    console.log("Updated Data:", updatedData);
+
+    // Optionally, you can send updated data back to the backend here using axios
+
+    alert('Updated data submitted successfully!');
+  };
+
+  // Handle question input change
+  const handleQuestionChange = (index: number, value: string) => {
+    const newQuestions = [...questions];
+    newQuestions[index] = value;
+    setQuestions(newQuestions);
   };
 
   return (
@@ -457,22 +230,6 @@ function Projects() {
                     sx={{ marginBottom: 2 }}
                   />
 
-                  {/* Question Inputs */}
-                  {/* <Typography variant="h6" sx={{ marginBottom: 2 }}>
-                    Enter Your Questions (Up to 10):
-                  </Typography>
-                  {questions.map((question, index) => (
-                    <TextField
-                      key={index}
-                      label={`Question ${index + 1}`}
-                      fullWidth
-                      variant="outlined"
-                      value={question}
-                      onChange={(e) => handleQuestionChange(index, e.target.value)}
-                      sx={{ marginBottom: 2 }}
-                    />
-                  ))} */}
-
                   <Button variant="outlined" component="label" fullWidth sx={{ marginBottom: 2 }}>
                     Select File
                     <input type="file" id="fileInput" name="file" hidden accept="application/pdf" onChange={handleFileChange} />
@@ -486,6 +243,46 @@ function Projects() {
           </center>
         )}
 
+        {/* Display extracted data below the form */}
+        {crewResult && (
+          <Box sx={{ marginTop: 2 }}>
+            <Typography variant="h6" gutterBottom>
+              Recheck Extracted Data:
+            </Typography>
+
+            <form onSubmit={handleUpdate}>
+              {/* Display first question and value in input field */}
+              {crewResult && crewResult[0] && (
+                <TextField
+                  label={crewResult[0].question} // First question as label
+                  fullWidth
+                  variant="outlined"
+                  //value={crewResult[0].value} // Value from extracted data
+                  value={crewResult} // Value from extracted data
+                  onChange={(e) => handleQuestionChange(0, e.target.value)} // Handling value change
+                  sx={{ marginBottom: 2 }}
+                />
+              )}
+
+              {/* Display second question and value in input field */}
+              {crewResult && crewResult[1] && (
+                <TextField
+                  label={crewResult[1].search_query} // Second question as label
+                  fullWidth
+                  variant="outlined"
+                  //value={crewResult[1].value} 
+                  value={crewResult} // Value from extracted data
+                  onChange={(e) => handleQuestionChange(1, e.target.value)} // Handling value change
+                  sx={{ marginBottom: 2 }}
+                />
+              )}
+
+              <Button variant="contained" color="primary" fullWidth type="submit">
+                Save
+              </Button>
+            </form>
+          </Box>
+          )}
         {/* Display extracted data below the form */}
         {crewResult && (
           <Box sx={{ marginTop: 2 }}>

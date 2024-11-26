@@ -7,6 +7,7 @@ import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined'; // For Team
 import CardGiftcardOutlinedIcon from '@mui/icons-material/CardGiftcardOutlined'; // For Cards
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'; // For Ecommerce
 import WidgetsOutlinedIcon from '@mui/icons-material/WidgetsOutlined'; // For Components
+import IconButton from '@mui/material/IconButton';
 import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined'; // For Forms
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined'; // For Tables
 import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined'; // For Apps
@@ -59,18 +60,19 @@ const DrawerComponent = () => {
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f' }}>
+  <ListItemIcon sx={{ fontSize: '24px', color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f' }}>
     <HomeOutlinedIcon />
   </ListItemIcon>
   <ListItemText
     primary={
       <Typography
         sx={{
-          fontSize: '16px', 
-          fontWeight: 500,
-          letterSpacing: '0.8px',
-          fontFamily: ' sans-serif',
-          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', // Text color when selected
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: '"Noto Sans", sans-serif !important',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
         Dashboard
@@ -99,11 +101,12 @@ const DrawerComponent = () => {
     primary={
       <Typography
         sx={{
-          fontSize: '16px', 
-          fontWeight: 500,
-          letterSpacing: '0.8px',
-          fontFamily: ' sans-serif',
-          color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f', // Text color when selected
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: '"Noto Sans", sans-serif !important',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
         Projects
@@ -133,11 +136,12 @@ const DrawerComponent = () => {
     primary={
       <Typography
         sx={{
-      fontSize: '16px', 
-      fontWeight: 500,
-      letterSpacing: '0.8px',
-       fontFamily: ' sans-serif',
-          color: selectedItem === 'TabsPage' ? '#1E90FF' : '#5f5f5f', // Text color when selected
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: '"Noto Sans", sans-serif !important',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
         TabsPage
@@ -167,11 +171,12 @@ const DrawerComponent = () => {
     primary={
       <Typography
         sx={{
-      fontSize: '16px', 
-      fontWeight: 500,
-      letterSpacing: '0.8px',
-       fontFamily: ' sans-serif',
-          color: selectedItem === 'Checklist' ? '#1E90FF' : '#5f5f5f', // Text color when selected
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: '"Noto Sans", sans-serif !important',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
         Checklist
@@ -201,11 +206,12 @@ const DrawerComponent = () => {
     primary={
       <Typography
         sx={{
-      fontSize: '16px', 
-      fontWeight: 500,
-      letterSpacing: '0.8px',
-       fontFamily: ' sans-serif',
-          color: selectedItem === 'Team' ? '#1E90FF' : '#5f5f5f', // Text color when selected
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: '"Noto Sans", sans-serif !important',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
         Team
@@ -235,11 +241,12 @@ const DrawerComponent = () => {
     primary={
       <Typography
         sx={{
-      fontSize: '16px', 
-      fontWeight: 500,
-      letterSpacing: '0.8px',
-       fontFamily: ' sans-serif',
-          color: selectedItem === 'Documents' ? '#1E90FF' : '#5f5f5f', // Text color when selected
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: '"Noto Sans", sans-serif !important',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
         Documents
@@ -271,11 +278,12 @@ const DrawerComponent = () => {
     primary={
       <Typography
         sx={{
-      fontSize: '16px', 
-      fontWeight: 500,
-      letterSpacing: '0.8px',
-       fontFamily: ' sans-serif',
-          color: selectedItem === 'Cards' ? '#1E90FF' : '#5f5f5f', // Text color when selected
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: '"Noto Sans", sans-serif !important',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
         Cards
@@ -304,11 +312,12 @@ const DrawerComponent = () => {
     primary={
       <Typography
         sx={{
-      fontSize: '16px', 
-      fontWeight: 500,
-      letterSpacing: '0.8px',
-       fontFamily: ' sans-serif',
-          color: selectedItem === 'Ecommerce' ? '#1E90FF' : '#5f5f5f',
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: '"Noto Sans", sans-serif !important',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
         Ecommerce
@@ -337,11 +346,12 @@ const DrawerComponent = () => {
     primary={
       <Typography
         sx={{
-      fontSize: '16px', 
-      fontWeight: 500,
-      letterSpacing: '0.8px',
-       fontFamily: ' sans-serif',
-          color: selectedItem === 'Components' ? '#1E90FF' : '#5f5f5f',
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: '"Noto Sans", sans-serif !important',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
         Components
@@ -370,11 +380,12 @@ const DrawerComponent = () => {
     primary={
       <Typography
         sx={{
-      fontSize: '16px', 
-      fontWeight: 500,
-      letterSpacing: '0.8px',
-       fontFamily: ' sans-serif',
-          color: selectedItem === 'Icons' ? '#1E90FF' : '#5f5f5f',
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: '"Noto Sans", sans-serif !important',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
         Icons
@@ -405,11 +416,12 @@ const DrawerComponent = () => {
     primary={
       <Typography
         sx={{
-      fontSize: '16px', 
-      fontWeight: 500,
-      letterSpacing: '0.8px',
-       fontFamily: ' sans-serif',
-          color: selectedItem === 'Forms' ? '#1E90FF' : '#5f5f5f',
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: '"Noto Sans", sans-serif !important',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
         Forms
@@ -438,11 +450,12 @@ const DrawerComponent = () => {
     primary={
       <Typography
         sx={{
-      fontSize: '16px', 
-      fontWeight: 500,
-      letterSpacing: '0.8px',
-       fontFamily: ' sans-serif',
-          color: selectedItem === 'Tables' ? '#1E90FF' : '#5f5f5f',
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: '"Noto Sans", sans-serif !important',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
         Tables
@@ -471,11 +484,12 @@ const DrawerComponent = () => {
     primary={
       <Typography
         sx={{
-      fontSize: '16px', 
-      fontWeight: 500,
-      letterSpacing: '0.8px',
-       fontFamily: ' sans-serif',
-          color: selectedItem === 'Apps' ? '#1E90FF' : '#5f5f5f',
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: '"Noto Sans", sans-serif !important',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
         Apps

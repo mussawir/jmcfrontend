@@ -1,7 +1,10 @@
 .App {
   text-align: center;
 }
-
+body{
+  font-family: "Noto Sans", sans-serif;
+  font-size: 14px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +38,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Add styles for dark mode */
+body.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+body.dark-mode .MuiAppBar-root {
+  background-color: #333;
 }
