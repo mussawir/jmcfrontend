@@ -3,7 +3,9 @@ import { Box, Toolbar, CssBaseline } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
-import Tabs from '../components/Tabs';
+import Tabs2 from '../components/Tabs2';
+import DeveloperTab from '../components/DeveloperTab';
+
 // Define the Case interface
 interface Case {
   title: string;
@@ -14,6 +16,12 @@ interface Case {
 }
 
 function Dashboard() {
+  const tabs = [
+    { label: "Developer", content: <DeveloperTab /> },
+    // Add other tabs here as more sections are identified
+  ];
+
+
   const [cases, setCases] = useState<Case[]>([]);
   const navigate = useNavigate();
 
@@ -52,8 +60,7 @@ function Dashboard() {
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
-        <Tabs />
-
+        <Tabs2  />
 
 
 
