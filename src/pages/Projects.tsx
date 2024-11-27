@@ -93,7 +93,7 @@ function Projects() {
     formData.append('builderName', builderName);
     formData.append('purchaserName', purchaserName);
     formData.append('propertyName', propertyName);
-
+    
     try {
       const response = await axios.post("http://127.0.0.1:5000/upload", formData, {
         headers: {

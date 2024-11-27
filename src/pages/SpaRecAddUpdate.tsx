@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
-const EditForm: React.FC = () => {
+const SpaRecAddUpdate: React.FC = () => {
   // Set default values for both questions
-  const [questionOne, setQuestionOne] = useState<string>('abc'); 
-  const [questionTwo, setQuestionTwo] = useState<string>('jmc'); 
-  const [documentId, setDocumentId] = useState<string>('673d8d3fe8520dcf527fea48');
+  const [questionOne, setQuestionOne] = useState<string>('abc');
+  const [questionTwo, setQuestionTwo] = useState<string>('jmc');
+  const [documentId, setDocumentId] = useState<string>('');  // Leave this empty for new entries
 
-  const handleSave = async () => {
+  const spaSave = async () => {
     try {
-      const response = await fetch('http://localhost:5000/edit', {
+      const response = await fetch('http://localhost:5000/spaops', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -16,13 +16,15 @@ const EditForm: React.FC = () => {
         body: JSON.stringify({
           questionOne: questionOne,
           questionTwo: questionTwo,
-          _id: documentId,
         }),
       });
 
       if (response.ok) {
         const data = await response.json();
-        alert('Data saved successfully!');
+        alert(data.message + data.id);
+
+        // Set the document ID if the response contains it
+        setDocumentId(data.id);  // Set the new document ID
       } else {
         alert('Failed to save data');
       }
@@ -32,30 +34,34 @@ const EditForm: React.FC = () => {
     }
   };
 
-  
-  const Update = async () => {
+  const spaUpdate = async () => {
     try {
-      const response = await fetch('http://localhost:5000/edit', {
-        method: 'POST',
+      if (!documentId) {
+        alert('Please provide a valid document ID for update.');
+        return;
+      }
+
+      const response = await fetch(`http://localhost:5000/spaops`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           questionOne: questionOne,
           questionTwo: questionTwo,
-          _id: documentId,
+          _id: documentId,  // Pass the document ID in the body for update
         }),
       });
 
       if (response.ok) {
         const data = await response.json();
-        alert('Data saved successfully!');
+        alert('Data updated successfully!');
       } else {
-        alert('Failed to save data');
+        alert('Failed to update data');
       }
     } catch (error) {
-      console.error('Error saving data:', error);
-      alert('An error occurred while saving data');
+      console.error('Error updating data:', error);
+      alert('An error occurred while updating data');
     }
   };
 
@@ -97,9 +103,10 @@ const EditForm: React.FC = () => {
         />
       </div>
 
+      {/* Save Button */}
       <div className="button-container" style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <button
-          onClick={handleSave}
+          onClick={spaSave}
           style={{
             padding: '8px 16px',
             backgroundColor: '#4CAF50',
@@ -112,9 +119,11 @@ const EditForm: React.FC = () => {
           Save
         </button>
       </div>
+
+      {/* Update Button */}
       <div className="button-container" style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <button
-          onClick={Update}
+          onClick={spaUpdate}
           style={{
             padding: '8px 16px',
             backgroundColor: '#4CAF50',
@@ -124,12 +133,11 @@ const EditForm: React.FC = () => {
             cursor: 'pointer',
           }}
         >
-        Update
+          Update
         </button>
       </div>
-
     </div>
   );
 };
 
-export default EditForm;
+export default SpaRecAddUpdate;

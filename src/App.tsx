@@ -17,7 +17,7 @@ import Settings from './pages/Settings';
 import About from './pages/About';
 import Logout from './pages/Logout';
 import TabsPage from './pages/TabsPage';
-import EditForm from './pages/EditForm';
+import SpaRecAddUpdate from './pages/SpaRecAddUpdate';
 import './App.css';
 
 const AppWithDarkMode: React.FC = () => {
@@ -45,7 +45,7 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/settings" element={<Settings />} />
         <Route path="/about" element={<About />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/edit" element={<EditForm />} />
+        <Route path="/spaform" element={<SpaRecAddUpdate />} />
         <Route path="/tabspage" element={<TabsPage />} />
       </Routes>
     </ThemeProvider>
