@@ -16,7 +16,7 @@ interface Case {
   documents?: string[]; // New property for associated documents
 }
 
-function Dashboard() {
+function SpaG() {
   const tabs = [
     { label: "Developer", content: <DeveloperTab /> },
     // Add other tabs here as more sections are identified
@@ -156,4 +156,4 @@ const styles = {
     marginBottom: '2%'
   }
 };
-export default Dashboard;
+export default SpaG;
