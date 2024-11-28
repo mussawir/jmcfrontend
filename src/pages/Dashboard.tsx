@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Grid, Card, CardContent,Divider , Typography, Toolbar, CssBaseline, Button, CardMedia, } from '@mui/material';
+import React from 'react';
+import { Box, Grid, Card, CardContent,Divider , Typography, Toolbar, CssBaseline, Button, } from '@mui/material';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import { PieChart, Pie, Cell } from 'recharts';
-import { Facebook, LinkedIn, Instagram, Google, ShoppingCart, AccountBalance, CreditCard, Laptop, Settings, PhoneAndroid } from '@mui/icons-material';
-import { LinearProgress, Avatar, List, ListItem, ListItemAvatar, ListItemText, CircularProgress } from '@mui/material';
+import { Facebook, LinkedIn, Instagram, Google, ShoppingCart, AccountBalance, CreditCard, Laptop, PhoneAndroid } from '@mui/icons-material';
+import { LinearProgress, List, ListItem, ListItemAvatar, ListItemText, CircularProgress } from '@mui/material';
 
 
 const caseTrendData = [
@@ -26,8 +26,6 @@ const weeklySalesData = [
   { week: "Sat", sales: 20 },
   { week: "Sun", sales: 60 },
 ];
-
-const percentage = 78;
 
 const chartData = [
   { value: 10 },

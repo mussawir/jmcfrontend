@@ -6,6 +6,7 @@ import HeaderComponent from '../components/HeaderComponent';
 import Tabs2 from '../components/Tabs2';
 import DeveloperTab from '../components/DeveloperTab';
 import ChatLayout from '../components/ChatLayout';
+import LoanHTabs from '../components/LoanHTabs';
 
 // Define the Case interface
 interface Case {
@@ -16,7 +17,7 @@ interface Case {
   documents?: string[]; // New property for associated documents
 }
 
-function Dashboard() {
+function LoanH() {
   const tabs = [
     { label: "Developer", content: <DeveloperTab /> },
     // Add other tabs here as more sections are identified
@@ -97,7 +98,7 @@ function Dashboard() {
         </Grid>
 
         {/* <Toolbar /> */}
-        <Tabs2  />
+        <LoanHTabs  />
 
 
       </Box>
@@ -156,4 +157,4 @@ const styles = {
     marginBottom: '2%'
   }
 };
-export default Dashboard;
+export default LoanH;

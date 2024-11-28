@@ -1,7 +1,7 @@
 // src/components/HeaderComponent.tsx
 
 import React from 'react';
-import { AppBar, Toolbar, Box, IconButton, Avatar, Badge, TextField, Typography, Menu, MenuItem, Tooltip, Switch } from '@mui/material';
+import { AppBar, Toolbar, Box, IconButton, Avatar, Badge, TextField, Menu, MenuItem, Tooltip,  } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import LogoutIcon from '@mui/icons-material/Logout';

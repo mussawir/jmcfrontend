@@ -7,7 +7,6 @@ import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined'; // For Team
 import CardGiftcardOutlinedIcon from '@mui/icons-material/CardGiftcardOutlined'; // For Cards
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'; // For Ecommerce
 import WidgetsOutlinedIcon from '@mui/icons-material/WidgetsOutlined'; // For Components
-import IconButton from '@mui/material/IconButton';
 import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined'; // For Forms
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined'; // For Tables
 import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined'; // For Apps
@@ -144,7 +143,7 @@ const DrawerComponent = () => {
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
-        TabsPage
+         SPA H
       </Typography>
     }
   />
@@ -152,7 +151,7 @@ const DrawerComponent = () => {
 </ListItem>
 
 
-<ListItem
+{/* <ListItem
   component={Link}
   to="/checklist"
   onClick={() => handleItemClick('Checklist')} // Set 'Checklist' as the selected item
@@ -184,10 +183,10 @@ const DrawerComponent = () => {
     }
   />
   <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Checklist' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem>
+</ListItem> */}
 
 
-<ListItem
+{/* <ListItem
   component={Link}
   to="/team"
   onClick={() => handleItemClick('Team')} // Set 'Team' as the selected item
@@ -219,10 +218,10 @@ const DrawerComponent = () => {
     }
   />
   <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Team' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem>
+</ListItem> */}
 
 
-<ListItem
+{/* <ListItem
   component={Link}
   to="/documents"
   onClick={() => handleItemClick('Documents')} // Set 'Documents' as the selected item
@@ -254,18 +253,18 @@ const DrawerComponent = () => {
     }
   />
   <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Documents' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem>
+</ListItem> */}
 
      {/* New Sections */}
-<p style={{ color: '#B0B0B0', textAlign: 'left', marginLeft: 20 }}>UI ELEMENTS</p>
+{/* <p style={{ color: '#B0B0B0', textAlign: 'left', marginLeft: 20 }}>UI ELEMENTS</p> */}
 
 <ListItem
   component={Link}
-  to="/cards"
-  onClick={() => handleItemClick('Cards')} // Set 'Cards' as the selected item
+  to="/loanH"
+  onClick={() => handleItemClick('LoanH')} // Set 'Cards' as the selected item
   sx={{
-    backgroundColor: selectedItem === 'Cards' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
-    color: selectedItem === 'Cards' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
+    backgroundColor: selectedItem === 'LoanH' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
+    color: selectedItem === 'LoanH' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
     },
@@ -286,7 +285,7 @@ const DrawerComponent = () => {
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
-        Cards
+        Loan H
       </Typography>
     }
   />
@@ -295,17 +294,17 @@ const DrawerComponent = () => {
 
 <ListItem
   component={Link}
-  to="/ecommerce"
-  onClick={() => handleItemClick('Ecommerce')}
+  to="/spaG"
+  onClick={() => handleItemClick('SPAG')}
   sx={{
-    backgroundColor: selectedItem === 'Ecommerce' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
-    color: selectedItem === 'Ecommerce' ? '#1E90FF' : '#5f5f5f',
+    backgroundColor: selectedItem === 'SPAG' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+    color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f',
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)',
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Ecommerce' ? '#1E90FF' : '#5f5f5f' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }}>
     <ShoppingCartOutlinedIcon />
   </ListItemIcon>
   <ListItemText
@@ -320,26 +319,26 @@ const DrawerComponent = () => {
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
-        Ecommerce
+        SPA G
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Ecommerce' ? '#1E90FF' : '#5f5f5f' }} />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
 
 <ListItem
   component={Link}
-  to="/components"
-  onClick={() => handleItemClick('Components')}
+  to="/LoanG"
+  onClick={() => handleItemClick('LoanG')}
   sx={{
-    backgroundColor: selectedItem === 'Components' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
-    color: selectedItem === 'Components' ? '#1E90FF' : '#5f5f5f',
+    backgroundColor: selectedItem === 'LoanG' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+    color: selectedItem === 'LoanG' ? '#1E90FF' : '#5f5f5f',
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)',
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Components' ? '#1E90FF' : '#5f5f5f' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'LoanG' ? '#1E90FF' : '#5f5f5f' }}>
     <WidgetsOutlinedIcon />
   </ListItemIcon>
   <ListItemText
@@ -354,7 +353,7 @@ const DrawerComponent = () => {
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
-        Components
+        Loan G
       </Typography>
     }
   />
@@ -363,17 +362,17 @@ const DrawerComponent = () => {
 
 <ListItem
   component={Link}
-  to="/icons"
-  onClick={() => handleItemClick('Icons')}
+  to="/commercialspa"
+  onClick={() => handleItemClick('Commercialspa')}
   sx={{
-    backgroundColor: selectedItem === 'Icons' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
-    color: selectedItem === 'Icons' ? '#1E90FF' : '#5f5f5f',
+    backgroundColor: selectedItem === 'ComSpa' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+    color: selectedItem === 'Commercialspa' ? '#1E90FF' : '#5f5f5f',
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)',
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Icons' ? '#1E90FF' : '#5f5f5f' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'Commercialspa' ? '#1E90FF' : '#5f5f5f' }}>
     <EmojiSymbolsOutlinedIcon />
   </ListItemIcon>
   <ListItemText
@@ -388,28 +387,28 @@ const DrawerComponent = () => {
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
-        Icons
+        Commercial SPA
       </Typography>
     }
   />
   <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Icons' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
 
-<p style={{ color: '#B0B0B0', textAlign: 'left', marginLeft: 20 }}>Forms & Tables</p>
+{/* <p style={{ color: '#B0B0B0', textAlign: 'left', marginLeft: 20 }}>Forms & Tables</p> */}
 
 <ListItem
   component={Link}
-  to="/forms"
-  onClick={() => handleItemClick('Forms')}
+  to="/commercialloan"
+  onClick={() => handleItemClick('Commercialloan')}
   sx={{
-    backgroundColor: selectedItem === 'Forms' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
-    color: selectedItem === 'Forms' ? '#1E90FF' : '#5f5f5f',
+    backgroundColor: selectedItem === 'Commercialloan' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+    color: selectedItem === 'Commercialloan' ? '#1E90FF' : '#5f5f5f',
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)',
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Forms' ? '#1E90FF' : '#5f5f5f' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'Commercialloan' ? '#1E90FF' : '#5f5f5f' }}>
     <ContactMailOutlinedIcon />
   </ListItemIcon>
   <ListItemText
@@ -424,7 +423,7 @@ const DrawerComponent = () => {
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
-        Forms
+        Commercial Loan
       </Typography>
     }
   />
@@ -433,17 +432,17 @@ const DrawerComponent = () => {
 
 <ListItem
   component={Link}
-  to="/tables"
-  onClick={() => handleItemClick('Tables')}
+  to="/subSpaT"
+  onClick={() => handleItemClick('SubSpaT')}
   sx={{
-    backgroundColor: selectedItem === 'Tables' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
-    color: selectedItem === 'Tables' ? '#1E90FF' : '#5f5f5f',
+    backgroundColor: selectedItem === 'SubSpaT' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+    color: selectedItem === 'SubSpaT' ? '#1E90FF' : '#5f5f5f',
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)',
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Tables' ? '#1E90FF' : '#5f5f5f' }}>
+  <ListItemIcon sx={{ color: selectedItem === 'SubSpaT' ? '#1E90FF' : '#5f5f5f' }}>
     <TableChartOutlinedIcon />
   </ListItemIcon>
   <ListItemText
@@ -458,27 +457,27 @@ const DrawerComponent = () => {
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
-        Tables
+        Subcale SPA <small>(with title)</small>
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Tables' ? '#1E90FF' : '#5f5f5f' }} />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SubSpaT' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
 
 <ListItem
   component={Link}
-  to="/apps"
-  onClick={() => handleItemClick('Apps')}
+  to="/subLoanT"
+  onClick={() => handleItemClick('SubLoanT')}
   sx={{
-    backgroundColor: selectedItem === 'Apps' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
-    color: selectedItem === 'Apps' ? '#1E90FF' : '#5f5f5f',
+    backgroundColor: selectedItem === 'SubLoanT' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+    color: selectedItem === 'SubLoanT' ? '#1E90FF' : '#5f5f5f',
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)',
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Apps' ? '#1E90FF' : '#5f5f5f' }}>
-    <AppsOutlinedIcon />
+  <ListItemIcon sx={{ color: selectedItem === 'SubLoanT' ? '#1E90FF' : '#5f5f5f' }}>
+    <TableChartOutlinedIcon />
   </ListItemIcon>
   <ListItemText
     primary={
@@ -492,11 +491,79 @@ const DrawerComponent = () => {
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
-        Apps
+        Subcale Loan <small>(with title)</small>
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Apps' ? '#1E90FF' : '#5f5f5f' }} />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SubSpaT' ? '#1E90FF' : '#5f5f5f' }} />
+</ListItem>
+
+<ListItem
+  component={Link}
+  to="/subSpaMT"
+  onClick={() => handleItemClick('SubSpaMT')}
+  sx={{
+    backgroundColor: selectedItem === 'SubSpaMT' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+    color: selectedItem === 'SubSpaMT' ? '#1E90FF' : '#5f5f5f',
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)',
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'SubSpaMT' ? '#1E90FF' : '#5f5f5f' }}>
+    <TableChartOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: '"Noto Sans", sans-serif !important',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
+        }}
+      >
+        Subcale SPA <small>(master title)</small>
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SubSpaT' ? '#1E90FF' : '#5f5f5f' }} />
+</ListItem>
+
+<ListItem
+  component={Link}
+  to="/subLoanMT"
+  onClick={() => handleItemClick('subLoanMT')}
+  sx={{
+    backgroundColor: selectedItem === 'subLoanMT' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+    color: selectedItem === 'subLoanMT' ? '#1E90FF' : '#5f5f5f',
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)',
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'subLoanMT' ? '#1E90FF' : '#5f5f5f' }}>
+    <TableChartOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: '"Noto Sans", sans-serif !important',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
+        }}
+      >
+        Subcale Loan <small>(master title)</small>
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'subLoanMT' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
 
         {/* Add other new sections as needed */}

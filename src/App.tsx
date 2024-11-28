@@ -19,6 +19,15 @@ import Logout from './pages/Logout';
 import TabsPage from './pages/TabsPage';
 import SpaRecAddUpdate from './pages/SpaRecAddUpdate';
 import './App.css';
+import LoanH from './pages/LoanH';
+import SpaG from './pages/SpaG';
+import LoanG from './pages/LoanG';
+import ComSpa from './pages/ComSpa';
+import ComLoan from './pages/ComLoan';
+import SubSpaT from './pages/SubSpaT';
+import SubLoanT from './pages/SubLoanT';
+import SubSpaMT from './pages/SubSpaMT';
+import SubLoanMT from './pages/SubLoanMT';
 
 const AppWithDarkMode: React.FC = () => {
   const { darkMode } = useDarkMode(); // Access dark mode state
@@ -42,7 +51,15 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/projects" element={<Projects />} />
         <Route path="/checklist" element={<Checklist />} />
         <Route path="/team" element={<Team />} />
-        <Route path="/settings" element={<Settings />} />
+        <Route path="/loanH" element={<LoanH />} />
+        <Route path="/spaG" element={<SpaG />} />
+        <Route path="/loanG" element={<LoanG />} />
+        <Route path="/commercialspa" element={<ComSpa />} />
+        <Route path="/commercialloan" element={<ComLoan />} />
+        <Route path="/subSpaT" element={<SubSpaT />} />
+        <Route path="/subLoanT" element={<SubLoanT />} />
+        <Route path="/subSpaMT" element={<SubSpaMT />} />
+        <Route path="/subLoanMT" element={<SubLoanMT />} />
         <Route path="/about" element={<About />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/spaform" element={<SpaRecAddUpdate />} />

@@ -1,7 +1,7 @@
 /* Tabs container with fixed width */
 .tabs-container {
     width: 100%;
-    max-width: 1200px; /* Adjust based on your layout */
+    max-width: 1100px; /* Adjust based on your layout */
     margin: 0 auto;
     overflow: hidden; /* Prevent content from spilling out */
   }
