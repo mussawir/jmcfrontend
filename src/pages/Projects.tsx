@@ -16,40 +16,40 @@ function Projects() {
   const [selectedValue, setSelectedValue] = useState<string>('Select Schedule');
   const [showForm, setShowForm] = useState<boolean>(false);
   const [projects, setProjects] = useState<any[]>([]);
-  const [crewResult, setCrewResult] = useState<any | null>(null);  // To store extracted data as an object
+  const [analysis_result, setanalysis_result] = useState<any | null>(null);  // To store extracted data as an object
   const [questions, setQuestions] = useState(Array(10).fill(''));
   const navigate = useNavigate();
 
-  // Fetch projects from backend when the component mounts
-  useEffect(() => {
-    const fetchProjects = async () => {
-      const token = localStorage.getItem('ACCESS_TOKEN');
-      if (!token) {
-        navigate('/login');
-        return;
-      }
+  // // Fetch projects from backend when the component mounts
+  // useEffect(() => {
+  //   const fetchProjects = async () => {
+  //     const token = localStorage.getItem('ACCESS_TOKEN');
+  //     if (!token) {
+  //       navigate('/login'); 
+  //       return;
+  //     }
 
-      try {
-        const response = await fetch('http://127.0.0.1:5000/projects', {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+  //     try {
+  //       const response = await fetch('http://127.0.0.1:5000/projectslist', {
+  //         method: 'GET',
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
 
-        if (response.ok) {
-          const data = await response.json();
-          setProjects(data);
-        } else {
-          alert('Failed to fetch projects');
-        }
-      } catch (error) {
-        console.error('Error fetching projects:', error);
-      }
-    };
+  //       if (response.ok) {
+  //         const data = await response.json();
+  //         setProjects(data);
+  //       } else {
+  //         alert('Failed to fetch projects');
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching projects:', error);
+  //     }
+  //   };
 
-    fetchProjects();
-  }, [navigate]);
+  //   fetchProjects();
+  // }, [navigate]);
 
   // Handle file upload change
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,17 +93,18 @@ function Projects() {
     formData.append('builderName', builderName);
     formData.append('purchaserName', purchaserName);
     formData.append('propertyName', propertyName);
+    formData.append('file', fileInput.files[0]);
     
     try {
-      const response = await axios.post("http://127.0.0.1:5000/upload", formData, {
+      const response = await axios.post("http://127.0.0.1:5000/createproject", formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
         },
       });
 
       console.log("File uploaded successfully:", response.data);
-      alert('Project created successfully');
-      setCrewResult(response.data.extracted_data); // Extracted data is in 'extracted_data'
+      alert(response.data.id);
+      setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
     } catch (error) {
       alert('Form submitting error');
       console.error("Error submitting form:", error);
@@ -112,14 +113,14 @@ function Projects() {
 
   // Update form fields if extracted data exists
   useEffect(() => {
-    if (crewResult) {
-      setProjectName(crewResult.projectName || '');
-      setBuilderName(crewResult.builderName || '');
-      setPurchaserName(crewResult.purchaserName || '');
-      setPropertyName(crewResult.propertyName || '');
-      setQuestions(crewResult.questions || Array(2).fill('')); // Update the questions if extracted data is present
+    if (analysis_result) {
+      setProjectName(analysis_result.projectName || '');
+      setBuilderName(analysis_result.builderName || '');
+      setPurchaserName(analysis_result.purchaserName || '');
+      setPropertyName(analysis_result.propertyName || '');
+      setQuestions(analysis_result.questions || Array(2).fill('')); // Update the questions if extracted data is present
     }
-  }, [crewResult]);
+  }, [analysis_result]);
 
   // Handle update of extracted data form
   const handleUpdate = (event: React.FormEvent) => {
@@ -244,7 +245,7 @@ function Projects() {
         )}
 
         {/* Display extracted data below the form */}
-        {crewResult && (
+        {analysis_result && (
           <Box sx={{ marginTop: 2 }}>
             <Typography variant="h6" gutterBottom>
               Recheck Extracted Data:
@@ -252,26 +253,26 @@ function Projects() {
 
             <form onSubmit={handleUpdate}>
               {/* Display first question and value in input field */}
-              {crewResult && crewResult[0] && (
+              {analysis_result && analysis_result[0] && (
                 <TextField
-                  label={crewResult[0].question} // First question as label
+                  label={analysis_result[0].question} // First question as label
                   fullWidth
                   variant="outlined"
-                  //value={crewResult[0].value} // Value from extracted data
-                  value={crewResult} // Value from extracted data
+                  //value={analysis_result[0].value} // Value from extracted data
+                  value={analysis_result} // Value from extracted data
                   onChange={(e) => handleQuestionChange(0, e.target.value)} // Handling value change
                   sx={{ marginBottom: 2 }}
                 />
               )}
 
               {/* Display second question and value in input field */}
-              {crewResult && crewResult[1] && (
+              {analysis_result && analysis_result[1] && (
                 <TextField
-                  label={crewResult[1].search_query} // Second question as label
+                  label={analysis_result[1].search_query} // Second question as label
                   fullWidth
                   variant="outlined"
-                  //value={crewResult[1].value} 
-                  value={crewResult} // Value from extracted data
+                  //value={analysis_result[1].value} 
+                  value={analysis_result} // Value from extracted data
                   onChange={(e) => handleQuestionChange(1, e.target.value)} // Handling value change
                   sx={{ marginBottom: 2 }}
                 />
@@ -284,12 +285,12 @@ function Projects() {
           </Box>
           )}
         {/* Display extracted data below the form */}
-        {crewResult && (
+        {analysis_result && (
           <Box sx={{ marginTop: 2 }}>
             <Typography variant="h6" gutterBottom>
               Extracted Data:
             </Typography>
-            <pre>{crewResult}</pre>
+            <pre>{analysis_result}</pre>
           </Box>
         )}
       </Box>
