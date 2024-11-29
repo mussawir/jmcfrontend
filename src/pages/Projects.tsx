@@ -7,7 +7,7 @@ import { SelectChangeEvent } from '@mui/material';
 import axios from 'axios';
 
 function Projects() {
-  // Form states
+  // Project form states
   const [projectName, setProjectName] = useState('My Project');
   const [builderName, setBuilderName] = useState('ABC Builder');
   const [purchaserName, setPurchaserName] = useState('Goh Wang');
@@ -15,43 +15,103 @@ function Projects() {
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [selectedValue, setSelectedValue] = useState<string>('Select Schedule');
   const [showForm, setShowForm] = useState<boolean>(false);
-  const [projects, setProjects] = useState<any[]>([]);
+  // const [projects, setProjects] = useState<any[]>([]);
   const [analysis_result, setanalysis_result] = useState<any | null>(null);  // To store extracted data as an object
   const [questions, setQuestions] = useState(Array(10).fill(''));
-  const navigate = useNavigate();
+  const [backendMessage, setBackendMessage] = useState<string | null>(null);
 
-  // // Fetch projects from backend when the component mounts
-  // useEffect(() => {
-  //   const fetchProjects = async () => {
-  //     const token = localStorage.getItem('ACCESS_TOKEN');
-  //     if (!token) {
-  //       navigate('/login'); 
-  //       return;
-  //     }
+  // const navigate = useNavigate();
 
-  //     try {
-  //       const response = await fetch('http://127.0.0.1:5000/projectslist', {
-  //         method: 'GET',
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       });
+  // Developer form states
+  const [developerName, setDeveloperName] = useState('John Doe');
+  const [companyName, setCompanyName] = useState('JMC'); 
+  const [license, setLicense] = useState('LIC-12345678'); 
+  const [address, setAddress] = useState('123 Main St, New York, NY');
 
-  //       if (response.ok) {
-  //         const data = await response.json();
-  //         setProjects(data);
-  //       } else {
-  //         alert('Failed to fetch projects');
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching projects:', error);
-  //     }
-  //   };
+  const [developerNamePopup, setDeveloperNamePopup] = useState(false);
+  const [companyNamePopup, setCompanyNamePopup] = useState(false);
 
-  //   fetchProjects();
-  // }, [navigate]);
+  const [developerMessage, setDeveloperMessage] = useState<string | null>(null); // State to store the message from backend
+  const [loading, setLoading] = useState(false); // State to track loading status
 
-  // Handle file upload change
+  // Handle the "Bring data" button click
+
+
+  const handleFetchDeveloperMessage = async () => {
+ 
+    setLoading(true); // Set loading state to true when fetching
+    try {
+      const response = await axios.get('http://127.0.0.1:5000/developer-message'); // Adjust the endpoint accordingly
+      setDeveloperMessage(response.data.message); // Store the response message
+      alert(response.data.message);
+    } catch (error) {
+      console.error('Error fetching message:', error);
+      alert("working");
+      setDeveloperMessage('Failed to fetch message');
+    } finally {
+      setLoading(false); // Reset loading state after fetch is complete
+    }
+  };
+
+
+  
+  const handleBringCompanyName = () => {
+    setCompanyNamePopup(true);
+    setTimeout(() => {
+      setCompanyNamePopup(false);
+    }, 5000); // Hide after 5 seconds
+  };
+
+  const MyComponent = () => {
+    const [message, setMessage] = useState('');
+    const [error, setError] = useState(null);
+  
+    useEffect(() => {
+      // Fetching message from the backend
+      fetch('http://127.0.0.1:5000/extractdn')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log('API response data:', data);
+          setMessage(data.message); // Set the message
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+          setError(error.message); // Set the error message
+        });
+    }, []);
+  
+    const handleAlert = () => {
+      alert(message);  // Show message in an alert box
+    };
+  
+    return (
+      <div>
+        {/* Show message if available */}
+        {message && (
+          <div>
+            <Typography variant="h6">API Response:</Typography>
+            <Typography variant="body1">{message}</Typography>
+            <Button variant="contained" onClick={handleAlert}>Alert Message</Button>
+          </div>
+        )}
+  
+        {/* Show error message if there is an error */}
+        {error && (
+          <div>
+            <Typography variant="h6">Error:</Typography>
+            <Typography variant="body1">{error}</Typography>
+          </div>
+        )}
+      </div>
+    );
+  };
+  
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       setPdfFile(event.target.files[0]);
@@ -73,44 +133,63 @@ function Projects() {
     }
   };
 
-  // Handle form submission (including project details and questions)
-  const handleSubmit = async (event: React.FormEvent) => {
+  // Handle project form submission (including project details and questions)
+  // const handleProjectSubmit = async (event: React.FormEvent) => {
+  //   event.preventDefault();
+
+  //   const formData = new FormData();
+
+  //   const fileInput = document.getElementById("fileInput") as HTMLInputElement;
+  //   if (fileInput?.files?.length) {
+  //     formData.append("file", fileInput.files[0]); // Append the file to the FormData object
+  //   } else {
+  //     alert("Please select a file.");
+  //     return;
+  //   }
+
+  //   // Add project details to the form data
+  //   formData.append('projectName', projectName);
+  //   formData.append('builderName', builderName);
+  //   formData.append('purchaserName', purchaserName);
+  //   formData.append('propertyName', propertyName);
+
+  //   try {
+  //     const response = await axios.post("http://127.0.0.1:5000/createproject", formData, {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
+  //       },
+  //     });
+
+  //     console.log("File uploaded successfully:", response.data);
+  //     alert(response.data.id);
+  //     setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
+  //   } catch (error) {
+  //     alert('Form submitting error');
+  //     console.error("Error submitting form:", error);
+  //   }
+  // };
+
+
+  const handleProjectSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const formData = new FormData();
-
-    // Assuming `fileInput` is the reference to your file input element
-    const fileInput = document.getElementById("fileInput") as HTMLInputElement;
-    if (fileInput?.files?.length) {
-      formData.append("file", fileInput.files[0]); // Append the file to the FormData object
-    } else {
-      alert("Please select a file.");
-      return;
-    }
-
-    // Add project details to the form data
-    formData.append('projectName', projectName);
-    formData.append('builderName', builderName);
-    formData.append('purchaserName', purchaserName);
-    formData.append('propertyName', propertyName);
-    formData.append('file', fileInput.files[0]);
-    
+   
     try {
-      const response = await axios.post("http://127.0.0.1:5000/createproject", formData, {
+      const response = await axios.get("http://127.0.0.1:5000/test", {
         headers: {
           "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
         },
       });
+     console.log("response:", response.data.message);
+     alert(response.data.message);  
+     setBackendMessage(response.data.message); // Set the message from the backend
 
-      console.log("File uploaded successfully:", response.data);
-      alert(response.data.id);
-      setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
     } catch (error) {
       alert('Form submitting error');
       console.error("Error submitting form:", error);
+      setBackendMessage('Failed to fetch message');
     }
   };
-
   // Update form fields if extracted data exists
   useEffect(() => {
     if (analysis_result) {
@@ -121,25 +200,6 @@ function Projects() {
       setQuestions(analysis_result.questions || Array(2).fill('')); // Update the questions if extracted data is present
     }
   }, [analysis_result]);
-
-  // Handle update of extracted data form
-  const handleUpdate = (event: React.FormEvent) => {
-    event.preventDefault();
-
-    const updatedData = {
-      projectName,
-      builderName,
-      purchaserName,
-      propertyName,
-      questions,
-    };
-
-    console.log("Updated Data:", updatedData);
-
-    // Optionally, you can send updated data back to the backend here using axios
-
-    alert('Updated data submitted successfully!');
-  };
 
   // Handle question input change
   const handleQuestionChange = (index: number, value: string) => {
@@ -197,7 +257,7 @@ function Projects() {
                   Enter Project Details
                 </Typography>
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleProjectSubmit}>
                   <TextField
                     label="Project Name"
                     fullWidth
@@ -206,6 +266,12 @@ function Projects() {
                     onChange={(e) => setProjectName(e.target.value)}
                     sx={{ marginBottom: 2 }}
                   />
+                  <Box id="result">  
+                  {backendMessage ? (
+          <Typography variant="body1">{backendMessage}</Typography>
+        ) : (
+          <Typography variant="body1">No message yet.</Typography>
+        )}</Box>
                   <TextField
                     label="Builder Name"
                     fullWidth
@@ -248,49 +314,9 @@ function Projects() {
         {analysis_result && (
           <Box sx={{ marginTop: 2 }}>
             <Typography variant="h6" gutterBottom>
-              Recheck Extracted Data:
-            </Typography>
-
-            <form onSubmit={handleUpdate}>
-              {/* Display first question and value in input field */}
-              {analysis_result && analysis_result[0] && (
-                <TextField
-                  label={analysis_result[0].question} // First question as label
-                  fullWidth
-                  variant="outlined"
-                  //value={analysis_result[0].value} // Value from extracted data
-                  value={analysis_result} // Value from extracted data
-                  onChange={(e) => handleQuestionChange(0, e.target.value)} // Handling value change
-                  sx={{ marginBottom: 2 }}
-                />
-              )}
-
-              {/* Display second question and value in input field */}
-              {analysis_result && analysis_result[1] && (
-                <TextField
-                  label={analysis_result[1].search_query} // Second question as label
-                  fullWidth
-                  variant="outlined"
-                  //value={analysis_result[1].value} 
-                  value={analysis_result} // Value from extracted data
-                  onChange={(e) => handleQuestionChange(1, e.target.value)} // Handling value change
-                  sx={{ marginBottom: 2 }}
-                />
-              )}
-
-              <Button variant="contained" color="primary" fullWidth type="submit">
-                Save
-              </Button>
-            </form>
-          </Box>
-          )}
-        {/* Display extracted data below the form */}
-        {analysis_result && (
-          <Box sx={{ marginTop: 2 }}>
-            <Typography variant="h6" gutterBottom>
               Extracted Data:
             </Typography>
-            <pre>{analysis_result}</pre>
+            <pre>{JSON.stringify(analysis_result, null, 2)}</pre>
           </Box>
         )}
       </Box>
