@@ -134,43 +134,43 @@ function Projects() {
   };
 
   // Handle project form submission (including project details and questions)
-  // const handleProjectSubmit = async (event: React.FormEvent) => {
-  //   event.preventDefault();
-
-  //   const formData = new FormData();
-
-  //   const fileInput = document.getElementById("fileInput") as HTMLInputElement;
-  //   if (fileInput?.files?.length) {
-  //     formData.append("file", fileInput.files[0]); // Append the file to the FormData object
-  //   } else {
-  //     alert("Please select a file.");
-  //     return;
-  //   }
-
-  //   // Add project details to the form data
-  //   formData.append('projectName', projectName);
-  //   formData.append('builderName', builderName);
-  //   formData.append('purchaserName', purchaserName);
-  //   formData.append('propertyName', propertyName);
-
-  //   try {
-  //     const response = await axios.post("http://127.0.0.1:5000/createproject", formData, {
-  //       headers: {
-  //         "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
-  //       },
-  //     });
-
-  //     console.log("File uploaded successfully:", response.data);
-  //     alert(response.data.id);
-  //     setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
-  //   } catch (error) {
-  //     alert('Form submitting error');
-  //     console.error("Error submitting form:", error);
-  //   }
-  // };
-
-
   const handleProjectSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+
+    const fileInput = document.getElementById("fileInput") as HTMLInputElement;
+    if (fileInput?.files?.length) {
+      formData.append("file", fileInput.files[0]); // Append the file to the FormData object
+    } else {
+      alert("Please select a file.");
+      return;
+    }
+
+    // Add project details to the form data
+    formData.append('projectName', projectName);
+    formData.append('builderName', builderName);
+    formData.append('purchaserName', purchaserName);
+    formData.append('propertyName', propertyName);
+
+    try {
+      const response = await axios.post("http://127.0.0.1:5000/createproject", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
+        },
+      });
+
+      console.log("File uploaded successfully:", response.data);
+      alert(response.data.id);
+      setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
+    } catch (error) {
+      alert('Form submitting error');
+      console.error("Error submitting form:", error);
+    }
+  };
+
+// Will use this function to bring back data from the next step
+  const handleProjectSubmit2 = async (event: React.FormEvent) => {
     event.preventDefault();
 
    
