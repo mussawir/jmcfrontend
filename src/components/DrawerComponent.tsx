@@ -116,7 +116,7 @@ const DrawerComponent = () => {
 </ListItem>
 
 
-<ListItem
+{/* <ListItem
   component={Link}
   to="/tabspage"
   onClick={() => handleItemClick('TabsPage')} // Set 'TabsPage' as the selected item
@@ -143,12 +143,12 @@ const DrawerComponent = () => {
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
-         SPA H
+         SPA H Tab(dev Test)
       </Typography>
     }
   />
   <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'TabsPage' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem>
+</ListItem> */}
 
 
 {/* <ListItem
@@ -257,6 +257,39 @@ const DrawerComponent = () => {
 
      {/* New Sections */}
 {/* <p style={{ color: '#B0B0B0', textAlign: 'left', marginLeft: 20 }}>UI ELEMENTS</p> */}
+<ListItem
+  component={Link}
+  to="/spaH"
+  onClick={() => handleItemClick('SPAH')}
+  sx={{
+    backgroundColor: selectedItem === 'SPAG' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+    color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f',
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)',
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }}>
+    <ShoppingCartOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: '"Noto Sans", sans-serif !important',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
+        }}
+      >
+        SPA H
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }} />
+</ListItem>
 
 <ListItem
   component={Link}

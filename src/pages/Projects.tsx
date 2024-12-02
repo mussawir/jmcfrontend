@@ -33,7 +33,7 @@ function Projects() {
 
   const [developerMessage, setDeveloperMessage] = useState<string | null>(null); // State to store the message from backend
   const [loading, setLoading] = useState(false); // State to track loading status
-
+  const navigate = useNavigate();
   // Handle the "Bring data" button click
 
 
@@ -136,7 +136,7 @@ function Projects() {
   // Handle project form submission (including project details and questions)
   const handleProjectSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
+    
     const formData = new FormData();
 
     const fileInput = document.getElementById("fileInput") as HTMLInputElement;
@@ -163,6 +163,8 @@ function Projects() {
       console.log("File uploaded successfully:", response.data);
       alert(response.data.id);
       setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
+      const props = { project_id: response.data.id};
+      navigate('/spaH', { state: props });
     } catch (error) {
       alert('Form submitting error');
       console.error("Error submitting form:", error);

@@ -3,6 +3,7 @@ import React from "react";
 const DeveloperTab: React.FC = () => {
   return (
     <div>
+      <div id="message">All message will come here</div>
       <form>
         <div>
           <label>Developer Name:</label>
@@ -36,5 +37,4 @@ const DeveloperTab: React.FC = () => {
     </div>
   );
 };
-
 export default DeveloperTab;

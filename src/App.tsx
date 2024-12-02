@@ -21,6 +21,7 @@ import SpaRecAddUpdate from './pages/SpaRecAddUpdate';
 import './App.css';
 import LoanH from './pages/LoanH';
 import SpaG from './pages/SpaG';
+import SpaH from './pages/SpaH';
 import LoanG from './pages/LoanG';
 import ComSpa from './pages/ComSpa';
 import ComLoan from './pages/ComLoan';
@@ -53,6 +54,7 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/team" element={<Team />} />
         <Route path="/loanH" element={<LoanH />} />
         <Route path="/spaG" element={<SpaG />} />
+        <Route path="/spaH" element={<SpaH />} />
         <Route path="/loanG" element={<LoanG />} />
         <Route path="/commercialspa" element={<ComSpa />} />
         <Route path="/commercialloan" element={<ComLoan />} />
