@@ -3,9 +3,9 @@ import { Box, CssBaseline, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
-import Tabs2 from '../components/Tabs2';
 import DeveloperTab from '../components/DeveloperTab';
 import ChatLayout from '../components/ChatLayout';
+import LoanGTabs from '../components/LoanGTabs';
 
 // Define the Case interface
 interface Case {
@@ -16,7 +16,7 @@ interface Case {
   documents?: string[]; // New property for associated documents
 }
 
-function SpaG() {
+function LoanG() {
   const tabs = [
     { label: "Developer", content: <DeveloperTab /> },
     // Add other tabs here as more sections are identified
@@ -97,7 +97,7 @@ function SpaG() {
         </Grid>
 
         {/* <Toolbar /> */}
-        <Tabs2  />
+        <LoanGTabs  />
 
 
       </Box>
@@ -156,4 +156,4 @@ const styles = {
     marginBottom: '2%'
   }
 };
-export default SpaG;
+export default LoanG;

@@ -1,127 +1,168 @@
 /* Tabs container with fixed width */
 .tabs-container {
-    width: 100%;
-    max-width: 1100px; /* Adjust based on your layout */
-    margin: 0 auto;
-    overflow: hidden; /* Prevent content from spilling out */
-  }
-  
-  /* Tabs wrapper for controlling the layout */
-  .tabs-wrapper {
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-  
-  /* Tabs section with scrolling enabled */
-  .tabs {
-    display: flex;
-    overflow-x: hidden; /* Enable horizontal scrolling */
-    overflow-y: hidden;
-    scroll-behavior: smooth;
-    white-space: nowrap; /* Prevent tabs from wrapping to the next line */
-    flex: 1; /* Take up available space */
-    margin-left: 60px;
-    margin-right: 60px;
-    border-radius: 5px;
-  }
-  
+  width: 100%;  
+  max-width: 1100px;
+  margin: 0 auto;
+  overflow: hidden; /* Prevent content overflow */
+}
+
+/* Tabs wrapper for layout control */
+.tabs-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Tabs section with horizontal scrolling */
+.tabs {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  white-space: nowrap; /* Keep tabs in one line */
+  flex: 1;
+  margin: 0 60px;
+  border-radius: 5px;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+.tabs::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Webkit browsers */
+}
+
+.tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-right: 10px;
+  color: #555;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  background-color: #007bff;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tab.active {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  border: 2px solid #0056b3;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
   .tab {
-    padding: 10px 20px; /* Add space inside the tabs */
-    cursor: pointer; /* Show pointer cursor */
-    background-color: #f9f9f9; /* Light background for inactive tabs */
-    border: 1px solid #ddd; /* Subtle border */
-    border-radius: 5px; /* Slightly rounded corners */
-    margin-right: 10px; /* Space between tabs */
-    color: #555; /* Neutral text color */
-    font-weight: 500; /* Medium text weight */
-    transition: all 0.3s ease; /* Smooth transitions for hover/active effects */
+      padding: 8px 15px;
+      font-size: 14px;
   }
+}
+
+/* Tab content section */
+.tab-content {
+  margin-top: 20px;
+}
+
+/* Form styles */
+.form-group {
+  margin-bottom: 15px;
   
-  /* Hover State for Tabs */
-  .tab:hover {
-    background-color: #007bff; /* Primary hover background */
-    color: #fff; /* White text */
-    transform: translateY(-2px); /* Slight lift effect */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
-  }
-  
-  /* Active Tab Styling */
-  .tab.active {
-    background-color: #007bff; /* Primary color for active tab */
-    color: #fff; /* White text for contrast */
-    font-weight: bold; /* Make text bold for emphasis */
-    border: 2px solid #0056b3; /* Slightly thicker border in a darker shade */
-    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4); /* Glow effect */
-    transform: scale(1.05); /* Slight enlargement */
-  }
-  
-  /* Responsive Styling (Optional) */
-  @media (max-width: 768px) {
-    .tab {
-      padding: 8px 15px; /* Adjust padding for smaller screens */
-      font-size: 14px; /* Reduce text size */
-    }
-  }
-  
-  /* Form styling */
-  .tab-content {
-    margin-top: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  /* Scroll buttons - common styles */
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Scroll buttons */
 .scroll-btn {
-    background-color: #f5f5f5; /* Light background for better visibility */
-    border: 1px solid #ccc; /* Subtle border */
-    border-radius: 50%; /* Circular shape */
-    font-size: 20px; /* Adjust arrow size */
-    width: 40px; /* Set width */
-    height: 40px; /* Set height */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: #333; /* Default arrow color */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
-    transition: all 0.3s ease; /* Smooth transitions */
-  }
-  
-  /* Left scroll button */
-  .scroll-btn.left {
-    position: absolute;
-    left: 10px; /* Adjust position */
-    z-index: 10; /* Ensure it stays above content */
-  }
-  
-  /* Right scroll button */
-  .scroll-btn.right {
-    position: absolute;
-    right: 10px; /* Adjust position */
-    z-index: 10; /* Ensure it stays above content */
-  }
-  
-  /* Hover effect for scroll buttons */
-  .scroll-btn:hover {
-    background-color: #007bff; /* Change background on hover */
-    color: #fff; /* White arrow color on hover */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
-    transform: scale(1.1); /* Slightly increase size */
-  }
-  
-  /* Active state (optional for a pressed effect) */
-  .scroll-btn:active {
-    transform: scale(0.95); /* Slightly smaller on click */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow on click */
-  }
-  
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.scroll-btn.left {
+  position: absolute;
+  left: 10px;
+  z-index: 10;
+}
+
+.scroll-btn.right {
+  position: absolute;
+  right: 10px;
+  z-index: 10;
+}
+
+.scroll-btn:hover {
+  background-color: #007bff;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
+
+.scroll-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.suggestion-box {
+  position: absolute;
+  top: 100%; /* Place below the input */
+  left: 0;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 10;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.suggestion-box > .suggestion-item {
+  word-wrap: break-word;
+  padding: 8px;
+  cursor: pointer;
+}
+
+
+/* Hover over the suggestion box ensures it stays on top */
+.suggestion-box:hover {
+  opacity: 1; /* Keep box visible on hover */
+  z-index: 11; /* Raise z-index when hovered to ensure visibility */
+}
+
+/* Style for individual suggestion items */
+.suggestion-item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+/* Position of the form and suggestion box */
+.w-50 {
+  width: 50%;
+  justify-content: end;
+  align-items: end;
+}

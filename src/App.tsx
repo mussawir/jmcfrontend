@@ -13,7 +13,6 @@ import Documents from './pages/Document';
 import Projects from './pages/Projects';
 import Checklist from './pages/Checklist';
 import Team from './pages/Team';
-import Settings from './pages/Settings';
 import About from './pages/About';
 import Logout from './pages/Logout';
 import TabsPage from './pages/TabsPage';

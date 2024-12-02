@@ -23,6 +23,9 @@ const headings = [
       "Developer authorised 2nd identity card number",
       "Developer authorised 2nd signatory designation",
     ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    ],
   },
   {
     shortHeading: "Purchaser (Individual - Malaysian)",
@@ -37,6 +40,9 @@ const headings = [
       "2nd Purchaser email address",
       "Purchaser correspondence address",
     ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    ],
   },
   {
     shortHeading: "Purchaser (Individual - Foreigner)",
@@ -47,6 +53,9 @@ const headings = [
       "1st Purchaser email address",
       "Purchaser correspondence address",
       "Purchaser correspondence address in Malaysia",
+    ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     ],
   },
   {
@@ -62,6 +71,9 @@ const headings = [
       "Purchaser person in charge contact number",
       "Purchaser person in charge email address",
     ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    ],
   },
   {
     shortHeading: "Proprietor",
@@ -74,6 +86,9 @@ const headings = [
       "Proprietor authorised 1st identity card number",
       "Proprietor authorised 2nd signatory name",
       "Proprietor authorised 2nd identity card number",
+    ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     ],
   },
   {
@@ -90,6 +105,9 @@ const headings = [
       "Master chargee person in charge contact number",
       "Master chargee person in charge email address",
     ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    ],
   },
   {
     shortHeading: "Master Title",
@@ -104,6 +122,9 @@ const headings = [
       "If leasehold, years and expiration date",
       "Land area",
     ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    ],
   },
   {
     shortHeading: "Project Details",
@@ -114,6 +135,9 @@ const headings = [
       "Advertisement & sale permit number",
       "Approved layout plan reference number",
       "Local municipal name",
+    ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     ],
   },
   {
@@ -126,6 +150,9 @@ const headings = [
       "Parcel/unit/lot built-up area",
       "Accessory parcel(s) number",
     ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    ],
   },
   {
     shortHeading: "Housing Development Account",
@@ -134,6 +161,9 @@ const headings = [
       "Bank/financial institution name",
       "Bank/financial institution registered office address",
       "Bank/financial institution file reference number",
+    ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     ],
   },
   {
@@ -147,6 +177,9 @@ const headings = [
       "Developer attestation lawyer name",
       "Developer attestation lawyer identity card number",
     ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    ],
   },
   {
     shortHeading: "Purchaser Solicitors",
@@ -157,6 +190,9 @@ const headings = [
       "Purchaser solicitors contact number",
       "Purchaser solicitors email address",
     ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    ],
   },
   {
     shortHeading: "Purchase Price",
@@ -164,12 +200,18 @@ const headings = [
       "Purchase price in words",
       "Purchase price in numerics",
     ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    ],
   },
   {
     shortHeading: "Adjustment Rate",
     questions: [
       "Adjustment rate in words",
       "Adjustment rate in numerics",
+    ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     ],
   },
   {
@@ -179,6 +221,9 @@ const headings = [
       "Developer discount in numerics",
       "Bumiputera lot discount in numerics",
       "Government initiative in numerics",
+    ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     ],
   },
   {
@@ -191,6 +236,9 @@ const headings = [
       "Purchase price (17.5%) in numerics",
       "Purchase price (100%) in numerics",
     ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    ],
   },
   {
     shortHeading: "Developer Stakeholder",
@@ -201,61 +249,131 @@ const headings = [
       "Developer stakeholder contact number",
       "Developer stakeholder email address",
     ],
+    loremep: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    ],
   },
 ];
 
 const Tabs2 = () => {
-    const scrollTabs = (direction: "left" | "right") => {
-        if (tabsRef.current) {
-          const scrollAmount = direction === "left" ? -200 : 200;
-          tabsRef.current.scrollBy({
-            left: scrollAmount,
-            behavior: "smooth",
-          });
-        }
-      };
+  const [activeTab, setActiveTab] = useState(0);
+  const [activeField, setActiveField] = useState<number | null>(null);
+  const [suggestionsVisible, setSuggestionsVisible] = useState(true);  // Make suggestions visible initially
+  const [selectedSuggestions, setSelectedSuggestions] = useState<{ [key: string]: string }>({});
+  const [questionsWithAnswers, setQuestionsWithAnswers] = useState<string[]>([]);
+  const [loremep, setLorem] = useState<string[]>([]);
 
-      const [activeTab, setActiveTab] = useState(0);
-      const tabsRef = useRef<HTMLDivElement | null>(null);
-      return (
-        <div className="tabs-container">
-          <div className="tabs-wrapper">
-            <button className="scroll-btn left" onClick={() => scrollTabs("left")}>
-              &lt;
-            </button>
-            <div className="tabs" ref={tabsRef}>
-              {headings.map((heading, index) => (
-                <div
-                  key={index}
-                  className={`tab ${activeTab === index ? "active" : ""}`}
-                  onClick={() => setActiveTab(index)}
-                >
-                  {heading.shortHeading}
-                </div>
-              ))}
+  const tabsRef = useRef<HTMLDivElement>(null); // Declare tabsRef
+
+  const scrollTabs = (direction: "left" | "right") => {
+    if (tabsRef.current) {
+      const scrollAmount = direction === "left" ? -200 : 200;
+      tabsRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const handleFieldFocus = (questions: string[], fieldIndex: number, loremep: string[]) => {
+    setActiveField(fieldIndex);
+    setQuestionsWithAnswers(questions); // Set the list of answers
+    setLorem(loremep);
+    setSuggestionsVisible(true); // Show the suggestions when input is focused
+  };
+
+  const handleSuggestionClick = (suggestion: string, fieldKey: string) => {
+    setSelectedSuggestions((prev) => ({
+      ...prev,
+      [fieldKey]: suggestion,
+    }));
+    setSuggestionsVisible(true); // Hide suggestions after selection
+  };
+
+  const handleBlur = () => {
+    setSuggestionsVisible(true); // Hide suggestions if clicked outside
+  };
+
+  const activeHeading = headings[activeTab] || {}; // Default to empty object if undefined
+
+  return (
+    <div className="tabs-container">
+      <div className="tabs-wrapper">
+        <button className="scroll-btn left" onClick={() => scrollTabs("left")}>
+          &lt;
+        </button>
+        <div className="tabs" ref={tabsRef}>
+          {headings.map((heading, index) => (
+            <div
+              key={index}
+              className={`tab ${activeTab === index ? "active" : ""}`}
+              onClick={() => setActiveTab(index)}
+            >
+              {heading.shortHeading}
             </div>
-            <button className="scroll-btn right" onClick={() => scrollTabs("right")}>
-              &gt;
-            </button>
-          </div>
-          <div className="tab-content">
-            <h2>{headings[activeTab].shortHeading}</h2>
-            <form>
-              {headings[activeTab].questions.map((question, index) => (
-                <div key={index} className="form-group">
-                  <label htmlFor={`field-${activeTab}-${index}`}>{question}</label>
+          ))}
+        </div>
+        <button className="scroll-btn right" onClick={() => scrollTabs("right")}>
+          &gt;
+        </button>
+      </div>
+      <div className="tab-content">
+        <h2>{activeHeading.shortHeading}</h2>
+        <form>
+          {(activeHeading.questions || []).map((question, index) => {
+            const fieldKey = `${activeTab}-${index}`; // Unique key for each field
+            return (
+              <div style={{ display: "flex" }} key={fieldKey}>
+                <div className="form-group w-50">
+                  <label htmlFor={`field-${fieldKey}`}>{question}</label>
                   <input
                     type="text"
-                    id={`field-${activeTab}-${index}`}
-                    name={`field-${activeTab}-${index}`}
+                    id={`field-${fieldKey}`}
+                    name={`field-${fieldKey}`}
                     placeholder={`Enter ${question}`}
+                    value={selectedSuggestions[fieldKey] || ""}
+                    onFocus={() => handleFieldFocus(activeHeading.questions, index, activeHeading.loremep)}
+                    onBlur={handleBlur}
+                    onChange={(e) =>
+                      setSelectedSuggestions((prev) => ({
+                        ...prev,
+                        [fieldKey]: e.target.value,
+                      }))
+                    }
                   />
                 </div>
-              ))}
-            </form>
-          </div>
-        </div>
-      );
-    };
-    
-    export default Tabs2;
+                <div className="form-group w-50">
+                  {suggestionsVisible && activeField === index && (
+                    <div
+                      className="suggestions"
+                      style={{
+                        padding: "10px",
+                        borderRadius: "8px",
+                        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                        border: "2px solid grey",
+                        height: "200px",
+                        margin: "10px",
+                      }}
+                    >
+                      {(loremep || []).map((answer, answerIndex) => (
+                        <div
+                          key={answerIndex}
+                          className="suggestion-item"
+                          onClick={() => handleSuggestionClick(answer, fieldKey)}
+                        >
+                          {answer}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Tabs2;
