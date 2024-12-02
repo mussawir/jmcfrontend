@@ -29,6 +29,10 @@ import './Tabs2.css'; // Add styles as needed
         "End financier 2nd attorney designation",
         "End financier noting PA number registered in which land registry",
       ],
+      loremep: [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+
+      ],
     },
     {
       shortHeading: "Assignor (Individual - Malaysian)",
@@ -421,63 +425,134 @@ import './Tabs2.css'; // Add styles as needed
           "PA registration date",
           "Registered PA number and which High Court",
         ],
+        loremep: [
+          "lorem epsonn11",
+          "lorem epsonn11",
+        ],
     },
   ];
   
+
+const LoanHTabs = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  const [activeField, setActiveField] = useState<number | null>(null);
+  const [suggestionsVisible, setSuggestionsVisible] = useState(false);
+  const [selectedSuggestions, setSelectedSuggestions] = useState<{ [key: string]: string }>({});
+  const [questionsWithAnswers, setQuestionsWithAnswers] = useState<string[]>([]);
+  const [loremep, setLorem] = useState<string[]>([]);
+  const tabsRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollTabs = (direction: "left" | "right") => {
+    if (tabsRef.current) {
+      const scrollAmount = direction === "left" ? -200 : 200;
+      tabsRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
   
+  const handleFieldFocus = (questions: string[], fieldIndex: number, loremep: string[], ) => {
+    setActiveField(fieldIndex);
+    setQuestionsWithAnswers(questions); // Set the list of answers
+    setLorem(loremep);
+    setSuggestionsVisible(true); // Show the suggestions
+  };
 
-const Tabs2 = () => {
-    const scrollTabs = (direction: "left" | "right") => {
-        if (tabsRef.current) {
-          const scrollAmount = direction === "left" ? -200 : 200;
-          tabsRef.current.scrollBy({
-            left: scrollAmount,
-            behavior: "smooth",
-          });
-        }
-      };
+  const handleSuggestionClick = (suggestion: string, fieldKey: string) => {
+    setSelectedSuggestions((prev) => ({
+      ...prev,
+      [fieldKey]: suggestion,
+    }));
+    setSuggestionsVisible(false); // Hide suggestions after selection
+  };
 
-      const [activeTab, setActiveTab] = useState(0);
-      const tabsRef = useRef<HTMLDivElement | null>(null);
-      return (
-        <div className="tabs-container">
-        <div className="tabs-wrapper">
-          <button className="scroll-btn left" onClick={() => scrollTabs("left")}>
-            &lt;
-          </button>
-          <div className="tabs" ref={tabsRef}>
-            {loanHeadings.map((heading, index) => (
-              <div
-                key={index}
-                className={`tab ${activeTab === index ? "active" : ""}`}
-                onClick={() => setActiveTab(index)}
-              >
-                {heading.shortHeading} {/* Corrected this line */}
-              </div>
-            ))}
-          </div>
-          <button className="scroll-btn right" onClick={() => scrollTabs("right")}>
-            &gt;
-          </button>
+  const handleBlur = () => {
+    setSuggestionsVisible(false); // Hide suggestions if clicked outside
+  };
+
+  return (
+    <div className="tabs-container">
+      <div className="tabs-wrapper">
+        <button className="scroll-btn left" onClick={() => scrollTabs("left")}>
+          &lt;
+        </button>
+        <div className="tabs" ref={tabsRef}>
+          {loanHeadings.map((heading, index) => (
+            <div
+              key={index}
+              className={`tab ${activeTab === index ? "active" : ""}`}
+              onClick={() => setActiveTab(index)}
+            >
+              {heading.shortHeading}
+            </div>
+          ))}
         </div>
-        <div className="tab-content">
-          <h2>{loanHeadings[activeTab].shortHeading}</h2>
-          <form>
-            {loanHeadings[activeTab].questions.map((question, index) => (
-              <div key={index} className="form-group">
-                <label htmlFor={`field-${activeTab}-${index}`}>{question}</label>
+        <button className="scroll-btn right" onClick={() => scrollTabs("right")}>
+          &gt;
+        </button>
+      </div>
+      <div className="tab-content">
+        <h2>{loanHeadings[activeTab].shortHeading}</h2>
+        <form>
+          {loanHeadings[activeTab].questions.map((question, index) => {
+            const fieldKey = `${activeTab}-${index}`; // Unique key for each field
+            return (
+              <div style={{display: 'flex'}}>
+              <div key={index} className="form-group w-50">
+                <label htmlFor={`field-${fieldKey}`}>{question}</label>
                 <input
                   type="text"
-                  id={`field-${activeTab}-${index}`}
-                  name={`field-${activeTab}-${index}`}
+                  id={`field-${fieldKey}`}
+                  name={`field-${fieldKey}`}
                   placeholder={`Enter ${question}`}
+                  value={selectedSuggestions[fieldKey] || ""}
+                  onFocus={() => handleFieldFocus(
+                    loanHeadings[activeTab].questions!,
+                    index,
+                    loanHeadings[activeTab].loremep || [] // Fallback to an empty array
+                  )}                  onBlur={handleBlur}
+                  onChange={(e) =>
+                    setSelectedSuggestions((prev) => ({
+                      ...prev,
+                      [fieldKey]: e.target.value,
+                    }))
+                  }
                 />
+
               </div>
-            ))}
-          </form>
-        </div>
+              <div key={index} className="form-group w-50">
+                {suggestionsVisible && activeField === index && (
+                  <div className="suggestions" style={{
+                    padding: '10px',
+                    borderRadius: '8px',
+                    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // Adds shadow
+                    border: '2px solid grey', // Adds border color
+                    height: '200px',
+                    margin: '10px',
+                    backgroundColor: 'lightgrey',
+                  }}>
+
+                    {loremep.map((answer, answerIndex) => (
+                      <div
+                        key={answerIndex}
+                        className="suggestion-item"
+                        onClick={() => handleSuggestionClick(answer, fieldKey)}
+                      >
+                        {answer}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              </div>
+            );
+          })}
+        </form>
       </div>
-      );
-    };
-    
-    export default Tabs2;
+    </div>
+  );
+};
+
+export default LoanHTabs;
