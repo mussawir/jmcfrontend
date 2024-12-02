@@ -1,5 +1,6 @@
 import React, { useState, useRef  } from 'react';
 import './Tabs2.css'; // Add styles as needed
+import SpaH from "../pages/SpaH"
 
 const headings = [
   {
@@ -324,7 +325,10 @@ const Tabs2 = () => {
             const fieldKey = `${activeTab}-${index}`; // Unique key for each field
             return (
               <div style={{ display: "flex" }} key={fieldKey}>
-                <div className="form-group w-50">
+
+                <SpaH/>  
+
+                {/* <div className="form-group w-50">
                   <label htmlFor={`field-${fieldKey}`}>{question}</label>
                   <input
                     type="text"
@@ -366,7 +370,7 @@ const Tabs2 = () => {
                       ))}
                     </div>
                   )}
-                </div>
+                </div> */}
               </div>
             );
           })}

@@ -84,11 +84,12 @@ const styles = {
     display: "flex",
     flexDirection: "column" as "column",
     width: "400px",
-    height: "600px",
+    height: "500px",
     backgroundColor: "#f8f9fa",
     borderRadius: "10px",
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
     overflow: "hidden",
+    
   },
   header: {
     backgroundColor: "#007bff",

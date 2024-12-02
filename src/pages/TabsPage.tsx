@@ -38,7 +38,7 @@ function Dashboard() {
   useEffect(() => {
     const token = localStorage.getItem('ACCESS_TOKEN');
     if (!token) {
-      navigate('/login');
+      navigate('/tabspage');
     } else {
       fetchCaseData(token);
     }

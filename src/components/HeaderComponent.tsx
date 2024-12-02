@@ -42,7 +42,7 @@ const HeaderComponent: React.FC = () => {
           <MenuIcon />
         </IconButton>
 
-        <Box sx={{ ml: 'auto', width: '850px' }}>
+        <Box sx={{ ml: 'auto', width: '750px' }}>
           <TextField
             placeholder="Search..."
             variant="outlined"
