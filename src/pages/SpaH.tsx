@@ -19,23 +19,23 @@ interface Case {
 function DeveloperForm() {
     // State to manage form data
     const [formData, setFormData] = useState({
-        developerName: '',
-        developerCompanyRegistrationNumber: '',
-        developerRegisteredOfficeAddress: '',
-        developerPlaceOfBusinessAddress: '',
-        developerFileReferenceNumber: '',
-        developerLicenceNumber: '',
-        developerContactNumber: '',
-        developerEmailAddress: '',
-        developerPersonInChargeName: '',
-        developerPersonInChargeContactNumber: '',
-        developerPersonInChargeEmailAddress: '',
-        developerAuthorised1stSignatoryName: '',
-        developerAuthorised1stIdentityCardNumber: '',
-        developerAuthorised1stSignatoryDesignation: '',
-        developerAuthorised2ndSignatoryName: '',
-        developerAuthorised2ndIdentityCardNumber: '',
-        developerAuthorised2ndSignatoryDesignation: '',
+        developerName: 'John Ramey',
+        developerCompanyRegistrationNumber: '123',
+        developerRegisteredOfficeAddress: 'Abc123',
+        developerPlaceOfBusinessAddress: 'Abc123',
+        developerFileReferenceNumber: '123456',
+        developerLicenceNumber: '123456',
+        developerContactNumber: '+923012345678',
+        developerEmailAddress: 'example@gmail.com',
+        developerPersonInChargeName: 'Donald Jacob',
+        developerPersonInChargeContactNumber: '123',
+        developerPersonInChargeEmailAddress: 'example@gmail.com',
+        developerAuthorised1stSignatoryName: 'abc',
+        developerAuthorised1stIdentityCardNumber: '123',
+        developerAuthorised1stSignatoryDesignation: 'abc',
+        developerAuthorised2ndSignatoryName: 'abc',
+        developerAuthorised2ndIdentityCardNumber: '123',
+        developerAuthorised2ndSignatoryDesignation: 'abc',
     });
     const location = useLocation();
     const props = location.state;
@@ -94,6 +94,40 @@ function DeveloperForm() {
     const handleCloseChat = () => {
       setIsChatOpen(false);
     };
+
+    // const handleDeveloperFormSubmit = async (event: React.FormEvent) => {
+    //   event.preventDefault();
+    //   const formData = new FormData();
+    //   formData.append('developerName', developerName);
+    //   formData.append('developerCompanyRegistrationNumber', developerCompanyRegistrationNumber);
+    //   // Append other form fields here
+      
+    //   try {
+    //     const response = await axios.post("http://127.0.0.1:5000/saveinfo", formData);
+    //     alert("Developer information saved successfully");
+    //   } catch (error) {
+    //     alert('Form submitting error');
+    //     console.error("Error submitting form:", error);
+    //   }
+    // };
+
+
+    const handleDeveloperFormSubmit = async (event: React.FormEvent) => {
+      event.preventDefault();
+      const formData = new FormData();
+      Object.entries(formData).forEach(([key, value]) => {
+          formData.append(key, value);
+      });
+      
+      try {
+          const response = await axios.post("http://127.0.0.1:5000/saveinfo", formData);
+          //form data will store here
+          alert("Developer information saved successfully");
+      } catch (error) {
+          alert('Form submitting error');
+          console.error("Error submitting form:", error);
+      }
+  };
 // Handle project form submission (including project details and questions)
  const handleSearch = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -108,6 +142,7 @@ function DeveloperForm() {
           "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
         },
       });
+      alert("Submited")
       setBackendMessage(response.data.response);
     //   setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
     } catch (error) {
@@ -233,7 +268,7 @@ function DeveloperForm() {
                            {/* Submit Button */}
                            <Grid item xs={12}>
                         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
-                            <Button type="submit" variant="contained" color="primary">
+                            <Button type="submit" variant="contained" color="primary" onClick={handleDeveloperFormSubmit}>
                                 Submit
                             </Button>
                         </Box>
