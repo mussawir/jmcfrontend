@@ -43,7 +43,7 @@ function Projects() {
     try {
       const response = await axios.get('http://127.0.0.1:5000/developer-message'); // Adjust the endpoint accordingly
       setDeveloperMessage(response.data.message); // Store the response message
-      alert(response.data.message);
+      // alert(response.data.message);
     } catch (error) {
       console.error('Error fetching message:', error);
       alert("working");
@@ -86,7 +86,7 @@ function Projects() {
     }, []);
   
     const handleAlert = () => {
-      alert(message);  // Show message in an alert box
+      alert(message);  // Show message in an box
     };
   
     return (

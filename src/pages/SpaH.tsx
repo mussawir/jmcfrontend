@@ -40,6 +40,7 @@ function DeveloperForm() {
     const location = useLocation();
     const props = location.state;
     // alert(props.project_id);
+    const [pId] = useState(props.project_id);
     const [searchQuery, setSearchQuery] = useState('');
     const [cases, setCases] = useState<Case[]>([]);
     const navigate = useNavigate();
@@ -86,9 +87,9 @@ function DeveloperForm() {
     };
     const [isChatOpen, setIsChatOpen] = useState(false);
 
-    const handleOpenChat = () => {
-      setIsChatOpen(true);
-    };
+    // const handleOpenChat = () => {
+    //   setIsChatOpen(true);
+    // };
   
     const handleCloseChat = () => {
       setIsChatOpen(false);
@@ -99,6 +100,7 @@ function DeveloperForm() {
     const formData = new FormData();
     // Add project details to the form data
     formData.append('searchQuery', searchQuery);
+    formData.append('pId', pId);
     
     try {
       const response = await axios.post("http://127.0.0.1:5000/search-developer", formData, {
@@ -186,6 +188,17 @@ function DeveloperForm() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     sx={{ marginBottom: 2 }}
                   />
+                 
+                 <input
+                  type="hidden"
+                  value={pId}
+                />
+                 
+                  {/* <input
+                   type="hidden"
+                   name="projectId"
+                   value="674e1f6a8b4214484d70895b" // replace with your project id value
+                     /> */}
                    <Button variant="contained" color="primary" fullWidth type="submit">
                 Search
                   </Button>
@@ -206,9 +219,8 @@ function DeveloperForm() {
              {backendMessage && (
         <div style={{ marginTop: -300 }}>
            <Typography variant="body1" color="textSecondary">
-           <p style={{ color: 'grey' }}>{backendMessage}</p>  
-                            </Typography>  
-         
+           <div style={{ color: 'black' }}>{backendMessage}</div>  
+           </Typography>  
         </div>
       )}
                            
