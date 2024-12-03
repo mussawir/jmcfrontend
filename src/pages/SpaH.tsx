@@ -152,37 +152,12 @@ function DeveloperForm() {
   };
 
     return (
-        <Box sx={{ display: 'flex', backgroundColor: '#f7f9fc', minHeight: '100vh' }}>
-        <CssBaseline />
-        <DrawerComponent />
+        <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+        {/* <CssBaseline />
+        <DrawerComponent /> */}
         <Box sx={{ flexGrow: 1 }}>
-          <HeaderComponent />
+          {/* <HeaderComponent /> */}
           <Box component="main" sx={{ p: 3 }}>
-          <Grid style={styles.Gridoffilbut} >
-        <div>
-      {/* Button to open chat */}
-      <button onClick={() => setIsChatOpen(true)} style={styles.openButton}>
-        Filter
-      </button>
-
-      {/* Chat Layout */}
-      {isChatOpen && (
-        <div style={styles.overlay}>
-          <div style={styles.chatContainer}>
-            <ChatLayout />
-            <button
-              onClick={() => setIsChatOpen(false)} // Close the chat on click
-              style={styles.closeButton}
-            >
-              Close Chat
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
-        </Grid>
-
-            <Toolbar />
             <Grid container spacing={2}>
                 {/* Left Column: Form */}
                 <Grid item xs={12} md={8}>

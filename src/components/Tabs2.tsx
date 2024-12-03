@@ -1,6 +1,7 @@
 import React, { useState, useRef  } from 'react';
 import './Tabs2.css'; // Add styles as needed
-import SpaH from "../pages/SpaH"
+import SpaH from "../pages/SpaH";
+import Typography from '@mui/material/Typography';
 
 const headings = [
   {
@@ -299,7 +300,10 @@ const Tabs2 = () => {
 
   return (
     <div className="tabs-container">
+            <h2 style={{textAlign: 'center', marginBottom: '0px'  }}>SPA H</h2>
+
       <div className="tabs-wrapper">
+
         <button className="scroll-btn left" onClick={() => scrollTabs("left")}>
           &lt;
         </button>
@@ -318,64 +322,14 @@ const Tabs2 = () => {
           &gt;
         </button>
       </div>
-      <div className="tab-content">
+      {/* <div className="tab-content">
         <h2>{activeHeading.shortHeading}</h2>
-        <form>
-          {(activeHeading.questions || []).map((question, index) => {
-            const fieldKey = `${activeTab}-${index}`; // Unique key for each field
-            return (
-              <div style={{ display: "flex" }} key={fieldKey}>
+        <form> */}
+       
+                          <SpaH/>  
 
-                <SpaH/>  
-
-                {/* <div className="form-group w-50">
-                  <label htmlFor={`field-${fieldKey}`}>{question}</label>
-                  <input
-                    type="text"
-                    id={`field-${fieldKey}`}
-                    name={`field-${fieldKey}`}
-                    placeholder={`Enter ${question}`}
-                    value={selectedSuggestions[fieldKey] || ""}
-                    onFocus={() => handleFieldFocus(activeHeading.questions, index, activeHeading.loremep)}
-                    onBlur={handleBlur}
-                    onChange={(e) =>
-                      setSelectedSuggestions((prev) => ({
-                        ...prev,
-                        [fieldKey]: e.target.value,
-                      }))
-                    }
-                  />
-                </div>
-                <div className="form-group w-50">
-                  {suggestionsVisible && activeField === index && (
-                    <div
-                      className="suggestions"
-                      style={{
-                        padding: "10px",
-                        borderRadius: "8px",
-                        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-                        border: "2px solid grey",
-                        height: "200px",
-                        margin: "10px",
-                      }}
-                    >
-                      {(loremep || []).map((answer, answerIndex) => (
-                        <div
-                          key={answerIndex}
-                          className="suggestion-item"
-                          onClick={() => handleSuggestionClick(answer, fieldKey)}
-                        >
-                          {answer}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div> */}
-              </div>
-            );
-          })}
-        </form>
-      </div>
+        {/* </form>
+      </div> */}
     </div>
   );
 };

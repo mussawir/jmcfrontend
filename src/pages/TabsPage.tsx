@@ -72,20 +72,18 @@ function Dashboard() {
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         
-        <Grid style={styles.Gridoffilbut} >
+        {/* <Grid style={styles.Gridoffilbut} >
         <div>
-      {/* Button to open chat */}
       <button onClick={() => setIsChatOpen(true)} style={styles.openButton}>
         Filter
       </button>
 
-      {/* Chat Layout */}
       {isChatOpen && (
         <div style={styles.overlay}>
           <div style={styles.chatContainer}>
             <ChatLayout />
             <button
-              onClick={() => setIsChatOpen(false)} // Close the chat on click
+              onClick={() => setIsChatOpen(false)}
               style={styles.closeButton}
             >
               Close Chat
@@ -94,7 +92,7 @@ function Dashboard() {
         </div>
       )}
     </div>
-        </Grid>
+        </Grid> */}
 
         {/* <Toolbar /> */}
         <Tabs2  />
