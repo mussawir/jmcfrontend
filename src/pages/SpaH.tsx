@@ -17,6 +17,9 @@ interface Case {
   }
 
 function DeveloperForm() {
+    const location = useLocation();
+    const props = location.state;  
+    const [pId] = useState(props.project_id);
     // State to manage form data
     const [formData, setFormData] = useState({
         developerName: 'John Ramey',
@@ -36,15 +39,16 @@ function DeveloperForm() {
         developerAuthorised2ndSignatoryName: 'abc',
         developerAuthorised2ndIdentityCardNumber: '123',
         developerAuthorised2ndSignatoryDesignation: 'abc',
+        projId: pId,
     });
-    const location = useLocation();
-    const props = location.state;
-    // alert(props.project_id);
-    // const [pId] = useState(props.project_id);
+ 
+   
+    // alert("id here " + pId);
     const [searchQuery, setSearchQuery] = useState('');
     const [cases, setCases] = useState<Case[]>([]);
     const navigate = useNavigate();
     const [backendMessage, setBackendMessage] = useState<string | null>(null);
+    const [Message, setMessage] = useState<string | null>(null);
 
     // useEffect(() => {
     //     const token = localStorage.getItem('ACCESS_TOKEN');
@@ -94,35 +98,17 @@ function DeveloperForm() {
     const handleCloseChat = () => {
       setIsChatOpen(false);
     };
-
-    // const handleDeveloperFormSubmit = async (event: React.FormEvent) => {
-    //   event.preventDefault();
-    //   const formData = new FormData();
-    //   formData.append('developerName', developerName);
-    //   formData.append('developerCompanyRegistrationNumber', developerCompanyRegistrationNumber);
-    //   // Append other form fields here
-      
-    //   try {
-    //     const response = await axios.post("http://127.0.0.1:5000/saveinfo", formData);
-    //     alert("Developer information saved successfully");
-    //   } catch (error) {
-    //     alert('Form submitting error');
-    //     console.error("Error submitting form:", error);
-    //   }
-    // };
-
-
+    
     const handleDeveloperFormSubmit = async (event: React.FormEvent) => {
       event.preventDefault();
-      const formData = new FormData();
-      Object.entries(formData).forEach(([key, value]) => {
-          formData.append(key, value);
-      });
       
       try {
-          const response = await axios.post("http://127.0.0.1:5000/saveinfo", formData);
-          //form data will store here
-          alert("Developer information saved successfully");
+        const response = await axios.put("http://127.0.0.1:5000/updateinfo", formData, {
+          headers: { "Content-Type": "application/json" },
+        });
+        // alert(response.data.Message)
+        // console.log("Response:", response.data);
+        // alert(`message: ${response.data.message}`);
       } catch (error) {
           alert('Form submitting error');
           console.error("Error submitting form:", error);
@@ -134,7 +120,7 @@ function DeveloperForm() {
     const formData = new FormData();
     // Add project details to the form data
     formData.append('searchQuery', searchQuery);
-    // formData.append('pId', pId);
+    formData.append('pId', pId);
     
     try {
       const response = await axios.post("http://127.0.0.1:5000/search-developer", formData, {
@@ -142,7 +128,7 @@ function DeveloperForm() {
           "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
         },
       });
-      alert("Submited")
+      // alert("Submited")
       setBackendMessage(response.data.response);
     //   setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
     } catch (error) {
@@ -153,10 +139,10 @@ function DeveloperForm() {
 
     return (
         <Box sx={{ display: 'flex', minHeight: '100vh' }}>
-        {/* <CssBaseline />
-        <DrawerComponent /> */}
+        <CssBaseline />
+        <DrawerComponent />
         <Box sx={{ flexGrow: 1 }}>
-          {/* <HeaderComponent /> */}
+          <HeaderComponent />
           <Box component="main" sx={{ p: 3 }}>
             <Grid container spacing={2}>
                 {/* Left Column: Form */}
@@ -199,10 +185,10 @@ function DeveloperForm() {
                     sx={{ marginBottom: 2 }}
                   />
                  
-                 {/* <input
+                 <input
                   type="hidden"
                   value={pId}
-                /> */}
+                />
                  
                   {/* <input
                    type="hidden"
@@ -219,8 +205,8 @@ function DeveloperForm() {
                         </Typography>
                         <Box
                             sx={{
-                                border: '1px dashed gray',
-                                height: '76%',
+                                border: '0px dashed gray',
+                                height: '100%',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
@@ -233,18 +219,21 @@ function DeveloperForm() {
            </Typography>  
         </div>
       )}
- 
-                        </Box>
-                    </Paper>
+                           
+                          {/* <Typography variant="body1" color="textSecondary">
+                              Placeholder for additional content
+                          </Typography> */}
+                      </Box>
+                  </Paper>
+              </Grid>
+                {/* Submit Button */}
+                <Grid item xs={12}>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
+                      <Button type="submit" variant="contained" color="primary" onClick={handleDeveloperFormSubmit}>
+                          Update info
+                      </Button>
+                  </Box>
                 </Grid>
-                           {/* Submit Button */}
-                           <Grid item xs={12}>
-                        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
-                            <Button type="submit" variant="contained" color="primary" onClick={handleDeveloperFormSubmit}>
-                                Submit
-                            </Button>
-                        </Box>
-                    </Grid>
             </Grid>
         </Box>
         </Box>

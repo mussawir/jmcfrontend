@@ -16,35 +16,39 @@ interface Case {
     documents?: string[]; // New property for associated documents
   }
 
-function Developer() {
+function DeveloperForm() {
+    const location = useLocation();
+    const props = location.state;  
+    const [pId] = useState(props.project_id);
     // State to manage form data
     const [formData, setFormData] = useState({
-        developerName: '',
-        developerCompanyRegistrationNumber: '',
-        developerRegisteredOfficeAddress: '',
-        developerPlaceOfBusinessAddress: '',
-        developerFileReferenceNumber: '',
-        developerLicenceNumber: '',
-        developerContactNumber: '',
-        developerEmailAddress: '',
-        developerPersonInChargeName: '',
-        developerPersonInChargeContactNumber: '',
-        developerPersonInChargeEmailAddress: '',
-        developerAuthorised1stSignatoryName: '',
-        developerAuthorised1stIdentityCardNumber: '',
-        developerAuthorised1stSignatoryDesignation: '',
-        developerAuthorised2ndSignatoryName: '',
-        developerAuthorised2ndIdentityCardNumber: '',
-        developerAuthorised2ndSignatoryDesignation: '',
+        developerName: 'John Ramey',
+        developerCompanyRegistrationNumber: '123',
+        developerRegisteredOfficeAddress: 'Abc123',
+        developerPlaceOfBusinessAddress: 'Abc123',
+        developerFileReferenceNumber: '123456',
+        developerLicenceNumber: '123456',
+        developerContactNumber: '+923012345678',
+        developerEmailAddress: 'example@gmail.com',
+        developerPersonInChargeName: 'Donald Jacob',
+        developerPersonInChargeContactNumber: '123',
+        developerPersonInChargeEmailAddress: 'example@gmail.com',
+        developerAuthorised1stSignatoryName: 'abc',
+        developerAuthorised1stIdentityCardNumber: '123',
+        developerAuthorised1stSignatoryDesignation: 'abc',
+        developerAuthorised2ndSignatoryName: 'abc',
+        developerAuthorised2ndIdentityCardNumber: '123',
+        developerAuthorised2ndSignatoryDesignation: 'abc',
+        projId: pId,
     });
-    const location = useLocation();
-    const props = location.state;
-    // alert(props.project_id);
-    // const [pId] = useState(props.project_id);
+ 
+   
+    // alert("id here " + pId);
     const [searchQuery, setSearchQuery] = useState('');
     const [cases, setCases] = useState<Case[]>([]);
     const navigate = useNavigate();
     const [backendMessage, setBackendMessage] = useState<string | null>(null);
+    const [Message, setMessage] = useState<string | null>(null);
 
     // useEffect(() => {
     //     const token = localStorage.getItem('ACCESS_TOKEN');
@@ -94,13 +98,29 @@ function Developer() {
     const handleCloseChat = () => {
       setIsChatOpen(false);
     };
+    
+    const handleDeveloperFormSubmit = async (event: React.FormEvent) => {
+      event.preventDefault();
+      
+      try {
+        const response = await axios.put("http://127.0.0.1:5000/updateinfo", formData, {
+          headers: { "Content-Type": "application/json" },
+        });
+        alert(response.data.Message)
+        // console.log("Response:", response.data);
+        alert(`message: ${response.data.message}`);
+      } catch (error) {
+          alert('Form submitting error');
+          console.error("Error submitting form:", error);
+      }
+  };
 // Handle project form submission (including project details and questions)
  const handleSearch = async (event: React.FormEvent) => {
     event.preventDefault();
     const formData = new FormData();
     // Add project details to the form data
     formData.append('searchQuery', searchQuery);
-    // formData.append('pId', pId);
+    formData.append('pId', pId);
     
     try {
       const response = await axios.post("http://127.0.0.1:5000/search-developer", formData, {
@@ -108,6 +128,7 @@ function Developer() {
           "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
         },
       });
+      // alert("Submited")
       setBackendMessage(response.data.response);
     //   setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
     } catch (error) {
@@ -118,10 +139,10 @@ function Developer() {
 
     return (
         <Box sx={{ display: 'flex', minHeight: '100vh' }}>
-        {/* <CssBaseline />
-        <DrawerComponent /> */}
+        <CssBaseline />
+        <DrawerComponent />
         <Box sx={{ flexGrow: 1 }}>
-          {/* <HeaderComponent /> */}
+          <HeaderComponent />
           <Box component="main" sx={{ p: 3 }}>
             <Grid container spacing={2}>
                 {/* Left Column: Form */}
@@ -163,6 +184,17 @@ function Developer() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     sx={{ marginBottom: 2 }}
                   />
+                 
+                 <input
+                  type="hidden"
+                  value={pId}
+                />
+                 
+                  {/* <input
+                   type="hidden"
+                   name="projectId"
+                   value="674e1f6a8b4214484d70895b" // replace with your project id value
+                     /> */}
                    <Button variant="contained" color="primary" fullWidth type="submit">
                 Search
                   </Button>
@@ -173,8 +205,8 @@ function Developer() {
                         </Typography>
                         <Box
                             sx={{
-                                border: '1px dashed gray',
-                                height: '76%',
+                                border: '0px dashed gray',
+                                height: '100%',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
@@ -187,17 +219,21 @@ function Developer() {
            </Typography>  
         </div>
       )}
-                        </Box>
-                    </Paper>
+                           
+                          {/* <Typography variant="body1" color="textSecondary">
+                              Placeholder for additional content
+                          </Typography> */}
+                      </Box>
+                  </Paper>
+              </Grid>
+                {/* Submit Button */}
+                <Grid item xs={12}>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
+                      <Button type="submit" variant="contained" color="primary" onClick={handleDeveloperFormSubmit}>
+                          Update info
+                      </Button>
+                  </Box>
                 </Grid>
-                           {/* Submit Button */}
-                           <Grid item xs={12}>
-                        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
-                            <Button type="submit" variant="contained" color="primary">
-                                Submit
-                            </Button>
-                        </Box>
-                    </Grid>
             </Grid>
         </Box>
         </Box>
@@ -253,4 +289,4 @@ const styles = {
       display: 'flex',
       justifyContent: 'center',
     }};
-export default Developer;
+export default DeveloperForm;
