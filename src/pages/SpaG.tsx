@@ -3,7 +3,7 @@ import { Box, CssBaseline, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
-import Tabs2 from '../components/Tabs2';
+import Tabs2 from '../components/SpaHTabs';
 import DeveloperTab from '../components/DeveloperTab';
 import ChatLayout from '../components/ChatLayout';
 

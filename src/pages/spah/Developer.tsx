@@ -1,11 +1,11 @@
 import React, {useEffect, useState } from 'react';
-import { Box, Typography, Grid, Toolbar, CssBaseline, Paper, TextField, Button } from '@mui/material';
+import { Box, Typography, Grid, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, Paper, TextField, Button } from '@mui/material';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import DrawerComponent from '../components/DrawerComponent';
-import HeaderComponent from '../components/HeaderComponent';
-import ChatLayout from '../components/ChatLayout';
+import DrawerComponent from '../../components/DrawerComponent';
+import HeaderComponent from '../../components/HeaderComponent';
+import ChatLayout from '../../components/ChatLayout';
 
 // Define the Case interface
 interface Case {
@@ -59,6 +59,28 @@ function DeveloperForm() {
     //     }
     //   }, [navigate]);
     
+    //   const fetchCaseData = async (token: string) => {
+    //     try {
+    //       const response = await fetch('http://127.0.0.1:5000/extract-spah', {
+    //         headers: {
+    //           Authorization: `Bearer ${token}`,
+    //         },
+    //       });
+    //       if (response.ok) {
+    //     //    alert(response);
+    //         // const data: Case[] = await response.json();
+    //         // setBackendMessage(response.statusText); // Set the message from the backend
+    //         // setCases(data);
+    //         const data = await response.json();
+    //         setBackendMessage(data.response);
+    //       } else {
+    //         console.error('Error fetching case data:', response.statusText);
+    //       }
+    //     } catch (error) {
+    //       console.error('Error fetching case data:', error);
+    //     }
+    //   };
+
     // Handle input change for form fields
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -84,9 +106,9 @@ function DeveloperForm() {
         const response = await axios.put("http://127.0.0.1:5000/updateinfo", formData, {
           headers: { "Content-Type": "application/json" },
         });
-        // alert(response.data.Message)
+        alert(response.data.Message)
         // console.log("Response:", response.data);
-        // alert(`message: ${response.data.message}`);
+        alert(`message: ${response.data.message}`);
       } catch (error) {
           alert('Form submitting error');
           console.error("Error submitting form:", error);

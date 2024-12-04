@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Box, CssBaseline, Grid } from '@mui/material';
+import { Box, CssBaseline, Grid, Tabs } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
-import Tabs2 from '../components/Tabs2';
+import Tabs2 from '../components/SpaHTabs';
 import DeveloperTab from '../components/DeveloperTab';
 import ChatLayout from '../components/ChatLayout';
 
@@ -16,7 +16,7 @@ interface Case {
   documents?: string[]; // New property for associated documents
 }
 
-function Dashboard() {
+function TabsPage() {
   const tabs = [
     { label: "Developer", content: <DeveloperTab /> },
     // Add other tabs here as more sections are identified
@@ -72,20 +72,18 @@ function Dashboard() {
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         
-        <Grid style={styles.Gridoffilbut} >
+        {/* <Grid style={styles.Gridoffilbut} >
         <div>
-      {/* Button to open chat */}
       <button onClick={() => setIsChatOpen(true)} style={styles.openButton}>
         Filter
       </button>
 
-      {/* Chat Layout */}
       {isChatOpen && (
         <div style={styles.overlay}>
           <div style={styles.chatContainer}>
             <ChatLayout />
             <button
-              onClick={() => setIsChatOpen(false)} // Close the chat on click
+              onClick={() => setIsChatOpen(false)}
               style={styles.closeButton}
             >
               Close Chat
@@ -94,7 +92,7 @@ function Dashboard() {
         </div>
       )}
     </div>
-        </Grid>
+        </Grid> */}
 
         {/* <Toolbar /> */}
         <Tabs2  />
@@ -156,4 +154,4 @@ const styles = {
     marginBottom: '2%'
   }
 };
-export default Dashboard;
+export default TabsPage;
