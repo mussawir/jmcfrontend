@@ -23,15 +23,6 @@ function SpaG() {
   ];
 
   const [isChatOpen, setIsChatOpen] = useState(false);
-
-  const handleOpenChat = () => {
-    setIsChatOpen(true);
-  };
-
-  const handleCloseChat = () => {
-    setIsChatOpen(false);
-  };
-
   const [cases, setCases] = useState<Case[]>([]);
   const navigate = useNavigate();
 
