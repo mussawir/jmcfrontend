@@ -70,7 +70,7 @@ const DrawerComponent = () => {
           fontWeight: 400,
           lineHeight: 1.5,
           letterSpacing: '0.5px',
-          fontFamily: '"Noto Sans", sans-serif !important',
+          fontFamily: 'sans-serif',
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
@@ -104,7 +104,7 @@ const DrawerComponent = () => {
           fontWeight: 400,
           lineHeight: 1.5,
           letterSpacing: '0.5px',
-          fontFamily: '"Noto Sans", sans-serif !important',
+          fontFamily: 'sans-serif',
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
@@ -114,149 +114,6 @@ const DrawerComponent = () => {
   />
   <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
-
-
-{/* <ListItem
-  component={Link}
-  to="/tabspage"
-  onClick={() => handleItemClick('TabsPage')} // Set 'TabsPage' as the selected item
-  sx={{
-    backgroundColor: selectedItem === 'TabsPage' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
-    color: selectedItem === 'TabsPage' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
-    '&:hover': {
-      backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
-    },
-  }}
->
-  <ListItemIcon sx={{ color: selectedItem === 'TabsPage' ? '#1E90FF' : '#5f5f5f' }}>
-    <FormatListBulletedOutlinedIcon />
-  </ListItemIcon>
-  <ListItemText
-    primary={
-      <Typography
-        sx={{
-          fontSize: '14px', 
-          fontWeight: 400,
-          lineHeight: 1.5,
-          letterSpacing: '0.5px',
-          fontFamily: '"Noto Sans", sans-serif !important',
-          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
-        }}
-      >
-         SPA H Tab(dev Test)
-      </Typography>
-    }
-  />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'TabsPage' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem> */}
-
-
-{/* <ListItem
-  component={Link}
-  to="/checklist"
-  onClick={() => handleItemClick('Checklist')} // Set 'Checklist' as the selected item
-  sx={{
-    backgroundColor: selectedItem === 'Checklist' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
-    color: selectedItem === 'Checklist' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
-    '&:hover': {
-      backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
-    },
-  }}
->
-  <ListItemIcon sx={{ color: selectedItem === 'Checklist' ? '#1E90FF' : '#5f5f5f' }}>
-    <FormatListBulletedOutlinedIcon />
-  </ListItemIcon>
-  <ListItemText
-    primary={
-      <Typography
-        sx={{
-          fontSize: '14px', 
-          fontWeight: 400,
-          lineHeight: 1.5,
-          letterSpacing: '0.5px',
-          fontFamily: '"Noto Sans", sans-serif !important',
-          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
-        }}
-      >
-        Checklist
-      </Typography>
-    }
-  />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Checklist' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem> */}
-
-
-{/* <ListItem
-  component={Link}
-  to="/team"
-  onClick={() => handleItemClick('Team')} // Set 'Team' as the selected item
-  sx={{
-    backgroundColor: selectedItem === 'Team' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
-    color: selectedItem === 'Team' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
-    '&:hover': {
-      backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
-    },
-  }}
->
-  <ListItemIcon sx={{ color: selectedItem === 'Team' ? '#1E90FF' : '#5f5f5f' }}>
-    <PeopleOutlinedIcon />
-  </ListItemIcon>
-  <ListItemText
-    primary={
-      <Typography
-        sx={{
-          fontSize: '14px', 
-          fontWeight: 400,
-          lineHeight: 1.5,
-          letterSpacing: '0.5px',
-          fontFamily: '"Noto Sans", sans-serif !important',
-          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
-        }}
-      >
-        Team
-      </Typography>
-    }
-  />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Team' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem> */}
-
-
-{/* <ListItem
-  component={Link}
-  to="/documents"
-  onClick={() => handleItemClick('Documents')} // Set 'Documents' as the selected item
-  sx={{
-    backgroundColor: selectedItem === 'Documents' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
-    color: selectedItem === 'Documents' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
-    '&:hover': {
-      backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
-    },
-  }}
->
-  <ListItemIcon sx={{ color: selectedItem === 'Documents' ? '#1E90FF' : '#5f5f5f' }}>
-    <DescriptionOutlinedIcon />
-  </ListItemIcon>
-  <ListItemText
-    primary={
-      <Typography
-        sx={{
-          fontSize: '14px', 
-          fontWeight: 400,
-          lineHeight: 1.5,
-          letterSpacing: '0.5px',
-          fontFamily: '"Noto Sans", sans-serif !important',
-          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
-        }}
-      >
-        Documents
-      </Typography>
-    }
-  />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Documents' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem> */}
-
-     {/* New Sections */}
-{/* <p style={{ color: '#B0B0B0', textAlign: 'left', marginLeft: 20 }}>UI ELEMENTS</p> */}
 <ListItem
   component={Link}
   to="/spaH"
@@ -280,7 +137,7 @@ const DrawerComponent = () => {
           fontWeight: 400,
           lineHeight: 1.5,
           letterSpacing: '0.5px',
-          fontFamily: '"Noto Sans", sans-serif !important',
+          fontFamily: 'sans-serif',
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
@@ -314,7 +171,7 @@ const DrawerComponent = () => {
           fontWeight: 400,
           lineHeight: 1.5,
           letterSpacing: '0.5px',
-          fontFamily: '"Noto Sans", sans-serif !important',
+          fontFamily: 'sans-serif',
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
@@ -348,7 +205,7 @@ const DrawerComponent = () => {
           fontWeight: 400,
           lineHeight: 1.5,
           letterSpacing: '0.5px',
-          fontFamily: '"Noto Sans", sans-serif !important',
+          fontFamily: 'sans-serif',
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
@@ -382,7 +239,7 @@ const DrawerComponent = () => {
           fontWeight: 400,
           lineHeight: 1.5,
           letterSpacing: '0.5px',
-          fontFamily: '"Noto Sans", sans-serif !important',
+          fontFamily: 'sans-serif',
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
@@ -416,7 +273,7 @@ const DrawerComponent = () => {
           fontWeight: 400,
           lineHeight: 1.5,
           letterSpacing: '0.5px',
-          fontFamily: '"Noto Sans", sans-serif !important',
+          fontFamily: 'sans-serif',
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
@@ -452,7 +309,7 @@ const DrawerComponent = () => {
           fontWeight: 400,
           lineHeight: 1.5,
           letterSpacing: '0.5px',
-          fontFamily: '"Noto Sans", sans-serif !important',
+          fontFamily: 'sans-serif',
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
@@ -486,7 +343,7 @@ const DrawerComponent = () => {
           fontWeight: 400,
           lineHeight: 1.5,
           letterSpacing: '0.5px',
-          fontFamily: '"Noto Sans", sans-serif !important',
+          fontFamily: 'sans-serif',
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
@@ -520,7 +377,7 @@ const DrawerComponent = () => {
           fontWeight: 400,
           lineHeight: 1.5,
           letterSpacing: '0.5px',
-          fontFamily: '"Noto Sans", sans-serif !important',
+          fontFamily: 'sans-serif',
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
@@ -554,7 +411,7 @@ const DrawerComponent = () => {
           fontWeight: 400,
           lineHeight: 1.5,
           letterSpacing: '0.5px',
-          fontFamily: '"Noto Sans", sans-serif !important',
+          fontFamily: 'sans-serif',
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
@@ -588,7 +445,7 @@ const DrawerComponent = () => {
           fontWeight: 400,
           lineHeight: 1.5,
           letterSpacing: '0.5px',
-          fontFamily: '"Noto Sans", sans-serif !important',
+          fontFamily: 'sans-serif',
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >

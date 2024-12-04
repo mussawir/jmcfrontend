@@ -53,7 +53,7 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/team" element={<Team />} />
         <Route path="/loanH" element={<LoanH />} />
         <Route path="/spaG" element={<SpaG />} />
-        <Route path="/spaH" element={<SpaH />} />
+        <Route path="/spaH" element={<TabsPage />} />
         <Route path="/loanG" element={<LoanG />} />
         <Route path="/commercialspa" element={<ComSpa />} />
         <Route path="/commercialloan" element={<ComLoan />} />

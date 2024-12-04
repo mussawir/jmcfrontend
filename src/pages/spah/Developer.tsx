@@ -3,9 +3,9 @@ import { Box, Typography, Grid, Toolbar, CssBaseline, Select, MenuItem, InputLab
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import DrawerComponent from '../components/DrawerComponent';
-import HeaderComponent from '../components/HeaderComponent';
-import ChatLayout from '../components/ChatLayout';
+import DrawerComponent from '../../components/DrawerComponent';
+import HeaderComponent from '../../components/HeaderComponent';
+import ChatLayout from '../../components/ChatLayout';
 
 // Define the Case interface
 interface Case {
@@ -16,7 +16,7 @@ interface Case {
     documents?: string[]; // New property for associated documents
   }
 
-function DeveloperForm() {
+function Developer() {
     // State to manage form data
     const [formData, setFormData] = useState({
         developerName: '',
@@ -163,17 +163,6 @@ function DeveloperForm() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     sx={{ marginBottom: 2 }}
                   />
-                 
-                 {/* <input
-                  type="hidden"
-                  value={pId}
-                /> */}
-                 
-                  {/* <input
-                   type="hidden"
-                   name="projectId"
-                   value="674e1f6a8b4214484d70895b" // replace with your project id value
-                     /> */}
                    <Button variant="contained" color="primary" fullWidth type="submit">
                 Search
                   </Button>
@@ -198,7 +187,6 @@ function DeveloperForm() {
            </Typography>  
         </div>
       )}
- 
                         </Box>
                     </Paper>
                 </Grid>
@@ -265,4 +253,4 @@ const styles = {
       display: 'flex',
       justifyContent: 'center',
     }};
-export default DeveloperForm;
+export default Developer;
