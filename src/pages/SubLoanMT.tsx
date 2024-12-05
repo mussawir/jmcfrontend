@@ -72,30 +72,7 @@ function SpaG() {
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         
-        <Grid style={styles.Gridoffilbut} >
-        <div>
-      {/* Button to open chat */}
-      <button onClick={() => setIsChatOpen(true)} style={styles.openButton}>
-        Filter
-      </button>
-
-      {/* Chat Layout */}
-      {isChatOpen && (
-        <div style={styles.overlay}>
-          <div style={styles.chatContainer}>
-            <ChatLayout />
-            <button
-              onClick={() => setIsChatOpen(false)} // Close the chat on click
-              style={styles.closeButton}
-            >
-              Close Chat
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
-        </Grid>
-
+       
         {/* <Toolbar /> */}
         <Tabs2  />
 

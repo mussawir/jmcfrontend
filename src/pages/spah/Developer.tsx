@@ -19,7 +19,7 @@ interface Case {
 function DeveloperForm() {
     const location = useLocation();
     const props = location.state;  
-    const [pId] = useState(props.project_id);
+    // const [pId] = useState(props.project_id);
     // State to manage form data
     const [formData, setFormData] = useState({
         developerName: 'John Ramey',
@@ -39,7 +39,7 @@ function DeveloperForm() {
         developerAuthorised2ndSignatoryName: 'abc',
         developerAuthorised2ndIdentityCardNumber: '123',
         developerAuthorised2ndSignatoryDesignation: 'abc',
-        projId: pId,
+        // projId: pId,
     });
  
    
@@ -120,7 +120,7 @@ function DeveloperForm() {
     const formData = new FormData();
     // Add project details to the form data
     formData.append('searchQuery', searchQuery);
-    formData.append('pId', pId);
+    // formData.append('pId', pId);
     
     try {
       const response = await axios.post("http://127.0.0.1:5000/search-developer", formData, {
@@ -187,7 +187,7 @@ function DeveloperForm() {
                  
                  <input
                   type="hidden"
-                  value={pId}
+                  // value={pId}
                 />
                  
                   {/* <input
