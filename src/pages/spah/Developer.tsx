@@ -1,5 +1,5 @@
 import React, {useEffect, useState } from 'react';
-import { Box, Typography, Grid, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, Paper, TextField, Button } from '@mui/material';
+import { Box, Typography, Grid, CssBaseline, Paper, TextField, Button, CircularProgress  } from '@mui/material';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -49,6 +49,7 @@ function DeveloperForm() {
     const navigate = useNavigate();
     const [backendMessage, setBackendMessage] = useState<string | null>(null);
     const [Message, setMessage] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
     // useEffect(() => {
     //     const token = localStorage.getItem('ACCESS_TOKEN');
@@ -106,9 +107,9 @@ function DeveloperForm() {
         const response = await axios.put("http://127.0.0.1:5000/updateinfo", formData, {
           headers: { "Content-Type": "application/json" },
         });
-        alert(response.data.Message)
+        // alert(response.data.Message)
         // console.log("Response:", response.data);
-        alert(`message: ${response.data.message}`);
+        alert(`${response.data.message}`);
       } catch (error) {
           alert('Form submitting error');
           console.error("Error submitting form:", error);
@@ -117,6 +118,8 @@ function DeveloperForm() {
 // Handle project form submission (including project details and questions)
  const handleSearch = async (event: React.FormEvent) => {
     event.preventDefault();
+    setLoading(true); // Start loading
+    setBackendMessage(null);
     const formData = new FormData();
     // Add project details to the form data
     formData.append('searchQuery', searchQuery);
@@ -134,6 +137,8 @@ function DeveloperForm() {
     } catch (error) {
       alert('Form submitting error');
       console.error("Error submitting form:", error);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -172,10 +177,9 @@ function DeveloperForm() {
                 </Grid>
 
                 {/* Right Column: Box */}
-                <Grid item xs={12} md={4}>
-                    
-                    <Paper sx={{ padding: 2, height: '100%' }} elevation={3}>
-                    <form onSubmit={handleSearch}>
+            <Grid item xs={12} md={4}>        
+              <Paper sx={{ padding: 2, height: '100%' }} elevation={3}>
+                <form onSubmit={handleSearch}>
                   <TextField
                     label="Search Key Info"
                     fullWidth
@@ -187,7 +191,7 @@ function DeveloperForm() {
                  
                  <input
                   type="hidden"
-                  // value={pId}
+                  value={pId}
                 />
                  
                   {/* <input
@@ -199,26 +203,29 @@ function DeveloperForm() {
                 Search
                   </Button>
                   </form>
-                      
-                        <Typography variant="h6" gutterBottom>
-                            Search Result
-                        </Typography>
-                        <Box
-                            sx={{
-                                border: '0px dashed gray',
-                                height: '100%',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                            }}
-                        >
-             {backendMessage && (
-        <div style={{ marginTop: -300 }}>
-           <Typography variant="body1" color="textSecondary">
-           <div style={{ color: 'black' }}>{backendMessage}</div>  
-           </Typography>  
-        </div>
-      )}
+                  <Typography variant="h6" gutterBottom sx={{ marginTop: 2 }}>
+                      Search Result
+                  </Typography>
+                  <Box
+                      sx={{
+                        // border: '1px solid gray',
+                        borderRadius: 1,
+                        height: 420, // Fixed height
+                        overflowY: 'auto', // Enable vertical scrolling
+                        padding: 1,
+                      }}
+                  >
+                     {loading ? (
+                  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                    <CircularProgress />
+                  </Box>
+                ) : (
+                  backendMessage && (
+                    <Typography variant="body1" color="textSecondary" sx={{ whiteSpace: 'pre-wrap' }}>
+                      {backendMessage}
+                    </Typography>
+                  )
+                )}
                            
                           {/* <Typography variant="body1" color="textSecondary">
                               Placeholder for additional content
