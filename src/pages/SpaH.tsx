@@ -108,7 +108,7 @@ function DeveloperForm() {
         });
         // alert(response.data.Message)
         // console.log("Response:", response.data);
-        // alert(`message: ${response.data.message}`);
+        alert(`${response.data.message}`);
       } catch (error) {
           alert('Form submitting error');
           console.error("Error submitting form:", error);

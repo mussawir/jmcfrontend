@@ -202,6 +202,9 @@ export default function BasicTabs() {
           <Tab label="Developer" {...a11yProps(0)} />
           <Tab label="Purchaser" {...a11yProps(1)} />
           <Tab label="Company" {...a11yProps(2)} />
+          <Tab label="Master chargee" {...a11yProps(3)} />
+          <Tab label="Master title details" {...a11yProps(4)} />
+          <Tab label="Project details" {...a11yProps(5)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>

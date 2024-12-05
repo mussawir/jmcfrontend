@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Typography, Grid, Paper, TextField, Button } from '@mui/material';
+import { Box, Typography, Grid, Paper, TextField, Button, CircularProgress  } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 interface PurchaserFormProps {
@@ -8,9 +9,17 @@ interface PurchaserFormProps {
 }
 
 const PurchaserForm: React.FC<PurchaserFormProps> = ({ shortHeading, questions }) => {
-  const [formData, setFormData] = useState<Record<string, string>>({});
+  const location = useLocation();
+  const props = location.state;
+  const [pId] = useState(props.project_id);
+  // alert(pId)
   const [searchQuery, setSearchQuery] = useState('');
+  const [loading, setLoading] = useState(false);
   const [backendMessage, setBackendMessage] = useState<string | null>(null);
+  const [searchResult, setSearchResult] = useState<string | null>(null);
+
+  const [formData, setFormData] = useState<Record<string, string>>({});
+  
 
   // Handle input change for form fields
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,23 +34,66 @@ const PurchaserForm: React.FC<PurchaserFormProps> = ({ shortHeading, questions }
     event.preventDefault();
     const formData = new FormData();
     formData.append('searchQuery', searchQuery);
-
+    formData.append('pId', pId);
+    setLoading(true);
     try {
       const response = await axios.post("http://127.0.0.1:5000/search-purchaser", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      setBackendMessage(response.data.response);
+      // setBackendMessage(response.data.response);
+      if (response.data.response) {
+        setSearchResult(response.data.response);
+        setBackendMessage(null);
+      } else {
+        setSearchResult(null);
+        setBackendMessage("No data found.");
+      }
     } catch (error) {
       console.error("Error submitting search:", error);
       setBackendMessage('Error occurred while searching.');
+    } finally {
+      setLoading(false); // End loading
     }
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("Submitted Data: ", formData);
+    const customKeys = {
+      question_0: "firstPurchaserName",
+      question_1: "firstPurchaserIdentityCard",
+      question_2: "firstPurchaserContactNumber",
+      question_3: "firstPurchaserEmailAddress",
+      question_4: "secondPurchaserName",
+      question_5: "secondPurchaserIdentityCard",
+      question_6: "secondPurchaserContactNumber",
+      question_7: "secondPurchaserEmailAddress",
+      question_8: "purchaserCorrespondenceAddress",
+    };
+    const mappedFormData: Record<string, string> = {};
+  Object.entries(formData).forEach(([key, value]) => {
+    const newKey = customKeys[key as keyof typeof customKeys];
+    if (newKey) {
+      mappedFormData[newKey] = value;
+    }
+  });
+  
+    try {
+      const response = await axios.put('http://127.0.0.1:5000/purchaserinfo', {
+        project_id: pId, // The unique project ID
+        formData: mappedFormData,        // The form data object with new values
+      });
+      // alert(response.data.message);
+      if (response.status === 200) {
+        alert(JSON.stringify(response.data, null, 2));  // Pretty print JSON
+    } else {
+        alert(JSON.stringify(response.data, null, 2));  // Pretty print JSON
+    }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('An error occurred while saving the form.');
+    }
   };
 
   return (
@@ -91,8 +143,8 @@ const PurchaserForm: React.FC<PurchaserFormProps> = ({ shortHeading, questions }
                     onChange={(e) => setSearchQuery(e.target.value)}
                     sx={{ marginBottom: 2 }}
                   />
-                  <Button variant="contained" color="primary" fullWidth type="submit">
-                    Search
+                  <Button variant="contained" color="primary" fullWidth type="submit" disabled={loading}>
+                    {loading ? <CircularProgress size={24} color="inherit" /> : "Search"}
                   </Button>
                 </form>
                 <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
@@ -105,10 +157,20 @@ const PurchaserForm: React.FC<PurchaserFormProps> = ({ shortHeading, questions }
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    maxHeight: 200, // Set a maximum height for the box
+                    overflow: 'auto', // Enable scrollbar when content exceeds maxHeight
+                    flexDirection: 'column',
+                    padding: 1,
                   }}
                 >
-                  {backendMessage ? (
+                  {loading ? (
+                    <CircularProgress size={40} />
+                  ) : searchResult ? (
                     <Typography variant="body1" color="textSecondary">
+                      {searchResult}
+                    </Typography>
+                  ) : backendMessage ? (
+                    <Typography variant="body1" color="error">
                       {backendMessage}
                     </Typography>
                   ) : (
