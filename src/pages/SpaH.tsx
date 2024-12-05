@@ -1,5 +1,5 @@
 import React, {useEffect, useState } from 'react';
-import { Box, Typography, Grid, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, Paper, TextField, Button } from '@mui/material';
+import { Box, Typography, Grid, Toolbar, CssBaseline, Paper, TextField, Button } from '@mui/material';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -59,28 +59,6 @@ function DeveloperForm() {
     //     }
     //   }, [navigate]);
     
-    //   const fetchCaseData = async (token: string) => {
-    //     try {
-    //       const response = await fetch('http://127.0.0.1:5000/extract-spah', {
-    //         headers: {
-    //           Authorization: `Bearer ${token}`,
-    //         },
-    //       });
-    //       if (response.ok) {
-    //     //    alert(response);
-    //         // const data: Case[] = await response.json();
-    //         // setBackendMessage(response.statusText); // Set the message from the backend
-    //         // setCases(data);
-    //         const data = await response.json();
-    //         setBackendMessage(data.response);
-    //       } else {
-    //         console.error('Error fetching case data:', response.statusText);
-    //       }
-    //     } catch (error) {
-    //       console.error('Error fetching case data:', error);
-    //     }
-    //   };
-
     // Handle input change for form fields
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
