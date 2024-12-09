@@ -28,6 +28,10 @@ import SubSpaT from './pages/SubSpaT';
 import SubLoanT from './pages/SubLoanT';
 import SubSpaMT from './pages/SubSpaMT';
 import SubLoanMT from './pages/SubLoanMT';
+import Chargor from './pages/loanh/Chargor';
+import Financier from './pages/loanh/Financier';
+import Ifchargor from './pages/loang/Ifchargor';
+import Endfinancier from './pages/loang/Endfinancier';
 
 const AppWithDarkMode: React.FC = () => {
   const { darkMode } = useDarkMode(); // Access dark mode state
@@ -65,6 +69,10 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/logout" element={<Logout />} />
         <Route path="/spaform" element={<SpaRecAddUpdate />} />
         <Route path="/tabspage" element={<TabsPage />} />
+        <Route path="/chargor" element={<Chargor />} />
+        <Route path="/financier" element={<Financier />} />
+        <Route path="/ifchargor" element={<Ifchargor />} />
+        <Route path="/endfinancier" element={<Endfinancier />} />
       </Routes>
     </ThemeProvider>
   );

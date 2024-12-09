@@ -19,27 +19,27 @@ interface Case {
 function DeveloperForm() {
     const location = useLocation();
     const props = location.state;  
-    const [pId] = useState(props.project_id);
+    // const [pId] = useState(props.project_id);
     // State to manage form data
     const [formData, setFormData] = useState({
-        developerName: '',
-        developerCompanyRegistrationNumber: '',
-        developerRegisteredOfficeAddress: '',
-        developerPlaceOfBusinessAddress: '',
-        developerFileReferenceNumber: '',
-        developerLicenceNumber: '',
-        developerContactNumber: '',
-        developerEmailAddress: '',
-        developerPersonInChargeName: '',
-        developerPersonInChargeContactNumber: '',
-        developerPersonInChargeEmailAddress: '',
-        developerAuthorised1stSignatoryName: '',
-        developerAuthorised1stIdentityCardNumber: '',
-        developerAuthorised1stSignatoryDesignation: '',
-        developerAuthorised2ndSignatoryName: '',
-        developerAuthorised2ndIdentityCardNumber: '',
-        developerAuthorised2ndSignatoryDesignation: '',
-        // projId: pId,
+        developerName: 'John Ramey',
+        developerCompanyRegistrationNumber: '123',
+        developerRegisteredOfficeAddress: 'Abc123',
+        developerPlaceOfBusinessAddress: 'Abc123',
+        developerFileReferenceNumber: '123456',
+        developerLicenceNumber: '123456',
+        developerContactNumber: '+923012345678',
+        developerEmailAddress: 'example@gmail.com',
+        developerPersonInChargeName: 'Donald Jacob',
+        developerPersonInChargeContactNumber: '123',
+        developerPersonInChargeEmailAddress: 'example@gmail.com',
+        developerAuthorised1stSignatoryName: 'abc',
+        developerAuthorised1stIdentityCardNumber: '123',
+        developerAuthorised1stSignatoryDesignation: 'abc',
+        developerAuthorised2ndSignatoryName: 'abc',
+        developerAuthorised2ndIdentityCardNumber: '123',
+        developerAuthorised2ndSignatoryDesignation: 'abc',
+        projId: pId,
     });
  
    
@@ -430,8 +430,19 @@ const handleRefreshField = async (fieldKey: string) => {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     sx={{ marginBottom: 2 }}
                   />
-                  <Button variant="contained" color="primary" fullWidth type="submit" disabled={loading}>
-                    Search
+                 
+                 <input
+                  type="hidden"
+                  value={pId}
+                />
+                 
+                  {/* <input
+                   type="hidden"
+                   name="projectId"
+                   value="674e1f6a8b4214484d70895b" // replace with your project id value
+                     /> */}
+                   <Button variant="contained" color="primary" fullWidth type="submit">
+                Search
                   </Button>
                   </form>
                   <Typography variant="h6" gutterBottom sx={{ marginTop: 2 }}>
