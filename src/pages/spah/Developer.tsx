@@ -39,7 +39,7 @@ function DeveloperForm() {
         developerAuthorised2ndSignatoryName: 'abc',
         developerAuthorised2ndIdentityCardNumber: '123',
         developerAuthorised2ndSignatoryDesignation: 'abc',
-        projId: pId,
+        // projId: pId,
     });
  
    
@@ -433,7 +433,7 @@ const handleRefreshField = async (fieldKey: string) => {
                  
                  <input
                   type="hidden"
-                  value={pId}
+                  // value={pId}
                 />
                  
                   {/* <input
