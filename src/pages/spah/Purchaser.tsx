@@ -100,12 +100,12 @@ const PurchaserForm: React.FC<PurchaserFormProps> = ({ shortHeading, questions }
     <Box sx={{ display: 'flex', minHeight: '100vh' }}>
       <Box sx={{ flexGrow: 1 }}>
         <Box component="main" sx={{ p: 3 }}>
-          <Grid container spacing={2}>
+          <Grid spacing={2}>
             {/* Left Column: Form */}
-            <Grid item xs={12} md={8}>
+            <Grid item xs={12} md={12}>
               <Paper sx={{ padding: 2 }} elevation={3}>
                 <Typography variant="h6" gutterBottom>
-                  {shortHeading} Information Form
+                  {shortHeading} is/are individual Malaysian
                 </Typography>
                 <form onSubmit={handleSubmit}>
                   <Grid container spacing={2}>

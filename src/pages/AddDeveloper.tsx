@@ -1,0 +1,224 @@
+import React, { useState } from 'react';
+import { Box, Typography, TextField, Button, DialogActions } from '@mui/material';
+import DrawerComponent from '../components/DrawerComponent';
+import HeaderComponent from '../components/HeaderComponent';
+
+function AddDeveloper() {
+  // State hooks for each form field
+  const [developerName, setDeveloperName] = useState('');
+  const [developerCompanyRegistrationNumber, setDeveloperCompanyRegistrationNumber] = useState('');
+  const [developerRegisteredOfficeAddress, setDeveloperRegisteredOfficeAddress] = useState('');
+  const [developerPlaceOfBusinessAddress, setDeveloperPlaceOfBusinessAddress] = useState('');
+  const [developerFileReferenceNumber, setDeveloperFileReferenceNumber] = useState('');
+  const [developerLicenceNumber, setDeveloperLicenceNumber] = useState('');
+  const [developerContactNumber, setDeveloperContactNumber] = useState('');
+  const [developerEmailAddress, setDeveloperEmailAddress] = useState('');
+  const [developerPersonInChargeName, setDeveloperPersonInChargeName] = useState('');
+  const [developerPersonInChargeContactNumber, setDeveloperPersonInChargeContactNumber] = useState('');
+  const [developerPersonInChargeEmailAddress, setDeveloperPersonInChargeEmailAddress] = useState('');
+  const [developerAuthorised1stSignatoryName, setDeveloperAuthorised1stSignatoryName] = useState('');
+  const [developerAuthorised1stIdentityCardNumber, setDeveloperAuthorised1stIdentityCardNumber] = useState('');
+  const [developerAuthorised1stSignatoryDesignation, setDeveloperAuthorised1stSignatoryDesignation] = useState('');
+  const [developerAuthorised2ndSignatoryName, setDeveloperAuthorised2ndSignatoryName] = useState('');
+  const [developerAuthorised2ndIdentityCardNumber, setDeveloperAuthorised2ndIdentityCardNumber] = useState('');
+  const [developerAuthorised2ndSignatoryDesignation, setDeveloperAuthorised2ndSignatoryDesignation] = useState('');
+  const [value, setValue] = useState(0);
+  const handleAddDeveloperSubmit = async () => {
+    const developerData = {
+      developerName,
+      developerCompanyRegistrationNumber,
+      developerRegisteredOfficeAddress,
+      developerPlaceOfBusinessAddress,
+      developerFileReferenceNumber,
+      developerLicenceNumber,
+      developerContactNumber,
+      developerEmailAddress,
+      developerPersonInChargeName,
+      developerPersonInChargeContactNumber,
+      developerPersonInChargeEmailAddress,
+      developerAuthorised1stSignatoryName,
+      developerAuthorised1stIdentityCardNumber,
+      developerAuthorised1stSignatoryDesignation,
+      developerAuthorised2ndSignatoryName,
+      developerAuthorised2ndIdentityCardNumber,
+      developerAuthorised2ndSignatoryDesignation,
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/add-developer', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(developerData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert('Developer added successfully');
+      } else {
+        alert('Failed to add developer');
+        console.error(result);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred');
+    }
+  };
+
+  return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3, maxWidth: 1000, marginLeft: 40, marginTop: 10, }}>
+        <DrawerComponent />
+        <HeaderComponent />
+      <Typography variant="h4" gutterBottom>
+        Add New Developer
+      </Typography>
+
+      <TextField
+        label="Developer Name"
+        fullWidth
+        variant="outlined"
+        value={developerName}
+        onChange={(e) => setDeveloperName(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+      <TextField
+        label="Company Registration Number"
+        fullWidth
+        variant="outlined"
+        value={developerCompanyRegistrationNumber}
+        onChange={(e) => setDeveloperCompanyRegistrationNumber(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+      <TextField
+        label="Registered Office Address"
+        fullWidth
+        variant="outlined"
+        value={developerRegisteredOfficeAddress}
+        onChange={(e) => setDeveloperRegisteredOfficeAddress(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+      <TextField
+        label="Place of Business Address"
+        fullWidth
+        variant="outlined"
+        value={developerPlaceOfBusinessAddress}
+        onChange={(e) => setDeveloperPlaceOfBusinessAddress(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+      <TextField
+        label="File Reference Number"
+        fullWidth
+        variant="outlined"
+        value={developerFileReferenceNumber}
+        onChange={(e) => setDeveloperFileReferenceNumber(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+      <TextField
+        label="Licence Number"
+        fullWidth
+        variant="outlined"
+        value={developerLicenceNumber}
+        onChange={(e) => setDeveloperLicenceNumber(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+      <TextField
+        label="Contact Number"
+        fullWidth
+        variant="outlined"
+        value={developerContactNumber}
+        onChange={(e) => setDeveloperContactNumber(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+      <TextField
+        label="Email Address"
+        fullWidth
+        variant="outlined"
+        value={developerEmailAddress}
+        onChange={(e) => setDeveloperEmailAddress(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+      <TextField
+        label="Person in Charge Name"
+        fullWidth
+        variant="outlined"
+        value={developerPersonInChargeName}
+        onChange={(e) => setDeveloperPersonInChargeName(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+      <TextField
+        label="Person in Charge Contact Number"
+        fullWidth
+        variant="outlined"
+        value={developerPersonInChargeContactNumber}
+        onChange={(e) => setDeveloperPersonInChargeContactNumber(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+      <TextField
+        label="Person in Charge Email Address"
+        fullWidth
+        variant="outlined"
+        value={developerPersonInChargeEmailAddress}
+        onChange={(e) => setDeveloperPersonInChargeEmailAddress(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+      <TextField
+        label="1st Authorised Signatory Name"
+        fullWidth
+        variant="outlined"
+        value={developerAuthorised1stSignatoryName}
+        onChange={(e) => setDeveloperAuthorised1stSignatoryName(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+      <TextField
+        label="1st Authorised Signatory Identity Card Number"
+        fullWidth
+        variant="outlined"
+        value={developerAuthorised1stIdentityCardNumber}
+        onChange={(e) => setDeveloperAuthorised1stIdentityCardNumber(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+      <TextField
+        label="1st Authorised Signatory Designation"
+        fullWidth
+        variant="outlined"
+        value={developerAuthorised1stSignatoryDesignation}
+        onChange={(e) => setDeveloperAuthorised1stSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+      <TextField
+        label="2nd Authorised Signatory Name"
+        fullWidth
+        variant="outlined"
+        value={developerAuthorised2ndSignatoryName}
+        onChange={(e) => setDeveloperAuthorised2ndSignatoryName(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+      <TextField
+        label="2nd Authorised Signatory Identity Card Number"
+        fullWidth
+        variant="outlined"
+        value={developerAuthorised2ndIdentityCardNumber}
+        onChange={(e) => setDeveloperAuthorised2ndIdentityCardNumber(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+      <TextField
+        label="2nd Authorised Signatory Designation"
+        fullWidth
+        variant="outlined"
+        value={developerAuthorised2ndSignatoryDesignation}
+        onChange={(e) => setDeveloperAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 2 }}
+      />
+
+      <DialogActions>
+        <Button variant="contained" color="primary" onClick={handleAddDeveloperSubmit}>
+          Submit
+        </Button>
+      </DialogActions>
+    </Box>
+  );
+}
+
+export default AddDeveloper;

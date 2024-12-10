@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, TextField, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -5,7 +6,10 @@ import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';  
 import { SelectChangeEvent } from '@mui/material';
 import axios from 'axios';
-
+interface Developer {
+  id: string;
+  developerName: string;
+}
 function Projects() {
   // Project form states
   const [projectName, setProjectName] = useState('My Project');
@@ -19,6 +23,8 @@ function Projects() {
   const [analysis_result, setanalysis_result] = useState<any | null>(null);  // To store extracted data as an object
   const [questions, setQuestions] = useState(Array(10).fill(''));
   const [backendMessage, setBackendMessage] = useState<string | null>(null);
+  const [developers, setDevelopers] = useState<Developer[]>([]);
+  const [selectedDeveloper, setSelectedDeveloper] = useState<string>('');
 
   // const navigate = useNavigate();
 
@@ -121,18 +127,26 @@ function Projects() {
   };
 
   // Handle schedule selection
-  const handleSelectChange = (event: SelectChangeEvent<string>) => {
-    const value = event.target.value;
-    setSelectedValue(value);
+  // const handleSelectChange = (event: SelectChangeEvent<string>) => {
+  //   const value = event.target.value;
+  //   setSelectedValue(value);
 
-    // When Schedule H is selected, show the form
-    if (value === 'Schedule H') {
-      setShowForm(true);
+  //   // When Schedule H is selected, show the form
+  //   if (value === 'Schedule H') {
+  //     setShowForm(true);
+  //   } else {
+  //     setShowForm(false);
+  //   }
+  // };
+
+  const handleSelectChange = (event: SelectChangeEvent<string>) => {
+    if (event.target.name === 'developer') {
+      setSelectedDeveloper(event.target.value);
     } else {
-      setShowForm(false);
+      setSelectedValue(event.target.value);
+      setShowForm(event.target.value === 'Schedule H');
     }
   };
-
   // Handle project form submission (including project details and questions)
   const handleProjectSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -210,6 +224,21 @@ function Projects() {
     setQuestions(newQuestions);
   };
 
+  useEffect(() => {
+    const fetchDevelopers = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/get-developers'); // Replace with your API endpoint
+        setDevelopers(response.data); // Assuming the response is an array of developers
+      } catch (error) {
+        console.error('Error fetching developers:', error);
+      }
+    };
+
+    fetchDevelopers();
+  }, []);
+
+
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -260,20 +289,44 @@ function Projects() {
                 </Typography>
 
                 <form onSubmit={handleProjectSubmit}>
+                 {/* Dropdown */}
+                 <FormControl fullWidth>
+                  <InputLabel id="developer-dropdown-label">Select Developer</InputLabel>
+                  <Select
+                    labelId="developer-dropdown-label"
+                    id="developer-dropdown"
+                    value={selectedDeveloper}
+                    onChange={(event) => setSelectedDeveloper(event.target.value)}
+                    label="Select Developer"
+                  >
+                    {developers.map((developer) => (
+                    <MenuItem key={developer.id} value={developer.developerName}>
+                      {developer.developerName}
+                    </MenuItem>
+                  ))}
+                  </Select>
+                </FormControl>
+
+                {developers.length === 0 && (
+                <Typography variant="body2" color="error">
+                  No developers found. Please check your API connection.
+                </Typography>
+              )}
                   <TextField
                     label="Project Name"
                     fullWidth
                     variant="outlined"
                     value={projectName}
                     onChange={(e) => setProjectName(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, marginTop: 2, }}
                   />
-                  <Box id="result">  
+                  {/* <Box id="result">  
                   {backendMessage ? (
-          <Typography variant="body1">{backendMessage}</Typography>
-        ) : (
-          <Typography variant="body1">No message yet.</Typography>
-        )}</Box>
+                    <Typography variant="body1">{backendMessage}</Typography>
+                  ) : (
+                    <Typography variant="body1">No message yet.</Typography>
+                  )}
+                  </Box> */}
                   <TextField
                     label="Builder Name"
                     fullWidth

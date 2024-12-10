@@ -11,6 +11,7 @@ import Register from './pages/Register';
 import UserData from './pages/UserData';
 import Documents from './pages/Document';
 import Projects from './pages/Projects';
+import DeveloperBuilder from './pages/DeveloperBuilder';
 import Checklist from './pages/Checklist';
 import Team from './pages/Team';
 import About from './pages/About';
@@ -32,6 +33,7 @@ import Chargor from './pages/loanh/Chargor';
 import Financier from './pages/loanh/Financier';
 import Ifchargor from './pages/loang/Ifchargor';
 import Endfinancier from './pages/loang/Endfinancier';
+import AddDeveloper from './pages/AddDeveloper';
 
 const AppWithDarkMode: React.FC = () => {
   const { darkMode } = useDarkMode(); // Access dark mode state
@@ -73,6 +75,8 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/financier" element={<Financier />} />
         <Route path="/ifchargor" element={<Ifchargor />} />
         <Route path="/endfinancier" element={<Endfinancier />} />
+        <Route path="/developerbuilder" element={<DeveloperBuilder />} />
+        <Route path="/adddeveloper" element={<AddDeveloper />} />
       </Routes>
     </ThemeProvider>
   );
