@@ -19,7 +19,7 @@ interface Case {
 function DeveloperForm() {
     const location = useLocation();
     const props = location.state;  
-    // const [pId] = useState(props.project_id);
+    const [pId] = useState(props.project_id);
     // State to manage form data
     const [formData, setFormData] = useState({
         developerName: 'John Ramey',
@@ -39,7 +39,7 @@ function DeveloperForm() {
         developerAuthorised2ndSignatoryName: 'abc',
         developerAuthorised2ndIdentityCardNumber: '123',
         developerAuthorised2ndSignatoryDesignation: 'abc',
-        // projId: pId,
+        projId: pId,
     });
  
    
