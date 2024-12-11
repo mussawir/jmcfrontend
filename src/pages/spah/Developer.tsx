@@ -273,28 +273,28 @@ function DeveloperForm() {
   //   processSearch();       
   //   }, []);
 
-  // function delay(ms:any) {
-  //   return new Promise(resolve => setTimeout(resolve, ms));
-  // }
-  // async function processSearch() {
-  //   await getData("get developer/company name only", "DName");
-  //   await getData("get developer/company registration number only", "RNumber");
-  //   await getData("get developer/company registration office Address only", "CompAddress");
-  //   await getData("get developer/company place of business Address only", "BusinAddress");
-  //   await getData("get developer/company file refrence number only", "FileRefNum");
-  //   await getData("get developer/company licence number only", "LiceNum");
-  //   await getData("get developer/company contact number only", "ContNum");
-  //   await getData("get developer/company email address only", "EmailAdd");
-  //   await getData("get developer/company personal Incharge name only", "InchaName");
-  //   await getData("get developer/company personal Incharge contact number only", "InchaCont");
-  //   await getData("get developer/company personal Incharge email address only", "InchaEmail");
-  //   await getData("get developer/company authorised 1st signature name only", "SignName");
-  //   await getData("get developer/company authorised 1st identity number only", "AuthIdNumber");
-  //   await getData("get developer/company authorised 1st signature design only", "AuthSignDesi");
-  //   await getData("get developer/company authorised 2nd signature name only", "Auth2ndSign");
-  //   await getData("get developer/company authorised 2nd identity number only", "Auth2ndIdNum");
-  //   await getData("get developer/company authorised 2nd signature design only", "Auth2ndSignDes");
-  // }
+  function delay(ms:any) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  async function processSearch() {
+    await getData("get developer/company name only", "DName");
+    await getData("get developer/company registration number only", "RNumber");
+    await getData("get developer/company registration office Address only", "CompAddress");
+    await getData("get developer/company place of business Address only", "BusinAddress");
+    await getData("get developer/company file refrence number only", "FileRefNum");
+    await getData("get developer/company licence number only", "LiceNum");
+    await getData("get developer/company contact number only", "ContNum");
+    await getData("get developer/company email address only", "EmailAdd");
+    await getData("get developer/company personal Incharge name only", "InchaName");
+    await getData("get developer/company personal Incharge contact number only", "InchaCont");
+    await getData("get developer/company personal Incharge email address only", "InchaEmail");
+    await getData("get developer/company authorised 1st signature name only", "SignName");
+    await getData("get developer/company authorised 1st identity number only", "AuthIdNumber");
+    await getData("get developer/company authorised 1st signature design only", "AuthSignDesi");
+    await getData("get developer/company authorised 2nd signature name only", "Auth2ndSign");
+    await getData("get developer/company authorised 2nd identity number only", "Auth2ndIdNum");
+    await getData("get developer/company authorised 2nd signature design only", "Auth2ndSignDes");
+  }
     const handleRefreshField = async (fieldKey: string) => {
       setLoadingButtons((prev) => ({ ...prev, [fieldKey]: true }));
       try {
