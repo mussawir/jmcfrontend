@@ -147,6 +147,40 @@ const DrawerComponent = () => {
   />
   <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
+<ListItem
+  component={Link}
+  to="/developerbuilder"
+  onClick={() => handleItemClick('Projects')} // Set 'Projects' as the selected item
+  sx={{
+    backgroundColor: selectedItem === 'Projects' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
+    color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }}>
+    <FolderCopyOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: 'sans-serif',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
+        }}
+      >
+        Developers
+      </Typography>
+    }
+  />
+  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} />
+</ListItem>
+
 
 <ListItem
   component={Link}

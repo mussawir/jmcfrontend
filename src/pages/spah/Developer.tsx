@@ -22,24 +22,24 @@ function DeveloperForm() {
     const [pId] = useState(props.project_id);
     // State to manage form data
     const [formData, setFormData] = useState({
-        developerName: 'John Ramey',
-        developerCompanyRegistrationNumber: '123',
-        developerRegisteredOfficeAddress: 'Abc123',
-        developerPlaceOfBusinessAddress: 'Abc123',
-        developerFileReferenceNumber: '123456',
-        developerLicenceNumber: '123456',
-        developerContactNumber: '+923012345678',
-        developerEmailAddress: 'example@gmail.com',
-        developerPersonInChargeName: 'Donald Jacob',
-        developerPersonInChargeContactNumber: '123',
-        developerPersonInChargeEmailAddress: 'example@gmail.com',
-        developerAuthorised1stSignatoryName: 'abc',
-        developerAuthorised1stIdentityCardNumber: '123',
-        developerAuthorised1stSignatoryDesignation: 'abc',
-        developerAuthorised2ndSignatoryName: 'abc',
-        developerAuthorised2ndIdentityCardNumber: '123',
-        developerAuthorised2ndSignatoryDesignation: 'abc',
-        projId: pId,
+        developerName: '',
+        developerCompanyRegistrationNumber: '',
+        developerRegisteredOfficeAddress: '',
+        developerPlaceOfBusinessAddress: '',
+        developerFileReferenceNumber: '',
+        developerLicenceNumber: '',
+        developerContactNumber: '',
+        developerEmailAddress: '',
+        developerPersonInChargeName: '',
+        developerPersonInChargeContactNumber: '',
+        developerPersonInChargeEmailAddress: '',
+        developerAuthorised1stSignatoryName: '',
+        developerAuthorised1stIdentityCardNumber: '',
+        developerAuthorised1stSignatoryDesignation: '',
+        developerAuthorised2ndSignatoryName: '',
+        developerAuthorised2ndIdentityCardNumber: '',
+        developerAuthorised2ndSignatoryDesignation: '',
+        // projId: pId,
     });
  
    
@@ -50,6 +50,8 @@ function DeveloperForm() {
     const [backendMessage, setBackendMessage] = useState<string | null>(null);
     const [Message, setMessage] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
+    const [loadingButtons, setLoadingButtons] = useState<{ [key: string]: boolean }>({});
+
 
     // useEffect(() => {
     //     const token = localStorage.getItem('ACCESS_TOKEN');
@@ -114,38 +116,258 @@ function DeveloperForm() {
           alert('Form submitting error');
           console.error("Error submitting form:", error);
       }
-  };
+    };
 // Handle project form submission (including project details and questions)
- const handleSearch = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setLoading(true); // Start loading
-    setBackendMessage(null);
-    const formData = new FormData();
-    // Add project details to the form data
-    formData.append('searchQuery', searchQuery);
-    // formData.append('pId', pId);
+    const handleSearch = async (event: React.FormEvent) => {
+        event.preventDefault();
+        const formData = new FormData();
+        // Add project details to the form data
+        formData.append('searchQuery', searchQuery);
+        formData.append('pId', pId);
+        
+        try {
+          const response = await axios.post("http://127.0.0.1:5000/search-developer", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
+            },
+          });
+          // alert("Submited")
+            setBackendMessage(response.data.response);
+            setFormData(prevFormData => ({
+            ...prevFormData,
+            developerName: response.data.response
+          }));
+          //setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
+        } catch (error) {
+            alert('Form submitting error');
+            console.error("Error submitting form:", error);
+        }
+    };
+    const getData = async (prompt:string, selection:any) => {
+      const formData = new FormData();
+      // Add project details to the form data
+      formData.append('searchQuery', prompt);
+      
+      try {
+        const response = await axios.post("http://127.0.0.1:5000/search-developer", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
+          },
+        });
+        setBackendMessage(response.data.response);
+        switch (selection) {
+          case 'DName':
+              setFormData(prevFormData => ({
+                  ...prevFormData,
+                  developerName: response.data.response
+                }));
+                break
+          case 'RNumber':
+              setFormData(prevFormData => ({
+                  ...prevFormData,
+                  developerCompanyRegistrationNumber: response.data.response
+                }));
+                break
+          case 'CompAddress':
+              setFormData(prevFormData => ({
+                    ...prevFormData,
+                    developerRegisteredOfficeAddress: response.data.response
+                    }));
+                    break      
+          case 'BusinAddress':
+              setFormData(prevFormData => ({
+                    ...prevFormData,
+                    developerPlaceOfBusinessAddress: response.data.response
+                    }));
+                    break      
+          case 'FileRefNum':
+              setFormData(prevFormData => ({
+                    ...prevFormData,
+                    developerFileReferenceNumber: response.data.response
+                    }));
+                    break      
+          case 'LiceNum':
+              setFormData(prevFormData => ({
+                    ...prevFormData,
+                    developerLicenceNumber: response.data.response
+                    }));
+                    break      
+          case 'ContNum':
+              setFormData(prevFormData => ({
+                    ...prevFormData,
+                    developerContactNumber: response.data.response
+                    }));
+                    break      
+          case 'EmailAdd':
+              setFormData(prevFormData => ({
+                    ...prevFormData,
+                    developerEmailAddress: response.data.response
+                    }));
+                    break      
+          case 'InchaName':
+              setFormData(prevFormData => ({
+                    ...prevFormData,
+                    developerPersonInChargeName: response.data.response
+                    }));
+                    break      
+          case 'InchaCont':
+              setFormData(prevFormData => ({
+                    ...prevFormData,
+                    developerPersonInChargeContactNumber: response.data.response
+                    }));
+                    break      
+          case 'InchaEmail':
+              setFormData(prevFormData => ({
+                    ...prevFormData,
+                    developerPersonInChargeEmailAddress: response.data.response
+                    }));
+                    break      
+          case 'SignName':
+              setFormData(prevFormData => ({
+                    ...prevFormData,
+                    developerAuthorised1stSignatoryName: response.data.response
+                    }));
+                    break      
+          case 'AuthIdNumber':
+              setFormData(prevFormData => ({
+                    ...prevFormData,
+                    developerAuthorised1stIdentityCardNumber: response.data.response
+                    }));
+                    break      
+          case 'AuthSignDesi':
+              setFormData(prevFormData => ({
+                    ...prevFormData,
+                    developerAuthorised1stSignatoryDesignation: response.data.response
+                    }));
+                    break      
+          case 'Auth2ndSign':
+              setFormData(prevFormData => ({
+                    ...prevFormData,
+                    developerAuthorised2ndSignatoryName: response.data.response
+                    }));
+                    break      
+          case 'Auth2ndIdNum':
+              setFormData(prevFormData => ({
+                    ...prevFormData,
+                    developerAuthorised2ndIdentityCardNumber: response.data.response
+                    }));
+                    break      
+          case 'Auth2ndSignDes':
+              setFormData(prevFormData => ({
+                    ...prevFormData,
+                    developerAuthorised2ndSignatoryDesignation: response.data.response
+                    }));
+                    break      
+          default:
+            return <div>Invalid mode</div>;
+        }
     
-    try {
-      const response = await axios.post("http://127.0.0.1:5000/search-developer", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
-        },
-      });
-      // alert("Submited")
-      setBackendMessage(response.data.response);
-    //   setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
-    } catch (error) {
-      alert('Form submitting error');
-      console.error("Error submitting form:", error);
-    } finally {
-      setLoading(false); // Stop loading
-    }
-  };
+      //   setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
+      } catch (error) {
+        alert('Form submitting error');
+        console.error("Error submitting form:", error);
+      }
+    };
+
+  //   useEffect(() => {
+  //   processSearch();       
+  //   }, []);
+
+  function delay(ms:any) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  async function processSearch() {
+    await getData("get developer/company name only", "DName");
+    await getData("get developer/company registration number only", "RNumber");
+    await getData("get developer/company registration office Address only", "CompAddress");
+    await getData("get developer/company place of business Address only", "BusinAddress");
+    await getData("get developer/company file refrence number only", "FileRefNum");
+    await getData("get developer/company licence number only", "LiceNum");
+    await getData("get developer/company contact number only", "ContNum");
+    await getData("get developer/company email address only", "EmailAdd");
+    await getData("get developer/company personal Incharge name only", "InchaName");
+    await getData("get developer/company personal Incharge contact number only", "InchaCont");
+    await getData("get developer/company personal Incharge email address only", "InchaEmail");
+    await getData("get developer/company authorised 1st signature name only", "SignName");
+    await getData("get developer/company authorised 1st identity number only", "AuthIdNumber");
+    await getData("get developer/company authorised 1st signature design only", "AuthSignDesi");
+    await getData("get developer/company authorised 2nd signature name only", "Auth2ndSign");
+    await getData("get developer/company authorised 2nd identity number only", "Auth2ndIdNum");
+    await getData("get developer/company authorised 2nd signature design only", "Auth2ndSignDes");
+  }
+    const handleRefreshField = async (fieldKey: string) => {
+      setLoadingButtons((prev) => ({ ...prev, [fieldKey]: true }));
+      try {
+          let prompt = "";
+          switch (fieldKey) {
+              case 'developerName':
+                  prompt = "get developer/company name only";
+                  break;
+              case 'developerCompanyRegistrationNumber':
+                  prompt = "get developer/company registration number only";
+                  break;
+              case 'developerRegisteredOfficeAddress':
+                  prompt = "get developer/company registration office Address only";
+                  break;
+              case 'developerPlaceOfBusinessAddress':
+                  prompt = "get developer/company place of business address only";
+                  break;
+              case 'developerFileReferenceNumber':
+                  prompt = "get developer/company file refrence number only";
+                  break;
+              case 'developerLicenceNumber':
+                  prompt = "get developer/company licence number only";
+                  break;
+              case 'developerContactNumber':
+                  prompt = "get developer/company contact number only";
+                  break;
+              case 'developerEmailAddress':
+                  prompt = "get developer/company email address only";
+                  break;
+              case 'developerPersonInChargeName':
+                  prompt = "get developer/company personal incharge name only";
+                  break;
+              case 'developerPersonInChargeContactNumber':
+                  prompt = "get developer/company personal incharge contact number only";
+                  break;
+              case 'developerPersonInChargeEmailAddress':
+                  prompt = "get developer/company personal incharge email address only";
+                  break;
+              case 'developerAuthorised1stSignatoryName':
+                  prompt = "get developer/company authorised 1st signature name only";
+                  break;
+              case 'developerAuthorised1stIdentityCardNumber':
+                  prompt = "get developer/company authorised 1st identity card number only";
+                  break;
+              case 'developerAuthorised1stSignatoryDesignation':
+                  prompt = "get developer/company authorised 1st signature disignation only";
+                  break;
+              case 'developerAuthorised2ndSignatoryName':
+                  prompt = "get developer/company authorised 2nd signature name only";
+                  break;
+              case 'developerAuthorised2ndIdentityCardNumber':
+                  prompt = "get developer/company authorised 2nd identity card number only";
+                  break;
+              case 'developerAuthorised2ndSignatoryDesignation':
+                  prompt = "get developer/company authorised 2nd signature designation only";
+                  break;
+              // Add more cases as needed
+              default:
+                  console.warn(`No specific prompt for field: ${fieldKey}`);
+                  return;
+          }
+          await getData(prompt, fieldKey); // Call getData with the prompt and fieldKey
+      } catch (error) {
+          console.error(`Error refreshing field ${fieldKey}:`, error);
+      } finally {
+        setLoadingButtons((prev) => ({ ...prev, [fieldKey]: false })); // Stop spinner after process
+      }
+    };
 
     return (
         <Box sx={{ display: 'flex', minHeight: '100vh' }}>
         <CssBaseline />
-        <DrawerComponent />
+        {/* <DrawerComponent /> */}
         <Box sx={{ flexGrow: 1 }}>
           <HeaderComponent />
           <Box component="main" sx={{ p: 3 }}>
@@ -170,6 +392,26 @@ function DeveloperForm() {
                                         onChange={handleInputChange}
                                         variant="outlined"
                                     />
+                                    {/* <Button
+                                      variant="contained"
+                                      color="primary"
+                                      sx={{
+                                        marginLeft: 1,
+                                        padding: "4px 8px",
+                                        fontSize: "0.8rem",
+                                        minWidth: "auto",
+                                        backgroundColor: "#007bff",
+                                        color: "#fff",
+                                        "&:hover": {
+                                          backgroundColor: "#0056b3",
+                                        },
+                                      }}
+                                      onClick={() => handleRefreshField(key)} // Only fetch data and update the state
+                                      disabled={loadingButtons[key]}
+                                    >
+                                      {loadingButtons[key] ? <CircularProgress size={10} color="inherit" /> : "..."}
+                                    </Button> */}
+
                                 </Grid>
                             ))}
                         </Grid>
@@ -191,7 +433,7 @@ function DeveloperForm() {
                  
                  <input
                   type="hidden"
-                  value={pId}
+                  // value={pId}
                 />
                  
                   {/* <input
@@ -200,7 +442,7 @@ function DeveloperForm() {
                    value="674e1f6a8b4214484d70895b" // replace with your project id value
                      /> */}
                    <Button variant="contained" color="primary" fullWidth type="submit">
-                Search
+                      Search
                   </Button>
                   </form>
                   <Typography variant="h6" gutterBottom sx={{ marginTop: 2 }}>

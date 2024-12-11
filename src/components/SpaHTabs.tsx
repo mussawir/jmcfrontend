@@ -199,7 +199,7 @@ export default function BasicTabs() {
 
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Developer" {...a11yProps(0)} />
+          {/* <Tab label="Developer" {...a11yProps(0)} /> */}
           <Tab label="Purchaser" {...a11yProps(1)} />
           <Tab label="Company" {...a11yProps(2)} />
           <Tab label="Master chargee" {...a11yProps(3)} />
@@ -208,7 +208,8 @@ export default function BasicTabs() {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <Developer/>
+        {/* <Developer/> */}
+        <PurchaserFormWrapper/>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         <PurchaserFormWrapper/>
