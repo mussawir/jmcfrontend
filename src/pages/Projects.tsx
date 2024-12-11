@@ -12,10 +12,10 @@ interface Developer {
 }
 function Projects() {
   // Project form states
-  const [projectName, setProjectName] = useState('My Project');
-  const [builderName, setBuilderName] = useState('ABC Builder');
-  const [purchaserName, setPurchaserName] = useState('Goh Wang');
-  const [propertyName, setPropertyName] = useState('2400 sqr feet flat');
+  const [projectName, setProjectName] = useState('');
+  const [createdAt, setCreatedAt] = useState('');
+  const [description, setDescription] = useState('');
+  const [propertyName, setPropertyName] = useState('');
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [selectedValue, setSelectedValue] = useState<string>('Select Schedule');
   const [showForm, setShowForm] = useState<boolean>(false);
@@ -163,8 +163,8 @@ function Projects() {
 
     // Add project details to the form data
     formData.append('projectName', projectName);
-    formData.append('builderName', builderName);
-    formData.append('purchaserName', purchaserName);
+    formData.append('createdAt', createdAt);
+    formData.append('description', description);
     formData.append('propertyName', propertyName);
 
     try {
@@ -175,7 +175,7 @@ function Projects() {
       });
 
       console.log("File uploaded successfully:", response.data);
-      alert(response.data.id);
+      alert(response.data.message);
       setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
       const props = { project_id: response.data.id};
       navigate('/spaH', { state: props });
@@ -210,8 +210,8 @@ function Projects() {
   useEffect(() => {
     if (analysis_result) {
       setProjectName(analysis_result.projectName || '');
-      setBuilderName(analysis_result.builderName || '');
-      setPurchaserName(analysis_result.purchaserName || '');
+      setCreatedAt(analysis_result.createdAt || '');
+      setDescription(analysis_result.description || '');
       setPropertyName(analysis_result.propertyName || '');
       setQuestions(analysis_result.questions || Array(2).fill('')); // Update the questions if extracted data is present
     }
@@ -328,29 +328,30 @@ function Projects() {
                   )}
                   </Box> */}
                   <TextField
-                    label="Builder Name"
+                    // label="Builder Name"
+                    type="date"
                     fullWidth
                     variant="outlined"
-                    value={builderName}
-                    onChange={(e) => setBuilderName(e.target.value)}
+                    value={createdAt}
+                    onChange={(e) => setCreatedAt(e.target.value)}
                     sx={{ marginBottom: 2 }}
                   />
                   <TextField
-                    label="Purchaser Name"
+                    label="Description"
                     fullWidth
                     variant="outlined"
-                    value={purchaserName}
-                    onChange={(e) => setPurchaserName(e.target.value)}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                     sx={{ marginBottom: 2 }}
                   />
-                  <TextField
+                  {/* <TextField
                     label="Property Name"
                     fullWidth
                     variant="outlined"
                     value={propertyName}
                     onChange={(e) => setPropertyName(e.target.value)}
                     sx={{ marginBottom: 2 }}
-                  />
+                  /> */}
 
                   <Button variant="outlined" component="label" fullWidth sx={{ marginBottom: 2 }}>
                     Select File

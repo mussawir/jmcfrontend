@@ -114,19 +114,19 @@ const DrawerComponent = () => {
   />
   <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} />
 </ListItem>
-<ListItem
-  component={Link}
-  to="/spaH"
-  onClick={() => handleItemClick('SPAH')}
-  sx={{
-    backgroundColor: selectedItem === 'SPAG' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
-    color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f',
-    '&:hover': {
-      backgroundColor: 'rgba(173, 216, 230, 0.5)',
-    },
-  }}
->
-  <ListItemIcon sx={{ color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }}>
+{/* <ListItem */}
+  {/* // component={Link}
+  // to="/spaH"
+  // onClick={() => handleItemClick('SPAH')}
+  // sx={{
+  //   backgroundColor: selectedItem === 'SPAG' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+  //   color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f',
+  //   '&:hover': {
+  //     backgroundColor: 'rgba(173, 216, 230, 0.5)',
+  //   },
+  // }}
+// > */}
+  {/* <ListItemIcon sx={{ color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }}>
     <ShoppingCartOutlinedIcon />
   </ListItemIcon>
   <ListItemText
@@ -144,9 +144,9 @@ const DrawerComponent = () => {
         SPA H
       </Typography>
     }
-  />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem>
+  /> */}
+  {/* <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }} /> */}
+{/* </ListItem> */}
 <ListItem
   component={Link}
   to="/developerbuilder"
@@ -178,9 +178,41 @@ const DrawerComponent = () => {
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} />
+  {/* <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} /> */}
 </ListItem>
-
+<ListItem
+  component={Link}
+  to="/templates"
+  onClick={() => handleItemClick('SPAH')}
+  sx={{
+    backgroundColor: selectedItem === 'SPAG' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+    color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f',
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)',
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }}>
+    <ShoppingCartOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: 'sans-serif',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
+        }}
+      >
+        Templates
+      </Typography>
+    }
+  />
+  {/* <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }} /> */}
+</ListItem>
 
 <ListItem
   component={Link}

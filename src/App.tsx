@@ -34,6 +34,8 @@ import Financier from './pages/loanh/Financier';
 import Ifchargor from './pages/loang/Ifchargor';
 import Endfinancier from './pages/loang/Endfinancier';
 import AddDeveloper from './pages/AddDeveloper';
+import Templates from './pages/Templates';
+import AddTemplates from './pages/AddTemplates';
 
 const AppWithDarkMode: React.FC = () => {
   const { darkMode } = useDarkMode(); // Access dark mode state
@@ -77,6 +79,8 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/endfinancier" element={<Endfinancier />} />
         <Route path="/developerbuilder" element={<DeveloperBuilder />} />
         <Route path="/adddeveloper" element={<AddDeveloper />} />
+        <Route path="/templates" element={<Templates />} />
+        <Route path="/addtemplates" element={<AddTemplates />} />
       </Routes>
     </ThemeProvider>
   );

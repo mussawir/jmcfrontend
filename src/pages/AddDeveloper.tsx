@@ -74,7 +74,7 @@ function AddDeveloper() {
       <Typography variant="h4" gutterBottom>
         Add New Developer
       </Typography>
-
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
       <TextField
         label="Developer Name"
         fullWidth
@@ -91,6 +91,8 @@ function AddDeveloper() {
         onChange={(e) => setDeveloperCompanyRegistrationNumber(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
       <TextField
         label="Registered Office Address"
         fullWidth
@@ -107,6 +109,8 @@ function AddDeveloper() {
         onChange={(e) => setDeveloperPlaceOfBusinessAddress(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
+       </Box>
+       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
       <TextField
         label="File Reference Number"
         fullWidth
@@ -123,6 +127,8 @@ function AddDeveloper() {
         onChange={(e) => setDeveloperLicenceNumber(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
+       </Box>
+       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
       <TextField
         label="Contact Number"
         fullWidth
@@ -139,6 +145,8 @@ function AddDeveloper() {
         onChange={(e) => setDeveloperEmailAddress(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
       <TextField
         label="Person in Charge Name"
         fullWidth
@@ -155,6 +163,8 @@ function AddDeveloper() {
         onChange={(e) => setDeveloperPersonInChargeContactNumber(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
       <TextField
         label="Person in Charge Email Address"
         fullWidth
@@ -171,6 +181,8 @@ function AddDeveloper() {
         onChange={(e) => setDeveloperAuthorised1stSignatoryName(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
       <TextField
         label="1st Authorised Signatory Identity Card Number"
         fullWidth
@@ -187,6 +199,8 @@ function AddDeveloper() {
         onChange={(e) => setDeveloperAuthorised1stSignatoryDesignation(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
       <TextField
         label="2nd Authorised Signatory Name"
         fullWidth
@@ -203,6 +217,8 @@ function AddDeveloper() {
         onChange={(e) => setDeveloperAuthorised2ndIdentityCardNumber(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
       <TextField
         label="2nd Authorised Signatory Designation"
         fullWidth
@@ -211,6 +227,7 @@ function AddDeveloper() {
         onChange={(e) => setDeveloperAuthorised2ndSignatoryDesignation(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
+      </Box>
 
       <DialogActions>
         <Button variant="contained" color="primary" onClick={handleAddDeveloperSubmit}>

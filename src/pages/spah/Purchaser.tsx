@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Grid, Paper, TextField, Button, CircularProgress  } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
@@ -18,7 +18,10 @@ const PurchaserForm: React.FC<PurchaserFormProps> = ({ shortHeading, questions }
   const [backendMessage, setBackendMessage] = useState<string | null>(null);
   const [searchResult, setSearchResult] = useState<string | null>(null);
 
-  const [formData, setFormData] = useState<Record<string, string>>({});
+  const [formData, setFormData] = useState<Record<string, string>>({
+    firstPurchaserName:'',
+    firstPurchaserIdentityCard:'',
+  });
   
 
   // Handle input change for form fields
@@ -29,6 +32,59 @@ const PurchaserForm: React.FC<PurchaserFormProps> = ({ shortHeading, questions }
       [name]: value,
     }));
   };
+
+  const getData = async (prompt:string, selection:any) => {
+    const formData = new FormData();
+    // Add project details to the form data
+    formData.append('searchQuery', prompt);
+    
+    try {
+      const response = await axios.post("http://127.0.0.1:5000/search-purchaser", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
+        },
+      });
+      alert(response.data.response);
+      setBackendMessage(response.data.response);
+      switch (selection) {
+        case 'PName':
+            setFormData(prevFormData => ({
+                ...prevFormData,
+                firstPurchaserName: response.data.response
+              }));
+              break
+        case 'IdNumber':
+            setFormData(prevFormData => ({
+                ...prevFormData,
+                firstPurchaserIdentityCard: response.data.response
+              }));
+              break      
+        default:
+          return <div>Invalid mode</div>;
+      }
+  
+    //   setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
+    } catch (error) {
+      alert(error);
+      console.error("Error submitting form:", error);
+    }
+  };
+
+  
+  function delay(ms:any) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  async function processSearch() {
+    await getData("get 1st purchaser/company name only", "PName");
+    // await getData("get 1st purchaser/company identity card number only", "IdNumber");
+  }
+
+
+  useEffect(() => {
+    processSearch();       
+    }, []);
+
+
 
   const handleSearch = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -42,21 +98,20 @@ const PurchaserForm: React.FC<PurchaserFormProps> = ({ shortHeading, questions }
           "Content-Type": "multipart/form-data",
         },
       });
-      // setBackendMessage(response.data.response);
-      if (response.data.response) {
-        setSearchResult(response.data.response);
-        setBackendMessage(null);
-      } else {
-        setSearchResult(null);
-        setBackendMessage("No data found.");
-      }
-    } catch (error) {
-      console.error("Error submitting search:", error);
-      setBackendMessage('Error occurred while searching.');
-    } finally {
-      setLoading(false); // End loading
-    }
+      setBackendMessage(response.data.response);
+            setFormData(prevFormData => ({
+            ...prevFormData,
+            firstPurchaserrName: response.data.response
+          }));
+          //setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
+          // alert(response.data.result)
+        } catch (error) {
+            alert('Form submitting error');
+            console.error("Error submitting form:", error);
+        }
   };
+
+
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -100,12 +155,12 @@ const PurchaserForm: React.FC<PurchaserFormProps> = ({ shortHeading, questions }
     <Box sx={{ display: 'flex', minHeight: '100vh' }}>
       <Box sx={{ flexGrow: 1 }}>
         <Box component="main" sx={{ p: 3 }}>
-          <Grid spacing={2}>
+          <Grid spacing={2} display={'flex'}>
             {/* Left Column: Form */}
-            <Grid item xs={12} md={12}>
+            <Grid item xs={12} md={8} width={'80%'}>
               <Paper sx={{ padding: 2 }} elevation={3}>
                 <Typography variant="h6" gutterBottom>
-                  {shortHeading} is/are individual Malaysian
+                  {shortHeading} is/are individual Malaysian 
                 </Typography>
                 <form onSubmit={handleSubmit}>
                   <Grid container spacing={2}>
@@ -132,8 +187,8 @@ const PurchaserForm: React.FC<PurchaserFormProps> = ({ shortHeading, questions }
             </Grid>
 
             {/* Right Column: Search Box */}
-            <Grid item xs={12} md={4}>
-              <Paper sx={{ padding: 2, height: '100%' }} elevation={3}>
+            <Grid item xs={12} md={6} >
+              <Paper sx={{ padding: 2 }} elevation={3} style={{ height: '100%', }}>
                 <form onSubmit={handleSearch}>
                   <TextField
                     label="Search Key Info"
