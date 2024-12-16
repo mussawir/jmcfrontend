@@ -285,7 +285,7 @@ function Projects() {
             <Box sx={{ marginTop: 2, width: 400, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Box sx={{ width: '100%', textAlign: 'center' }}>
                 <Typography variant="h5" gutterBottom>
-                  Enter Project Details
+                  Enter Matter Details
                 </Typography>
 
                 <form onSubmit={handleProjectSubmit}>
@@ -358,7 +358,7 @@ function Projects() {
                     <input type="file" id="fileInput" name="file" hidden accept="application/pdf" onChange={handleFileChange} />
                   </Button>
                   <Button variant="contained" color="primary" fullWidth type="submit">
-                    Create Project
+                    Create Matter
                   </Button>
                 </form>
               </Box>

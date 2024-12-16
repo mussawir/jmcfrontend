@@ -36,6 +36,8 @@ import Endfinancier from './pages/loang/Endfinancier';
 import AddDeveloper from './pages/AddDeveloper';
 import Templates from './pages/Templates';
 import AddTemplates from './pages/AddTemplates';
+import AddParty from './pages/AddParty';
+import PartyList from './pages/PartyList';
 
 const AppWithDarkMode: React.FC = () => {
   const { darkMode } = useDarkMode(); // Access dark mode state
@@ -81,6 +83,8 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/adddeveloper" element={<AddDeveloper />} />
         <Route path="/templates" element={<Templates />} />
         <Route path="/addtemplates" element={<AddTemplates />} />
+        <Route path="/addparty" element={<AddParty />} />
+        <Route path="/partylist" element={<PartyList />} />
       </Routes>
     </ThemeProvider>
   );
