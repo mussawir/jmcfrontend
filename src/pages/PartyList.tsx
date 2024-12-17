@@ -4,18 +4,18 @@ import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 
-function Developer() {
-  const [developers, setDevelopers] = useState<any[]>([]); // Array to hold developer data
+function Party() {
+  const [parties, setParties] = useState<any[]>([]); // Array to hold developer data
   const navigate = useNavigate(); // Hook to navigate between pages
 
   useEffect(() => {
     // Fetch the developers list on component mount
-    const fetchDevelopers = async () => {
+    const fetchParties = async () => {
       try {
-        const response = await fetch('http://localhost:5000/get-developers');
+        const response = await fetch('http://localhost:5000/get-parties');
         const result = await response.json();
         if (response.ok) {
-          setDevelopers(result); // Assume result is an array of developers
+          setParties(result); // Assume result is an array of developers
         } else {
           console.error(result);
         }
@@ -24,11 +24,11 @@ function Developer() {
       }
     };
 
-    fetchDevelopers();
+    fetchParties();
   }, []);
 
   // Handle navigating to the add developer page
-  const handleAddDeveloperClick = () => {
+  const handleAddPartyClick = () => {
     navigate('/addparty'); // Navigate to the AddDeveloper page
   };
 
@@ -51,7 +51,7 @@ function Developer() {
           <Button
             variant="contained"
             color="primary"
-            onClick={handleAddDeveloperClick} // Trigger navigate
+            onClick={handleAddPartyClick} // Trigger navigate
           >
             Add New
           </Button>
@@ -62,48 +62,28 @@ function Developer() {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Developer Name</TableCell>
-                <TableCell>Company reg num</TableCell>
-                <TableCell>Reg office address</TableCell>
-                <TableCell>Place of business add</TableCell>
-                <TableCell>File ref num</TableCell>
-                <TableCell>Licence num</TableCell>
-                <TableCell>Contact num</TableCell>
-                <TableCell>Email</TableCell>
-                {/* <TableCell>Incharge name</TableCell> */}
-                {/* <TableCell>Incharge contact</TableCell>
-                <TableCell>Incharge email</TableCell>
-                <TableCell>Authorised 1st sign</TableCell>
-                <TableCell>Authorised 1st identity num</TableCell>
-                <TableCell>Authorised 1st sign design</TableCell>
-                <TableCell>Authorised 2nd sign name</TableCell>
-                <TableCell>Authorised 2nd identity card num</TableCell>
-                <TableCell>Authorised 2nd sign design</TableCell> */}
-                {/* Add other table headers as needed */}
+                {/* <TableCell>ID Type</TableCell> */}
+                {/* <TableCell>ID Party</TableCell> */}
+                <TableCell>Old IC</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell>Title</TableCell>
+                <TableCell>Address One</TableCell>
+                <TableCell>Address Two</TableCell>
+                <TableCell>Address Three</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {developers.map((developer, index) => (
+              {parties.map((party, index) => (
                 <TableRow key={index}>
-                  <TableCell>{developer.developerName}</TableCell>
-                  <TableCell>{developer.developerCompanyRegistrationNumber}</TableCell>
-                  <TableCell>{developer.developerRegisteredOfficeAddress}</TableCell>
-                  <TableCell>{developer.developerPlaceOfBusinessAddress}</TableCell>
-                  <TableCell>{developer.developerFileReferenceNumber}</TableCell>
-                  <TableCell>{developer.developerLicenceNumber}</TableCell>
-                  <TableCell>{developer.developerContactNumber}</TableCell>
-                  <TableCell>{developer.developerEmailAddress}</TableCell>
-                  {/*<TableCell>{developer.developerPersonInChargeName}</TableCell>
-                  <TableCell>{developer.developerPersonInChargeContactNumber}</TableCell>
-                  <TableCell>{developer.developerPersonInChargeEmailAddress}</TableCell>
-                  <TableCell>{developer.developerAuthorised1stSignatoryName}</TableCell>
-                  <TableCell>{developer.developerAuthorised1stIdentityCardNumber}</TableCell>
-                  <TableCell>{developer.developerAuthorised1stSignatoryDesignation}</TableCell>
-                  <TableCell>{developer.developerAuthorised2ndSignatoryName}</TableCell>
-                  <TableCell>{developer.developerAuthorised2ndIdentityCardNumber}</TableCell>
-                  <TableCell>{developer.developerAuthorised2ndSignatoryDesignation}</TableCell> */}
-                  {/* Add other table data as needed */}
-                </TableRow>
+                  {/* <TableCell>{party.idType}</TableCell> */}
+                  {/* <TableCell>{party.id}</TableCell> */}
+                  <TableCell>{party.oldIc}</TableCell>
+                  <TableCell>{party.name}</TableCell>
+                  <TableCell>{party.selectTitle}</TableCell>
+                  <TableCell>{party.addressOne}</TableCell>
+                  <TableCell>{party.addressTwo}</TableCell>
+                  <TableCell>{party.addressThree}</TableCell>
+              </TableRow>
               ))}
             </TableBody>
           </Table>
@@ -113,4 +93,4 @@ function Developer() {
   );
 }
 
-export default Developer;
+export default Party;

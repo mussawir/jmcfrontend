@@ -15,6 +15,7 @@ function Projects() {
   const [projectName, setProjectName] = useState('');
   const [createdAt, setCreatedAt] = useState('');
   const [description, setDescription] = useState('');
+  const [matterCode, setMatterCode] = useState("");
   const [propertyName, setPropertyName] = useState('');
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [selectedValue, setSelectedValue] = useState<string>('Select Schedule');
@@ -40,8 +41,12 @@ function Projects() {
   const [developerMessage, setDeveloperMessage] = useState<string | null>(null); // State to store the message from backend
   const [loading, setLoading] = useState(false); // State to track loading status
   const navigate = useNavigate();
-  // Handle the "Bring data" button click
 
+  useEffect(() => {
+    // Generate random 4-digit number on page load
+    const randomCode = Math.floor(1000 + Math.random() * 9000);
+    setMatterCode(randomCode.toString());
+  }, []);
 
   const handleFetchDeveloperMessage = async () => {
  
@@ -166,6 +171,8 @@ function Projects() {
     formData.append('createdAt', createdAt);
     formData.append('description', description);
     formData.append('propertyName', propertyName);
+    formData.append('matterCode', matterCode);
+    formData.append('selectedDeveloper', selectedDeveloper);
 
     try {
       const response = await axios.post("http://127.0.0.1:5000/createproject", formData, {
@@ -175,7 +182,7 @@ function Projects() {
       });
 
       console.log("File uploaded successfully:", response.data);
-      alert(response.data.message);
+      // alert(response.data.message);
       setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
       const props = { project_id: response.data.id};
       navigate('/spaH', { state: props });
@@ -313,6 +320,14 @@ function Projects() {
                 </Typography>
               )}
                   <TextField
+                    // label="Matter Code"
+                    fullWidth
+                    variant="outlined"
+                    value={matterCode}
+                    onChange={(e) => setMatterCode(e.target.value)}
+                    sx={{ marginBottom: 2, marginTop: 2, }}
+                  />
+                  <TextField
                     label="Project Name"
                     fullWidth
                     variant="outlined"
@@ -320,15 +335,7 @@ function Projects() {
                     onChange={(e) => setProjectName(e.target.value)}
                     sx={{ marginBottom: 2, marginTop: 2, }}
                   />
-                  {/* <Box id="result">  
-                  {backendMessage ? (
-                    <Typography variant="body1">{backendMessage}</Typography>
-                  ) : (
-                    <Typography variant="body1">No message yet.</Typography>
-                  )}
-                  </Box> */}
                   <TextField
-                    // label="Builder Name"
                     type="date"
                     fullWidth
                     variant="outlined"
@@ -344,15 +351,6 @@ function Projects() {
                     onChange={(e) => setDescription(e.target.value)}
                     sx={{ marginBottom: 2 }}
                   />
-                  {/* <TextField
-                    label="Property Name"
-                    fullWidth
-                    variant="outlined"
-                    value={propertyName}
-                    onChange={(e) => setPropertyName(e.target.value)}
-                    sx={{ marginBottom: 2 }}
-                  /> */}
-
                   <Button variant="outlined" component="label" fullWidth sx={{ marginBottom: 2 }}>
                     Select File
                     <input type="file" id="fileInput" name="file" hidden accept="application/pdf" onChange={handleFileChange} />
