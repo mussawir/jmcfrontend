@@ -294,23 +294,16 @@ function AddPrty() {
                     variant="outlined"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    sx={{ marginBottom: 2 }}
                   />
-                  <FormControl fullWidth sx={{ mt: 2, mb: 2 }}>
-                  <InputLabel id="developer-dropdown-label">Select Title</InputLabel>
-                  <Select
-                    labelId="developer-dropdown-label"
-                    id="developer-dropdown"
-                    value={selectTitle}
-                    onChange={(event) => setSelectTitle(event.target.value)}
+                <TextField
                     label="Select Title"
-                  >
-                    {developers.map((developer) => (
-                    <MenuItem key={developer.id} value={developer.developerName}>
-                      {developer.developerName}
-                    </MenuItem>
-                  ))}
-                  </Select>
-                </FormControl>
+                    fullWidth
+                    variant="outlined"
+                    value={selectTitle}
+                    onChange={(e) => setSelectTitle(e.target.value)}
+                    sx={{ marginBottom: 2 }}
+                  />
                 
             <Typography variant="h5" gutterBottom>
                 Contact Information
@@ -355,102 +348,54 @@ function AddPrty() {
                     onChange={(e) => setTown(e.target.value)}
                     sx={{ marginBottom: 2 }}
                   />
-                <FormControl fullWidth sx={{ mb: 2 }}>
-                  <InputLabel id="developer-dropdown-label">State</InputLabel>
-                  <Select
-                    labelId="developer-dropdown-label"
-                    id="developer-dropdown"
+                <TextField
+                    label="State"
+                    fullWidth
+                    variant="outlined"
                     value={state}
-                    onChange={(event) => setState(event.target.value)}
-                    label="Select State"
-                  >
-                    {developers.map((developer) => (
-                    <MenuItem key={developer.id} value={developer.developerName}>
-                      {developer.developerName}
-                    </MenuItem>
-                  ))}
-                  </Select>
-                </FormControl>
-                <FormControl fullWidth sx={{ mb: 2 }}>
-                  <InputLabel id="developer-dropdown-label">Country</InputLabel>
-                  <Select
-                    labelId="developer-dropdown-label"
-                    id="developer-dropdown"
+                    onChange={(e) => setState(e.target.value)}
+                    sx={{ marginBottom: 2 }}
+                  />
+                <TextField
+                    label="State"
+                    fullWidth
+                    variant="outlined"
                     value={country}
-                    onChange={(event) => setCountry(event.target.value)}
-                    label="Select Country"
-                  >
-                    {developers.map((developer) => (
-                    <MenuItem key={developer.id} value={developer.developerName}>
-                      {developer.developerName}
-                    </MenuItem>
-                  ))}
-                  </Select>
-                </FormControl>
-                <FormControl fullWidth sx={{ mb: 2 }}>
-                  <InputLabel id="developer-dropdown-label">Phone Home</InputLabel>
-                  <Select
-                    labelId="developer-dropdown-label"
-                    id="developer-dropdown"
+                    onChange={(e) => setCountry(e.target.value)}
+                    sx={{ marginBottom: 2 }}
+                  />
+                <TextField
+                    label="Phone Home"
+                    fullWidth
+                    variant="outlined"
                     value={phoneHome}
-                    onChange={(event) => setPhoneHome(event.target.value)}
-                    label="Phone Number"
-                  >
-                    {developers.map((developer) => (
-                    <MenuItem key={developer.id} value={developer.developerName}>
-                      {developer.developerName}
-                    </MenuItem>
-                  ))}
-                  </Select>
-                </FormControl>
-                <FormControl fullWidth sx={{ mb: 2 }}>
-                  <InputLabel id="developer-dropdown-label">Phone Office</InputLabel>
-                  <Select
-                    labelId="developer-dropdown-label"
-                    id="developer-dropdown"
-                    value={phoneOffice}
-                    onChange={(event) => setPhoneOffice(event.target.value)}
+                    onChange={(e) => setPhoneHome(e.target.value)}
+                    sx={{ marginBottom: 2 }}
+                  />
+                <TextField
                     label="Phone Office"
-                  >
-                    {developers.map((developer) => (
-                    <MenuItem key={developer.id} value={developer.developerName}>
-                      {developer.developerName}
-                    </MenuItem>
-                  ))}
-                  </Select>
-                </FormControl>
-                <FormControl fullWidth sx={{ mb: 2 }}>
-                  <InputLabel id="developer-dropdown-label">Phone Mobile</InputLabel>
-                  <Select
-                    labelId="developer-dropdown-label"
-                    id="developer-dropdown"
-                    value={phoneMobile}
-                    onChange={(event) => setPhoneMobile(event.target.value)}
+                    fullWidth
+                    variant="outlined"
+                    value={phoneOffice}
+                    onChange={(e) => setPhoneOffice(e.target.value)}
+                    sx={{ marginBottom: 2 }}
+                  />
+                <TextField
                     label="Phone Mobile"
-                  >
-                    {developers.map((developer) => (
-                    <MenuItem key={developer.id} value={developer.developerName}>
-                      {developer.developerName}
-                    </MenuItem>
-                  ))}
-                  </Select>
-                </FormControl>
-                <FormControl fullWidth sx={{ mb: 2 }}>
-                  <InputLabel id="developer-dropdown-label">Fax</InputLabel>
-                  <Select
-                    labelId="developer-dropdown-label"
-                    id="developer-dropdown"
-                    value={fax}
-                    onChange={(event) => setFax(event.target.value)}
+                    fullWidth
+                    variant="outlined"
+                    value={phoneOffice}
+                    onChange={(e) => setPhoneMobile(e.target.value)}
+                    sx={{ marginBottom: 2 }}
+                  />
+                <TextField
                     label="Fax"
-                  >
-                    {developers.map((developer) => (
-                    <MenuItem key={developer.id} value={developer.developerName}>
-                      {developer.developerName}
-                    </MenuItem>
-                  ))}
-                  </Select>
-                </FormControl>
+                    fullWidth
+                    variant="outlined"
+                    value={fax}
+                    onChange={(e) => setFax(e.target.value)}
+                    sx={{ marginBottom: 2 }}
+                  />
                 <TextField
                     label="Email Address"
                     fullWidth
@@ -480,70 +425,38 @@ function AddPrty() {
                     onChange={(e) => setRegisteredOffice(e.target.value)}
                     sx={{ marginTop: 2, }}
                   />
-                <FormControl fullWidth sx={{ mt: 2 }}>
-                  <InputLabel id="developer-dropdown-label">Director 1</InputLabel>
-                  <Select
-                    labelId="developer-dropdown-label"
-                    id="developer-dropdown"
-                    value={directorOne}
-                    onChange={(event) => setDirectorOne(event.target.value)}
+                <TextField
                     label="Director 1"
-                  >
-                    {developers.map((developer) => (
-                    <MenuItem key={developer.id} value={developer.developerName}>
-                      {developer.developerName}
-                    </MenuItem>
-                  ))}
-                  </Select>
-                </FormControl>
-                <FormControl fullWidth sx={{ mt: 2, mb: 2 }}>
-                  <InputLabel id="developer-dropdown-label">Director 2</InputLabel>
-                  <Select
-                    labelId="developer-dropdown-label"
-                    id="developer-dropdown"
-                    value={directorTwo}
-                    onChange={(event) => setDirectorTwo(event.target.value)}
+                    fullWidth
+                    variant="outlined"
+                    value={directorOne}
+                    onChange={(e) => setDirectorOne(e.target.value)}
+                    sx={{ marginTop: 2 }}
+                  />
+                <TextField
                     label="Director 2"
-                  >
-                    {developers.map((developer) => (
-                    <MenuItem key={developer.id} value={developer.developerName}>
-                      {developer.developerName}
-                    </MenuItem>
-                  ))}
-                  </Select>
-                </FormControl>
-                <FormControl fullWidth sx={{ mb: 2 }}>
-                  <InputLabel id="developer-dropdown-label">Director 3</InputLabel>
-                  <Select
-                    labelId="developer-dropdown-label"
-                    id="developer-dropdown"
-                    value={directorThree}
-                    onChange={(event) => setDirectorThree(event.target.value)}
+                    fullWidth
+                    variant="outlined"
+                    value={directorTwo}
+                    onChange={(e) => setDirectorTwo(e.target.value)}
+                    sx={{ marginTop: 2 }}
+                  />
+                <TextField
                     label="Director 3"
-                  >
-                    {developers.map((developer) => (
-                    <MenuItem key={developer.id} value={developer.developerName}>
-                      {developer.developerName}
-                    </MenuItem>
-                  ))}
-                  </Select>
-                </FormControl>
-                <FormControl fullWidth sx={{ mb: 2 }}>
-                  <InputLabel id="developer-dropdown-label">Secratory</InputLabel>
-                  <Select
-                    labelId="developer-dropdown-label"
-                    id="developer-dropdown"
-                    value={secratory}
-                    onChange={(event) => setSecratory(event.target.value)}
+                    fullWidth
+                    variant="outlined"
+                    value={directorThree}
+                    onChange={(e) => setDirectorThree(e.target.value)}
+                    sx={{ marginTop: 2 }}
+                  />
+                <TextField
                     label="Secratory"
-                  >
-                    {developers.map((developer) => (
-                    <MenuItem key={developer.id} value={developer.developerName}>
-                      {developer.developerName}
-                    </MenuItem>
-                  ))}
-                  </Select>
-                </FormControl>
+                    fullWidth
+                    variant="outlined"
+                    value={secratory}
+                    onChange={(e) => setSecratory(e.target.value)}
+                    sx={{ marginTop: 2, marginBottom: 2, }}
+                  />
                   <TextField
                     label="Contact Person"
                     fullWidth
@@ -552,70 +465,38 @@ function AddPrty() {
                     onChange={(e) => setContactPerson(e.target.value)}
                     sx={{ marginBottom: 2 }}
                   />
-                <FormControl fullWidth sx={{ mb: 2 }}>
-                  <InputLabel id="developer-dropdown-label">Optional Information</InputLabel>
-                  <Select
-                    labelId="developer-dropdown-label"
-                    id="developer-dropdown"
-                    value={optionalInformation}
-                    onChange={(event) => setOptionalInformation(event.target.value)}
+                <TextField
                     label="Optional Information"
-                  >
-                    {developers.map((developer) => (
-                    <MenuItem key={developer.id} value={developer.developerName}>
-                      {developer.developerName}
-                    </MenuItem>
-                  ))}
-                  </Select>
-                </FormControl>
-                  <FormControl fullWidth sx={{ mb: 2 }}>
-                  <InputLabel id="developer-dropdown-label">More Information</InputLabel>
-                  <Select
-                    labelId="developer-dropdown-label"
-                    id="developer-dropdown"
+                    fullWidth
+                    variant="outlined"
+                    value={optionalInformation}
+                    onChange={(e) => setOptionalInformation(e.target.value)}
+                    sx={{ marginBottom: 2 }}
+                  />
+                <TextField
+                    label="More Information"
+                    fullWidth
+                    variant="outlined"
                     value={moreInformation}
-                    onChange={(event) => setMoreInformation(event.target.value)}
-                    label="Select Developer"
-                  >
-                    {developers.map((developer) => (
-                    <MenuItem key={developer.id} value={developer.developerName}>
-                      {developer.developerName}
-                    </MenuItem>
-                  ))}
-                  </Select>
-                </FormControl>
-                <FormControl fullWidth sx={{ mb: 2 }}>
-                  <InputLabel id="developer-dropdown-label">Extra Addresses</InputLabel>
-                  <Select
-                    labelId="developer-dropdown-label"
-                    id="developer-dropdown"
+                    onChange={(e) => setMoreInformation(e.target.value)}
+                    sx={{ marginBottom: 2 }}
+                  />
+                <TextField
+                    label="Extra Addresses"
+                    fullWidth
+                    variant="outlined"
                     value={extraAddress}
-                    onChange={(event) => setExtraAddress(event.target.value)}
-                    label="Extra address"
-                  >
-                    {developers.map((developer) => (
-                    <MenuItem key={developer.id} value={developer.developerName}>
-                      {developer.developerName}
-                    </MenuItem>
-                  ))}
-                  </Select>
-                </FormControl>
-                <FormControl fullWidth sx={{ mb: 2 }}>
-                  <InputLabel id="developer-dropdown-label">Office Use</InputLabel>
-                  <Select
-                    labelId="developer-dropdown-label"
-                    id="developer-dropdown"
+                    onChange={(e) => setExtraAddress(e.target.value)}
+                    sx={{ marginBottom: 2 }}
+                  />
+                <TextField
+                    label="Office Use"
+                    fullWidth
+                    variant="outlined"
                     value={officeUse}
-                    onChange={(event) => setOfficeUse(event.target.value)}
-                    label="Select Developer"
-                  >
-                    {developers.map((developer) => (
-                    <MenuItem key={developer.id} value={developer.developerName}>
-                      {developer.developerName}
-                    </MenuItem>
-                  ))}
-                  </Select>
-                </FormControl>
+                    onChange={(e) => setOfficeUse(e.target.value)}
+                    sx={{ marginBottom: 2 }}
+                  />
                 <TextField
                     label="Entered by"
                     fullWidth

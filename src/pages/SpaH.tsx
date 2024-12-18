@@ -190,13 +190,13 @@ function DeveloperForm() {
                                 justifyContent: 'center',
                             }}
                         >
-             {backendMessage && (
-        <div style={{ marginTop: -300 }}>
-           <Typography variant="body1" color="textSecondary">
-           <div style={{ color: 'black' }}>{backendMessage}</div>  
-           </Typography>  
-        </div>
-      )}
+                        {backendMessage && (
+                          <div style={{ marginTop: -300 }}>
+                            <Typography variant="body1" color="textSecondary">
+                            <div style={{ color: 'black' }}>{backendMessage}</div>  
+                            </Typography>  
+                          </div>
+                        )}
                            
                           {/* <Typography variant="body1" color="textSecondary">
                               Placeholder for additional content
