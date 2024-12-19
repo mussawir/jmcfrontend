@@ -40,7 +40,7 @@ function AddTemplates() {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3, maxWidth: 400, marginLeft: 70, marginTop: 10, border: 'solid 1px' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3, maxWidth: 400, marginLeft: 70, marginTop: 10, border: 'solid 1px', borderColor:'light-grey' }}>
         <DrawerComponent />
         <HeaderComponent />
       <Typography variant="h4" gutterBottom>
