@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, TextField, Button, DialogActions } from '@mui/material';
+import { Box, Typography, TextField, Button, DialogActions, CircularProgress } from '@mui/material';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
 
@@ -23,6 +23,7 @@ function AddDeveloper() {
   const [developerAuthorised2ndIdentityCardNumber, setDeveloperAuthorised2ndIdentityCardNumber] = useState('');
   const [developerAuthorised2ndSignatureDesignation, setDeveloperAuthorised2ndSignatureDesignation] = useState('');
   const [uploadFile, setUploadFile] = useState<File | null>(null);
+  // const [loading, setLoading] = useState(true);
   
   type KeyValue = { key: string; value: string };
   const convertToArray = (text:string): KeyValue[] => {
@@ -100,6 +101,7 @@ function AddDeveloper() {
   });
  
   const UploadFile = async (event: React.FormEvent) => {
+    // setLoading(true);
     if (!uploadFile) {
       alert('Please select a file');
       return;
@@ -179,6 +181,7 @@ function AddDeveloper() {
               }
         });
         console.log(developerDetails);
+        // setLoading(false);
       }
       
       // if (response.ok) {
@@ -190,6 +193,7 @@ function AddDeveloper() {
       else {
         alert('Failed to add document');
         console.error(result);
+        // setLoading(false);
       }
     } catch (error) {
       console.error('Error:', error);
