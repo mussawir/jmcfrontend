@@ -123,11 +123,56 @@ function AddDeveloper() {
         console.log(`${detail.key}: ${detail.value}`);
         const key = detail.key;
         switch (key) {
-                case 'developerName':
+                case 'Developer Name':
                   setDeveloperName(detail.value);
                   break;
                 case 'Registration Number':
                   setDeveloperCompanyRegistrationNumber(detail.value);
+                  break;
+                case 'Office Address':
+                  setDeveloperRegisteredOfficeAddress(detail.value);
+                  break;
+                case 'Business Address':
+                  setDeveloperPlaceOfBusinessAddress(detail.value);
+                  break;
+                case 'File Reference Number':
+                  setDeveloperFileReferenceNumber(detail.value);
+                  break;
+                case 'License Number':
+                  setDeveloperLicenceNumber(detail.value);
+                  break;
+                case 'NRIC No':
+                  setDeveloperContactNumber(detail.value);
+                  break;
+                case 'Email Address':
+                  setDeveloperEmailAddress(detail.value);
+                  break;
+                case 'Person in Charge Name':
+                  setDeveloperPersonInChargeName(detail.value);
+                  break;
+                case 'Person in Charge Contact Number':
+                  setDeveloperPersonInChargeContactNumber(detail.value);
+                  break;
+                case 'Person in Charge Email Address':
+                  setDeveloperPersonInChargeEmailAddress(detail.value);
+                  break;
+                case '1st Authorised Signature Name':
+                  setDeveloperAuthorised1stSignatureName(detail.value);
+                  break;
+                case '1st Authorised Identity Card Number':
+                  setDeveloperAuthorised1stIdentityCardNumber(detail.value);
+                  break;
+                case '1st Authorised Signature Designation':
+                  setDeveloperAuthorised1stSignatureDesignation(detail.value);
+                  break;
+                case '2nd Authorised Signature Name':
+                  setDeveloperAuthorised2ndSignatureName(detail.value);
+                  break;
+                case '2nd Authorised Identity Card Number':
+                  setDeveloperAuthorised2ndIdentityCardNumber(detail.value);
+                  break;
+                case '2nd Authorised Signature Designation':
+                  setDeveloperAuthorised2ndSignatureDesignation(detail.value);
                   break;
                 default:
                   break;
@@ -135,8 +180,6 @@ function AddDeveloper() {
         });
         console.log(developerDetails);
       }
-<<<<<<< HEAD
-=======
       
       // if (response.ok) {
       //   const responseData = result.response;
@@ -144,7 +187,6 @@ function AddDeveloper() {
       //     
       //   });
       // }
->>>>>>> 1e0f23e89a04f7a30562615ea78e3c1c7abbac08
       else {
         alert('Failed to add document');
         console.error(result);
