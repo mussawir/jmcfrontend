@@ -23,6 +23,18 @@ function AddDeveloper() {
   const [developerAuthorised2ndIdentityCardNumber, setDeveloperAuthorised2ndIdentityCardNumber] = useState('');
   const [developerAuthorised2ndSignatoryDesignation, setDeveloperAuthorised2ndSignatoryDesignation] = useState('');
   const [uploadFile, setUploadFile] = useState<File | null>(null);
+  
+  type KeyValue = { key: string; value: string };
+  const convertToArray = (text:string): KeyValue[] => {
+    return text
+      .trim()
+      .split('\n')
+      .map(line => {
+        const [key, ...value] = line.split(':');
+        return { key: key.trim(), value: value.join(':').trim() };
+      });
+  };
+  
   const handleAddDeveloperSubmit = async () => {
     const developerData = {
       developerName,
@@ -85,23 +97,28 @@ function AddDeveloper() {
       if (response.ok) {
         // alert(result);
         // alert(`Result: ${result.response}`);
-        setDeveloperName(result.response);
-        setDeveloperCompanyRegistrationNumber(result.response);
+        const developerDetails = convertToArray(result.response);
+        developerDetails.forEach(detail => {
+        console.log(`${detail.key}: ${detail.value}`);
+        const key = detail.key;
+        switch (key) {
+                case 'developerName':
+                  setDeveloperName(detail.value);
+                  break;
+                case 'Registration Number':
+                  setDeveloperCompanyRegistrationNumber(detail.value);
+                  break;
+                default:
+                  break;
+              }
+        });
+        console.log(developerDetails);
       }
       
       // if (response.ok) {
       //   const responseData = result.response;
       //   Object.entries(responseData).forEach(([key, value]) => {
-      //     switch (key) {
-      //       case 'developerName':
-      //         setDeveloperName(value as string);
-      //         break;
-      //       case 'developerCompanyRegistrationNumber':
-      //         setDeveloperCompanyRegistrationNumber(value as string);
-      //         break;
-      //       default:
-      //         break;
-      //     }
+      //     
       //   });
       // }
       else {
