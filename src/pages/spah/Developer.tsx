@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Grid, CssBaseline, Paper, TextField, Button, CircularProgress  } from '@mui/material';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
@@ -151,7 +151,7 @@ function DeveloperForm() {
       try {
         const response = await axios.post("http://127.0.0.1:5000/search-developer", formData, {
           headers: {
-            "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
+            "Content-Type": "multipart/form-data",
           },
         });
         setBackendMessage(response.data.response);

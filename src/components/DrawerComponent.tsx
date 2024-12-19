@@ -78,7 +78,7 @@ const DrawerComponent = () => {
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f' }} />
+  {/* <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f' }} /> */}
       </ListItem>
 
       <ListItem
@@ -108,11 +108,11 @@ const DrawerComponent = () => {
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
-        Projects
+        Metters
       </Typography>
     }
   />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} />
+  {/* <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} /> */}
 </ListItem>
 {/* <ListItem */}
   {/* // component={Link}
@@ -147,9 +147,10 @@ const DrawerComponent = () => {
   /> */}
   {/* <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }} /> */}
 {/* </ListItem> */}
+
 <ListItem
   component={Link}
-  to="/developerbuilder"
+  to="/partylist"
   onClick={() => handleItemClick('Projects')} // Set 'Projects' as the selected item
   sx={{
     backgroundColor: selectedItem === 'Projects' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
@@ -174,11 +175,43 @@ const DrawerComponent = () => {
           color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
         }}
       >
-        Developers
+        Party
       </Typography>
     }
   />
   {/* <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} /> */}
+</ListItem>
+<ListItem
+  component={Link}
+  to=""
+  onClick={() => handleItemClick('Projects')} // Set 'Projects' as the selected item
+  sx={{
+    backgroundColor: selectedItem === 'Projects' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
+    color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }}>
+    <FolderCopyOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: 'sans-serif',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
+        }}
+      >
+        Loans
+      </Typography>
+    }
+  />
 </ListItem>
 <ListItem
   component={Link}
@@ -213,8 +246,39 @@ const DrawerComponent = () => {
   />
   {/* <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }} /> */}
 </ListItem>
-
 <ListItem
+  component={Link}
+  to="/developerbuilder"
+  onClick={() => handleItemClick('Projects')} // Set 'Projects' as the selected item
+  sx={{
+    backgroundColor: selectedItem === 'Projects' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
+    color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
+    },
+  }}
+>
+  <ListItemIcon sx={{ color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }}>
+    <FolderCopyOutlinedIcon />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <Typography
+        sx={{
+          fontSize: '14px', 
+          fontWeight: 400,
+          lineHeight: 1.5,
+          letterSpacing: '0.5px',
+          fontFamily: 'sans-serif',
+          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
+        }}
+      >
+        Developers
+      </Typography>
+    }
+  />
+</ListItem>
+{/* <ListItem
   component={Link}
   to="/loanH"
   onClick={() => handleItemClick('LoanH')} // Set 'Cards' as the selected item
@@ -228,8 +292,8 @@ const DrawerComponent = () => {
 >
   <ListItemIcon sx={{ color: selectedItem === 'Cards' ? '#1E90FF' : '#5f5f5f' }}>
     <CardGiftcardOutlinedIcon />
-  </ListItemIcon>
-  <ListItemText
+  </ListItemIcon> */}
+  {/* <ListItemText
     primary={
       <Typography
         sx={{
@@ -244,11 +308,11 @@ const DrawerComponent = () => {
         Loan H
       </Typography>
     }
-  />
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Cards' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem>
+  /> */}
+  {/* <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Cards' ? '#1E90FF' : '#5f5f5f' }} /> */}
+{/* </ListItem> */}
 
-<ListItem
+{/* <ListItem
   component={Link}
   to="/spaG"
   onClick={() => handleItemClick('SPAG')}
@@ -280,9 +344,9 @@ const DrawerComponent = () => {
     }
   />
   <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem>
+</ListItem> */}
 
-<ListItem
+{/* <ListItem
   component={Link}
   to="/LoanG"
   onClick={() => handleItemClick('LoanG')}
@@ -314,9 +378,9 @@ const DrawerComponent = () => {
     }
   />
   <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Components' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem>
+</ListItem> */}
 
-<ListItem
+{/* <ListItem
   component={Link}
   to="/commercialspa"
   onClick={() => handleItemClick('Commercialspa')}
@@ -348,11 +412,11 @@ const DrawerComponent = () => {
     }
   />
   <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Icons' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem>
+</ListItem> */}
 
 {/* <p style={{ color: '#B0B0B0', textAlign: 'left', marginLeft: 20 }}>Forms & Tables</p> */}
 
-<ListItem
+{/* <ListItem
   component={Link}
   to="/commercialloan"
   onClick={() => handleItemClick('Commercialloan')}
@@ -384,9 +448,9 @@ const DrawerComponent = () => {
     }
   />
   <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Forms' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem>
+</ListItem> */}
 
-<ListItem
+{/* <ListItem
   component={Link}
   to="/subSpaT"
   onClick={() => handleItemClick('SubSpaT')}
@@ -418,9 +482,9 @@ const DrawerComponent = () => {
     }
   />
   <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SubSpaT' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem>
+</ListItem> */}
 
-<ListItem
+{/* <ListItem
   component={Link}
   to="/subLoanT"
   onClick={() => handleItemClick('SubLoanT')}
@@ -452,9 +516,9 @@ const DrawerComponent = () => {
     }
   />
   <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SubSpaT' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem>
+</ListItem> */}
 
-<ListItem
+{/* <ListItem
   component={Link}
   to="/subSpaMT"
   onClick={() => handleItemClick('SubSpaMT')}
@@ -486,9 +550,9 @@ const DrawerComponent = () => {
     }
   />
   <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SubSpaT' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem>
+</ListItem> */}
 
-<ListItem
+{/* <ListItem
   component={Link}
   to="/subLoanMT"
   onClick={() => handleItemClick('subLoanMT')}
@@ -520,7 +584,7 @@ const DrawerComponent = () => {
     }
   />
   <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'subLoanMT' ? '#1E90FF' : '#5f5f5f' }} />
-</ListItem>
+</ListItem> */}
 
         {/* Add other new sections as needed */}
       </List>
