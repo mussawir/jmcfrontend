@@ -135,8 +135,6 @@ function AddDeveloper() {
         });
         console.log(developerDetails);
       }
-<<<<<<< HEAD
-=======
       
       // if (response.ok) {
       //   const responseData = result.response;
@@ -144,7 +142,6 @@ function AddDeveloper() {
       //     
       //   });
       // }
->>>>>>> 1e0f23e89a04f7a30562615ea78e3c1c7abbac08
       else {
         alert('Failed to add document');
         console.error(result);
