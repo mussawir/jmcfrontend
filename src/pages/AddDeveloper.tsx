@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Box, Typography, TextField, Button, DialogActions } from '@mui/material';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
-import axios from 'axios';
 
 function AddDeveloper() {
   // State hooks for each form field
@@ -23,10 +22,7 @@ function AddDeveloper() {
   const [developerAuthorised2ndSignatoryName, setDeveloperAuthorised2ndSignatoryName] = useState('');
   const [developerAuthorised2ndIdentityCardNumber, setDeveloperAuthorised2ndIdentityCardNumber] = useState('');
   const [developerAuthorised2ndSignatoryDesignation, setDeveloperAuthorised2ndSignatoryDesignation] = useState('');
-  const [value, setValue] = useState(0);
   const [uploadFile, setUploadFile] = useState<File | null>(null);
-  const [Message, setMessage] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
   const handleAddDeveloperSubmit = async () => {
     const developerData = {
       developerName,
@@ -70,13 +66,6 @@ function AddDeveloper() {
       alert('An error occurred');
     }
   };
-  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target;
-  //   setFormData((prev) => ({
-  //       ...prev,
-  //       [name]: value,
-  //   }));
-  // };
   const UploadFile = async (event: React.FormEvent) => {
     if (!uploadFile) {
       alert('Please select a file');
@@ -91,16 +80,31 @@ function AddDeveloper() {
         method: 'POST',
         body: formData,
       });
-  
       const result = await response.json();
       console.log(result)
       if (response.ok) {
-        alert(result);
-        // setFormData(prevFormData => ({
-        //   ...prevFormData,
-        //   developerName: response.result.response
-        // }));
-      } else {
+        // alert(result);
+        // alert(`Result: ${result.response}`);
+        setDeveloperName(result.response);
+        setDeveloperCompanyRegistrationNumber(result.response);
+      }
+      
+      // if (response.ok) {
+      //   const responseData = result.response;
+      //   Object.entries(responseData).forEach(([key, value]) => {
+      //     switch (key) {
+      //       case 'developerName':
+      //         setDeveloperName(value as string);
+      //         break;
+      //       case 'developerCompanyRegistrationNumber':
+      //         setDeveloperCompanyRegistrationNumber(value as string);
+      //         break;
+      //       default:
+      //         break;
+      //     }
+      //   });
+      // }
+      else {
         alert('Failed to add document');
         console.error(result);
       }
@@ -109,45 +113,6 @@ function AddDeveloper() {
       alert('An error occurred');
     }
   }
-
-  // const getData = async (prompt:string, selection:any) => {
-  //   const formData = new FormData();
-  //   // Add project details to the form data
-  //   formData.append('searchQuery', prompt);
-    
-  //   try {
-  //     const response = await axios.post("http://127.0.0.1:5000/add-document", formData, {
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //       },
-  //     });
-  //     setMessage(response.result.response);
-  //     switch (selection) {
-  //       case 'DName':
-  //           setFormData(prevFormData => ({
-  //               ...prevFormData,
-  //               developerName: response.result.response
-  //             }));
-  //             break
-  //       case 'RNumber':
-  //           setFormData(prevFormData => ({
-  //               ...prevFormData,
-  //               developerCompanyRegistrationNumber: response.data.response
-  //             }));
-  //             break     
-  //       default:
-  //         return <div>Invalid mode</div>;
-  //     }
-  
-  //   //   setanalysis_result(response.result.extracted_data); // Extracted data is in 'extracted_data'
-  //   } catch (error) {
-  //     alert('Form submitting error');
-  //     console.error("Error submitting form:", error);
-  //   }
-  // };
-  //   useEffect(() => {
-  //   processSearch();       
-  //   }, []);
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3, maxWidth: 1000, marginLeft: 40, marginTop: 10, }}>
         <DrawerComponent />
@@ -163,14 +128,11 @@ function AddDeveloper() {
                   setUploadFile(e.target.files[0]);
               }
           }}
-          style={{ marginBottom: '16px', width: '180px', }}
+          style={{ marginBottom: '16px', width: '180px', margin: '10px', }}
       />
       <Button variant="contained" color="primary" onClick={UploadFile}>
         Fill From Doc
       </Button>
-      {/* <Button variant="contained" color="primary" onClick={handleAddDeveloperSubmit}>
-        Fill document data
-      </Button> */}
       </Box>
       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
       <TextField
