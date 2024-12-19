@@ -16,12 +16,12 @@ function AddDeveloper() {
   const [developerPersonInChargeName, setDeveloperPersonInChargeName] = useState('');
   const [developerPersonInChargeContactNumber, setDeveloperPersonInChargeContactNumber] = useState('');
   const [developerPersonInChargeEmailAddress, setDeveloperPersonInChargeEmailAddress] = useState('');
-  const [developerAuthorised1stSignatoryName, setDeveloperAuthorised1stSignatoryName] = useState('');
+  const [developerAuthorised1stSignatureName, setDeveloperAuthorised1stSignatureName] = useState('');
   const [developerAuthorised1stIdentityCardNumber, setDeveloperAuthorised1stIdentityCardNumber] = useState('');
-  const [developerAuthorised1stSignatoryDesignation, setDeveloperAuthorised1stSignatoryDesignation] = useState('');
-  const [developerAuthorised2ndSignatoryName, setDeveloperAuthorised2ndSignatoryName] = useState('');
+  const [developerAuthorised1stSignatureDesignation, setDeveloperAuthorised1stSignatureDesignation] = useState('');
+  const [developerAuthorised2ndSignatureName, setDeveloperAuthorised2ndSignatureName] = useState('');
   const [developerAuthorised2ndIdentityCardNumber, setDeveloperAuthorised2ndIdentityCardNumber] = useState('');
-  const [developerAuthorised2ndSignatoryDesignation, setDeveloperAuthorised2ndSignatoryDesignation] = useState('');
+  const [developerAuthorised2ndSignatureDesignation, setDeveloperAuthorised2ndSignatureDesignation] = useState('');
   const [uploadFile, setUploadFile] = useState<File | null>(null);
   const handleAddDeveloperSubmit = async () => {
     const developerData = {
@@ -36,12 +36,12 @@ function AddDeveloper() {
       developerPersonInChargeName,
       developerPersonInChargeContactNumber,
       developerPersonInChargeEmailAddress,
-      developerAuthorised1stSignatoryName,
+      developerAuthorised1stSignatureName,
       developerAuthorised1stIdentityCardNumber,
-      developerAuthorised1stSignatoryDesignation,
-      developerAuthorised2ndSignatoryName,
+      developerAuthorised1stSignatureDesignation,
+      developerAuthorised2ndSignatureName,
       developerAuthorised2ndIdentityCardNumber,
-      developerAuthorised2ndSignatoryDesignation,
+      developerAuthorised2ndSignatureDesignation,
     };
 
     try {
@@ -66,6 +66,27 @@ function AddDeveloper() {
       alert('An error occurred');
     }
   };
+
+  const [formData, setFormData] = useState({
+    developerName: '',
+    developerCompanyRegistrationNumber: '',
+    developerRegisteredOfficeAddress: '',
+    developerPlaceOfBusinessAddress: '',
+    developerFileReferenceNumber: '',
+    developerLicenceNumber: '',
+    developerContactNumber: '',
+    developerEmailAddress: '',
+    developerPersonInChargeName: '',
+    developerPersonInChargeContactNumber: '',
+    developerPersonInChargeEmailAddress: '',
+    developerAuthorised1stSignatureName: '',
+    developerAuthorised1stIdentityCardNumber: '',
+    developerAuthorised1stSignatureDesignation: '',
+    developerAuthorised2ndSignatureName: '',
+    developerAuthorised2ndIdentityCardNumber: '',
+    developerAuthorised2ndSignatureDesignation: '',
+  });
+ 
   const UploadFile = async (event: React.FormEvent) => {
     if (!uploadFile) {
       alert('Please select a file');
@@ -88,22 +109,6 @@ function AddDeveloper() {
         setDeveloperName(result.response);
         setDeveloperCompanyRegistrationNumber(result.response);
       }
-      
-      // if (response.ok) {
-      //   const responseData = result.response;
-      //   Object.entries(responseData).forEach(([key, value]) => {
-      //     switch (key) {
-      //       case 'developerName':
-      //         setDeveloperName(value as string);
-      //         break;
-      //       case 'developerCompanyRegistrationNumber':
-      //         setDeveloperCompanyRegistrationNumber(value as string);
-      //         break;
-      //       default:
-      //         break;
-      //     }
-      //   });
-      // }
       else {
         alert('Failed to add document');
         console.error(result);
@@ -234,17 +239,17 @@ function AddDeveloper() {
         sx={{ marginBottom: 2 }}
       />
       <TextField
-        label="1st Authorised Signatory Name"
+        label="1st Authorised Signature Name"
         fullWidth
         variant="outlined"
-        value={developerAuthorised1stSignatoryName}
-        onChange={(e) => setDeveloperAuthorised1stSignatoryName(e.target.value)}
+        value={developerAuthorised1stSignatureName}
+        onChange={(e) => setDeveloperAuthorised1stSignatureName(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
       </Box>
       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
       <TextField
-        label="1st Authorised Signatory Identity Card Number"
+        label="1st Authorised Identity Card Number"
         fullWidth
         variant="outlined"
         value={developerAuthorised1stIdentityCardNumber}
@@ -252,25 +257,25 @@ function AddDeveloper() {
         sx={{ marginBottom: 2 }}
       />
       <TextField
-        label="1st Authorised Signatory Designation"
+        label="1st Authorised Signature Designation"
         fullWidth
         variant="outlined"
-        value={developerAuthorised1stSignatoryDesignation}
-        onChange={(e) => setDeveloperAuthorised1stSignatoryDesignation(e.target.value)}
+        value={developerAuthorised1stSignatureDesignation}
+        onChange={(e) => setDeveloperAuthorised1stSignatureDesignation(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
       </Box>
       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
       <TextField
-        label="2nd Authorised Signatory Name"
+        label="2nd Authorised Signature Name"
         fullWidth
         variant="outlined"
-        value={developerAuthorised2ndSignatoryName}
-        onChange={(e) => setDeveloperAuthorised2ndSignatoryName(e.target.value)}
+        value={developerAuthorised2ndSignatureName}
+        onChange={(e) => setDeveloperAuthorised2ndSignatureName(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
       <TextField
-        label="2nd Authorised Signatory Identity Card Number"
+        label="2nd Authorised Identity Card Number"
         fullWidth
         variant="outlined"
         value={developerAuthorised2ndIdentityCardNumber}
@@ -280,11 +285,11 @@ function AddDeveloper() {
       </Box>
       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
       <TextField
-        label="2nd Authorised Signatory Designation"
+        label="2nd Authorised Signature Designation"
         fullWidth
         variant="outlined"
-        value={developerAuthorised2ndSignatoryDesignation}
-        onChange={(e) => setDeveloperAuthorised2ndSignatoryDesignation(e.target.value)}
+        value={developerAuthorised2ndSignatureDesignation}
+        onChange={(e) => setDeveloperAuthorised2ndSignatureDesignation(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
       </Box>
