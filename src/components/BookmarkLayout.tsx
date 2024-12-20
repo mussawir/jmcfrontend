@@ -1,0 +1,314 @@
+import React, { useRef, useMemo } from "react";
+import DrawerComponent from '../components/DrawerComponent';
+import HeaderComponent from '../components/HeaderComponent';
+import { Box, Typography, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, TextField, Button } from '@mui/material';
+
+const BookmarkLayout: React.FC = () => {
+  const sections = [
+    {
+      heading: "Purchaser",
+      fields: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+    },
+    {
+      heading: "Purchaser individual(s)",
+      fields: [
+        "1st Purchaser name",
+        "1st Purchaser passport number",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser passport number",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser passport number",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "Purchaser correspondance address",
+        "Purchaser correspondance address in Malaysia",
+      ],
+    },
+    {
+      heading: "Purchaser company",
+      fields: [
+        "Purchaser name",
+        "Purchaser company registration number",
+        "Purchaser registered office address",
+        "Purchaser place of business address",
+        "Purchaser contact number",
+        "Purchaser email address",
+        "Purchaser person in charge name",
+        "Purchaser person in charge name contact number",
+        "Purchaser person in charge email address",
+        "Purchaser authorised 1st signatory name",
+        "Purchaser authorised 1st identity card number",
+        "Purchaser authorised 1st signatory designation",
+        "Purchaser authorised 2nd signatory name",
+        "Purchaser authorised 2nd identity card number",
+        "Purchaser authorised 2nd signatory designation",
+      ],
+    },
+    {
+      heading: "Proprietor",
+      fields: [
+        "Proprietor name",
+        "Proprietor company registration number",
+        "Proprietor registered office address",
+        "Proprietor place of business address",
+        "Proprietor authorised 1st signatory name",
+        "Proprietor authorised 1st identity card number",
+        "Proprietor authorised 2nd signatory name",
+        "Proprietor authorised 2nd identity card number",
+        "Proprietor PA number registered in High Court",
+        "Proprietor Noting PA registered in which land registry",
+      ],
+    },
+    {
+      heading: "Master Chargee / Assignee",
+      fields: [
+        "Master Chargee / Assignee name",
+        "Master Chargee / Assignee company registration number",
+        "Master Chargee / Assignee registered office address",
+        "Master Chargee / Assignee place of business address",
+        "Master Chargee / Assignee file reference number",
+        "Master Chargee / Assignee contact number",
+        "Master Chargee / Assignee email address",
+        "Master Chargee / Assignee person in charge name",
+        "Master Chargee / Assignee person in charge name contact number",
+        "Master Chargee / Assignee person in charge email address",
+      ],
+    },
+    {
+      heading: "Master title",
+      fields: [
+        "Title type - Freehold / Leasehold",
+        "Title description - H.S.(D) / H.S.(M) / PN / PM / Geran / Geran Mukim",
+        "Title number",
+        "Lot/PT number",
+        "Mukim/Bandar/Pekan",
+        "Daerah",
+        "Negeri",
+        "If leasehold, numbers of years and expiration date",
+        "Land area",
+      ],
+    },
+    {
+      heading: "Project",
+      fields: [
+        "Type of building",
+        "Project name",
+        "Phase number",
+        "Advertisement & sale permit number",
+        "Approved layout plan reference number",
+        "Local municipal name",
+      ],
+    },
+    {
+      heading: "Property details",
+      fields: [
+        "Parcel/unit/lot number",
+        "Storey number",
+        "Building/block number",
+        "Parcel/unit/lot area",
+        "Parcel/unit/lot built up area",
+        "Accessory parcel(s) number",
+        "Accessory parcel(s) building/block number",
+        "Air-cond ledge parcel(s) number",
+        "Car park lot(s) number",
+        "Car park building/block number",
+      ],
+    },
+    {
+      heading: "HDA",
+      fields: [
+        "Developer HDA number",
+        "Bank/financial institution name",
+        "Bank/financial institution registered office address",
+        "Bank/financial institution file reference number",
+      ],
+    },
+    {
+      heading: "Developer solicitors",
+      fields: [
+        "Developer solicitors name",
+        "Developer solicitors office address",
+        "Developer solicitors file reference number",
+        "Developer solicitors contact number",
+        "Developer solicitors email address",
+        "Developer attestation lawyer name",
+        "Developer attestation lawyer identity card number",
+        "Developer solicitors lawyer & clerk in charge contact number",
+        "Developer solicitors lawyer and clerk in charge email address",
+      ],
+    },
+    {
+      heading: "Purchaser solicitors",
+      fields: [
+        "Purchaser solicitors name",
+        "Purchaser solicitors office address",
+        "Purchaser solicitors file reference number",
+        "Purchaser solicitors contact number",
+        "Purchaser solicitors email address",
+        "Purchaser attestation lawyer name",
+        "Purchaser attestation lawyer identity card number",
+        "Purchaser solicitors lawyer & clerk in charge contact number",
+        "Purchaser solicitors lawyer and clerk in charge email address",
+      ],
+    },
+    {
+      heading: "Purchase price",
+      fields: [
+        "Purchase price in words",
+        "Purchase price in numerics",
+      ],
+    },
+    {
+      heading: "Adjustment rate",
+      fields: [
+        "Adjustment rate in words",
+        "Adjustment rate in numerics",
+      ],
+    },
+    {
+      heading: "Developer stakeholder",
+      fields: [
+        "Developer stakeholder name",
+        "Developer stakeholder office address",
+        "Developer stakeholder file reference number",
+        "Developer stakeholder contact number",
+        "Developer stakeholder email address",
+        "Developer stakeholder person in charge contact number",
+        "Developer stakeholder person in charge email address",
+      ],
+    },
+    {
+      heading: "Summary of price (in RM)",
+      fields: [
+        "Approved purchase price in numerics",
+        "Developer discount in numerics",
+        "Bumiputera lot discount in numerics",
+        "Government initiative in numerics",
+      ],
+    },
+    {
+      heading: "Schedule of payment(s)",
+      fields: [
+        "Purchase price (10%) in numerics",
+        "Purchase price (15%) in numerics",
+        "Purchase price (5%) in numerics",
+        "Purchase price (2.5%) in numerics",
+        "Purchase price (17.5%) in numerics",
+        "Purchase price (100%) in numerics",
+      ],
+    },
+  ];
+
+  const sectionRefs = useMemo(
+    () => sections.map(() => React.createRef<HTMLDivElement>()),
+    []
+  );
+
+  const scrollToSection = (index: number) => {
+    sectionRefs[index].current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <DrawerComponent />
+      <HeaderComponent />
+
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Toolbar />
+      <div
+        style={{
+          position: "fixed",
+          top: 65,
+          width: "80%",
+          backgroundColor: "#f8f9fa",
+          boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+          zIndex: 1000,
+          padding: "10px 20px",
+        }}
+      >
+        {sections.map((section, index) => (
+          <a
+            key={index}
+            onClick={() => scrollToSection(index)}
+            style={{
+              margin: "5px 15px",
+              padding: "5px 18px",
+              cursor: "pointer",
+              color: "#007bff",
+            }}
+          >
+            {section.heading}
+          </a>
+        ))}
+      </div>
+
+      <div style={{ marginTop: "60px" }}>
+  {sections.map((section, index) => (
+    <div
+      key={index}
+      ref={sectionRefs[index]}
+      style={{
+        minHeight: "70vh",
+        padding: "20px",
+        marginTop: "100px",
+        borderBottom: "1px solid #ddd",
+      }}
+    >
+      <h2>{section.heading}</h2>
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {section.fields.map((field, fieldIndex) => (
+          <div
+            key={fieldIndex}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              flex: "1 1 50%", // Adjusts width to 50% for 2 columns
+              padding: "10px",
+              boxSizing: "border-box",
+            }}
+          >
+            <input
+              type="text"
+              placeholder={field}
+              style={{ padding: "10px", width: "100%" }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
+
+    </Box>
+    </Box>
+  );
+};
+
+export default BookmarkLayout;

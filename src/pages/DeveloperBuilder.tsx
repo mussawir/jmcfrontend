@@ -86,8 +86,8 @@ function Developer() {
               {developers.map((developer, index) => (
                 <TableRow key={index}>
                   <TableCell>{developer.developerName}</TableCell>
-                  <TableCell>{developer.developerCompanyRegistrationNumber}</TableCell>
-                  <TableCell>{developer.developerRegisteredOfficeAddress}</TableCell>
+                  <TableCell>{developer.companyRegNum}</TableCell>
+                  <TableCell>{developer.registeredOfficeAdd}</TableCell>
                   <TableCell>{developer.developerPlaceOfBusinessAddress}</TableCell>
                   <TableCell>{developer.developerFileReferenceNumber}</TableCell>
                   <TableCell>{developer.developerLicenceNumber}</TableCell>

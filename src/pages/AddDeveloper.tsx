@@ -6,8 +6,8 @@ import HeaderComponent from '../components/HeaderComponent';
 function AddDeveloper() {
   // State hooks for each form field
   const [developerName, setDeveloperName] = useState('');
-  const [developerCompanyRegistrationNumber, setDeveloperCompanyRegistrationNumber] = useState('');
-  const [developerRegisteredOfficeAddress, setDeveloperRegisteredOfficeAddress] = useState('');
+  const [companyRegNum, setCompanyRegNum] = useState('');
+  const [registeredOfficeAdd, setRegisteredOfficeAdd] = useState('');
   const [developerPlaceOfBusinessAddress, setDeveloperPlaceOfBusinessAddress] = useState('');
   const [developerFileReferenceNumber, setDeveloperFileReferenceNumber] = useState('');
   const [developerLicenceNumber, setDeveloperLicenceNumber] = useState('');
@@ -23,7 +23,7 @@ function AddDeveloper() {
   const [developerAuthorised2ndIdentityCardNumber, setDeveloperAuthorised2ndIdentityCardNumber] = useState('');
   const [developerAuthorised2ndSignatureDesignation, setDeveloperAuthorised2ndSignatureDesignation] = useState('');
   const [uploadFile, setUploadFile] = useState<File | null>(null);
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   
   type KeyValue = { key: string; value: string };
   const convertToArray = (text:string): KeyValue[] => {
@@ -39,8 +39,8 @@ function AddDeveloper() {
   const handleAddDeveloperSubmit = async () => {
     const developerData = {
       developerName,
-      developerCompanyRegistrationNumber,
-      developerRegisteredOfficeAddress,
+      companyRegNum,
+      registeredOfficeAdd,
       developerPlaceOfBusinessAddress,
       developerFileReferenceNumber,
       developerLicenceNumber,
@@ -80,36 +80,15 @@ function AddDeveloper() {
     }
   };
 
-  const [formData, setFormData] = useState({
-    developerName: '',
-    developerCompanyRegistrationNumber: '',
-    developerRegisteredOfficeAddress: '',
-    developerPlaceOfBusinessAddress: '',
-    developerFileReferenceNumber: '',
-    developerLicenceNumber: '',
-    developerContactNumber: '',
-    developerEmailAddress: '',
-    developerPersonInChargeName: '',
-    developerPersonInChargeContactNumber: '',
-    developerPersonInChargeEmailAddress: '',
-    developerAuthorised1stSignatureName: '',
-    developerAuthorised1stIdentityCardNumber: '',
-    developerAuthorised1stSignatureDesignation: '',
-    developerAuthorised2ndSignatureName: '',
-    developerAuthorised2ndIdentityCardNumber: '',
-    developerAuthorised2ndSignatureDesignation: '',
-  });
- 
   const UploadFile = async (event: React.FormEvent) => {
-    // setLoading(true);
     if (!uploadFile) {
       alert('Please select a file');
       return;
     }
     event.preventDefault();
+    setLoading(true);
     const formData = new FormData();
     formData.append('uploadFile', uploadFile);
-  
     try {
       const response = await fetch('http://localhost:5000/add-document', {
         method: 'POST',
@@ -129,10 +108,10 @@ function AddDeveloper() {
                   setDeveloperName(detail.value);
                   break;
                 case 'Registration Number':
-                  setDeveloperCompanyRegistrationNumber(detail.value);
+                  setCompanyRegNum(detail.value);
                   break;
                 case 'Office Address':
-                  setDeveloperRegisteredOfficeAddress(detail.value);
+                  setRegisteredOfficeAdd(detail.value);
                   break;
                 case 'Business Address':
                   setDeveloperPlaceOfBusinessAddress(detail.value);
@@ -181,19 +160,12 @@ function AddDeveloper() {
               }
         });
         console.log(developerDetails);
-        // setLoading(false);
+        setLoading(false);
       }
-      
-      // if (response.ok) {
-      //   const responseData = result.response;
-      //   Object.entries(responseData).forEach(([key, value]) => {
-      //     
-      //   });
-      // }
       else {
         alert('Failed to add document');
         console.error(result);
-        // setLoading(false);
+        setLoading(false);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -201,26 +173,39 @@ function AddDeveloper() {
     }
   }
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3, maxWidth: 1000, marginLeft: 40, marginTop: 10, }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3, maxWidth: 1000, marginLeft: 33, marginTop: 10, }}>
         <DrawerComponent />
         <HeaderComponent />
       <Typography variant="h4" gutterBottom>
         Add New Developer
       </Typography>
-      <Box>
-      <input
+      <Box
+        sx={{ 
+          display: 'flex', 
+          justifyContent: 'flex-end', 
+          alignItems: 'center', 
+          width: '100%', 
+          marginBottom: 2 
+        }}
+      >
+        <input
           type="file"
           onChange={(e) => {
-              if (e.target.files && e.target.files.length > 0) {
-                  setUploadFile(e.target.files[0]);
-              }
+            if (e.target.files && e.target.files.length > 0) {
+              setUploadFile(e.target.files[0]);
+            }
           }}
-          style={{ marginBottom: '16px', width: '180px', margin: '10px', }}
-      />
-      <Button variant="contained" color="primary" onClick={UploadFile}>
-        Fill From Doc
-      </Button>
+          style={{ marginRight: '16px', width: '180px' }}
+        />
+        <Button variant="contained" color="primary" onClick={UploadFile}>
+          Fill From Doc
+        </Button>
       </Box>
+      {loading && (
+        <Box sx={{ display: 'flex', marginTop: 2, marginBottom: 2 }}>
+            <CircularProgress />
+        </Box>
+      )}
       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
       <TextField
         label="Developer Name"
@@ -234,8 +219,8 @@ function AddDeveloper() {
         label="Company Registration Number"
         fullWidth
         variant="outlined"
-        value={developerCompanyRegistrationNumber}
-        onChange={(e) => setDeveloperCompanyRegistrationNumber(e.target.value)}
+        value={companyRegNum}
+        onChange={(e) => setCompanyRegNum(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
       </Box>
@@ -244,8 +229,8 @@ function AddDeveloper() {
         label="Registered Office Address"
         fullWidth
         variant="outlined"
-        value={developerRegisteredOfficeAddress}
-        onChange={(e) => setDeveloperRegisteredOfficeAddress(e.target.value)}
+        value={registeredOfficeAdd}
+        onChange={(e) => setRegisteredOfficeAdd(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
       <TextField

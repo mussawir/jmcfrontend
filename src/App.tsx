@@ -39,6 +39,7 @@ import AddTemplates from './pages/AddTemplates';
 import AddParty from './pages/AddParty';
 import PartyList from './pages/PartyList';
 import DeveloperForm from './pages/spah/Developer';
+import BookmarkLayout from './components/BookmarkLayout';
 
 const AppWithDarkMode: React.FC = () => {
   const { darkMode } = useDarkMode(); // Access dark mode state
@@ -87,6 +88,7 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/addparty" element={<AddParty />} />
         <Route path="/partylist" element={<PartyList />} />
         <Route path="/developer" element={<DeveloperForm />} />
+        <Route path="/bookmark" element={<BookmarkLayout />} />
 
       </Routes>
     </ThemeProvider>

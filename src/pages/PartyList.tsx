@@ -20,7 +20,7 @@ function Party() {
           console.error(result);
         }
       } catch (error) {
-        console.error('Error fetching developers:', error);
+        console.error('Error fetching party:', error);
       }
     };
 

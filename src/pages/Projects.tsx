@@ -10,6 +10,10 @@ interface Developer {
   id: string;
   developerName: string;
 }
+interface Party {
+  id: string;
+  name: string;
+}
 function Projects() {
   // Project form states
   const [projectName, setProjectName] = useState('');
@@ -20,24 +24,19 @@ function Projects() {
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [selectedValue, setSelectedValue] = useState<string>('Select Schedule');
   const [showForm, setShowForm] = useState<boolean>(false);
-  // const [projects, setProjects] = useState<any[]>([]);
   const [analysis_result, setanalysis_result] = useState<any | null>(null);  // To store extracted data as an object
   const [questions, setQuestions] = useState(Array(10).fill(''));
   const [backendMessage, setBackendMessage] = useState<string | null>(null);
   const [developers, setDevelopers] = useState<Developer[]>([]);
   const [selectedDeveloper, setSelectedDeveloper] = useState<string>('');
-
-  // const navigate = useNavigate();
-
-  // Developer form states
+  const [parties, setParties] = useState<Party[]>([]);
+  const [selectParty, setSelectParty] = useState<string>('');
   const [developerName, setDeveloperName] = useState('John Doe');
   const [companyName, setCompanyName] = useState('JMC'); 
   const [license, setLicense] = useState('LIC-12345678'); 
   const [address, setAddress] = useState('123 Main St, New York, NY');
-
   const [developerNamePopup, setDeveloperNamePopup] = useState(false);
   const [companyNamePopup, setCompanyNamePopup] = useState(false);
-
   const [developerMessage, setDeveloperMessage] = useState<string | null>(null); // State to store the message from backend
   const [loading, setLoading] = useState(false); // State to track loading status
   const navigate = useNavigate();
@@ -48,100 +47,70 @@ function Projects() {
     setMatterCode(randomCode.toString());
   }, []);
 
-  const handleFetchDeveloperMessage = async () => {
+  // const handleFetchDeveloperMessage = async () => {
  
-    setLoading(true); // Set loading state to true when fetching
-    try {
-      const response = await axios.get('http://127.0.0.1:5000/developer-message'); // Adjust the endpoint accordingly
-      setDeveloperMessage(response.data.message); // Store the response message
-      // alert(response.data.message);
-    } catch (error) {
-      console.error('Error fetching message:', error);
-      alert("working");
-      setDeveloperMessage('Failed to fetch message');
-    } finally {
-      setLoading(false); // Reset loading state after fetch is complete
-    }
-  };
-
-
-  
-  const handleBringCompanyName = () => {
-    setCompanyNamePopup(true);
-    setTimeout(() => {
-      setCompanyNamePopup(false);
-    }, 5000); // Hide after 5 seconds
-  };
-
-  const MyComponent = () => {
-    const [message, setMessage] = useState('');
-    const [error, setError] = useState(null);
-  
-    useEffect(() => {
-      // Fetching message from the backend
-      fetch('http://127.0.0.1:5000/extractdn')
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log('API response data:', data);
-          setMessage(data.message); // Set the message
-        })
-        .catch((error) => {
-          console.error('Error fetching data:', error);
-          setError(error.message); // Set the error message
-        });
-    }, []);
-  
-    const handleAlert = () => {
-      alert(message);  // Show message in an box
-    };
-  
-    return (
-      <div>
-        {/* Show message if available */}
-        {message && (
-          <div>
-            <Typography variant="h6">API Response:</Typography>
-            <Typography variant="body1">{message}</Typography>
-            <Button variant="contained" onClick={handleAlert}>Alert Message</Button>
-          </div>
-        )}
-  
-        {/* Show error message if there is an error */}
-        {error && (
-          <div>
-            <Typography variant="h6">Error:</Typography>
-            <Typography variant="body1">{error}</Typography>
-          </div>
-        )}
-      </div>
-    );
-  };
-  
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      setPdfFile(event.target.files[0]);
-    } else {
-      setPdfFile(null);
-    }
-  };
-
-  // Handle schedule selection
-  // const handleSelectChange = (event: SelectChangeEvent<string>) => {
-  //   const value = event.target.value;
-  //   setSelectedValue(value);
-
-  //   // When Schedule H is selected, show the form
-  //   if (value === 'Schedule H') {
-  //     setShowForm(true);
-  //   } else {
-  //     setShowForm(false);
+  //   setLoading(true); // Set loading state to true when fetching
+  //   try {
+  //     const response = await axios.get('http://127.0.0.1:5000/developer-message'); // Adjust the endpoint accordingly
+  //     setDeveloperMessage(response.data.message); // Store the response message
+  //     // alert(response.data.message);
+  //   } catch (error) {
+  //     console.error('Error fetching message:', error);
+  //     alert("working");
+  //     setDeveloperMessage('Failed to fetch message');
+  //   } finally {
+  //     setLoading(false); // Reset loading state after fetch is complete
   //   }
+  // };
+
+
+  // const MyComponent = () => {
+  //   const [message, setMessage] = useState('');
+  //   const [error, setError] = useState(null);
+  
+  //   useEffect(() => {
+  //     // Fetching message from the backend
+  //     fetch('http://127.0.0.1:5000/extractdn')
+  //       .then((response) => {
+  //         if (!response.ok) {
+  //           throw new Error('Network response was not ok');
+  //         }
+  //         return response.json();
+  //       })
+  //       .then((data) => {
+  //         console.log('API response data:', data);
+  //         setMessage(data.message); // Set the message
+  //       })
+  //       .catch((error) => {
+  //         console.error('Error fetching data:', error);
+  //         setError(error.message); // Set the error message
+  //       });
+  //   }, []);
+  
+  //   const handleAlert = () => {
+  //     alert(message);  // Show message in an box
+  //   };
+  
+  //   return (
+  //     <div>
+  //       {/* Show message if available */}
+  //       {message && (
+  //         <div>
+  //           <Typography variant="h6">API Response:</Typography>
+  //           <Typography variant="body1">{message}</Typography>
+  //           <Button variant="contained" onClick={handleAlert}>Alert Message</Button>
+  //         </div>
+  //       )}
+  
+  //       {/* Show error message if there is an error */}
+  //       {error && (
+  //         <div>
+  //           <Typography variant="h6">Error:</Typography>
+  //           <Typography variant="body1">{error}</Typography>
+  //         </div>
+  //       )}
+  //     </div>
+  //   );
   // };
 
   const handleSelectChange = (event: SelectChangeEvent<string>) => {
@@ -158,21 +127,13 @@ function Projects() {
     
     const formData = new FormData();
 
-    const fileInput = document.getElementById("fileInput") as HTMLInputElement;
-    if (fileInput?.files?.length) {
-      formData.append("file", fileInput.files[0]); // Append the file to the FormData object
-    } else {
-      alert("Please select a file.");
-      return;
-    }
-
-    // Add project details to the form data
+    // formData.append('selectedDeveloper', selectedDeveloper);
+    formData.append('selectParty', selectParty);
     formData.append('projectName', projectName);
     formData.append('createdAt', createdAt);
     formData.append('description', description);
     formData.append('propertyName', propertyName);
     formData.append('matterCode', matterCode);
-    formData.append('selectedDeveloper', selectedDeveloper);
 
     try {
       const response = await axios.post("http://127.0.0.1:5000/createproject", formData, {
@@ -185,57 +146,18 @@ function Projects() {
       // alert(response.data.message);
       setanalysis_result(response.data.extracted_data); // Extracted data is in 'extracted_data'
       const props = { project_id: response.data.id};
-      navigate('/spaH', { state: props });
+      navigate('/bookmark', { state: props });
     } catch (error) {
       alert('Form submitting error');
       console.error("Error submitting form:", error);
     }
-  };
-
-// Will use this function to bring back data from the next step
-  const handleProjectSubmit2 = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-   
-    try {
-      const response = await axios.get("http://127.0.0.1:5000/test", {
-        headers: {
-          "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
-        },
-      });
-     console.log("response:", response.data.message);
-     alert(response.data.message);  
-     setBackendMessage(response.data.message); // Set the message from the backend
-
-    } catch (error) {
-      alert('Form submitting error');
-      console.error("Error submitting form:", error);
-      setBackendMessage('Failed to fetch message');
-    }
-  };
-  // Update form fields if extracted data exists
-  useEffect(() => {
-    if (analysis_result) {
-      setProjectName(analysis_result.projectName || '');
-      setCreatedAt(analysis_result.createdAt || '');
-      setDescription(analysis_result.description || '');
-      setPropertyName(analysis_result.propertyName || '');
-      setQuestions(analysis_result.questions || Array(2).fill('')); // Update the questions if extracted data is present
-    }
-  }, [analysis_result]);
-
-  // Handle question input change
-  const handleQuestionChange = (index: number, value: string) => {
-    const newQuestions = [...questions];
-    newQuestions[index] = value;
-    setQuestions(newQuestions);
   };
 
   useEffect(() => {
     const fetchDevelopers = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/get-developers'); // Replace with your API endpoint
-        setDevelopers(response.data); // Assuming the response is an array of developers
+        const response = await axios.get('http://localhost:5000/get-developers');
+        setDevelopers(response.data); 
       } catch (error) {
         console.error('Error fetching developers:', error);
       }
@@ -244,7 +166,18 @@ function Projects() {
     fetchDevelopers();
   }, []);
 
+  useEffect(() => {
+    const fetchParty = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/get-parties'); 
+        setParties(response.data);
+      } catch (error) {
+        console.error('Error fetching developers:', error);
+      }
+    };
 
+    fetchParty();
+  }, []);
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -258,7 +191,7 @@ function Projects() {
         {/* Show Projects Management headline only when form is not visible */}
         {!showForm && (
           <Typography variant="h4" gutterBottom>
-            Projects Management
+            Matters Management
           </Typography>
         )}
 
@@ -274,14 +207,14 @@ function Projects() {
               onChange={handleSelectChange}
             >
               <MenuItem value="Select Schedule">Select Schedule</MenuItem>
-              <MenuItem value="Schedule A">Schedule A</MenuItem>
+              <MenuItem value="Schedule H">Schedule H</MenuItem>
+              <MenuItem value="Schedule G">Schedule G</MenuItem>
+              {/* <MenuItem value="Schedule A">Schedule A</MenuItem>
               <MenuItem value="Schedule B">Schedule B</MenuItem>
               <MenuItem value="Schedule C">Schedule C</MenuItem>
               <MenuItem value="Schedule D">Schedule D</MenuItem>
               <MenuItem value="Schedule E">Schedule E</MenuItem>
-              <MenuItem value="Schedule F">Schedule F</MenuItem>
-              <MenuItem value="Schedule G">Schedule G</MenuItem>
-              <MenuItem value="Schedule H">Schedule H</MenuItem>
+              <MenuItem value="Schedule F">Schedule F</MenuItem> */}
             </Select>
           </FormControl>
         )}
@@ -292,12 +225,12 @@ function Projects() {
             <Box sx={{ marginTop: 2, width: 400, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Box sx={{ width: '100%', textAlign: 'center' }}>
                 <Typography variant="h5" gutterBottom>
-                  Enter Matter Details
+                  Create New Matter
                 </Typography>
 
                 <form onSubmit={handleProjectSubmit}>
                  {/* Dropdown */}
-                 <FormControl fullWidth>
+                 {/* <FormControl fullWidth>
                   <InputLabel id="developer-dropdown-label">Select Developer</InputLabel>
                   <Select
                     labelId="developer-dropdown-label"
@@ -318,6 +251,28 @@ function Projects() {
                 <Typography variant="body2" color="error">
                   No developers found. Please check your API connection.
                 </Typography>
+              )} */}
+                 <FormControl fullWidth sx={{ marginTop: 2, }} >
+                  <InputLabel id="developer-dropdown-label">Party</InputLabel>
+                  <Select
+                    labelId="developer-dropdown-label"
+                    id="developer-dropdown"
+                    value={selectParty}
+                    onChange={(event) => setSelectParty(event.target.value)}
+                    label="Select Developer"
+                  >
+                    {parties.map((party) => (
+                    <MenuItem key={party.id} value={party.name}>
+                      {party.name}
+                    </MenuItem>
+                  ))}
+                  </Select>
+                </FormControl>
+
+                {parties.length === 0 && (
+                <Typography variant="body2" color="error">
+                  No parties found. Please check your API connection.
+                </Typography>
               )}
                   <TextField
                     // label="Matter Code"
@@ -325,7 +280,7 @@ function Projects() {
                     variant="outlined"
                     value={matterCode}
                     onChange={(e) => setMatterCode(e.target.value)}
-                    sx={{ marginBottom: 2, marginTop: 2, }}
+                    sx={{ marginTop: 2, }}
                   />
                   <TextField
                     label="Project Name"
@@ -351,10 +306,10 @@ function Projects() {
                     onChange={(e) => setDescription(e.target.value)}
                     sx={{ marginBottom: 2 }}
                   />
-                  <Button variant="outlined" component="label" fullWidth sx={{ marginBottom: 2 }}>
+                  {/* <Button variant="outlined" component="label" fullWidth sx={{ marginBottom: 2 }}>
                     Select File
                     <input type="file" id="fileInput" name="file" hidden accept="application/pdf" onChange={handleFileChange} />
-                  </Button>
+                  </Button> */}
                   <Button variant="contained" color="primary" fullWidth type="submit">
                     Create Matter
                   </Button>
