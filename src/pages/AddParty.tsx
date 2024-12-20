@@ -54,7 +54,7 @@ function AddPrty() {
     
     const formData = new FormData();
 
-    formData.append('selectedDeveloper', selectedDeveloper);
+    // formData.append('selectedDeveloper', selectedDeveloper);
     formData.append("selectIdType", selectIdType);
     formData.append("id", id);
     formData.append("oldIc", oldIc);
@@ -128,7 +128,7 @@ function AddPrty() {
             <form onSubmit={partySubmit}>
             <Box sx={{ marginTop: 2, width: 1000, display: 'flex', justifyContent: 'flex-start'}}>
             <Box sx={{ width: '100%', textAlign: 'left' }}>
-                <Typography variant="h5" gutterBottom>
+                {/* <Typography variant="h5" gutterBottom>
                   Developer Information
                 </Typography>
                   <FormControl fullWidth>
@@ -152,7 +152,7 @@ function AddPrty() {
                     <Typography variant="body2" color="error">
                       No developers found. Please check your API connection.
                     </Typography>
-                  )}
+                  )} */}
                 <Typography variant="h5" gutterBottom>
                   Personal Information
                 </Typography>
