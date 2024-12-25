@@ -3,6 +3,8 @@ import { Box, Typography, Toolbar, CssBaseline, Table, TableHead, TableBody, Tab
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 function Party() {
   const [parties, setParties] = useState<any[]>([]); // Array to hold developer data
@@ -30,6 +32,22 @@ function Party() {
   // Handle navigating to the add developer page
   const handleAddPartyClick = () => {
     navigate('/addparty'); // Navigate to the AddDeveloper page
+  };
+
+  const handleGeneratePdf = async (party) => {
+    const pdfContent = `
+      Party Details:
+      Name: ${party.name}
+      Title: ${party.selectTitle}
+      Old IC: ${party.oldIc}
+      Address One: ${party.addressOne}
+      Address Two: ${party.addressTwo}
+      Address Three: ${party.addressThree}
+    `;
+
+    const doc = new jsPDF();
+    doc.text(pdfContent, 10, 10);
+    doc.save(`${party.name}_Details.pdf`);
   };
 
   return (
@@ -70,6 +88,7 @@ function Party() {
                 <TableCell>Address One</TableCell>
                 <TableCell>Address Two</TableCell>
                 <TableCell>Address Three</TableCell>
+                <TableCell>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -83,6 +102,16 @@ function Party() {
                   <TableCell>{party.addressOne}</TableCell>
                   <TableCell>{party.addressTwo}</TableCell>
                   <TableCell>{party.addressThree}</TableCell>
+                  <TableCell>
+                    {/* Generate PDF Button */}
+                    {/* <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => handleGeneratePdf(party)}
+                    >
+                      Gen Report
+                    </Button> */}
+                  </TableCell>
               </TableRow>
               ))}
             </TableBody>

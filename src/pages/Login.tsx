@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Card, TextField, Button, CircularProgress, Typography, Box } from '@mui/material';
 import api from '../api';
 import logojmc from "../images/jmcvc-dark-logo.png";
+import { useAuth } from "../pages/AuthContext";
 
 interface LoginResponse {
   access_token: string;  // Define the shape of the response data
@@ -19,17 +20,21 @@ function LoginForm() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-
+  
     try {
-      const response = await api.post<LoginResponse>('/login', { email, password });
-
+      console.log("Email:", email, "Password:", password); // Debugging
+  
+      const response = await api.post('/login', { email, password });
+  
       if (response.status === 200) {
-        localStorage.setItem('ACCESS_TOKEN', response.data.access_token);
-        navigate('/dashboard');  // Redirect to Dashboard on successful login
+        localStorage.setItem('authToken', response.data.access_token);
+        console.log("Login Successful");
+        navigate('/dashboard');
       } else {
         setError('User not found');
       }
     } catch (err) {
+      console.error("Login Error:", err); // Debugging
       setError('User not found');
     } finally {
       setLoading(false);

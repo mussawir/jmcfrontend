@@ -45,7 +45,7 @@ function Developer() {
         <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
           Developers List
         </Typography>
-
+        
         {/* Add Developer Button aligned to the right */}
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
           <Button
@@ -58,7 +58,7 @@ function Developer() {
         </Box>
 
         {/* Developer Table */}
-        <TableContainer component={Paper}>
+        <TableContainer>
           <Table>
             <TableHead>
               <TableRow>

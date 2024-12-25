@@ -1,5 +1,3 @@
-// src/App.tsx
-
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -40,6 +38,8 @@ import AddParty from './pages/AddParty';
 import PartyList from './pages/PartyList';
 import DeveloperForm from './pages/spah/Developer';
 import BookmarkLayout from './components/BookmarkLayout';
+import ReportGen from './pages/ReportGen';
+import PrivateRoute from './components/PrivateRoute';
 
 const AppWithDarkMode: React.FC = () => {
   const { darkMode } = useDarkMode(); // Access dark mode state
@@ -56,11 +56,11 @@ const AppWithDarkMode: React.FC = () => {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />        
         <Route path="/users" element={<UsersList />} />
         <Route path="/userdata" element={<UserData />} />
         <Route path="/documents" element={<Documents />} />
-        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects" element={<PrivateRoute element={<Projects />} />} />  
         <Route path="/checklist" element={<Checklist />} />
         <Route path="/team" element={<Team />} />
         <Route path="/loanH" element={<LoanH />} />
@@ -81,18 +81,19 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/financier" element={<Financier />} />
         <Route path="/ifchargor" element={<Ifchargor />} />
         <Route path="/endfinancier" element={<Endfinancier />} />
-        <Route path="/developerbuilder" element={<DeveloperBuilder />} />
-        <Route path="/adddeveloper" element={<AddDeveloper />} />
-        <Route path="/templates" element={<Templates />} />
-        <Route path="/addtemplates" element={<AddTemplates />} />
-        <Route path="/addparty" element={<AddParty />} />
-        <Route path="/partylist" element={<PartyList />} />
-        <Route path="/developer" element={<DeveloperForm />} />
-        <Route path="/bookmark" element={<BookmarkLayout />} />
-
+        <Route path="/developerbuilder" element={<PrivateRoute element={<DeveloperBuilder />} />} />        
+        <Route path="/adddeveloper" element={<PrivateRoute element={<AddDeveloper />} />} />        
+        <Route path="/templates" element={<PrivateRoute element={<Templates />} />} />        
+        <Route path="/addtemplates" element={<PrivateRoute element={<AddTemplates />} />} />        
+        <Route path="/addparty" element={<PrivateRoute element={<AddParty />} />} />        
+        <Route path="/partylist" element={<PrivateRoute element={<PartyList />} />} />        
+        <Route path="/developer" element={<PrivateRoute element={<DeveloperForm />} />} />        
+        <Route path="/bookmark" element={<PrivateRoute element={<BookmarkLayout />} />} />        
+        <Route path="/reportgen" element={<ReportGen />} />
       </Routes>
     </ThemeProvider>
   );
+  
 };
 
 const App: React.FC = () => {

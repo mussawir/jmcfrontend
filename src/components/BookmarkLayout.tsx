@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from "react";
+import React, { useRef, useMemo, useState } from "react";
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import { Box, Typography, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, TextField, Button } from '@mui/material';
@@ -234,6 +234,44 @@ const BookmarkLayout: React.FC = () => {
     sectionRefs[index].current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const [uploadFiles, setUploadFiles] = useState<File[]>([]);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setUploadFiles(Array.from(e.target.files));
+    }
+  };
+
+  const UploadFile = async (event: React.FormEvent) => {
+    if (uploadFiles.length === 0) {
+      alert('Please select at least one file');
+      return;
+    }
+    event.preventDefault();
+
+    const formData = new FormData();
+    uploadFiles.forEach((file) => formData.append('uploadFiles', file));
+
+    try {
+      const response = await fetch('http://localhost:5000/add-documents', {
+        method: 'POST',
+        body: formData,
+      });
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log(result);
+        alert('Files uploaded successfully');
+      } else {
+        alert('Failed to upload files');
+        console.error(result);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred during the file upload');
+    }
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -242,6 +280,26 @@ const BookmarkLayout: React.FC = () => {
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
+        <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        width: '100%',
+        marginBottom: 2,
+        marginTop: 25,
+      }}
+    >
+      <input
+        type="file"
+        multiple
+        onChange={handleFileChange}
+        style={{ marginRight: '16px', width: '180px' }}
+      />
+      <Button variant="contained" color="primary" onClick={UploadFile}>
+        Fill From Doc
+      </Button>
+    </Box>
       <div
         style={{
           position: "fixed",
