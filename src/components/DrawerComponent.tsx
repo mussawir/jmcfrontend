@@ -15,14 +15,27 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'; // Already outl
 import { Link } from 'react-router-dom';
 import logojmc from '../images/jmcvc-dark-logo.png';
 import FolderCopyOutlinedIcon from '@mui/icons-material/FolderCopyOutlined';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+
 const drawerWidth = 240;
 
 const DrawerComponent = () => {
   const [selectedItem, setSelectedItem] = useState<string>('');
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   // Handle item click
   const handleItemClick = (item: string) => {
     setSelectedItem(item);
+  };
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
   };
   return (
     <Drawer
@@ -114,6 +127,112 @@ const DrawerComponent = () => {
   />
   {/* <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} /> */}
 </ListItem>
+
+
+<div
+  className="metters-section"
+  style={{ display: 'flex', alignItems: 'center', gap: '4px', paddingLeft: '15px' }}
+>
+  <ListItemIcon
+    sx={{
+      color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f',
+      minWidth: 'unset',
+    }}
+  >
+    <FolderCopyOutlinedIcon />
+  </ListItemIcon>
+  <Button
+    id="basic-button"
+    aria-controls={open ? 'basic-menu' : undefined}
+    aria-haspopup="true"
+    aria-expanded={open ? 'true' : undefined}
+    onClick={handleClick}
+    sx={{
+      fontSize: '14px',
+      fontWeight: 400,
+      lineHeight: 1.5,
+      letterSpacing: '0.5px',
+      fontFamily: 'sans-serif',
+      color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f',
+      textTransform: 'none',
+      marginLeft: '20px',
+      minWidth: 'unset',
+    }}
+  >
+    Metters
+  </Button>
+  <Menu
+  id="basic-menu"
+  anchorEl={anchorEl}
+  open={open}
+  onClose={handleClose}
+  MenuListProps={{
+    'aria-labelledby': 'basic-button',
+  }}
+  sx={{
+    '& .MuiPaper-root': {
+      borderRadius: '12px',
+      backgroundColor: '#ffffff',
+      boxShadow: '0 8px 16px rgba(0, 0, 0, 0.15)',
+      minWidth: '240px',
+      overflow: 'hidden',
+    },
+  }}
+>
+  {[
+    'SPA Loan/ SUBSALE || SPA Related Loan',
+    'SPA Loan/ Developer',
+    'Transfer',
+    'Loan Commercial Loan',
+    'Discharge',
+    'Receive and Reassignment',
+    'Tenancy',
+    'Commercial Agreement',
+  ].map((item, index) => (
+    <MenuItem
+      key={index}
+      onClick={handleClose}
+      sx={{
+        fontFamily: 'sans-serif',
+        fontSize: '14px',
+        lineHeight: 1.5,
+        color: '#5f5f5f',
+        padding: '12px 20px',
+        transition: 'all 0.3s ease',
+        position: 'relative',
+        '&:hover': {
+          backgroundColor: '#f0f8ff',
+          color: '#1E90FF',
+          transform: 'scale(1.02)', // Slight zoom effect
+        },
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          bottom: 0,
+          width: '4px',
+          backgroundColor: '#1E90FF',
+          transform: 'scaleY(0)',
+          transition: 'transform 0.3s ease',
+        },
+        '&:hover::before': {
+          transform: 'scaleY(1)',
+        },
+        '&:active': {
+          backgroundColor: '#dcefff',
+          color: '#0056b3',
+          transform: 'scale(0.98)', // Slight press effect
+        },
+      }}
+    >
+      {item}
+    </MenuItem>
+  ))}
+</Menu>
+
+</div>
+
 {/* <ListItem */}
   {/* // component={Link}
   // to="/spaH"
