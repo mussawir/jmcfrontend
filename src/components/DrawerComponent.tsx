@@ -12,7 +12,11 @@ import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined'; // 
 import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined'; // For Apps
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'; // Already outlined
-import { Link } from 'react-router-dom';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+import LaptopMacIcon from '@mui/icons-material/LaptopMac';
+import StoreIcon from '@mui/icons-material/Store';
+import { Link, useNavigate } from 'react-router-dom';
 import logojmc from '../images/jmcvc-dark-logo.png';
 import FolderCopyOutlinedIcon from '@mui/icons-material/FolderCopyOutlined';
 import Button from '@mui/material/Button';
@@ -25,14 +29,17 @@ const DrawerComponent = () => {
   const [selectedItem, setSelectedItem] = useState<string>('');
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const navigate = useNavigate();
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
   // Handle item click
-  const handleItemClick = (item: string) => {
+  const handleItemClick = (item: string, route: string) => {
     setSelectedItem(item);
+    navigate(route); // Navigate to the desired route
+    handleClose(); // Close the menu
   };
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -63,7 +70,7 @@ const DrawerComponent = () => {
       <ListItem
   component={Link}
   to="/dashboard"
-  onClick={() => handleItemClick('Dashboard')} // Set 'Dashboard' as the selected item
+  onClick={() => handleItemClick('Dashboard', '/dashboard')} // Set 'Dashboard' as the selected item
   sx={{
     backgroundColor: selectedItem === 'Dashboard' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
     color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
@@ -97,7 +104,7 @@ const DrawerComponent = () => {
       <ListItem
   component={Link}
   to="/projects"
-  onClick={() => handleItemClick('Projects')} // Set 'Projects' as the selected item
+  onClick={() => handleItemClick('Projects', '/projects')} // Set 'Projects' as the selected item
   sx={{
     backgroundColor: selectedItem === 'Projects' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
     color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
@@ -107,7 +114,7 @@ const DrawerComponent = () => {
   }}
 >
   <ListItemIcon sx={{ color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }}>
-    <FolderCopyOutlinedIcon />
+    <StoreIcon />
   </ListItemIcon>
   <ListItemText
     primary={
@@ -139,7 +146,7 @@ const DrawerComponent = () => {
       minWidth: 'unset',
     }}
   >
-    <FolderCopyOutlinedIcon />
+    <StoreIcon />
   </ListItemIcon>
   <Button
     id="basic-button"
@@ -179,54 +186,33 @@ const DrawerComponent = () => {
     },
   }}
 >
-  {[
-    'SPA Loan/ SUBSALE || SPA Related Loan',
-    'SPA Loan/ Developer',
-    'Transfer',
-    'Loan Commercial Loan',
-    'Discharge',
-    'Receive and Reassignment',
-    'Tenancy',
-    'Commercial Agreement',
-  ].map((item, index) => (
-    <MenuItem
-      key={index}
-      onClick={handleClose}
-      sx={{
-        fontFamily: 'sans-serif',
-        fontSize: '14px',
-        lineHeight: 1.5,
-        color: '#5f5f5f',
-        padding: '12px 20px',
-        transition: 'all 0.3s ease',
-        position: 'relative',
-        '&:hover': {
-          backgroundColor: '#f0f8ff',
-          color: '#1E90FF',
-          transform: 'scale(1.02)', // Slight zoom effect
-        },
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          bottom: 0,
-          width: '4px',
-          backgroundColor: '#1E90FF',
-          transform: 'scaleY(0)',
-          transition: 'transform 0.3s ease',
-        },
-        '&:hover::before': {
-          transform: 'scaleY(1)',
-        },
-        '&:active': {
-          backgroundColor: '#dcefff',
-          color: '#0056b3',
-          transform: 'scale(0.98)', // Slight press effect
-        },
-      }}
-    >
-      {item}
+{[
+            { label: 'SPA Loan/ SUBSALE || SPA Related Loan', route: '/spaloan' },
+            { label: 'SPA Loan/ Developer', route: '/developerloan' },
+            { label: 'Transfer', route: '/transfer' },
+            { label: 'Loan Commercial Loan', route: '/loancommercial' },
+            { label: 'Discharge', route: '/discharge' },
+            { label: 'Receive and Reassignment', route: '/reassignment' },
+            { label: 'Tenancy', route: '/tenancy' },
+            { label: 'Commercial Agreement', route: '/commercialagreement' },
+          ].map((item, index) => (
+            <MenuItem
+              key={index}
+              onClick={() => handleItemClick(item.label, item.route)}
+              sx={{
+                fontFamily: 'sans-serif',
+                fontSize: '14px',
+                lineHeight: 1.5,
+                color: '#5f5f5f',
+                padding: '12px 20px',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  backgroundColor: '#f0f8ff',
+                  color: '#1E90FF',
+                },
+              }}
+            >
+              {item.label}
     </MenuItem>
   ))}
 </Menu>
@@ -270,7 +256,7 @@ const DrawerComponent = () => {
 <ListItem
   component={Link}
   to="/partylist"
-  onClick={() => handleItemClick('Projects')} // Set 'Projects' as the selected item
+  onClick={() => handleItemClick('Projects', '/projects')}
   sx={{
     backgroundColor: selectedItem === 'Projects' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
     color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
@@ -280,7 +266,7 @@ const DrawerComponent = () => {
   }}
 >
   <ListItemIcon sx={{ color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }}>
-    <FolderCopyOutlinedIcon />
+    <StorefrontIcon />
   </ListItemIcon>
   <ListItemText
     primary={
@@ -302,8 +288,8 @@ const DrawerComponent = () => {
 </ListItem>
 <ListItem
   component={Link}
-  to=""
-  onClick={() => handleItemClick('Projects')} // Set 'Projects' as the selected item
+  to="/loancommercial"
+  onClick={() => handleItemClick('Projects', '/projects')} // Set 'Projects' as the selected item
   sx={{
     backgroundColor: selectedItem === 'Projects' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
     color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
@@ -313,7 +299,7 @@ const DrawerComponent = () => {
   }}
 >
   <ListItemIcon sx={{ color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }}>
-    <FolderCopyOutlinedIcon />
+    <CreditCardIcon  />
   </ListItemIcon>
   <ListItemText
     primary={
@@ -335,7 +321,8 @@ const DrawerComponent = () => {
 <ListItem
   component={Link}
   to="/templates"
-  onClick={() => handleItemClick('SPAH')}
+  // onClick={() => handleItemClick('SPAH')}
+  onClick={() => handleItemClick('SPAH', '/SPAH')}
   sx={{
     backgroundColor: selectedItem === 'SPAG' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
     color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f',
@@ -368,7 +355,7 @@ const DrawerComponent = () => {
 <ListItem
   component={Link}
   to="/developerbuilder"
-  onClick={() => handleItemClick('Projects')} // Set 'Projects' as the selected item
+  onClick={() => handleItemClick('Projects', '/projects')} // Set 'Projects' as the selected item
   sx={{
     backgroundColor: selectedItem === 'Projects' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
     color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
@@ -378,7 +365,7 @@ const DrawerComponent = () => {
   }}
 >
   <ListItemIcon sx={{ color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }}>
-    <FolderCopyOutlinedIcon />
+    <LaptopMacIcon />
   </ListItemIcon>
   <ListItemText
     primary={
@@ -711,4 +698,4 @@ const DrawerComponent = () => {
   );
 };
 
-export default DrawerComponent;
+export default DrawerComponent; 

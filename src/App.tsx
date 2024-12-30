@@ -40,6 +40,14 @@ import DeveloperForm from './pages/spah/Developer';
 import BookmarkLayout from './components/BookmarkLayout';
 import ReportGen from './pages/ReportGen';
 import PrivateRoute from './components/PrivateRoute';
+import SpaLoan from './components/SpaLoan';
+import DeveloperLoan from './components/DeveloperLoan';
+import Transfer from './components/Transfer';
+import LoanCommercial from './components/LoanCommercial';
+import Discharge from './components/Discharge';
+import Reassignment from './components/Reassignment';
+import Tenancy from './components/Tenancy';
+import CommercialAgreement from './components/CommercialAgreement';
 
 const AppWithDarkMode: React.FC = () => {
   const { darkMode } = useDarkMode(); // Access dark mode state
@@ -89,6 +97,14 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/partylist" element={<PrivateRoute element={<PartyList />} />} />        
         <Route path="/developer" element={<PrivateRoute element={<DeveloperForm />} />} />        
         <Route path="/bookmark" element={<PrivateRoute element={<BookmarkLayout />} />} />        
+        <Route path="/spaloan" element={<PrivateRoute element={<SpaLoan />} />} />        
+        <Route path="/developerloan" element={<PrivateRoute element={<DeveloperLoan />} />} />        
+        <Route path="/transfer" element={<PrivateRoute element={<Transfer />} />} />        
+        <Route path="/loancommercial" element={<PrivateRoute element={<LoanCommercial />} />} />        
+        <Route path="/discharge" element={<PrivateRoute element={<Discharge />} />} />        
+        <Route path="/reassignment" element={<PrivateRoute element={<Reassignment />} />} />        
+        <Route path="/tenancy" element={<PrivateRoute element={<Tenancy />} />} />        
+        <Route path="/commercialagreement" element={<PrivateRoute element={<CommercialAgreement />} />} />        
         <Route path="/reportgen" element={<ReportGen />} />
       </Routes>
     </ThemeProvider>

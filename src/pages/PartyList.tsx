@@ -61,7 +61,7 @@ function Party() {
 
         {/* Center the Headline */}
         <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
-          Party List
+          Parties List
         </Typography>
 
         {/* Add Developer Button aligned to the right */}
