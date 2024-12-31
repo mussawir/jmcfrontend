@@ -23,7 +23,7 @@ function DeveloperLoan() {
 
         {/* Center the Headline */}
         <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
-          Developer Loan
+          SPA Developer Loan
         </Typography>
 
         

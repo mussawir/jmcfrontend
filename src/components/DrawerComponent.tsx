@@ -12,8 +12,8 @@ import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined'; // 
 import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined'; // For Apps
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'; // Already outlined
-import StorefrontIcon from '@mui/icons-material/Storefront';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
+import GroupIcon from '@mui/icons-material/Group';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import LaptopMacIcon from '@mui/icons-material/LaptopMac';
 import StoreIcon from '@mui/icons-material/Store';
 import { Link, useNavigate } from 'react-router-dom';
@@ -190,7 +190,7 @@ const DrawerComponent = () => {
             { label: 'SPA Loan/ SUBSALE || SPA Related Loan', route: '/spaloan' },
             { label: 'SPA Loan/ Developer', route: '/developerloan' },
             { label: 'Transfer', route: '/transfer' },
-            { label: 'Loan Commercial Loan', route: '/loancommercial' },
+            { label: 'Commercial Loan', route: '/commercialloan' },
             { label: 'Discharge', route: '/discharge' },
             { label: 'Receive and Reassignment', route: '/reassignment' },
             { label: 'Tenancy', route: '/tenancy' },
@@ -265,9 +265,9 @@ const DrawerComponent = () => {
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }}>
-    <StorefrontIcon />
-  </ListItemIcon>
+<ListItemIcon sx={{ color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }}>
+  <GroupIcon />
+</ListItemIcon>
   <ListItemText
     primary={
       <Typography
@@ -288,7 +288,7 @@ const DrawerComponent = () => {
 </ListItem>
 <ListItem
   component={Link}
-  to="/loancommercial"
+  to="/commercialloan"
   onClick={() => handleItemClick('Projects', '/projects')} // Set 'Projects' as the selected item
   sx={{
     backgroundColor: selectedItem === 'Projects' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
@@ -298,9 +298,9 @@ const DrawerComponent = () => {
     },
   }}
 >
-  <ListItemIcon sx={{ color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }}>
-    <CreditCardIcon  />
-  </ListItemIcon>
+<ListItemIcon sx={{ color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }}>
+  <MonetizationOnIcon />
+</ListItemIcon>
   <ListItemText
     primary={
       <Typography

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Toolbar, CssBaseline, Button } from '@mui/material';
-import DrawerComponent from '../components/DrawerComponent';
-import HeaderComponent from '../components/HeaderComponent';
+import DrawerComponent from './DrawerComponent';
+import HeaderComponent from './HeaderComponent';
 import { useNavigate } from 'react-router-dom';
 
-function LoanCommercial() {
+function CommercialLoan() {
   
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ function LoanCommercial() {
 
         {/* Center the Headline */}
         <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
-          Loan Commercial
+          Commercial Loan
         </Typography>
 
         
@@ -41,4 +41,4 @@ function LoanCommercial() {
   );
 }
 
-export default LoanCommercial;
+export default CommercialLoan;

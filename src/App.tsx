@@ -22,7 +22,7 @@ import SpaG from './pages/SpaG';
 import SpaH from './pages/SpaH';
 import LoanG from './pages/LoanG';
 import ComSpa from './pages/ComSpa';
-import ComLoan from './pages/ComLoan';
+// import ComLoan from './pages/ComLoan';
 import SubSpaT from './pages/SubSpaT';
 import SubLoanT from './pages/SubLoanT';
 import SubSpaMT from './pages/SubSpaMT';
@@ -43,7 +43,7 @@ import PrivateRoute from './components/PrivateRoute';
 import SpaLoan from './components/SpaLoan';
 import DeveloperLoan from './components/DeveloperLoan';
 import Transfer from './components/Transfer';
-import LoanCommercial from './components/LoanCommercial';
+import CommercialLoan from './components/CommercialLoan';
 import Discharge from './components/Discharge';
 import Reassignment from './components/Reassignment';
 import Tenancy from './components/Tenancy';
@@ -76,7 +76,7 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/spaH" element={<TabsPage />} />
         <Route path="/loanG" element={<LoanG />} />
         <Route path="/commercialspa" element={<ComSpa />} />
-        <Route path="/commercialloan" element={<ComLoan />} />
+        {/* <Route path="/commercialloan" element={<ComLoan />} /> */}
         <Route path="/subSpaT" element={<SubSpaT />} />
         <Route path="/subLoanT" element={<SubLoanT />} />
         <Route path="/subSpaMT" element={<SubSpaMT />} />
@@ -100,7 +100,7 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/spaloan" element={<PrivateRoute element={<SpaLoan />} />} />        
         <Route path="/developerloan" element={<PrivateRoute element={<DeveloperLoan />} />} />        
         <Route path="/transfer" element={<PrivateRoute element={<Transfer />} />} />        
-        <Route path="/loancommercial" element={<PrivateRoute element={<LoanCommercial />} />} />        
+        <Route path="/commercialloan" element={<PrivateRoute element={<CommercialLoan />} />} />        
         <Route path="/discharge" element={<PrivateRoute element={<Discharge />} />} />        
         <Route path="/reassignment" element={<PrivateRoute element={<Reassignment />} />} />        
         <Route path="/tenancy" element={<PrivateRoute element={<Tenancy />} />} />        
