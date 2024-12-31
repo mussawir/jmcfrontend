@@ -101,7 +101,7 @@ const DrawerComponent = () => {
   {/* <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f' }} /> */}
       </ListItem>
 
-      <ListItem
+      {/* <ListItem
   component={Link}
   to="/projects"
   onClick={() => handleItemClick('Projects', '/projects')} // Set 'Projects' as the selected item
@@ -131,14 +131,21 @@ const DrawerComponent = () => {
         Metters
       </Typography>
     }
-  />
+  /> */}
   {/* <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} /> */}
-</ListItem>
+{/* </ListItem> */}
 
 
-<div
+<ListItem
   className="metters-section"
   style={{ display: 'flex', alignItems: 'center', gap: '4px', paddingLeft: '15px' }}
+  sx={{
+    backgroundColor: selectedItem === 'Dashboard' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
+    color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
+    '&:hover': {
+      backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
+    },
+  }}
 >
   <ListItemIcon
     sx={{
@@ -217,7 +224,7 @@ const DrawerComponent = () => {
   ))}
 </Menu>
 
-</div>
+</ListItem>
 
 {/* <ListItem */}
   {/* // component={Link}
