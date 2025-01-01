@@ -48,6 +48,17 @@ import Discharge from './components/Discharge';
 import Reassignment from './components/Reassignment';
 import Tenancy from './components/Tenancy';
 import CommercialAgreement from './components/CommercialAgreement';
+import Properties from './components/Properties';
+import Banks from './pages/Banks';
+import Billing from './pages/Billing';
+import ClientAccounts from './pages/ClientAccounts';
+import OfficeAccounts from './pages/OfficeAccounts';
+import SSTGST from './pages/SSTGST';
+import Analysis from './pages/Analysis';
+import Admin from './pages/Admin';
+import Notifications from './pages/Notifications';
+import Teams from './pages/Teams';
+import Tracking from './pages/Tracking';
 
 const AppWithDarkMode: React.FC = () => {
   const { darkMode } = useDarkMode(); // Access dark mode state
@@ -105,6 +116,17 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/reassignment" element={<PrivateRoute element={<Reassignment />} />} />        
         <Route path="/tenancy" element={<PrivateRoute element={<Tenancy />} />} />        
         <Route path="/commercialagreement" element={<PrivateRoute element={<CommercialAgreement />} />} />        
+        <Route path="/properties" element={<PrivateRoute element={<Properties />} />} />        
+        <Route path="/banks" element={<PrivateRoute element={<Banks />} />} />        
+        <Route path="/billing" element={<PrivateRoute element={<Billing />} />} />        
+        <Route path="/clientaccounts" element={<PrivateRoute element={<ClientAccounts />} />} />        
+        <Route path="/officeaccounts" element={<PrivateRoute element={<OfficeAccounts />} />} />        
+        <Route path="/sstgst" element={<PrivateRoute element={<SSTGST />} />} />        
+        <Route path="/analysis" element={<PrivateRoute element={<Analysis />} />} />        
+        <Route path="/admin" element={<PrivateRoute element={<Admin />} />} />        
+        <Route path="/notifications" element={<PrivateRoute element={<Notifications />} />} />        
+        <Route path="/teams" element={<PrivateRoute element={<Teams />} />} />        
+        <Route path="/tracking" element={<PrivateRoute element={<Tracking />} />} />        
         <Route path="/reportgen" element={<ReportGen />} />
       </Routes>
     </ThemeProvider>
