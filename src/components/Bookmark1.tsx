@@ -2,11 +2,8 @@ import React, { useRef, useMemo, useState } from "react";
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import { Box, Typography, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, TextField, Button } from '@mui/material';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Bookmark1 from "./Bookmark1";
 
-const BookmarkLayout: React.FC = () => {
+const Bookmark1: React.FC = () => {
   const sections = [
     {
       heading: "Purchaser",
@@ -237,12 +234,6 @@ const BookmarkLayout: React.FC = () => {
     sectionRefs[index].current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const [value, setValue] = React.useState('one');
-
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
-
   const [uploadFiles, setUploadFiles] = useState<File[]>([]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -283,12 +274,12 @@ const BookmarkLayout: React.FC = () => {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
+      {/* <CssBaseline />
       <DrawerComponent />
-      <HeaderComponent />
+      <HeaderComponent /> */}
 
-      {/* <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Toolbar />
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        {/* <Toolbar /> */}
         <Box
       sx={{
         display: 'flex',
@@ -296,14 +287,15 @@ const BookmarkLayout: React.FC = () => {
         alignItems: 'center',
         width: '100%',
         marginBottom: 2,
-        marginTop: 25,
+        marginTop: 5,
       }}
     >
       <input
         type="file"
         multiple
         onChange={handleFileChange}
-        style={{ marginRight: '16px', width: '180px' }}
+        style={{ marginRight: '16px', width: '180px', position: "sticky",
+        }}
       />
       <Button variant="contained" color="primary" onClick={UploadFile}>
         Fill From Doc
@@ -311,13 +303,13 @@ const BookmarkLayout: React.FC = () => {
     </Box>
       <div
         style={{
-          position: "fixed",
-          top: 65,
-          width: "80%",
+          position: "sticky",
+          top: 125,
+          width: "97%",
           backgroundColor: "#f8f9fa",
           boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
           zIndex: 1000,
-          padding: "10px 20px",
+          padding: "20px 30px",
         }}
       >
         {sections.map((section, index) => (
@@ -336,71 +328,52 @@ const BookmarkLayout: React.FC = () => {
         ))}
       </div>
 
-      <div style={{ marginTop: "60px" }}>
-  {sections.map((section, index) => (
-    <div
-      key={index}
-      ref={sectionRefs[index]}
-      style={{
-        minHeight: "70vh",
-        padding: "20px",
-        marginTop: "100px",
-        borderBottom: "1px solid #ddd",
-      }}
-    >
-      <h2>{section.heading}</h2>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {section.fields.map((field, fieldIndex) => (
+      <Box
+        sx={{
+          marginTop: '0px',
+          overflowY: 'auto',    // Makes the section content scrollable
+          maxHeight: 'calc(100vh - 200px)',  // Adjust this height to prevent it from occupying the entire page
+        }}
+      >
+        {sections.map((section, index) => (
           <div
-            key={fieldIndex}
+            key={index}
+            ref={sectionRefs[index]}
             style={{
-              display: "flex",
-              flexDirection: "column",
-              flex: "1 1 50%", // Adjusts width to 50% for 2 columns
-              padding: "10px",
-              boxSizing: "border-box",
+              minHeight: '70vh',
+              padding: '20px',
+              marginTop: '90px',
+              borderBottom: '1px solid #ddd',
             }}
           >
-            <input
-              type="text"
-              placeholder={field}
-              style={{ padding: "10px", width: "100%" }}
-            />
+            <h2>{section.heading}</h2>
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+              {section.fields.map((field, fieldIndex) => (
+                <div
+                  key={fieldIndex}
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                    padding: '10px',
+                    boxSizing: 'border-box',
+                  }}
+                >
+                  <input
+                    type="text"
+                    placeholder={field}
+                    style={{ padding: '10px', width: '100%' }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         ))}
-      </div>
-    </div>
-  ))}
-</div>
-
-    </Box> */}
-    
-    <Box sx={{ width: '100%' }}>
-              <Toolbar />
-      
-              <Tabs
-        value={value}
-        onChange={handleChange}
-        textColor="secondary"
-        indicatorColor="secondary"
-        aria-label="secondary tabs example"
-        sx={{ position: 'fixed'}}
-      >
-        <Tab value="one" label="Item One" />
-        <Tab value="two" label="Item Two" />
-        <Tab value="three" label="Item Three" />
-      </Tabs>
-
-      {/* Content based on selected tab */}
-      <Box sx={{ padding: 3, }}>
-        {value === "one" && <div 
-        ><Bookmark1 /></div>}
-        {value === "two" && <div>Content for Item Two</div>}
-        {value === "three" && <div><Bookmark1 /></div>}
       </Box>
+
     </Box>
     </Box>
   );
 };
 
-export default BookmarkLayout;
+export default Bookmark1;
