@@ -280,13 +280,42 @@ const Bookmark1: React.FC = () => {
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         {/* <Toolbar /> */}
-        <Box
+  
+      <div
+        style={{
+          position: "sticky",
+          top: 0,
+          width: "97%",
+          backgroundColor: "#f8f9fa",
+          boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+          zIndex: 1000,
+          padding: "5px 10px",
+          fontSize: "15px",
+        }}
+      >
+        {sections.map((section, index) => (
+          <a
+            key={index}
+            onClick={() => scrollToSection(index)}
+            style={{
+              margin: "5px 5px",
+              padding: "5px 0px",
+              cursor: "pointer",
+              color: "#007bff",
+            }}
+          >
+            {section.heading}    |
+          </a>
+        ))}
+      </div>
+      <Box
       sx={{
         display: 'flex',
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
         marginBottom: 2,
+        marginTop: 2,
       }}
     >
       <input
@@ -300,40 +329,12 @@ const Bookmark1: React.FC = () => {
         Fill From Doc
       </Button>
     </Box>
-      <div
-        style={{
-          position: "sticky",
-          top: 0,
-          width: "97%",
-          backgroundColor: "#f8f9fa",
-          boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-          zIndex: 1000,
-          padding: "20px 30px",
-          fontSize: "14px",
-        }}
-      >
-        {sections.map((section, index) => (
-          <a
-            key={index}
-            onClick={() => scrollToSection(index)}
-            style={{
-              margin: "5px 15px",
-              padding: "5px 18px",
-              cursor: "pointer",
-              color: "#007bff",
-            }}
-          >
-            {section.heading}
-          </a>
-        ))}
-      </div>
-
       <Box
         sx={{
-          marginTop: '20px',
+          marginTop: '0px',
           position: 'fixed',
           overflowY: 'auto',    // Makes the section content scrollable
-          maxHeight: 'calc(100vh - 200px)',  // Adjust this height to prevent it from occupying the entire page
+          maxHeight: 'calc(100vh - 100px)',  // Adjust this height to prevent it from occupying the entire page
         }}
       >
         {sections.map((section, index) => (

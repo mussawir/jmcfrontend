@@ -378,7 +378,7 @@ const BookmarkLayout: React.FC = () => {
     <Box sx={{ width: '100%' }}>
               <Toolbar />
       
-              <Tabs
+              {/* <Tabs
         value={value}
         onChange={handleChange}
         textColor="secondary"
@@ -391,13 +391,15 @@ const BookmarkLayout: React.FC = () => {
         <Tab value="three" label="Item Three" />
       </Tabs>
 
-      {/* Content based on selected tab */}
       <Box sx={{ padding: 3, }}>
         {value === "one" && <div 
         ><Bookmark1 /></div>}
         {value === "two" && <div style={{ marginTop: "30px" }} >Content for Item Two</div>}
         {value === "three" && <div><Bookmark1 /></div>}
-      </Box>
+      </Box> */}
+
+                <Bookmark1/>
+
     </Box>
     </Box>
   );
