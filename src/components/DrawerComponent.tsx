@@ -416,13 +416,13 @@ const DrawerComponent = () => {
       >
         {[
           { label: 'Add Bank Branch', route: '/banks' },
-          { label: 'View Bank Branch', route: '/view-bank-branch' },
+          // { label: 'View Bank Branch', route: '/view-bank-branch' },
           { label: 'Bank Branch Listing', route: '/bank-branch-listing' },
-          { label: 'Add Bank CAC', route: '/add-bank-cac' },
-          { label: 'View Bank CAC', route: '/view-bank-cac' },
-          { label: 'Bank CAC Listing', route: '/bank-cac-listing' },
+          { label: 'Add Bank CAC', route: '/bank-cac' },
+          // { label: 'View Bank CAC', route: '/view-bank-cac' },
+          // { label: 'Bank CAC Listing', route: '/bank-cac-listing' },
           { label: 'Add Master Bank', route: '/add-master-bank' },
-          { label: 'View Master Bank', route: '/view-master-bank' },
+          // { label: 'View Master Bank', route: '/view-master-bank' },
           { label: 'Matter Bank Listing', route: '/matter-bank-listing' }, // Keep this if needed
         ].map((item, index) => (
           <MenuItem 
