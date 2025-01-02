@@ -287,7 +287,6 @@ const Bookmark1: React.FC = () => {
         alignItems: 'center',
         width: '100%',
         marginBottom: 2,
-        marginTop: 5,
       }}
     >
       <input
@@ -304,12 +303,13 @@ const Bookmark1: React.FC = () => {
       <div
         style={{
           position: "sticky",
-          top: 125,
+          top: 0,
           width: "97%",
           backgroundColor: "#f8f9fa",
           boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
           zIndex: 1000,
           padding: "20px 30px",
+          fontSize: "14px",
         }}
       >
         {sections.map((section, index) => (
@@ -330,7 +330,8 @@ const Bookmark1: React.FC = () => {
 
       <Box
         sx={{
-          marginTop: '0px',
+          marginTop: '20px',
+          position: 'fixed',
           overflowY: 'auto',    // Makes the section content scrollable
           maxHeight: 'calc(100vh - 200px)',  // Adjust this height to prevent it from occupying the entire page
         }}
@@ -342,7 +343,7 @@ const Bookmark1: React.FC = () => {
             style={{
               minHeight: '70vh',
               padding: '20px',
-              marginTop: '90px',
+              marginTop: '0px',
               borderBottom: '1px solid #ddd',
             }}
           >
