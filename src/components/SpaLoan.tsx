@@ -8,20 +8,20 @@ function SpaLoan() {
   const [developerName, setDeveloperName] = useState('');
   const [companyRegNum, setCompanyRegNum] = useState('');
   const [registeredOfficeAdd, setRegisteredOfficeAdd] = useState('');
-  const [developerPlaceOfBusinessAddress, setDeveloperPlaceOfBusinessAddress] = useState('');
-  const [developerFileReferenceNumber, setDeveloperFileReferenceNumber] = useState('');
-  const [developerLicenceNumber, setDeveloperLicenceNumber] = useState('');
-  const [developerContactNumber, setDeveloperContactNumber] = useState('');
-  const [developerEmailAddress, setDeveloperEmailAddress] = useState('');
-  const [developerPersonInChargeName, setDeveloperPersonInChargeName] = useState('');
-  const [developerPersonInChargeContactNumber, setDeveloperPersonInChargeContactNumber] = useState('');
-  const [developerPersonInChargeEmailAddress, setDeveloperPersonInChargeEmailAddress] = useState('');
-  const [developerAuthorised1stSignatureName, setDeveloperAuthorised1stSignatureName] = useState('');
-  const [developerAuthorised1stIdentityCardNumber, setDeveloperAuthorised1stIdentityCardNumber] = useState('');
-  const [developerAuthorised1stSignatureDesignation, setDeveloperAuthorised1stSignatureDesignation] = useState('');
-  const [developerAuthorised2ndSignatureName, setDeveloperAuthorised2ndSignatureName] = useState('');
-  const [developerAuthorised2ndIdentityCardNumber, setDeveloperAuthorised2ndIdentityCardNumber] = useState('');
-  const [developerAuthorised2ndSignatureDesignation, setDeveloperAuthorised2ndSignatureDesignation] = useState('');
+  const [placeOfBusinessAddress, setPlaceOfBusinessAddress] = useState('');
+  const [fileReferenceNumber, setFileReferenceNumber] = useState('');
+  const [licenceNumber, setLicenceNumber] = useState('');
+  const [contactNumber, setContactNumber] = useState('');
+  const [emailAddress, setEmailAddress] = useState('');
+  const [personInChargeName, setPersonInChargeName] = useState('');
+  const [personInChargeContactNumber, setPersonInChargeContactNumber] = useState('');
+  const [personInChargeEmailAddress, setPersonInChargeEmailAddress] = useState('');
+  const [authorised1stSignatoryName, setAuthorised1stSignatoryName] = useState('');
+  const [authorised1stIdentityCardNumber, setAuthorised1stIdentityCardNumber] = useState('');
+  const [authorised1stSignatoryDesignation, setAuthorised1stSignatoryDesignation] = useState('');
+  const [authorised2ndSignatoryName, setAuthorised2ndSignatoryName] = useState('');
+  const [authorised2ndIdentityCardNumber, setAuthorised2ndIdentityCardNumber] = useState('');
+  const [authorised2ndSignatoryDesignation, setAuthorised2ndSignatoryDesignation] = useState('');
   const [uploadFile, setUploadFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   
@@ -41,20 +41,20 @@ function SpaLoan() {
       developerName,
       companyRegNum,
       registeredOfficeAdd,
-      developerPlaceOfBusinessAddress,
-      developerFileReferenceNumber,
-      developerLicenceNumber,
-      developerContactNumber,
-      developerEmailAddress,
-      developerPersonInChargeName,
-      developerPersonInChargeContactNumber,
-      developerPersonInChargeEmailAddress,
-      developerAuthorised1stSignatureName,
-      developerAuthorised1stIdentityCardNumber,
-      developerAuthorised1stSignatureDesignation,
-      developerAuthorised2ndSignatureName,
-      developerAuthorised2ndIdentityCardNumber,
-      developerAuthorised2ndSignatureDesignation,
+      placeOfBusinessAddress,
+      fileReferenceNumber,
+      licenceNumber,
+      contactNumber,
+      emailAddress,
+      personInChargeName,
+      personInChargeContactNumber,
+      personInChargeEmailAddress,
+      authorised1stSignatoryName,
+      authorised1stIdentityCardNumber,
+      authorised1stSignatoryDesignation,
+      authorised2ndSignatoryName,
+      authorised2ndIdentityCardNumber,
+      authorised2ndSignatoryDesignation,
     };
 
     try {
@@ -80,292 +80,317 @@ function SpaLoan() {
     }
   };
 
-  const UploadFile = async (event: React.FormEvent) => {
-    if (!uploadFile) {
-      alert('Please select a file');
-      return;
-    }
-    event.preventDefault();
-    setLoading(true);
-    const formData = new FormData();
-    formData.append('uploadFile', uploadFile);
-    try {
-      const response = await fetch('http://localhost:5000/spaloana', {
-        method: 'POST',
-        body: formData,
-      });
-      const result = await response.json();
-      console.log(result)
-      if (response.ok) {
-        // alert(result);
-        // alert(`Result: ${result.response}`);
-        const developerDetails = convertToArray(result.response);
-        developerDetails.forEach(detail => {
-        console.log(`${detail.key}: ${detail.value}`);
-        const key = detail.key;
-        switch (key) {
-                case 'Developer Name':
-                  setDeveloperName(detail.value);
-                  break;
-                case 'Registration Number':
-                  setCompanyRegNum(detail.value);
-                  break;
-                case 'Office Address':
-                  setRegisteredOfficeAdd(detail.value);
-                  break;
-                case 'Business Address':
-                  setDeveloperPlaceOfBusinessAddress(detail.value);
-                  break;
-                case 'File Reference Number':
-                  setDeveloperFileReferenceNumber(detail.value);
-                  break;
-                case 'License Number':
-                  setDeveloperLicenceNumber(detail.value);
-                  break;
-                case 'NRIC No':
-                  setDeveloperContactNumber(detail.value);
-                  break;
-                case 'Email Address':
-                  setDeveloperEmailAddress(detail.value);
-                  break;
-                case 'Person in Charge Name':
-                  setDeveloperPersonInChargeName(detail.value);
-                  break;
-                case 'Person in Charge Contact Number':
-                  setDeveloperPersonInChargeContactNumber(detail.value);
-                  break;
-                case 'Person in Charge Email Address':
-                  setDeveloperPersonInChargeEmailAddress(detail.value);
-                  break;
-                case '1st Authorised Signature Name':
-                  setDeveloperAuthorised1stSignatureName(detail.value);
-                  break;
-                case '1st Authorised Identity Card Number':
-                  setDeveloperAuthorised1stIdentityCardNumber(detail.value);
-                  break;
-                case '1st Authorised Signature Designation':
-                  setDeveloperAuthorised1stSignatureDesignation(detail.value);
-                  break;
-                case '2nd Authorised Signature Name':
-                  setDeveloperAuthorised2ndSignatureName(detail.value);
-                  break;
-                case '2nd Authorised Identity Card Number':
-                  setDeveloperAuthorised2ndIdentityCardNumber(detail.value);
-                  break;
-                case '2nd Authorised Signature Designation':
-                  setDeveloperAuthorised2ndSignatureDesignation(detail.value);
-                  break;
-                default:
-                  break;
-              }
-        });
-        console.log(developerDetails);
-        setLoading(false);
-      }
-      else {
-        alert('Failed to add document');
-        console.error(result);
-        setLoading(false);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('An error occurred');
-    }
-  }
+  // const UploadFile = async (event: React.FormEvent) => {
+  //   if (!uploadFile) {
+  //     alert('Please select a file');
+  //     return;
+  //   }
+  //   event.preventDefault();
+  //   setLoading(true);
+  //   const formData = new FormData();
+  //   formData.append('uploadFile', uploadFile);
+  //   try {
+  //     const response = await fetch('http://localhost:5000/spaloana', {
+  //       method: 'POST',
+  //       body: formData,
+  //     });
+  //     const result = await response.json();
+  //     console.log(result)
+  //     if (response.ok) {
+  //       // alert(result);
+  //       // alert(`Result: ${result.response}`);
+  //       const developerDetails = convertToArray(result.response);
+  //       developerDetails.forEach(detail => {
+  //       console.log(`${detail.key}: ${detail.value}`);
+  //       const key = detail.key;
+  //       switch (key) {
+  //               case 'Developer Name':
+  //                 setDeveloperName(detail.value);
+  //                 break;
+  //               case 'Registration Number':
+  //                 setCompanyRegNum(detail.value);
+  //                 break;
+  //               case 'Office Address':
+  //                 setRegisteredOfficeAdd(detail.value);
+  //                 break;
+  //               case 'Business Address':
+  //                 setDeveloperPlaceOfBusinessAddress(detail.value);
+  //                 break;
+  //               case 'File Reference Number':
+  //                 setDeveloperFileReferenceNumber(detail.value);
+  //                 break;
+  //               case 'License Number':
+  //                 setDeveloperLicenceNumber(detail.value);
+  //                 break;
+  //               case 'NRIC No':
+  //                 setDeveloperContactNumber(detail.value);
+  //                 break;
+  //               case 'Email Address':
+  //                 setDeveloperEmailAddress(detail.value);
+  //                 break;
+  //               case 'Person in Charge Name':
+  //                 setDeveloperPersonInChargeName(detail.value);
+  //                 break;
+  //               case 'Person in Charge Contact Number':
+  //                 setDeveloperPersonInChargeContactNumber(detail.value);
+  //                 break;
+  //               case 'Person in Charge Email Address':
+  //                 setDeveloperPersonInChargeEmailAddress(detail.value);
+  //                 break;
+  //               case '1st Authorised Signatory Name':
+  //                 setDeveloperAuthorised1stSignatureName(detail.value);
+  //                 break;
+  //               case '1st Authorised Identity Card Number':
+  //                 setDeveloperAuthorised1stIdentityCardNumber(detail.value);
+  //                 break;
+  //               case '1st Authorised Signatory Designation':
+  //                 setDeveloperAuthorised1stSignatureDesignation(detail.value);
+  //                 break;
+  //               case '2nd Authorised Signatory Name':
+  //                 setDeveloperAuthorised2ndSignatureName(detail.value);
+  //                 break;
+  //               case '2nd Authorised Identity Card Number':
+  //                 setDeveloperAuthorised2ndIdentityCardNumber(detail.value);
+  //                 break;
+  //               case '2nd Authorised Signatory Designation':
+  //                 setDeveloperAuthorised2ndSignatureDesignation(detail.value);
+  //                 break;
+  //               default:
+  //                 break;
+  //             }
+  //       });
+  //       console.log(developerDetails);
+  //       setLoading(false);
+  //     }
+  //     else {
+  //       alert('Failed to add document');
+  //       console.error(result);
+  //       setLoading(false);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //     alert('An error occurred');
+  //   }
+  // }
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3, maxWidth: 1000, marginLeft: 33, marginTop: 10, }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start', p: 3, maxWidth: 1000, marginLeft: 31, marginTop: 10, }}>
         <DrawerComponent />
         <HeaderComponent />
       <Typography variant="h4" gutterBottom>
-        SPA Loan
+        Developer Information
       </Typography>
-      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
       <TextField
-        label="Primary Client"
+        label="Developre Name"
         fullWidth
         variant="outlined"
         value={developerName}
         onChange={(e) => setDeveloperName(e.target.value)}
-        sx={{ marginBottom: 2 }}
+        sx={{ marginBottom: 1 }}
       />
       <TextField
-        label="File Number 2 (Manual)"
+        label="Company Name"
         fullWidth
         variant="outlined"
         value={companyRegNum}
         onChange={(e) => setCompanyRegNum(e.target.value)}
-        sx={{ marginBottom: 2 }}
+        sx={{ marginBottom: 1 }}
       />
       </Box>
-      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
       <TextField
-        label="Date File Opened"
+        label="Registered Office"
         fullWidth
         variant="outlined"
         value={registeredOfficeAdd}
         onChange={(e) => setRegisteredOfficeAdd(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      <TextField
+        label="Place Of Business Address"
+        fullWidth
+        variant="outlined"
+        value={placeOfBusinessAddress}
+        onChange={(e) => setPlaceOfBusinessAddress(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+       </Box>
+       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
+      <TextField
+        label="File Reference NO:"
+        fullWidth
+        variant="outlined"
+        value={fileReferenceNumber}
+        onChange={(e) => setFileReferenceNumber(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
       <TextField
-        label="Partner incharge"
+        label="Licence Number"
         fullWidth
         variant="outlined"
-        value={developerPlaceOfBusinessAddress}
-        onChange={(e) => setDeveloperPlaceOfBusinessAddress(e.target.value)}
+        value={licenceNumber}
+        onChange={(e) => setLicenceNumber(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
        </Box>
-       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
+       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
       <TextField
-        label="Tuma"
+        label="Contact Number"
         fullWidth
         variant="outlined"
-        value={developerFileReferenceNumber}
-        onChange={(e) => setDeveloperFileReferenceNumber(e.target.value)}
+        value={contactNumber}
+        onChange={(e) => setContactNumber(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
       <TextField
-        label="LA Incharge"
+        label="Email Address"
         fullWidth
         variant="outlined"
-        value={developerLicenceNumber}
-        onChange={(e) => setDeveloperLicenceNumber(e.target.value)}
-        sx={{ marginBottom: 2 }}
+        value={emailAddress}
+        onChange={(e) => setEmailAddress(e.target.value)}
+        sx={{ marginBottom: 1 }}
       />
-       </Box>
-       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
       <TextField
-        label="File Status"
+        label="Person Incharge Name"
         fullWidth
         variant="outlined"
-        value={developerContactNumber}
-        onChange={(e) => setDeveloperContactNumber(e.target.value)}
-        sx={{ marginBottom: 2 }}
+        value={personInChargeName}
+        onChange={(e) => setPersonInChargeName(e.target.value)}
+        sx={{ marginBottom: 1 }}
       />
       <TextField
-        label="Clerk Incharge"
+        label="Person Incharge Contact NO"
         fullWidth
         variant="outlined"
-        value={developerEmailAddress}
-        onChange={(e) => setDeveloperEmailAddress(e.target.value)}
+        value={personInChargeContactNumber}
+        onChange={(e) => setPersonInChargeContactNumber(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
       </Box>
-      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
       <TextField
-        label="Related File NO"
+        label="Incharge Email"
         fullWidth
         variant="outlined"
-        value={developerPersonInChargeName}
-        onChange={(e) => setDeveloperPersonInChargeName(e.target.value)}
-        sx={{ marginBottom: 2 }}
+        value={personInChargeEmailAddress}
+        onChange={(e) => setPersonInChargeEmailAddress(e.target.value)}
+        sx={{ marginBottom: 1 }}
       />
       <TextField
-        label="Matter Code"
+        label="Dev Authorised 1st signatory Name"
         fullWidth
         variant="outlined"
-        value={developerPersonInChargeContactNumber}
-        onChange={(e) => setDeveloperPersonInChargeContactNumber(e.target.value)}
+        value={authorised1stSignatoryName}
+        onChange={(e) => setAuthorised1stSignatoryName(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
+      <TextField
+        label="Authorised 1st Identity Card NO"
+        fullWidth
+        variant="outlined"
+        value={authorised1stIdentityCardNumber}
+        onChange={(e) => setAuthorised1stIdentityCardNumber(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      <TextField
+        label="Authorised 1st Sign Designation"
+        fullWidth
+        variant="outlined"
+        value={authorised1stSignatoryDesignation}
+        onChange={(e) => setAuthorised1stSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
+      <TextField
+        label="Authorised 2nd Signatory Name "
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryName}
+        onChange={(e) => setAuthorised2ndSignatoryName(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      <TextField
+        label="Authorised Identity Card NO"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndIdentityCardNumber}
+        onChange={(e) => setAuthorised2ndIdentityCardNumber(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
+      <TextField
+        label="Authorised 2nd signatory Designation"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      <TextField
+        label="Authorised 2nd signatory Designation"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
       </Box>
-      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
       <TextField
-        label="Packet File Location"
+        label="Authorised 2nd signatory Designation"
         fullWidth
         variant="outlined"
-        value={developerPersonInChargeEmailAddress}
-        onChange={(e) => setDeveloperPersonInChargeEmailAddress(e.target.value)}
-        sx={{ marginBottom: 2 }}
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
       />
       <TextField
-        label="File Matter"
+        label="Authorised 2nd signatory Designation"
         fullWidth
         variant="outlined"
-        value={developerAuthorised1stSignatureName}
-        onChange={(e) => setDeveloperAuthorised1stSignatureName(e.target.value)}
-        sx={{ marginBottom: 2 }}
-      />
-      </Box>
-      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
-      <TextField
-        label="Phical File Location"
-        fullWidth
-        variant="outlined"
-        value={developerAuthorised1stIdentityCardNumber}
-        onChange={(e) => setDeveloperAuthorised1stIdentityCardNumber(e.target.value)}
-        sx={{ marginBottom: 2 }}
-      />
-      <TextField
-        label="File Box Loacation"
-        fullWidth
-        variant="outlined"
-        value={developerAuthorised1stSignatureDesignation}
-        onChange={(e) => setDeveloperAuthorised1stSignatureDesignation(e.target.value)}
-        sx={{ marginBottom: 2 }}
-      />
-      </Box>
-      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
-      <TextField
-        label="Category"
-        fullWidth
-        variant="outlined"
-        value={developerAuthorised2ndSignatureName}
-        onChange={(e) => setDeveloperAuthorised2ndSignatureName(e.target.value)}
-        sx={{ marginBottom: 2 }}
-      />
-      <TextField
-        label="Date File Closed"
-        fullWidth
-        variant="outlined"
-        value={developerAuthorised2ndIdentityCardNumber}
-        onChange={(e) => setDeveloperAuthorised2ndIdentityCardNumber(e.target.value)}
-        sx={{ marginBottom: 2 }}
-      />
-      </Box>
-      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
-      <TextField
-        label="Department"
-        fullWidth
-        variant="outlined"
-        value={developerAuthorised2ndSignatureDesignation}
-        onChange={(e) => setDeveloperAuthorised2ndSignatureDesignation(e.target.value)}
-        sx={{ marginBottom: 2 }}
-      />
-      <TextField
-        label="Checklist Code"
-        fullWidth
-        variant="outlined"
-        value={developerAuthorised2ndSignatureDesignation}
-        onChange={(e) => setDeveloperAuthorised2ndSignatureDesignation(e.target.value)}
-        sx={{ marginBottom: 2 }}
-      />
-      </Box>
-      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 2 }}>
-      <TextField
-        label="File Ref:"
-        fullWidth
-        variant="outlined"
-        value={developerAuthorised2ndSignatureDesignation}
-        onChange={(e) => setDeveloperAuthorised2ndSignatureDesignation(e.target.value)}
-        sx={{ marginBottom: 2 }}
-      />
-      <TextField
-        label="B code"
-        fullWidth
-        variant="outlined"
-        value={developerAuthorised2ndSignatureDesignation}
-        onChange={(e) => setDeveloperAuthorised2ndSignatureDesignation(e.target.value)}
-        sx={{ marginBottom: 2 }}
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
       />
       </Box>
 
+{/* Purcahser section start here */}
+      <Box>
+        <Typography variant="h4" gutterBottom>
+          Purcahser Information
+        </Typography>
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
+      <TextField
+        label="1st Purchaser name"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      <TextField
+        label="1st Purchaser identity card "
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      </Box>
       <DialogActions>
         <Button variant="contained" color="primary" onClick={handleAddDeveloperSubmit}>
           Submit
         </Button>
       </DialogActions>
     </Box>
+    
   );
 }
 
