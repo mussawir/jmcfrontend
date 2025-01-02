@@ -59,6 +59,8 @@ import Admin from './pages/Admin';
 import Notifications from './pages/Notifications';
 import Teams from './pages/Teams';
 import Tracking from './pages/Tracking';
+import BankCAC from './pages/BankCAC';
+import GeneralForm from './components/GeneralForm';
 
 const AppWithDarkMode: React.FC = () => {
   const { darkMode } = useDarkMode(); // Access dark mode state
@@ -127,6 +129,8 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/notifications" element={<PrivateRoute element={<Notifications />} />} />        
         <Route path="/teams" element={<PrivateRoute element={<Teams />} />} />        
         <Route path="/tracking" element={<PrivateRoute element={<Tracking />} />} />        
+        <Route path="/bank-cac" element={<PrivateRoute element={<BankCAC />} />} />        
+        <Route path="/general-form" element={<PrivateRoute element={<GeneralForm />} />} />        
         <Route path="/reportgen" element={<ReportGen />} />
       </Routes>
     </ThemeProvider>

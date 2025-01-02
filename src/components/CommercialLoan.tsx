@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Toolbar, CssBaseline, Button } from '@mui/material';
-import DrawerComponent from './DrawerComponent';
-import HeaderComponent from './HeaderComponent';
+// import DrawerComponent from './DrawerComponent';
+// import HeaderComponent from './HeaderComponent';
 import { useNavigate } from 'react-router-dom';
+import GeneralForm from './GeneralForm';
 
 function CommercialLoan() {
   
@@ -14,9 +15,9 @@ function CommercialLoan() {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
+      {/* <CssBaseline />
       <DrawerComponent />
-      <HeaderComponent />
+      <HeaderComponent /> */}
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
@@ -27,7 +28,7 @@ function CommercialLoan() {
         </Typography>
 
         
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
+        {/* <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
           <Button
             variant="contained"
             color="primary"
@@ -35,7 +36,8 @@ function CommercialLoan() {
           >
             Add New
           </Button>
-        </Box>
+        </Box> */}
+        <GeneralForm />
       </Box>
     </Box>
   );

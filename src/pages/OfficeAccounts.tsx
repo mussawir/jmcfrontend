@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Toolbar, CssBaseline, Button } from '@mui/material';
-import DrawerComponent from '../components/DrawerComponent';
-import HeaderComponent from '../components/HeaderComponent';
+// import DrawerComponent from '../components/DrawerComponent';
+// import HeaderComponent from '../components/HeaderComponent';
+import GeneralForm from '../components/GeneralForm';
 import { useNavigate } from 'react-router-dom';
 
 function OfficeAccounts() {
@@ -14,9 +15,9 @@ function OfficeAccounts() {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
+      {/* <CssBaseline />
       <DrawerComponent />
-      <HeaderComponent />
+      <HeaderComponent /> */}
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
@@ -27,7 +28,7 @@ function OfficeAccounts() {
         </Typography>
 
         
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
+        {/* <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
           <Button
             variant="contained"
             color="primary"
@@ -35,7 +36,8 @@ function OfficeAccounts() {
           >
             Add New
           </Button>
-        </Box>
+        </Box> */}
+        <GeneralForm />
       </Box>
     </Box>
   );
