@@ -1,9 +1,9 @@
 import React, { useRef, useMemo, useState } from "react";
-import DrawerComponent from '../components/DrawerComponent';
-import HeaderComponent from '../components/HeaderComponent';
+import DrawerComponent from './DrawerComponent';
+import HeaderComponent from './HeaderComponent';
 import { Box, Typography, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, TextField, Button } from '@mui/material';
 
-const Bookmark1: React.FC = () => {
+const SchLoanH: React.FC = () => {
   const sections = [
     {
       heading: "Purchaser",
@@ -286,10 +286,11 @@ const Bookmark1: React.FC = () => {
           position: "sticky",
           top: 0,
           width: "97%",
-          backgroundColor: "#f8f9fa",
-          boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+          backgroundColor: "#fff",
+          boxShadow: "2px 2px 5px 5px rgba(77, 77, 77, 0.1)",
           zIndex: 1000,
-          padding: "5px 10px",
+          borderRadius: '4px',
+          padding: "15px 10px",
           fontSize: "15px",
         }}
       >
@@ -298,8 +299,8 @@ const Bookmark1: React.FC = () => {
             key={index}
             onClick={() => scrollToSection(index)}
             style={{
-              margin: "5px 5px",
-              padding: "5px 0px",
+              margin: "15px 5px",
+              padding: "10px 0px",
               cursor: "pointer",
               color: "#007bff",
             }}
@@ -378,4 +379,4 @@ const Bookmark1: React.FC = () => {
   );
 };
 
-export default Bookmark1;
+export default SchLoanH;
