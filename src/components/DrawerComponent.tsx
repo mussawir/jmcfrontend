@@ -1,22 +1,12 @@
 import React, { useState } from 'react';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography, Divider, Button, Menu, MenuItem } from '@mui/material';
-// import EmojiSymbolsOutlinedIcon from '@mui/icons-material/EmojiSymbolsOutlined';
-// import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined'; // For Documents
-// import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined'; // For Checklist
-// import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined'; // For Team
-// import CardGiftcardOutlinedIcon from '@mui/icons-material/CardGiftcardOutlined'; // For Cards
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'; // For Ecommerce
-// import WidgetsOutlinedIcon from '@mui/icons-material/WidgetsOutlined'; // For Components
-// import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined'; // For Forms
-// import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined'; // For Tables
-// import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined'; // For Apps
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'; // Already outlined
 import GroupIcon from '@mui/icons-material/Group';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import LaptopMacIcon from '@mui/icons-material/LaptopMac';
-// import StoreIcon from '@mui/icons-material/Store';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PaymentIcon from '@mui/icons-material/Payment';
@@ -34,10 +24,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
-// import FolderCopyOutlinedIcon from '@mui/icons-material/FolderCopyOutlined';
-// import Button from '@mui/material/Button';
-// import Menu from '@mui/material/Menu';
-// import MenuItem from '@mui/material/MenuItem';
+
 
 const drawerWidth = 240;
 
@@ -312,12 +299,12 @@ const DrawerComponent = () => {
   <Dialog open={isModalOpen} onClose={closeModal}>
   <DialogTitle>New Schedule</DialogTitle>
   <DialogContent>
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '400px' }}>
       <p>Select a schedule:</p>
-      <Button onClick={() => handleItemClick('ScheduleG', '/sch-loan-g')}>Schedule G</Button>
-      <Button onClick={() => handleItemClick('ScheduleH', '/sch-loan-h')}>Schedule H</Button>
-      <Button onClick={() => handleItemClick('ScheduleG', '/sch-loan-i')}>Schedule I</Button>
-      <Button onClick={() => handleItemClick('ScheduleG', '/sch-loan-j')}>Schedule J</Button>
+      <Button onClick={() => handleItemClick('ScheduleG', '/sch-loan-g')} style={{ backgroundColor: '#1E90FF', color: 'white' }}>Schedule G</Button>
+      <Button onClick={() => handleItemClick('ScheduleH', '/sch-loan-h')} style={{ backgroundColor: '#1E90FF', color: 'white' }}>Schedule H</Button>
+      <Button onClick={() => handleItemClick('ScheduleG', '/sch-loan-i')} style={{ backgroundColor: '#1E90FF', color: 'white' }}>Schedule I</Button>
+      <Button onClick={() => handleItemClick('ScheduleG', '/sch-loan-j')} style={{ backgroundColor: '#1E90FF', color: 'white' }}>Schedule J</Button>
     </div>
   </DialogContent>
   <DialogActions>
