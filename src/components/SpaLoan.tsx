@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Box, Typography, TextField, Button, DialogActions, CircularProgress } from '@mui/material';
+import { Box, Typography, TextField, Button, DialogActions, } from '@mui/material';
+import Radio from '@mui/material/Radio';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
-
 function SpaLoan() {
   // State hooks for each form field
   const [developerName, setDeveloperName] = useState('');
@@ -22,20 +22,13 @@ function SpaLoan() {
   const [authorised2ndSignatoryName, setAuthorised2ndSignatoryName] = useState('');
   const [authorised2ndIdentityCardNumber, setAuthorised2ndIdentityCardNumber] = useState('');
   const [authorised2ndSignatoryDesignation, setAuthorised2ndSignatoryDesignation] = useState('');
-  const [uploadFile, setUploadFile] = useState<File | null>(null);
-  const [loading, setLoading] = useState(false);
-  
-  type KeyValue = { key: string; value: string };
-  const convertToArray = (text:string): KeyValue[] => {
-    return text
-      .trim()
-      .split('\n')
-      .map(line => {
-        const [key, ...value] = line.split(':');
-        return { key: key.trim(), value: value.join(':').trim() };
-      });
+  const [selectedValue, setSelectedValue] = useState<string>('a');
+
+  // Event handler with correct typing
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setSelectedValue(event.target.value);
   };
-  
+ 
   const handleAddDeveloperSubmit = async () => {
     const developerData = {
       developerName,
@@ -58,7 +51,7 @@ function SpaLoan() {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/spaloan', {
+      const response = await fetch('http://localhost:5000/spa-loan', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -80,103 +73,12 @@ function SpaLoan() {
     }
   };
 
-  // const UploadFile = async (event: React.FormEvent) => {
-  //   if (!uploadFile) {
-  //     alert('Please select a file');
-  //     return;
-  //   }
-  //   event.preventDefault();
-  //   setLoading(true);
-  //   const formData = new FormData();
-  //   formData.append('uploadFile', uploadFile);
-  //   try {
-  //     const response = await fetch('http://localhost:5000/spaloana', {
-  //       method: 'POST',
-  //       body: formData,
-  //     });
-  //     const result = await response.json();
-  //     console.log(result)
-  //     if (response.ok) {
-  //       // alert(result);
-  //       // alert(`Result: ${result.response}`);
-  //       const developerDetails = convertToArray(result.response);
-  //       developerDetails.forEach(detail => {
-  //       console.log(`${detail.key}: ${detail.value}`);
-  //       const key = detail.key;
-  //       switch (key) {
-  //               case 'Developer Name':
-  //                 setDeveloperName(detail.value);
-  //                 break;
-  //               case 'Registration Number':
-  //                 setCompanyRegNum(detail.value);
-  //                 break;
-  //               case 'Office Address':
-  //                 setRegisteredOfficeAdd(detail.value);
-  //                 break;
-  //               case 'Business Address':
-  //                 setDeveloperPlaceOfBusinessAddress(detail.value);
-  //                 break;
-  //               case 'File Reference Number':
-  //                 setDeveloperFileReferenceNumber(detail.value);
-  //                 break;
-  //               case 'License Number':
-  //                 setDeveloperLicenceNumber(detail.value);
-  //                 break;
-  //               case 'NRIC No':
-  //                 setDeveloperContactNumber(detail.value);
-  //                 break;
-  //               case 'Email Address':
-  //                 setDeveloperEmailAddress(detail.value);
-  //                 break;
-  //               case 'Person in Charge Name':
-  //                 setDeveloperPersonInChargeName(detail.value);
-  //                 break;
-  //               case 'Person in Charge Contact Number':
-  //                 setDeveloperPersonInChargeContactNumber(detail.value);
-  //                 break;
-  //               case 'Person in Charge Email Address':
-  //                 setDeveloperPersonInChargeEmailAddress(detail.value);
-  //                 break;
-  //               case '1st Authorised Signatory Name':
-  //                 setDeveloperAuthorised1stSignatureName(detail.value);
-  //                 break;
-  //               case '1st Authorised Identity Card Number':
-  //                 setDeveloperAuthorised1stIdentityCardNumber(detail.value);
-  //                 break;
-  //               case '1st Authorised Signatory Designation':
-  //                 setDeveloperAuthorised1stSignatureDesignation(detail.value);
-  //                 break;
-  //               case '2nd Authorised Signatory Name':
-  //                 setDeveloperAuthorised2ndSignatureName(detail.value);
-  //                 break;
-  //               case '2nd Authorised Identity Card Number':
-  //                 setDeveloperAuthorised2ndIdentityCardNumber(detail.value);
-  //                 break;
-  //               case '2nd Authorised Signatory Designation':
-  //                 setDeveloperAuthorised2ndSignatureDesignation(detail.value);
-  //                 break;
-  //               default:
-  //                 break;
-  //             }
-  //       });
-  //       console.log(developerDetails);
-  //       setLoading(false);
-  //     }
-  //     else {
-  //       alert('Failed to add document');
-  //       console.error(result);
-  //       setLoading(false);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //     alert('An error occurred');
-  //   }
-  // }
+ 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'start', p: 3, maxWidth: 1000, marginLeft: 31, marginTop: 10, }}>
         <DrawerComponent />
         <HeaderComponent />
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h6" gutterBottom>
         Developer Information
       </Typography>
       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
@@ -189,7 +91,7 @@ function SpaLoan() {
         sx={{ marginBottom: 1 }}
       />
       <TextField
-        label="Company Name"
+        label="Company Registration Number"
         fullWidth
         variant="outlined"
         value={companyRegNum}
@@ -222,7 +124,7 @@ function SpaLoan() {
         variant="outlined"
         value={fileReferenceNumber}
         onChange={(e) => setFileReferenceNumber(e.target.value)}
-        sx={{ marginBottom: 2 }}
+        sx={{ marginBottom: 1 }}
       />
       <TextField
         label="Licence Number"
@@ -230,7 +132,7 @@ function SpaLoan() {
         variant="outlined"
         value={licenceNumber}
         onChange={(e) => setLicenceNumber(e.target.value)}
-        sx={{ marginBottom: 2 }}
+        sx={{ marginBottom: 1 }}
       />
        </Box>
        <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
@@ -240,7 +142,7 @@ function SpaLoan() {
         variant="outlined"
         value={contactNumber}
         onChange={(e) => setContactNumber(e.target.value)}
-        sx={{ marginBottom: 2 }}
+        sx={{ marginBottom: 1 }}
       />
       <TextField
         label="Email Address"
@@ -266,7 +168,7 @@ function SpaLoan() {
         variant="outlined"
         value={personInChargeContactNumber}
         onChange={(e) => setPersonInChargeContactNumber(e.target.value)}
-        sx={{ marginBottom: 2 }}
+        sx={{ marginBottom: 1 }}
       />
       </Box>
       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
@@ -279,7 +181,7 @@ function SpaLoan() {
         sx={{ marginBottom: 1 }}
       />
       <TextField
-        label="Dev Authorised 1st signatory Name"
+        label="Dev Authorised 1st Signatory Name"
         fullWidth
         variant="outlined"
         value={authorised1stSignatoryName}
@@ -325,7 +227,7 @@ function SpaLoan() {
       </Box>
       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
       <TextField
-        label="Authorised 2nd signatory Designation"
+        label="Authorised 2nd Signatory Designation"
         fullWidth
         variant="outlined"
         value={authorised2ndSignatoryDesignation}
@@ -333,17 +235,17 @@ function SpaLoan() {
         sx={{ marginBottom: 1 }}
       />
       <TextField
-        label="Authorised 2nd signatory Designation"
+        label="Authorised 2nd Signatory Designation"
         fullWidth
         variant="outlined"
         value={authorised2ndSignatoryDesignation}
         onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
-        sx={{ marginBottom: 2 }}
+        sx={{ marginBottom: 1 }}
       />
       </Box>
       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
       <TextField
-        label="Authorised 2nd signatory Designation"
+        label="Authorised 2nd Signatory Designation"
         fullWidth
         variant="outlined"
         value={authorised2ndSignatoryDesignation}
@@ -351,7 +253,7 @@ function SpaLoan() {
         sx={{ marginBottom: 1 }}
       />
       <TextField
-        label="Authorised 2nd signatory Designation"
+        label="Authorised 2nd Signatory Designation"
         fullWidth
         variant="outlined"
         value={authorised2ndSignatoryDesignation}
@@ -359,16 +261,42 @@ function SpaLoan() {
         sx={{ marginBottom: 1 }}
       />
       </Box>
+      <Box sx={{ display: 'flex', width: '100%', marginBottom: 1, marginTop: 6  }}>
+        <Typography>If Purchaser is/are individual(s) (Malaysian)</Typography>
+        <Radio
+          checked={selectedValue === 'a'}
+          onChange={handleChange}
+          value="a"
+          name="radio-buttons"
+          inputProps={{ 'aria-label': 'A' }}
+        />
+        <Typography>If Purchaser is/are individual(s) (foreigner)</Typography>
+        <Radio
+          checked={selectedValue === 'b'}
+          onChange={handleChange}
+          value="b"
+          name="radio-buttons"
+          inputProps={{ 'aria-label': 'B' }}
+        />
+        <Typography>If Purchaser is a company</Typography>
+        <Radio
+          checked={selectedValue === 'c'}
+          onChange={handleChange}
+          value="c"
+          name="radio-buttons"
+          inputProps={{ 'aria-label': 'C' }}
+        />
+      </Box>
 
 {/* Purcahser section start here */}
-      <Box>
-        <Typography variant="h4" gutterBottom>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1, marginTop: 6 }}>
+        <Typography variant="h6" gutterBottom>
           Purcahser Information
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
       <TextField
-        label="1st Purchaser name"
+        label="1st Purchaser Name"
         fullWidth
         variant="outlined"
         value={authorised2ndSignatoryDesignation}
@@ -376,13 +304,193 @@ function SpaLoan() {
         sx={{ marginBottom: 1 }}
       />
       <TextField
-        label="1st Purchaser identity card "
+        label="1st Purchaser Identity Card"
         fullWidth
         variant="outlined"
         value={authorised2ndSignatoryDesignation}
         onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
         sx={{ marginBottom: 1 }}
       />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
+        <TextField
+          label="1st Purchaser Contact Number"
+          fullWidth
+          variant="outlined"
+          value={authorised2ndSignatoryDesignation}
+          onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+          sx={{ marginBottom: 1 }}
+        />
+        <TextField
+          label="1st Purchaser Email Address"
+          fullWidth
+          variant="outlined"
+          value={authorised2ndSignatoryDesignation}
+          onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+          sx={{ marginBottom: 1 }}
+        />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
+      <TextField
+        label="2nd Purchaser Name"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      <TextField
+        label="2nd Purchaser Identity Card"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
+      <TextField
+        label="2nd Purchaser Contact Number"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      <TextField
+        label="2nd Purchaser Email Address"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
+      <TextField
+        label="3rd Purchaser Name"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      <TextField
+        label="3rd Purchaser Identity Card "
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
+      <TextField
+        label="3rd Purchaser Contact Number"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      <TextField
+        label="3rd Purchaser Email Address"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
+      <TextField
+        label="4th Purchaser Name"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      <TextField
+        label="4th Purchaser Identity Card "
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
+      <TextField
+        label="4th Purchaser Contact Number"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      <TextField
+        label="4th Purchaser Email Address"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
+      <TextField
+        label="5th Purchaser Name"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      <TextField
+        label="5th Purchaser Identity Card"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
+      <TextField
+        label="5th Purchaser Contact Number"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      <TextField
+        label="5th Purchaser Email Address"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      </Box>
+      <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1 }}>
+      <TextField
+        label="Purchaser Correspondance address"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      />
+      {/* <TextField
+        label="5th Purchaser Email Address"
+        fullWidth
+        variant="outlined"
+        value={authorised2ndSignatoryDesignation}
+        onChange={(e) => setAuthorised2ndSignatoryDesignation(e.target.value)}
+        sx={{ marginBottom: 1 }}
+      /> */}
       </Box>
       <DialogActions>
         <Button variant="contained" color="primary" onClick={handleAddDeveloperSubmit}>
