@@ -1,12 +1,9 @@
 import React, { useRef, useMemo, useState } from "react";
-import DrawerComponent from '../components/DrawerComponent';
-import HeaderComponent from '../components/HeaderComponent';
+import DrawerComponent from './DrawerComponent';
+import HeaderComponent from './HeaderComponent';
 import { Box, Typography, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, TextField, Button } from '@mui/material';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import SchLoanH from "./SchLoanH";
 
-const BookmarkLayout: React.FC = () => {
+const SchLoanG: React.FC = () => {
   const sections = [
     {
       heading: "Purchaser",
@@ -237,12 +234,6 @@ const BookmarkLayout: React.FC = () => {
     sectionRefs[index].current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const [value, setValue] = React.useState('one');
-
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
-
   const [uploadFiles, setUploadFiles] = useState<File[]>([]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -283,41 +274,24 @@ const BookmarkLayout: React.FC = () => {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
+      {/* <CssBaseline />
       <DrawerComponent />
-      <HeaderComponent />
+      <HeaderComponent /> */}
 
-      {/* <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Toolbar />
-        <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        width: '100%',
-        marginBottom: 2,
-        marginTop: 25,
-      }}
-    >
-      <input
-        type="file"
-        multiple
-        onChange={handleFileChange}
-        style={{ marginRight: '16px', width: '180px' }}
-      />
-      <Button variant="contained" color="primary" onClick={UploadFile}>
-        Fill From Doc
-      </Button>
-    </Box>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        {/* <Toolbar /> */}
+  
       <div
         style={{
-          position: "fixed",
-          top: 65,
-          width: "80%",
-          backgroundColor: "#f8f9fa",
-          boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+          position: "sticky",
+          top: 0,
+          width: "97%",
+          backgroundColor: "#fff",
+          boxShadow: "2px 2px 5px 5px rgba(77, 77, 77, 0.1)",
           zIndex: 1000,
-          padding: "10px 20px",
+          borderRadius: '4px',
+          padding: "15px 10px",
+          fontSize: "15px",
         }}
       >
         {sections.map((section, index) => (
@@ -325,84 +299,84 @@ const BookmarkLayout: React.FC = () => {
             key={index}
             onClick={() => scrollToSection(index)}
             style={{
-              margin: "5px 15px",
-              padding: "5px 18px",
+              margin: "15px 5px",
+              padding: "10px 0px",
               cursor: "pointer",
               color: "#007bff",
             }}
           >
-            {section.heading}
+            {section.heading}    |
           </a>
         ))}
       </div>
-
-      <div style={{ marginTop: "60px" }}>
-  {sections.map((section, index) => (
-    <div
-      key={index}
-      ref={sectionRefs[index]}
-      style={{
-        minHeight: "70vh",
-        padding: "20px",
-        marginTop: "100px",
-        borderBottom: "1px solid #ddd",
+      <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        marginBottom: 2,
+        marginTop: 2,
       }}
     >
-      <h2>{section.heading}</h2>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {section.fields.map((field, fieldIndex) => (
+      <input
+        type="file"
+        multiple
+        onChange={handleFileChange}
+        style={{ marginRight: '16px', width: '180px', position: "sticky",
+        }}
+      />
+      <Button variant="contained" color="primary" onClick={UploadFile}>
+        Fill From Doc
+      </Button>
+    </Box>
+      <Box
+        sx={{
+          marginTop: '0px',
+          position: 'fixed',
+          overflowY: 'auto',    // Makes the section content scrollable
+          maxHeight: 'calc(100vh - 100px)',  // Adjust this height to prevent it from occupying the entire page
+        }}
+      >
+        {sections.map((section, index) => (
           <div
-            key={fieldIndex}
+            key={index}
+            ref={sectionRefs[index]}
             style={{
-              display: "flex",
-              flexDirection: "column",
-              flex: "1 1 50%", // Adjusts width to 50% for 2 columns
-              padding: "10px",
-              boxSizing: "border-box",
+              minHeight: '70vh',
+              padding: '20px',
+              marginTop: '0px',
+              borderBottom: '1px solid #ddd',
             }}
           >
-            <input
-              type="text"
-              placeholder={field}
-              style={{ padding: "10px", width: "100%" }}
-            />
+            <h2>{section.heading}</h2>
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+              {section.fields.map((field, fieldIndex) => (
+                <div
+                  key={fieldIndex}
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                    padding: '10px',
+                    boxSizing: 'border-box',
+                  }}
+                >
+                  <input
+                    type="text"
+                    placeholder={field}
+                    style={{ padding: '10px', width: '100%' }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         ))}
-      </div>
-    </div>
-  ))}
-</div>
-
-    </Box> */}
-    
-    <Box sx={{ width: '100%' }}>
-              <Toolbar />
-      
-              <Tabs
-        value={value}
-        onChange={handleChange}
-        textColor="secondary"
-        indicatorColor="secondary"
-        aria-label="secondary tabs example"
-        sx={{ position: 'fixed'}}
-      >
-        <Tab value="one" label="Schedule H" />
-        <Tab value="two" label="loan H" />
-        {/* <Tab value="three" label="Item Three" /> */}
-      </Tabs>
-
-      <Box sx={{ padding: 3, }}>
-        {value === "one" && <div 
-        ><SchLoanH /></div>}
-        {value === "two" && <div style={{ marginTop: "30px" }} >Content for Item Two</div>}
-        {/* {value === "three" && <div><Bookmark1 /></div>} */}
       </Box>
-
-                {/* <Bookmark1/> */}
 
     </Box>
     </Box>
   );
 };
 
-export default BookmarkLayout;
+export default SchLoanG;

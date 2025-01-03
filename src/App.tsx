@@ -109,7 +109,8 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/addparty" element={<PrivateRoute element={<AddParty />} />} />        
         <Route path="/partylist" element={<PrivateRoute element={<PartyList />} />} />        
         <Route path="/developer" element={<PrivateRoute element={<DeveloperForm />} />} />        
-        <Route path="/bookmark" element={<PrivateRoute element={<BookmarkLayout />} />} />        
+        <Route path="/sch-loan-h" element={<PrivateRoute element={<BookmarkLayout />} />} />        
+        <Route path="/sch-loan-g" element={<PrivateRoute element={<BookmarkLayout />} />} />        
         <Route path="/spaloan" element={<PrivateRoute element={<SpaLoan />} />} />        
         <Route path="/developerloan" element={<PrivateRoute element={<DeveloperLoan />} />} />        
         <Route path="/transfer" element={<PrivateRoute element={<Transfer />} />} />        
