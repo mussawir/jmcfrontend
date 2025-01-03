@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography, Divider } from '@mui/material';
-import EmojiSymbolsOutlinedIcon from '@mui/icons-material/EmojiSymbolsOutlined';
-import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined'; // For Documents
-import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined'; // For Checklist
-import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined'; // For Team
-import CardGiftcardOutlinedIcon from '@mui/icons-material/CardGiftcardOutlined'; // For Cards
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography, Divider, Button, Menu, MenuItem } from '@mui/material';
+// import EmojiSymbolsOutlinedIcon from '@mui/icons-material/EmojiSymbolsOutlined';
+// import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined'; // For Documents
+// import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined'; // For Checklist
+// import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined'; // For Team
+// import CardGiftcardOutlinedIcon from '@mui/icons-material/CardGiftcardOutlined'; // For Cards
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'; // For Ecommerce
-import WidgetsOutlinedIcon from '@mui/icons-material/WidgetsOutlined'; // For Components
-import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined'; // For Forms
-import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined'; // For Tables
-import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined'; // For Apps
+// import WidgetsOutlinedIcon from '@mui/icons-material/WidgetsOutlined'; // For Components
+// import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined'; // For Forms
+// import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined'; // For Tables
+// import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined'; // For Apps
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'; // Already outlined
 import GroupIcon from '@mui/icons-material/Group';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import LaptopMacIcon from '@mui/icons-material/LaptopMac';
-import StoreIcon from '@mui/icons-material/Store';
+// import StoreIcon from '@mui/icons-material/Store';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import PaymentIcon from '@mui/icons-material/Payment';
@@ -30,10 +30,14 @@ import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import { Link, useNavigate } from 'react-router-dom';
 import logojmc from '../images/jmcvc-dark-logo.png';
-import FolderCopyOutlinedIcon from '@mui/icons-material/FolderCopyOutlined';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+// import FolderCopyOutlinedIcon from '@mui/icons-material/FolderCopyOutlined';
+// import Button from '@mui/material/Button';
+// import Menu from '@mui/material/Menu';
+// import MenuItem from '@mui/material/MenuItem';
 
 const drawerWidth = 240;
 
@@ -42,6 +46,7 @@ const DrawerComponent = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
+
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -83,6 +88,7 @@ const DrawerComponent = () => {
   const [selectedMattersMenu, setSelectedMattersMenu] = useState<string | null>(null);
   const [mattersAnchorEl, setMattersAnchorEl] = useState<null | HTMLElement>(null);
   const openMattersMenu = Boolean(mattersAnchorEl);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Handle closing the Matters menu
   const handleMattersClose = () => {
@@ -97,10 +103,20 @@ const DrawerComponent = () => {
 
   // Handle item click in the Matters submenu
   const handleMattersItemClick = (item: string, route: string) => {
-    setSelectedMattersMenu(item);
-    navigate(route); // Navigate to the desired route
-    handleMattersClose(); // Close the submenu
+    if (item === 'New Schedule') {
+      setIsModalOpen(true); // Open the modal for "New Schedule"
+    } else {
+      setSelectedMattersMenu(item);
+      navigate(route); // Navigate to the desired route
+    }
+    handleMattersClose();
   };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  
   
   return (
     <Drawer
@@ -243,12 +259,14 @@ const DrawerComponent = () => {
       }}
     >
       {[
+        { label: 'New Schedule', route: '/new-schedule' },
+        { label: 'SubSale', route: '/subsale' },
         { label: 'SPA Loan/ SUBSALE || SPA Related Loan', route: '/spaloan' },
         { label: 'SPA Loan/ Developer', route: '/developerloan' },
         { label: 'Transfer', route: '/transfer' },
         { label: 'Commercial Loan', route: '/commercialloan' },
         { label: 'Discharge', route: '/discharge' },
-        { label: 'Receive and Reassignment', route: '/reassignment' },
+        { label: 'Receipt and Reassignment', route: '/reassignment' },
         { label: 'Tenancy', route: '/tenancy' },
         { label: 'Commercial Agreement', route: '/commercialagreement' },
       ].map((item, index) => (
@@ -290,6 +308,22 @@ const DrawerComponent = () => {
     onClick={handleClick} 
     sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} 
   />
+  {/* Modal for "New Schedule" */}
+  <Dialog open={isModalOpen} onClose={closeModal}>
+  <DialogTitle>New Schedule</DialogTitle>
+  <DialogContent>
+    <div>
+      <p>Select a schedule:</p>
+      <Button onClick={() => console.log('Schedule G selected')}>Schedule G</Button>
+      <Button onClick={() => console.log('Schedule H selected')}>Schedule H</Button>
+      <Button onClick={() => console.log('Schedule I selected')}>Schedule I</Button>
+      <Button onClick={() => console.log('Schedule J selected')}>Schedule J</Button>
+    </div>
+  </DialogContent>
+  <DialogActions>
+    <Button onClick={closeModal}>Close</Button>
+  </DialogActions>
+</Dialog>
 </ListItem>
 
 
