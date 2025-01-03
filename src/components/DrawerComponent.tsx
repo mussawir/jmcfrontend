@@ -314,10 +314,10 @@ const DrawerComponent = () => {
   <DialogContent>
     <div>
       <p>Select a schedule:</p>
-      <Button onClick={() => console.log('Schedule G selected')}>Schedule G</Button>
-      <Button onClick={() => console.log('Schedule H selected')}>Schedule H</Button>
-      <Button onClick={() => console.log('Schedule I selected')}>Schedule I</Button>
-      <Button onClick={() => console.log('Schedule J selected')}>Schedule J</Button>
+      <Button onClick={() => handleItemClick('ScheduleG', '/sch-loan-g')}>Schedule G</Button>
+      <Button onClick={() => handleItemClick('ScheduleH', '/sch-loan-h')}>Schedule H</Button>
+      <Button onClick={() => handleItemClick('ScheduleG', '/sch-loan-i')}>Schedule I</Button>
+      <Button onClick={() => handleItemClick('ScheduleG', '/sch-loan-j')}>Schedule J</Button>
     </div>
   </DialogContent>
   <DialogActions>
