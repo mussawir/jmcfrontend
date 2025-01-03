@@ -4,7 +4,7 @@ import HeaderComponent from './HeaderComponent';
 import { Box, Typography, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, TextField, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-const SchLoanH: React.FC = () => {
+const SchLoanI: React.FC = () => {
 
   const [value, setValue] = React.useState('one');
 
@@ -387,8 +387,8 @@ const SchLoanH: React.FC = () => {
       aria-label="secondary tabs example"
       sx={{ position: 'fixed'}}
     >
-      <Tab value="one" label="Schedule H" />
-      <Tab value="two" label="loan H" />
+      <Tab value="one" label="Schedule I" />
+      <Tab value="two" label="loan I" />
     </Tabs>
 
     <Box sx={{ padding: 3, }}>
@@ -508,4 +508,4 @@ const SchLoanH: React.FC = () => {
   );
 };
 
-export default SchLoanH;
+export default SchLoanI;

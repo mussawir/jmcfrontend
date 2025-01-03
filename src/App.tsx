@@ -37,7 +37,6 @@ import AddTemplates from './pages/AddTemplates';
 import AddParty from './pages/AddParty';
 import PartyList from './pages/PartyList';
 import DeveloperForm from './pages/spah/Developer';
-import BookmarkLayout from './components/BookmarkLayout';
 import ReportGen from './pages/ReportGen';
 import PrivateRoute from './components/PrivateRoute';
 import SpaLoan from './components/SpaLoan';
@@ -61,6 +60,10 @@ import Teams from './pages/Teams';
 import Tracking from './pages/Tracking';
 import BankCAC from './pages/BankCAC';
 import GeneralForm from './components/GeneralForm';
+import SchLoanH from './components/SchLoanH';
+import SchLoanG from './components/SchLoanG';
+import SchLoanI from './components/SchLoanI';
+import SchLoanJ from './components/SchLoanJ';
 
 const AppWithDarkMode: React.FC = () => {
   const { darkMode } = useDarkMode(); // Access dark mode state
@@ -109,8 +112,10 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/addparty" element={<PrivateRoute element={<AddParty />} />} />        
         <Route path="/partylist" element={<PrivateRoute element={<PartyList />} />} />        
         <Route path="/developer" element={<PrivateRoute element={<DeveloperForm />} />} />        
-        <Route path="/sch-loan-h" element={<PrivateRoute element={<BookmarkLayout />} />} />        
-        <Route path="/sch-loan-g" element={<PrivateRoute element={<BookmarkLayout />} />} />        
+        <Route path="/sch-loan-h" element={<PrivateRoute element={<SchLoanH />} />} />        
+        <Route path="/sch-loan-g" element={<PrivateRoute element={<SchLoanG />} />} />        
+        <Route path="/sch-loan-i" element={<PrivateRoute element={<SchLoanI />} />} />        
+        <Route path="/sch-loan-j" element={<PrivateRoute element={<SchLoanJ />} />} />        
         <Route path="/spaloan" element={<PrivateRoute element={<SpaLoan />} />} />        
         <Route path="/developerloan" element={<PrivateRoute element={<DeveloperLoan />} />} />        
         <Route path="/transfer" element={<PrivateRoute element={<Transfer />} />} />        

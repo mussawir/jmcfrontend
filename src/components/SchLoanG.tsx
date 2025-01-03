@@ -2,8 +2,18 @@ import React, { useRef, useMemo, useState } from "react";
 import DrawerComponent from './DrawerComponent';
 import HeaderComponent from './HeaderComponent';
 import { Box, Typography, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, TextField, Button } from '@mui/material';
-
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 const SchLoanG: React.FC = () => {
+
+  const [value, setValue] = React.useState('one');
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
+
+   
+
   const sections = [
     {
       heading: "Purchaser",
@@ -274,6 +284,117 @@ const SchLoanG: React.FC = () => {
 
   return (
     <Box sx={{ display: 'flex' }}>
+    <CssBaseline />
+    <DrawerComponent />
+    <HeaderComponent />
+
+    {/* <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Toolbar />
+      <Box
+    sx={{
+      display: 'flex',
+      justifyContent: 'flex-end',
+      alignItems: 'center',
+      width: '100%',
+      marginBottom: 2,
+      marginTop: 25,
+    }}
+  >
+    <input
+      type="file"
+      multiple
+      onChange={handleFileChange}
+      style={{ marginRight: '16px', width: '180px' }}
+    />
+    <Button variant="contained" color="primary" onClick={UploadFile}>
+      Fill From Doc
+    </Button>
+  </Box>
+    <div
+      style={{
+        position: "fixed",
+        top: 65,
+        width: "80%",
+        backgroundColor: "#f8f9fa",
+        boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+        zIndex: 1000,
+        padding: "10px 20px",
+      }}
+    >
+      {sections.map((section, index) => (
+        <a
+          key={index}
+          onClick={() => scrollToSection(index)}
+          style={{
+            margin: "5px 15px",
+            padding: "5px 18px",
+            cursor: "pointer",
+            color: "#007bff",
+          }}
+        >
+          {section.heading}
+        </a>
+      ))}
+    </div>
+
+    <div style={{ marginTop: "60px" }}>
+{sections.map((section, index) => (
+  <div
+    key={index}
+    ref={sectionRefs[index]}
+    style={{
+      minHeight: "70vh",
+      padding: "20px",
+      marginTop: "100px",
+      borderBottom: "1px solid #ddd",
+    }}
+  >
+    <h2>{section.heading}</h2>
+    <div style={{ display: "flex", flexWrap: "wrap" }}>
+      {section.fields.map((field, fieldIndex) => (
+        <div
+          key={fieldIndex}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            flex: "1 1 50%", // Adjusts width to 50% for 2 columns
+            padding: "10px",
+            boxSizing: "border-box",
+          }}
+        >
+          <input
+            type="text"
+            placeholder={field}
+            style={{ padding: "10px", width: "100%" }}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+))}
+</div>
+
+  </Box> */}
+  
+  <Box sx={{ width: '100%' }}>
+            <Toolbar />
+    
+       <Tabs
+      value={value}
+      onChange={handleChange}
+      textColor="secondary"
+      indicatorColor="secondary"
+      aria-label="secondary tabs example"
+      sx={{ position: 'fixed'}}
+    >
+      <Tab value="one" label="Schedule G" />
+      <Tab value="two" label="loan G" />
+    </Tabs>
+
+    <Box sx={{ padding: 3, }}>
+      {value === "one" && <div 
+      >
+    <Box sx={{ display: 'flex' }}>
       {/* <CssBaseline />
       <DrawerComponent />
       <HeaderComponent /> */}
@@ -376,6 +497,14 @@ const SchLoanG: React.FC = () => {
 
     </Box>
     </Box>
+    </div>}
+            {value === "two" && <div style={{ marginTop: "30px" }} >Content for Item Two</div>}
+          </Box>
+    
+                    {/* <Bookmark1/> */}
+    
+        </Box>
+        </Box>
   );
 };
 
