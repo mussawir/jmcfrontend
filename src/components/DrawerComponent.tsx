@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material';
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography, Divider } from '@mui/material';
 import EmojiSymbolsOutlinedIcon from '@mui/icons-material/EmojiSymbolsOutlined';
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined'; // For Documents
 import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined'; // For Checklist
@@ -11,6 +11,7 @@ import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined'; /
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined'; // For Tables
 import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined'; // For Apps
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'; // Already outlined
 import GroupIcon from '@mui/icons-material/Group';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
@@ -77,6 +78,30 @@ const DrawerComponent = () => {
   const handleBankClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setBankAnchorEl(event.currentTarget);
   };
+
+
+  const [selectedMattersMenu, setSelectedMattersMenu] = useState<string | null>(null);
+  const [mattersAnchorEl, setMattersAnchorEl] = useState<null | HTMLElement>(null);
+  const openMattersMenu = Boolean(mattersAnchorEl);
+
+  // Handle closing the Matters menu
+  const handleMattersClose = () => {
+    setMattersAnchorEl(null);
+    setSelectedMattersMenu(null); // Reset selected submenu when closing
+  };
+
+  // Handle opening the Matters menu
+  const handleMattersClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setMattersAnchorEl(event.currentTarget);
+  };
+
+  // Handle item click in the Matters submenu
+  const handleMattersItemClick = (item: string, route: string) => {
+    setSelectedMattersMenu(item);
+    navigate(route); // Navigate to the desired route
+    handleMattersClose(); // Close the submenu
+  };
+  
   return (
     <Drawer
       sx={{
@@ -170,96 +195,103 @@ const DrawerComponent = () => {
 
 
 <ListItem
-  className="metters-section"
-  style={{ display: 'flex', alignItems: 'center', gap: '4px', paddingLeft: '15px' }}
   sx={{
-    backgroundColor: selectedItem === 'Dashboard' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
-    color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
+    backgroundColor: selectedItem === 'Projects' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
+    color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
     '&:hover': {
       backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
+      cursor: 'pointer',
     },
   }}
-  // onClick={handleClick}
+  onClick={handleClick}
 >
-  <ListItemIcon
-    sx={{
-      color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f',
-      minWidth: 'unset',
-    }}
-  >
+  <ListItemIcon>
     <AssignmentIcon />
   </ListItemIcon>
+  
   <Button
-    id="basic-button"
-    aria-controls={open ? 'basic-menu' : undefined}
-    aria-haspopup="true"
-    aria-expanded={open ? 'true' : undefined}
     onClick={handleClick}
     sx={{
-      fontSize: '14px',
-      fontWeight: 400,
-      lineHeight: 1.5,
-      letterSpacing: '0.5px',
-      fontFamily: 'sans-serif',
-      color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f',
-      textTransform: 'none',
-      marginLeft: '20px',
-      minWidth: 'unset',
+      color: 'inherit', // Inherit color from ListItem
+      textTransform: 'none', // Prevent text from being transformed to uppercase
+      fontWeight: 'normal', // Normal font weight
+      fontSize: 'inherit', // Inherit font size from parent
     }}
   >
-    Metters
+    Matters
   </Button>
-  <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }} />
-  <Menu
-  id="basic-menu"
-  anchorEl={anchorEl}
-  open={open}
-  onClose={handleClose}
-  MenuListProps={{
-    'aria-labelledby': 'basic-button',
-  }}
-  sx={{
-    '& .MuiPaper-root': {
-      borderRadius: '12px',
-      backgroundColor: '#ffffff',
-      boxShadow: '0 8px 16px rgba(0, 0, 0, 0.15)',
-      minWidth: '240px',
-      overflow: 'hidden',
-    },
-  }}
->
-{[
-            { label: 'SPA Loan/ SUBSALE || SPA Related Loan', route: '/spaloan' },
-            { label: 'SPA Loan/ Developer', route: '/developerloan' },
-            { label: 'Transfer', route: '/transfer' },
-            { label: 'Commercial Loan', route: '/commercialloan' },
-            { label: 'Discharge', route: '/discharge' },
-            { label: 'Receive and Reassignment', route: '/reassignment' },
-            { label: 'Tenancy', route: '/tenancy' },
-            { label: 'Commercial Agreement', route: '/commercialagreement' },
-          ].map((item, index) => (
-            <MenuItem
-              key={index}
-              onClick={() => handleItemClick(item.label, item.route)}
-              sx={{
-                fontFamily: 'sans-serif',
-                fontSize: '14px',
-                lineHeight: 1.5,
-                color: '#5f5f5f',
-                padding: '12px 20px',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  backgroundColor: '#f0f8ff',
-                  color: '#1E90FF',
-                },
-              }}
-            >
-              {item.label}
+  
+  {/* Main Menu */}
+  <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+    <MenuItem onClick={handleMattersClick}>
+      Conveyancing
+      <KeyboardArrowRightIcon  
+        onClick={handleClick} 
+        sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} 
+      />
     </MenuItem>
-  ))}
-</Menu>
 
+    {/* Matters Submenu */}
+    {/* Matters Submenu */}
+    <Menu
+      anchorEl={mattersAnchorEl}
+      open={openMattersMenu}
+      onClose={handleMattersClose}
+      sx={{
+        mt: 1, // Add margin top to create space below main menu
+        ml: 12, // Add margin left to move submenu to the right
+      }}
+    >
+      {[
+        { label: 'SPA Loan/ SUBSALE || SPA Related Loan', route: '/spaloan' },
+        { label: 'SPA Loan/ Developer', route: '/developerloan' },
+        { label: 'Transfer', route: '/transfer' },
+        { label: 'Commercial Loan', route: '/commercialloan' },
+        { label: 'Discharge', route: '/discharge' },
+        { label: 'Receive and Reassignment', route: '/reassignment' },
+        { label: 'Tenancy', route: '/tenancy' },
+        { label: 'Commercial Agreement', route: '/commercialagreement' },
+      ].map((item, index) => (
+        <MenuItem
+          key={index}
+          onClick={() => handleMattersItemClick(item.label, item.route)}
+          sx={{
+            // marginLeft: '100px',
+            paddingLeft: '10px', // Simplified padding
+            fontSize: 'inherit', // Inherit font size
+          }}
+        >
+          {item.label}
+        </MenuItem>
+      ))}
+    </Menu>
+
+    <MenuItem onClick={() => handleItemClick('Estate & Family', '/estate')}>
+      Estate & Family
+      <KeyboardArrowRightIcon  
+        onClick={handleClick} 
+        sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} 
+      />
+    </MenuItem>
+    
+    {/* Additional Menu Items */}
+    <MenuItem onClick={handleBankClick}>
+      Litigation
+      <KeyboardArrowRightIcon  
+        onClick={handleClick} 
+        sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} 
+      />
+    </MenuItem>
+    <MenuItem onClick={handleBankClick}>Corporate Secretarial</MenuItem>
+    <MenuItem onClick={handleBankClick}>General</MenuItem>
+  </Menu>
+
+  <KeyboardArrowDownIcon 
+    onClick={handleClick} 
+    sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} 
+  />
 </ListItem>
+
 
 {/* <ListItem */}
   {/* // component={Link}
@@ -397,36 +429,36 @@ const DrawerComponent = () => {
       <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedBankItem === 'Banks' ? '#1E90FF' : '#5f5f5f' }} />
 
       <Menu
-        id="banks-menu"
-        anchorEl={bankAnchorEl}
-        open={openBankMenu} // Open if bankAnchorEl is not null
-        onClose={handleBankClose}
-        sx={{
-          '& .MuiPaper-root': {
-            borderRadius: '12px',
-            backgroundColor: '#ffffff',
-            boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
-            minWidth: '240px', // Set a minimum width for the menu
-            transition: 'width 0.3s ease', // Animation for width change
-            '&:hover': {
-              boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.2)', // Change shadow on hover
-            },
+      id="banks-menu"
+      anchorEl={bankAnchorEl}
+      open={openBankMenu} // Open if bankAnchorEl is not null
+      onClose={handleBankClose}
+      sx={{
+        '& .MuiPaper-root': {
+          borderRadius: '12px',
+          backgroundColor: '#ffffff',
+          boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+          minWidth: '240px', // Set a minimum width for the menu
+          transition: 'width 0.3s ease', // Animation for width change
+          '&:hover': {
+            boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.2)', // Change shadow on hover
           },
-        }}
-      >
-        {[
-          { label: 'Add Bank Branch', route: '/banks' },
-          // { label: 'View Bank Branch', route: '/view-bank-branch' },
-          { label: 'Bank Branch Listing', route: '/bank-branch-listing' },
-          { label: 'Add Bank CAC', route: '/bank-cac' },
-          // { label: 'View Bank CAC', route: '/view-bank-cac' },
-          // { label: 'Bank CAC Listing', route: '/bank-cac-listing' },
-          { label: 'Add Master Bank', route: '/add-master-bank' },
-          // { label: 'View Master Bank', route: '/view-master-bank' },
-          { label: 'Matter Bank Listing', route: '/matter-bank-listing' }, // Keep this if needed
-        ].map((item, index) => (
+        },
+      }}
+    >
+      {[
+        { label: 'Add Bank Branch', route: '/banks' },
+        { label: 'View Bank Branch', route: '/view-bank-branch' },
+        { label: 'Bank Branch Listing', route: '/bank-branch-listing' },
+        { label: 'Add Bank CAC', route: '/bank-cac' },
+        { label: 'View Bank CAC', route: '/view-bank-cac' },
+        { label: 'Bank CAC Listing', route: '/bank-cac-listing' },
+        { label: 'Add Master Bank', route: '/add-master-bank' },
+        { label: 'View Master Bank', route: '/view-master-bank' },
+        { label: 'Matter Bank Listing', route: '/matter-bank-listing' }, // Keep this if needed
+      ].map((item, index) => (
+        <React.Fragment key={index}>
           <MenuItem 
-            key={index} 
             onClick={() => handleBankItemClick(item.label, item.route)}
             sx={{
               paddingY: '10px', // Add vertical padding for better spacing
@@ -444,8 +476,12 @@ const DrawerComponent = () => {
               {item.label}
             </Typography>
           </MenuItem>
-        ))}
-      </Menu>
+
+          {/* Add Divider after specific items */}
+          {(item.label === 'Bank Branch Listing' || item.label === 'Bank CAC Listing') && <Divider />}
+        </React.Fragment>
+      ))}
+    </Menu>
     </ListItem>
 <ListItem
   component={Link}
