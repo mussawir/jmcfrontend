@@ -297,14 +297,12 @@ const DrawerComponent = () => {
   />
   {/* Modal for "New Schedule" */}
   <Dialog open={isModalOpen} onClose={closeModal}>
-  <DialogTitle>New Schedule</DialogTitle>
   <DialogContent>
     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '400px' }}>
-      <p>Select a schedule:</p>
-      <Button onClick={() => handleItemClick('ScheduleG', '/sch-loan-g')} style={{ backgroundColor: '#1E90FF', color: 'white' }}>Schedule G</Button>
-      <Button onClick={() => handleItemClick('ScheduleH', '/sch-loan-h')} style={{ backgroundColor: '#1E90FF', color: 'white' }}>Schedule H</Button>
-      <Button onClick={() => handleItemClick('ScheduleG', '/sch-loan-i')} style={{ backgroundColor: '#1E90FF', color: 'white' }}>Schedule I</Button>
-      <Button onClick={() => handleItemClick('ScheduleG', '/sch-loan-j')} style={{ backgroundColor: '#1E90FF', color: 'white' }}>Schedule J</Button>
+      <Button onClick={() => handleItemClick('ScheduleG', '/sch-loan-g')} style={{ backgroundColor: '#000000', color: 'white' }}>Schedule G</Button>
+      <Button onClick={() => handleItemClick('ScheduleH', '/sch-loan-h')} style={{ backgroundColor: '#000000', color: 'white' }}>Schedule H</Button>
+      <Button onClick={() => handleItemClick('ScheduleG', '/sch-loan-i')} style={{ backgroundColor: '#000000', color: 'white' }}>Schedule I</Button>
+      <Button onClick={() => handleItemClick('ScheduleG', '/sch-loan-j')} style={{ backgroundColor: '#000000', color: 'white' }}>Schedule J</Button>
     </div>
   </DialogContent>
   <DialogActions>

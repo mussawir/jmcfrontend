@@ -3,83 +3,114 @@ import DrawerComponent from './DrawerComponent';
 import HeaderComponent from './HeaderComponent';
 import { Box, Typography, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, TextField, Button } from '@mui/material';
 import Tabs from '@mui/material/Tabs';
+import Radio from '@mui/material/Radio';
+import PersonIcon from '@mui/icons-material/Person';
 import Tab from '@mui/material/Tab';
+import GroupIcon from '@mui/icons-material/Group';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import BusinessIcon from '@mui/icons-material/Business';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import HouseIcon from '@mui/icons-material/House';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import GavelIcon from '@mui/icons-material/Gavel';
+import PaymentIcon from '@mui/icons-material/Payment';
+import SummaryIcon from '@mui/icons-material/Summarize';
+  // Event handler with correct typing
+ 
 const SchLoanG: React.FC = () => {
+  const [selectedValue, setSelectedValue] = useState("a");
+    const [value, setValue] = React.useState('one');
 
-  const [value, setValue] = React.useState('one');
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
 
+  const sectionIcons = {
+    "Purchaser": <PersonIcon style={{ fontSize: 15, }} />,
+    "Proprietor": <BusinessIcon style={{ fontSize: 15 }} />,
+    "Master Chargee / Assignee": <AssignmentIcon style={{ fontSize: 15 }} />,
+    "Master title": <HouseIcon style={{ fontSize: 15 }} />,
+    "Project": <LocationCityIcon style={{ fontSize: 15 }} />,
+    "Property details": <HouseIcon style={{ fontSize: 15 }} />,
+    "HDA": <AccountBalanceIcon style={{ fontSize: 15 }} />,
+    "Developer solicitors": <GavelIcon style={{ fontSize: 15 }} />,
+    "Purchaser solicitors": <GavelIcon style={{ fontSize: 15 }} />,
+    "Purchase price": <MonetizationOnIcon style={{ fontSize: 15 }} />,
+    "Adjustment rate": <MonetizationOnIcon style={{ fontSize: 15 }} />,
+    "Developer stakeholder": <BusinessIcon style={{ fontSize: 15 }} />,
+    "Summary of price (in RM)": <SummaryIcon style={{ fontSize: 15 }} />,
+    "Schedule of payment(s)": <PaymentIcon style={{ fontSize: 15 }} />,
+};
    
+const purchaserarray = [
+  {
+    heading: "Purchaser",
+    fields: [
+      "1st Purchaser name",
+      "1st Purchaser identity card",
+      "1st Purchaser contact number",
+      "1st Purchaser email address",
+      "2nd Purchaser name",
+      "2nd Purchaser identity card",
+      "2nd Purchaser contact number",
+      "2nd Purchaser email address",
+      "3rd Purchaser name",
+      "3rd Purchaser identity card",
+      "3rd Purchaser contact number",
+      "3rd Purchaser email address",
+      "4th Purchaser name",
+      "4th Purchaser identity card",
+      "4th Purchaser contact number",
+      "4th Purchaser email address",
+      "5th Purchaser name",
+      "5th Purchaser identity card",
+      "5th Purchaser contact number",
+      "5th Purchaser email address",
+      "Purchaser correspondance address",
+    ],
+  },
+  {
+    heading: "Purchaser individual(s)",
+    fields: [
+      "1st Purchaser name",
+      "1st Purchaser passport number",
+      "1st Purchaser contact number",
+      "1st Purchaser email address",
+      "2nd Purchaser name",
+      "2nd Purchaser passport number",
+      "2nd Purchaser contact number",
+      "2nd Purchaser email address",
+      "3rd Purchaser name",
+      "3rd Purchaser passport number",
+      "3rd Purchaser contact number",
+      "3rd Purchaser email address",
+      "Purchaser correspondance address",
+      "Purchaser correspondance address in Malaysia",
+    ],
+  },
+  {
+    heading: "Purchaser company",
+    fields: [
+      "Purchaser name",
+      "Purchaser company registration number",
+      "Purchaser registered office address",
+      "Purchaser place of business address",
+      "Purchaser contact number",
+      "Purchaser email address",
+      "Purchaser person in charge name",
+      "Purchaser person in charge name contact number",
+      "Purchaser person in charge email address",
+      "Purchaser authorised 1st signatory name",
+      "Purchaser authorised 1st identity card number",
+      "Purchaser authorised 1st signatory designation",
+      "Purchaser authorised 2nd signatory name",
+      "Purchaser authorised 2nd identity card number",
+      "Purchaser authorised 2nd signatory designation",
+    ],
+  },
+];
 
   const sections = [
-    {
-      heading: "Purchaser",
-      fields: [
-        "1st Purchaser name",
-        "1st Purchaser identity card",
-        "1st Purchaser contact number",
-        "1st Purchaser email address",
-        "2nd Purchaser name",
-        "2nd Purchaser identity card",
-        "2nd Purchaser contact number",
-        "2nd Purchaser email address",
-        "3rd Purchaser name",
-        "3rd Purchaser identity card",
-        "3rd Purchaser contact number",
-        "3rd Purchaser email address",
-        "4th Purchaser name",
-        "4th Purchaser identity card",
-        "4th Purchaser contact number",
-        "4th Purchaser email address",
-        "5th Purchaser name",
-        "5th Purchaser identity card",
-        "5th Purchaser contact number",
-        "5th Purchaser email address",
-        "Purchaser correspondance address",
-      ],
-    },
-    {
-      heading: "Purchaser individual(s)",
-      fields: [
-        "1st Purchaser name",
-        "1st Purchaser passport number",
-        "1st Purchaser contact number",
-        "1st Purchaser email address",
-        "2nd Purchaser name",
-        "2nd Purchaser passport number",
-        "2nd Purchaser contact number",
-        "2nd Purchaser email address",
-        "3rd Purchaser name",
-        "3rd Purchaser passport number",
-        "3rd Purchaser contact number",
-        "3rd Purchaser email address",
-        "Purchaser correspondance address",
-        "Purchaser correspondance address in Malaysia",
-      ],
-    },
-    {
-      heading: "Purchaser company",
-      fields: [
-        "Purchaser name",
-        "Purchaser company registration number",
-        "Purchaser registered office address",
-        "Purchaser place of business address",
-        "Purchaser contact number",
-        "Purchaser email address",
-        "Purchaser person in charge name",
-        "Purchaser person in charge name contact number",
-        "Purchaser person in charge email address",
-        "Purchaser authorised 1st signatory name",
-        "Purchaser authorised 1st identity card number",
-        "Purchaser authorised 1st signatory designation",
-        "Purchaser authorised 2nd signatory name",
-        "Purchaser authorised 2nd identity card number",
-        "Purchaser authorised 2nd signatory designation",
-      ],
-    },
     {
       heading: "Proprietor",
       fields: [
@@ -237,13 +268,29 @@ const SchLoanG: React.FC = () => {
     },
   ];
 
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setSelectedValue(event.target.value);
+  };
+  const selectedSection =
+  selectedValue === "a"
+    ? purchaserarray[0] // Purchaser individual(s) (Malaysian)
+    : selectedValue === "b"
+    ? purchaserarray[1] // Purchaser individual(s) (Foreigner)
+    : purchaserarray[2]; // Purchaser company
+    
   const sectionRefs = useMemo(
     () => sections.map(() => React.createRef<HTMLDivElement>()),
     []
   );
-
+  const sectionRefs2 = useMemo(
+    () => purchaserarray.map(() => React.createRef<HTMLDivElement>()),
+    []
+  );
   const scrollToSection = (index: number) => {
     sectionRefs[index].current?.scrollIntoView({ behavior: "smooth" });
+  };
+  const scrollToSection2 = (index: number) => {
+    sectionRefs2[index].current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const [uploadFiles, setUploadFiles] = useState<File[]>([]);
@@ -290,97 +337,8 @@ const SchLoanG: React.FC = () => {
     <DrawerComponent />
     <HeaderComponent />
 
-    {/* <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-      <Toolbar />
-      <Box
-    sx={{
-      display: 'flex',
-      justifyContent: 'flex-end',
-      alignItems: 'center',
-      width: '100%',
-      marginBottom: 2,
-      marginTop: 25,
-    }}
-  >
-    <input
-      type="file"
-      multiple
-      onChange={handleFileChange}
-      style={{ marginRight: '16px', width: '180px' }}
-    />
-    <Button variant="contained" color="primary" onClick={UploadFile}>
-      Fill From Doc
-    </Button>
-  </Box>
-    <div
-      style={{
-        position: "fixed",
-        top: 65,
-        width: "80%",
-        backgroundColor: "#f8f9fa",
-        boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-        zIndex: 1000,
-        padding: "10px 20px",
-      }}
-    >
-      {sections.map((section, index) => (
-        <a
-          key={index}
-          onClick={() => scrollToSection(index)}
-          style={{
-            margin: "5px 15px",
-            padding: "5px 18px",
-            cursor: "pointer",
-            color: "#007bff",
-          }}
-        >
-          {section.heading}
-        </a>
-      ))}
-    </div>
-
-    <div style={{ marginTop: "60px" }}>
-{sections.map((section, index) => (
-  <div
-    key={index}
-    ref={sectionRefs[index]}
-    style={{
-      minHeight: "70vh",
-      padding: "20px",
-      marginTop: "100px",
-      borderBottom: "1px solid #ddd",
-    }}
-  >
-    <h2>{section.heading}</h2>
-    <div style={{ display: "flex", flexWrap: "wrap" }}>
-      {section.fields.map((field, fieldIndex) => (
-        <div
-          key={fieldIndex}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            flex: "1 1 50%", // Adjusts width to 50% for 2 columns
-            padding: "10px",
-            boxSizing: "border-box",
-          }}
-        >
-          <input
-            type="text"
-            placeholder={field}
-            style={{ padding: "10px", width: "100%" }}
-          />
-        </div>
-      ))}
-    </div>
-  </div>
-))}
-</div>
-
-  </Box> */}
-  
   <Box sx={{ width: '100%' }}>
             <Toolbar />
-    
        <Tabs
       value={value}
       onChange={handleChange}
@@ -394,44 +352,41 @@ const SchLoanG: React.FC = () => {
     </Tabs>
 
     <Box sx={{ padding: 3, }}>
-      {value === "one" && <div style={{ marginTop: "20px" }}
+      {value === "one" && <div 
       >
     <Box sx={{ display: 'flex' }}>
-      {/* <CssBaseline />
-      <DrawerComponent />
-      <HeaderComponent /> */}
 
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        {/* <Toolbar /> */}
-  
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}> 
       <div
-        style={{
-          position: "sticky",
-          top: 0,
-          width: "97%",
-          backgroundColor: "#fff",
-          boxShadow: "2px 2px 5px 5px rgba(77, 77, 77, 0.1)",
-          zIndex: 1000,
-          borderRadius: '4px',
-          padding: "15px 10px",
-          fontSize: "15px",
-        }}
-      >
-        {sections.map((section, index) => (
-          <a
-            key={index}
-            onClick={() => scrollToSection(index)}
             style={{
-              margin: "15px 5px",
-              padding: "10px 0px",
-              cursor: "pointer",
-              color: "#007bff",
+                position: "sticky",
+                top: 0,
+                width: "100%",
+                backgroundColor: "#fff",
+                zIndex: 1000,
+                borderRadius: '4px',
+                padding: "15px 10px",
+                fontSize: "14px",
             }}
-          >
-            {section.heading}    |
-          </a>
-        ))}
-      </div>
+        >
+            {sections.map((section, index) => (
+                <a
+                    key={index}
+                    onClick={() => scrollToSection(index)}
+                    style={{
+                        margin: "15px 5px",
+                        padding: "10px 0px",
+                        cursor: "pointer",
+                        color: "#007bff",
+                    }}
+                >
+                  
+                    {sectionIcons[section.heading]} 
+                    {section.heading} |
+                   
+                </a>
+            ))}
+        </div>
       <Box
       sx={{
         display: 'flex',
@@ -453,6 +408,8 @@ const SchLoanG: React.FC = () => {
         Fill From Doc
       </Button>
     </Box>
+
+
       <Box
         sx={{
           marginTop: '0px',
@@ -461,17 +418,74 @@ const SchLoanG: React.FC = () => {
           maxHeight: 'calc(100vh - 100px)',  // Adjust this height to prevent it from occupying the entire page
         }}
       >
+                  <Box sx={{ display: "flex", width: "100%", marginBottom: 2, marginTop: 1 }}>
+        <Radio
+          checked={selectedValue === "a"}
+          onChange={handleChange}
+          value="a"
+          name="radio-buttons"
+          inputProps={{ "aria-label": "A" }}
+        />
+        <PersonIcon style={{ marginRight: "5px", marginTop: "8px" }} />
+        <Typography style={{ marginTop: "10px" }}>Purchaser individual(s) (Malaysian)</Typography>
+
+        <Radio
+          checked={selectedValue === "b"}
+          onChange={handleChange}
+          value="b"
+          name="radio-buttons"
+          inputProps={{ "aria-label": "B" }}
+        />
+        <AccountCircleIcon style={{ marginRight: "5px", marginTop: "8px" }} />
+        <Typography style={{ marginTop: "10px" }}>Purchaser individual(s) (Foreigner)</Typography>
+
+        <Radio
+          checked={selectedValue === "c"}
+          onChange={handleChange}
+          value="c"
+          name="radio-buttons"
+          inputProps={{ "aria-label": "C" }}
+        />
+        <GroupIcon style={{ marginRight: "5px", marginTop: "8px" }} />
+        <Typography style={{ marginTop: "10px" }}>Purchaser company</Typography>
+      </Box>
+
+      <div>
+        <h3>{selectedSection.heading}</h3>
+        {selectedSection.fields.map((field, index) => (
+          <div
+          key={index}
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+            padding: '10px',
+            boxSizing: 'border-box',
+          }}
+        >
+          
+          <input
+            type="text"
+            placeholder={field}
+            style={{ padding: '10px', width: '100%' }}
+          />
+        </div>
+        ))}
+      </div>
+      
         {sections.map((section, index) => (
           <div
             key={index}
             ref={sectionRefs[index]}
             style={{
               minHeight: '70vh',
-              padding: '20px',
+              paddingLeft: '20px',
+              paddingright: '20px',
               marginTop: '0px',
               borderBottom: '1px solid #ddd',
             }}
           >
+
             <h2>{section.heading}</h2>
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
               {section.fields.map((field, fieldIndex) => (
@@ -485,6 +499,7 @@ const SchLoanG: React.FC = () => {
                     boxSizing: 'border-box',
                   }}
                 >
+                  
                   <input
                     type="text"
                     placeholder={field}
@@ -500,7 +515,8 @@ const SchLoanG: React.FC = () => {
     </Box>
     </Box>
     </div>}
-            {value === "two" && <div style={{ marginTop: "20px" }} >  <Box sx={{ display: 'flex' }}>
+            {value === "two" && <div > 
+               <Box sx={{ display: 'flex' }}>
                   {/* <CssBaseline />
                   <DrawerComponent />
                   <HeaderComponent /> */}
@@ -508,34 +524,36 @@ const SchLoanG: React.FC = () => {
                   <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                     {/* <Toolbar /> */}
               
-                  <div
+                    <div
+            style={{
+                position: "sticky",
+                top: 0,
+                width: "100%",
+                backgroundColor: "#fff",
+                zIndex: 1000,
+                borderRadius: '4px',
+                padding: "15px 10px",
+                fontSize: "12px",
+            }}
+        >
+            {sections.map((section, index) => (
+                <a
+                    key={index}
+                    onClick={() => scrollToSection(index)}
                     style={{
-                      position: "sticky",
-                      top: 0,
-                      width: "97%",
-                      backgroundColor: "#fff",
-                      boxShadow: "2px 2px 5px 5px rgba(77, 77, 77, 0.1)",
-                      zIndex: 1000,
-                      borderRadius: '4px',
-                      padding: "15px 10px",
-                      fontSize: "15px",
+                        margin: "15px 5px",
+                        padding: "10px 0px",
+                        cursor: "pointer",
+                        color: "#007bff",
                     }}
-                  >
-                    {sections.map((section, index) => (
-                      <a
-                        key={index}
-                        onClick={() => scrollToSection(index)}
-                        style={{
-                          margin: "15px 5px",
-                          padding: "10px 0px",
-                          cursor: "pointer",
-                          color: "#007bff",
-                        }}
-                      >
-                        {section.heading}    |
-                      </a>
-                    ))}
-                  </div>
+                >
+                  
+                    {sectionIcons[section.heading]} {/* Render icon */}
+                    {section.heading} |
+                   
+                </a>
+            ))}
+        </div>
                   <Box
                   sx={{
                     display: 'flex',
@@ -565,13 +583,45 @@ const SchLoanG: React.FC = () => {
                       maxHeight: 'calc(100vh - 100px)',  // Adjust this height to prevent it from occupying the entire page
                     }}
                   >
+                     <Box sx={{ display: 'flex', width: '100%', marginBottom: 1, marginTop: 0 }}>
+            <Radio
+                checked={selectedValue === 'a'}
+                onChange={handleChange}
+                value="a"
+                name="radio-buttons"
+                inputProps={{ 'aria-label': 'A' }}
+            />
+            <PersonIcon style={{ marginLeft: '0px', marginRight: '5px', marginTop: '8px' }} />
+            <Typography style={{ marginTop: '10px' }}>Purchaser individual(s) (Malaysian)</Typography>
+
+            <Radio
+                checked={selectedValue === 'b'}
+                onChange={handleChange}
+                value="b"
+                name="radio-buttons"
+                inputProps={{ 'aria-label': 'B' }}
+            />
+            <AccountCircleIcon style={{ marginLeft: '0px', marginRight: '5px', marginTop: '8px' }} />
+            <Typography style={{ marginTop: '10px' }}>Purchaser individual(s) (foreigner)</Typography>
+
+            <Radio
+                checked={selectedValue === 'c'}
+                onChange={handleChange}
+                value="c"
+                name="radio-buttons"
+                inputProps={{ 'aria-label': 'C' }}
+            />
+            <GroupIcon style={{ marginLeft: '0px', marginRight: '5px', marginTop: '8px' }} />
+            <Typography style={{ marginTop: '10px' }}>Purchaser company</Typography>
+        </Box>
                     {sections.map((section, index) => (
                       <div
                         key={index}
                         ref={sectionRefs[index]}
                         style={{
                           minHeight: '70vh',
-                          padding: '20px',
+                          paddingLeft: '20px',
+                          paddingright: '20px',
                           marginTop: '0px',
                           borderBottom: '1px solid #ddd',
                         }}
