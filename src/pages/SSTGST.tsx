@@ -24,7 +24,7 @@ function SSTGST() {
 
         {/* Center the Headline */}
         <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
-          Goods and Service Tax, Sales and Services Tax
+          GST/SST
         </Typography>
 
         

@@ -173,7 +173,7 @@ function GeneralForm() {
     }
   }
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3, maxWidth: 1000, marginLeft: 33, marginTop: 10, }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3, maxWidth: 1000, marginLeft: 33,  }}>
         <DrawerComponent />
         <HeaderComponent />
       <Typography variant="h4" gutterBottom>

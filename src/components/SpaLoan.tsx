@@ -262,7 +262,6 @@ function SpaLoan() {
       />
       </Box>
       <Box sx={{ display: 'flex', width: '100%', marginBottom: 1, marginTop: 6  }}>
-        <Typography>Purchaser ndividual(s) (Malaysian)</Typography>
         <Radio
           checked={selectedValue === 'a'}
           onChange={handleChange}
@@ -270,7 +269,9 @@ function SpaLoan() {
           name="radio-buttons"
           inputProps={{ 'aria-label': 'A' }}
         />
-        <Typography>Purchaser individual(s) (foreigner)</Typography>
+        <Typography
+          sx={{ marginTop: 1, }}
+        >Purchaser individual(s) (Malaysian)</Typography>
         <Radio
           checked={selectedValue === 'b'}
           onChange={handleChange}
@@ -278,7 +279,9 @@ function SpaLoan() {
           name="radio-buttons"
           inputProps={{ 'aria-label': 'B' }}
         />
-        <Typography>Purchaser company</Typography>
+        <Typography
+          sx={{ marginTop: 1, }}
+        >Purchaser individual(s) (foreigner)</Typography>
         <Radio
           checked={selectedValue === 'c'}
           onChange={handleChange}
@@ -286,6 +289,9 @@ function SpaLoan() {
           name="radio-buttons"
           inputProps={{ 'aria-label': 'C' }}
         />
+        <Typography
+          sx={{ marginTop: 1, }}
+        >Purchaser company</Typography>
       </Box>
 
 {/* Purcahser section start here */}

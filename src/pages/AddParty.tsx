@@ -1,19 +1,12 @@
 
-import React, { useState, useEffect } from 'react';
-import { Box, Typography, Toolbar, CssBaseline, Select, MenuItem, InputLabel, FormControl, TextField, Button } from '@mui/material';
+import React, { useState,  } from 'react';
+import { Box, Typography, Toolbar, CssBaseline, TextField, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';  
-import { SelectChangeEvent } from '@mui/material';
 import axios from 'axios';
-interface Developer {
-  id: string;
-  developerName: string;
-}
+
 function AddPrty() {
-  // Project form states
-  const [selectedDeveloper, setSelectedDeveloper] = useState<string>('');
-  const [developers, setDevelopers] = useState<Developer[]>([]);
   const [selectIdType, setSelectIdType] = useState<string>('');
   const [id, setId] = useState<string>('');
   const [oldIc, setOldIc] = useState<string>('');
@@ -54,7 +47,6 @@ function AddPrty() {
     
     const formData = new FormData();
 
-    // formData.append('selectedDeveloper', selectedDeveloper);
     formData.append("selectIdType", selectIdType);
     formData.append("id", id);
     formData.append("oldIc", oldIc);
@@ -89,7 +81,7 @@ function AddPrty() {
     try {
       const response = await axios.post("http://127.0.0.1:5000/add-party", formData, {
         headers: {
-          "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
+          "Content-Type": "multipart/form-data", 
         },
       });
 
@@ -100,19 +92,6 @@ function AddPrty() {
       console.error("Error submitting form:", error);
     }
   };
-
-  useEffect(() => {
-    const fetchDevelopers = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/get-developers'); // Replace with your API endpoint
-        setDevelopers(response.data); // Assuming the response is an array of developers
-      } catch (error) {
-        console.error('Error fetching developers:', error);
-      }
-    };
-
-    fetchDevelopers();
-  }, []);
 
   return (
     <Box sx={{ display: 'flex', flexGrow: 1, overflow: 'hidden', }}>
@@ -126,33 +105,8 @@ function AddPrty() {
           </Typography>
           <Box sx={{ display: 'flex', marginTop: 2 }}>
             <form onSubmit={partySubmit}>
-            <Box sx={{ marginTop: 2, width: 1000, display: 'flex', justifyContent: 'flex-start'}}>
+            <Box sx={{ marginTop: 2, width: 1200, display: 'flex', justifyContent: 'flex-start'}}>
             <Box sx={{ width: '100%', textAlign: 'left' }}>
-                {/* <Typography variant="h5" gutterBottom>
-                  Developer Information
-                </Typography>
-                  <FormControl fullWidth>
-                      <InputLabel id="developer-dropdown-label">Select Developer</InputLabel>
-                      <Select
-                        labelId="developer-dropdown-label"
-                        id="developer-dropdown"
-                        value={selectedDeveloper}
-                        onChange={(event) => setSelectedDeveloper(event.target.value)}
-                        label="Select Developer"
-                      >
-                        {developers.map((developer) => (
-                        <MenuItem key={developer.id} value={developer.developerName}>
-                          {developer.developerName}
-                        </MenuItem>
-                      ))}
-                      </Select>
-                  </FormControl>
-    
-                    {developers.length === 0 && (
-                    <Typography variant="body2" color="error">
-                      No developers found. Please check your API connection.
-                    </Typography>
-                  )} */}
                 <Typography variant="h5" gutterBottom>
                   Personal Information
                 </Typography>
@@ -162,7 +116,7 @@ function AddPrty() {
                     variant="outlined"
                     value={selectIdType}
                     onChange={(e) => setSelectIdType(e.target.value)}
-                    sx={{ marginTop: 2, }}
+                    sx={{ marginTop: 2, paddingRight: 2, }}
                   />
                   <TextField
                     label="ID"
@@ -170,7 +124,7 @@ function AddPrty() {
                     variant="outlined"
                     value={id}
                     onChange={(e) => setId(e.target.value)}
-                    sx={{ marginBottom: 2, marginTop: 2, }}
+                    sx={{ marginBottom: 2, marginTop: 2, paddingRight: 2, }}
                   />
                   <TextField
                     label="Old IC"
@@ -178,7 +132,7 @@ function AddPrty() {
                     variant="outlined"
                     value={oldIc}
                     onChange={(e) => setOldIc(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                   <TextField
                     label="Name"
@@ -186,7 +140,7 @@ function AddPrty() {
                     variant="outlined"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
                     label="Select Title"
@@ -194,7 +148,7 @@ function AddPrty() {
                     variant="outlined"
                     value={selectTitle}
                     onChange={(e) => setSelectTitle(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 
             <Typography variant="h5" gutterBottom>
@@ -206,7 +160,7 @@ function AddPrty() {
                     variant="outlined"
                     value={addressOne}
                     onChange={(e) => setAddressOne(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
                     label="Address (line 2)"
@@ -214,7 +168,7 @@ function AddPrty() {
                     variant="outlined"
                     value={addressTwo}
                     onChange={(e) => setAddressTwo(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
                     label="Address (line 3)"
@@ -222,7 +176,7 @@ function AddPrty() {
                     variant="outlined"
                     value={addressThree}
                     onChange={(e) => setAddressThree(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
                     label="Post code"
@@ -230,7 +184,7 @@ function AddPrty() {
                     variant="outlined"
                     value={postCode}
                     onChange={(e) => setPostCode(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
                     label="Town"
@@ -238,7 +192,7 @@ function AddPrty() {
                     variant="outlined"
                     value={town}
                     onChange={(e) => setTown(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
                     label="State"
@@ -246,7 +200,7 @@ function AddPrty() {
                     variant="outlined"
                     value={state}
                     onChange={(e) => setState(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
                     label="Country"
@@ -254,7 +208,7 @@ function AddPrty() {
                     variant="outlined"
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
                     label="Phone Home"
@@ -262,7 +216,7 @@ function AddPrty() {
                     variant="outlined"
                     value={phoneHome}
                     onChange={(e) => setPhoneHome(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
                     label="Phone Office"
@@ -270,7 +224,7 @@ function AddPrty() {
                     variant="outlined"
                     value={phoneOffice}
                     onChange={(e) => setPhoneOffice(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
                     label="Phone Mobile"
@@ -278,7 +232,7 @@ function AddPrty() {
                     variant="outlined"
                     value={phoneOffice}
                     onChange={(e) => setPhoneMobile(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
                     label="Fax"
@@ -286,7 +240,7 @@ function AddPrty() {
                     variant="outlined"
                     value={fax}
                     onChange={(e) => setFax(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
                     label="Email Address"
@@ -294,7 +248,7 @@ function AddPrty() {
                     variant="outlined"
                     value={emailAddress}
                     onChange={(e) => setEmailAddress(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
                     label="Website"
@@ -302,10 +256,10 @@ function AddPrty() {
                     variant="outlined"
                     value={website}
                     onChange={(e) => setWebsite(e.target.value)}
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
               </Box>
-              <Box sx={{ width: '100%', textAlign: 'left', marginLeft: '4px' }}>
+              <Box sx={{ width: '100%', textAlign: 'left', marginLeft: '4px', }}>
                 <Typography variant="h5" gutterBottom>
                   Company Information
                 </Typography>
@@ -412,17 +366,16 @@ function AddPrty() {
                     sx={{ marginBottom: 2, marginLeft: 2, marginRight: 2 }}
                     /> 
                 <label style={{ marginLeft: "8px", marginRight: "8px" }}> Add Favourites</label><br/>
-                <div style={{ padding: '20px' }}>
+                <Box style={{ padding: '20px' }}>
                     <label>Remarks</label>
                     <textarea
                         rows={4}
                         cols={50}
                         value={text}
                         onChange={(e) => setText(e.target.value)} // Update state on change
-                        style={{ display: 'block',border: '1px solid lightgrey', marginTop: '10px',marginBottom: '10px',padding: '8px',width: '100%',
-                        }}
+                        style={{ display: 'block',border: '1px solid lightgrey', marginTop: '10px',marginBottom: '10px',padding: '8px',width: '100%',}}
                     ></textarea>
-                </div>
+                </Box>
               </Box>
             </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
