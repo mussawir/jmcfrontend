@@ -3,6 +3,10 @@ import { Box, Typography, TextField, Button, DialogActions, } from '@mui/materia
 import Radio from '@mui/material/Radio';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
+import PersonIcon from '@mui/icons-material/Person';
+import Tab from '@mui/material/Tab';
+import GroupIcon from '@mui/icons-material/Group';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 function SpaLoan() {
   // State hooks for each form field
   const [developerName, setDeveloperName] = useState('');
@@ -261,32 +265,37 @@ function SpaLoan() {
         sx={{ marginBottom: 1 }}
       />
       </Box>
-      <Box sx={{ display: 'flex', width: '100%', marginBottom: 1, marginTop: 6  }}>
-        <Typography>Purchaser ndividual(s) (Malaysian)</Typography>
-        <Radio
-          checked={selectedValue === 'a'}
-          onChange={handleChange}
-          value="a"
-          name="radio-buttons"
-          inputProps={{ 'aria-label': 'A' }}
-        />
-        <Typography>Purchaser individual(s) (foreigner)</Typography>
-        <Radio
-          checked={selectedValue === 'b'}
-          onChange={handleChange}
-          value="b"
-          name="radio-buttons"
-          inputProps={{ 'aria-label': 'B' }}
-        />
-        <Typography>Purchaser company</Typography>
-        <Radio
-          checked={selectedValue === 'c'}
-          onChange={handleChange}
-          value="c"
-          name="radio-buttons"
-          inputProps={{ 'aria-label': 'C' }}
-        />
-      </Box>
+      <Box sx={{ display: 'flex', width: '100%', marginBottom: 1, marginTop: 0  }}>
+                    <Radio
+                      checked={selectedValue === 'a'}
+                      onChange={handleChange}
+                      value="a"
+                      name="radio-buttons"
+                      inputProps={{ 'aria-label': 'A' }}
+                    />
+                    <PersonIcon style={{ marginLeft: '0px',  marginRight: '5px', marginTop: '8px'}}/>
+                    <Typography style={{ marginTop: '10px' }}> Purchaser individual(s) (Malaysian)</Typography>
+                    <Radio
+                      checked={selectedValue === 'b'}
+                      onChange={handleChange}
+                      value="b"
+                      name="radio-buttons"
+                      inputProps={{ 'aria-label': 'B' }}
+                    />
+                     
+                    <AccountCircleIcon style={{ marginLeft: '0px',  marginRight: '5px', marginTop: '8px'}}/>
+                     <Typography style={{ marginTop: '10px' }}>Purchaser individual(s) (foreigner)</Typography>
+                    <Radio
+                      checked={selectedValue === 'c'}
+                      onChange={handleChange}
+                      value="c"
+                      name="radio-buttons"
+                      inputProps={{ 'aria-label': 'C' }}
+                    />
+                                        <GroupIcon style={{ marginLeft: '0px',  marginRight: '5px', marginTop: '8px'}}/>
+                    <Typography style={{ marginTop: '10px' }}>Purchaser company</Typography>
+
+                  </Box>
 
 {/* Purcahser section start here */}
       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1, marginTop: 6 }}>
