@@ -394,7 +394,7 @@ const SchLoanG: React.FC = () => {
     </Tabs>
 
     <Box sx={{ padding: 3, }}>
-      {value === "one" && <div 
+      {value === "one" && <div style={{ marginTop: "20px" }}
       >
     <Box sx={{ display: 'flex' }}>
       {/* <CssBaseline />
@@ -500,7 +500,110 @@ const SchLoanG: React.FC = () => {
     </Box>
     </Box>
     </div>}
-            {value === "two" && <div style={{ marginTop: "30px" }} >Content for Item Two</div>}
+            {value === "two" && <div style={{ marginTop: "20px" }} >  <Box sx={{ display: 'flex' }}>
+                  {/* <CssBaseline />
+                  <DrawerComponent />
+                  <HeaderComponent /> */}
+            
+                  <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+                    {/* <Toolbar /> */}
+              
+                  <div
+                    style={{
+                      position: "sticky",
+                      top: 0,
+                      width: "97%",
+                      backgroundColor: "#fff",
+                      boxShadow: "2px 2px 5px 5px rgba(77, 77, 77, 0.1)",
+                      zIndex: 1000,
+                      borderRadius: '4px',
+                      padding: "15px 10px",
+                      fontSize: "15px",
+                    }}
+                  >
+                    {sections.map((section, index) => (
+                      <a
+                        key={index}
+                        onClick={() => scrollToSection(index)}
+                        style={{
+                          margin: "15px 5px",
+                          padding: "10px 0px",
+                          cursor: "pointer",
+                          color: "#007bff",
+                        }}
+                      >
+                        {section.heading}    |
+                      </a>
+                    ))}
+                  </div>
+                  <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '100%',
+                    marginBottom: 2,
+                    marginTop: 2,
+                  }}
+                >
+                  <input
+                    type="file"
+                    multiple
+                    onChange={handleFileChange}
+                    style={{ marginRight: '16px', width: '180px', position: "sticky",
+                    }}
+                  />
+                  <Button variant="contained" color="primary" onClick={UploadFile}>
+                    Fill From Doc
+                  </Button>
+                </Box>
+                  <Box
+                    sx={{
+                      marginTop: '0px',
+                      position: 'fixed',
+                      overflowY: 'auto',    // Makes the section content scrollable
+                      maxHeight: 'calc(100vh - 100px)',  // Adjust this height to prevent it from occupying the entire page
+                    }}
+                  >
+                    {sections.map((section, index) => (
+                      <div
+                        key={index}
+                        ref={sectionRefs[index]}
+                        style={{
+                          minHeight: '70vh',
+                          padding: '20px',
+                          marginTop: '0px',
+                          borderBottom: '1px solid #ddd',
+                        }}
+                      >
+                        <h2>{section.heading}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </Box>
+            
+                </Box>
+                </Box>
+                </div>}
           </Box>
     
                     {/* <Bookmark1/> */}
