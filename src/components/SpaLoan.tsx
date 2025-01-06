@@ -265,6 +265,7 @@ function SpaLoan() {
         sx={{ marginBottom: 1 }}
       />
       </Box>
+<<<<<<< HEAD
       <Box sx={{ display: 'flex', width: '100%', marginBottom: 1, marginTop: 0  }}>
                     <Radio
                       checked={selectedValue === 'a'}
@@ -296,6 +297,40 @@ function SpaLoan() {
                     <Typography style={{ marginTop: '10px' }}>Purchaser company</Typography>
 
                   </Box>
+=======
+      <Box sx={{ display: 'flex', width: '100%', marginBottom: 1, marginTop: 6  }}>
+        <Radio
+          checked={selectedValue === 'a'}
+          onChange={handleChange}
+          value="a"
+          name="radio-buttons"
+          inputProps={{ 'aria-label': 'A' }}
+        />
+        <Typography
+          sx={{ marginTop: 1, }}
+        >Purchaser individual(s) (Malaysian)</Typography>
+        <Radio
+          checked={selectedValue === 'b'}
+          onChange={handleChange}
+          value="b"
+          name="radio-buttons"
+          inputProps={{ 'aria-label': 'B' }}
+        />
+        <Typography
+          sx={{ marginTop: 1, }}
+        >Purchaser individual(s) (foreigner)</Typography>
+        <Radio
+          checked={selectedValue === 'c'}
+          onChange={handleChange}
+          value="c"
+          name="radio-buttons"
+          inputProps={{ 'aria-label': 'C' }}
+        />
+        <Typography
+          sx={{ marginTop: 1, }}
+        >Purchaser company</Typography>
+      </Box>
+>>>>>>> 10d40d3d4f9dcd26ce97f459ea41f0ca7412f4b9
 
 {/* Purcahser section start here */}
       <Box sx={{ display: 'flex', gap: 2, width: '100%', marginBottom: 1, marginTop: 6 }}>
