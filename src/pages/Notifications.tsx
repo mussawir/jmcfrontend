@@ -27,7 +27,7 @@ function Notifications() {
         </Typography>
 
         
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
+        {/* <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
           <Button
             variant="contained"
             color="primary"
@@ -35,7 +35,7 @@ function Notifications() {
           >
             Add New
           </Button>
-        </Box>
+        </Box> */}
       </Box>
     </Box>
   );
