@@ -102,6 +102,7 @@ function Party() {
                   <TableCell>{party.addressOne}</TableCell>
                   <TableCell>{party.addressTwo}</TableCell>
                   <TableCell>{party.addressThree}</TableCell>
+                  <TableCell>Edit</TableCell>
                   <TableCell>
                     {/* Generate PDF Button */}
                     {/* <Button

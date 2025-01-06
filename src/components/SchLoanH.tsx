@@ -40,6 +40,559 @@ const SchLoanH: React.FC = () => {
         "5th Purchaser email address",
         "Purchaser correspondance address",
       ],
+      heading2: "End financier",
+      fields2: [
+        "End financier name",
+        "End financier company registration number",
+        "End financier registered office address",
+        "End financier branch office address",
+        "End financier CAC/SDC office address",
+        "End financier branch file reference number",
+        "End financier CAC/SDC file reference number",
+        "End financier branch contact number",
+        "End financier branch email address",
+        "End financier CAC/SDC contact number",
+        "End financier CAC/SDC email address",
+        "End financier CAC/SDC person in charge name",
+        "End financier CAC/SDC person in charge name contact number",
+        "End financier CAC/SDC person in charge email address",
+        "End financier 1st attorney name",
+        "End financier 1st attorney identity card number",
+        "End financier 1st attorney designation",
+        "End financier 2nd attorney name",
+        "End financier 2nd attorney identity card number",
+        "End financier 2nd attorney designation",
+       "End financier noting PA number registered in which land registry",
+
+      ],
+      heading3: "Assignor individual(s)",
+      fields3: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading4: "Assignor foreigner",
+      fields4: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading5: "Assignor company",
+      fields5: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading6: "Borrower individual(s)",
+      fields6: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading7: "Borrower foreigner",
+      fields7: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading8: "Borrower company",
+      fields8: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading9: "Guarantor individual(s)",
+      fields9: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading10: "Guarantor foreigner",
+      fields10: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading11: "Guarantor company",
+      fields11: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading12: "Developer",
+      fields12: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading13: "Proprietor",
+      fields13: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading14: "Master chargee",
+      fields14: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading15: "Master title details",
+      fields15: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading16: "Project details",
+      fields16: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading17: "Property details",
+      fields17: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading18: "HDA",
+      fields18: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading19: "Developer solicitors",
+      fields19: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading20: "Purchaser solicitors",
+      fields20: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading21: "End financier solicitors",
+      fields21: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading22: "Developer stakeholder",
+      fields22: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading23: "Purchase price",
+      fields23: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
+      heading24: "Facility(ies) details",
+      fields24: [
+        "1st Purchaser name",
+        "1st Purchaser identity card",
+        "1st Purchaser contact number",
+        "1st Purchaser email address",
+        "2nd Purchaser name",
+        "2nd Purchaser identity card",
+        "2nd Purchaser contact number",
+        "2nd Purchaser email address",
+        "3rd Purchaser name",
+        "3rd Purchaser identity card",
+        "3rd Purchaser contact number",
+        "3rd Purchaser email address",
+        "4th Purchaser name",
+        "4th Purchaser identity card",
+        "4th Purchaser contact number",
+        "4th Purchaser email address",
+        "5th Purchaser name",
+        "5th Purchaser identity card",
+        "5th Purchaser contact number",
+        "5th Purchaser email address",
+        "Purchaser correspondance address",
+      ],
     },
     {
       heading: "Purchaser individual(s)",
@@ -426,7 +979,7 @@ const SchLoanH: React.FC = () => {
               color: "#007bff",
             }}
           >
-            {section.heading}    |
+            {section.heading} |
           </a>
         ))}
       </div>
@@ -530,7 +1083,7 @@ const SchLoanH: React.FC = () => {
                           color: "#007bff",
                         }}
                       >
-                        {section.heading}    |
+                        {section.heading2}  | {section.heading3}  {section.heading4} {section.heading5} {section.heading6} {section.heading7} {section.heading8} {section.heading9} {section.heading10} {section.heading11} {section.heading12} {section.heading13} {section.heading14} {section.heading15} {section.heading16} {section.heading17} {section.heading18} {section.heading19} {section.heading20} {section.heading21} {section.heading22} {section.heading23} {section.heading24}
                       </a>
                     ))}
                   </div>
@@ -574,9 +1127,9 @@ const SchLoanH: React.FC = () => {
                           borderBottom: '1px solid #ddd',
                         }}
                       >
-                        <h2>{section.heading}</h2>
+                        <h2>{section.heading2}</h2>
                         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                          {section.fields.map((field, fieldIndex) => (
+                          {section.fields.map((field2, fieldIndex) => (
                             <div
                               key={fieldIndex}
                               style={{
@@ -589,7 +1142,469 @@ const SchLoanH: React.FC = () => {
                             >
                               <input
                                 type="text"
-                                placeholder={field}
+                                placeholder={field2}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading3}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field3, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field3}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading4}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field4, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field4}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading5}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field5, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field5}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading6}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field6, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field6}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading7}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field7, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field7}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading8}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field8, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field8}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading9}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field9, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field9}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading10}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field10, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field10}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading11}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field11, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field11}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading12}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field12, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field12}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading13}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field13, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field13}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading14}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field14, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field14}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading15}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field15, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field15}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading16}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field16, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field16}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading17}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field17, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field17}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading18}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field18, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field18}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading19}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field19, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field19}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading20}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field20, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field20}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading21}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field21, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field21}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading22}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field22, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field22}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading23}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field23, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field23}
+                                style={{ padding: '10px', width: '100%' }}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                        <h2>{section.heading24}</h2>
+                        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                          {section.fields.map((field24, fieldIndex) => (
+                            <div
+                              key={fieldIndex}
+                              style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                flex: '1 1 50%', // Adjusts width to 50% for 2 columns
+                                padding: '10px',
+                                boxSizing: 'border-box',
+                              }}
+                            >
+                              <input
+                                type="text"
+                                placeholder={field24}
                                 style={{ padding: '10px', width: '100%' }}
                               />
                             </div>
