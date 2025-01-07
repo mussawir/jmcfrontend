@@ -36,7 +36,7 @@ function AddPrty() {
   const [directorOne, setDirectorOne] = useState<string>('');
   const [directorTwo, setDirectorTwo] = useState<string>('');
   const [directorThree, setDirectorThree] = useState<string>('');
-  const [secratory, setSecratory] = useState<string>('');
+  const [secretary, setSecretary] = useState<string>('');
   const [contactPerson, setContactPerson] = useState<string>('');
   const [optionalInformation, setOptionalInformation] = useState<string>('');
   const [moreInformation, setMoreInformation] = useState<string>('');
@@ -94,7 +94,7 @@ function AddPrty() {
     formData.append("directorOne", directorOne);
     formData.append("directorTwo", directorTwo);
     formData.append("directorThree", directorThree);
-    formData.append("secratory", secratory);
+    formData.append("secratory", secretary);
     formData.append("contactPerson", contactPerson);
     formData.append("optionalInformation", optionalInformation);
     formData.append("moreInformation", moreInformation);
@@ -135,9 +135,9 @@ function AddPrty() {
                 <Typography variant="h5" gutterBottom>
                   Personal Information
                 </Typography>
-                <FormControl fullWidth sx={{ marginTop: 2, paddingRight: 2 }}>
+                <FormControl fullWidth variant="outlined" sx={{ paddingRight: 2 }}>
                   <InputLabel id="select-id-type-label">
-                    Select ID Type
+                    ID Type
                     <Typography
                       component="span"
                       color="error"
@@ -151,8 +151,7 @@ function AddPrty() {
                     id="select-id-type"
                     value={selectIdType}
                     onChange={(e) => setSelectIdType(e.target.value)}
-                    variant="outlined"
-                    fullWidth
+                    label="ID Type *" // Pass label prop here
                   >
                     <MenuItem value="passport">Passport</MenuItem>
                     <MenuItem value="national-id">National ID</MenuItem>
@@ -234,7 +233,7 @@ function AddPrty() {
                     sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
-                    label="Post code"
+                    label="Postcode"
                     fullWidth
                     variant="outlined"
                     value={postCode}
@@ -268,12 +267,12 @@ function AddPrty() {
                     label="Country"
                     fullWidth
                     variant="outlined"
-                    value={country}
+                    value="Malaysia"
                     onChange={(e) => setCountry(e.target.value)}
                     sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
-                    label="Phone Home"
+                    label="Phone (Home)"
                     fullWidth
                     variant="outlined"
                     value={phoneHome}
@@ -281,7 +280,7 @@ function AddPrty() {
                     sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
-                    label="Phone Office"
+                    label="Phone (Office)"
                     fullWidth
                     variant="outlined"
                     value={phoneOffice}
@@ -289,7 +288,7 @@ function AddPrty() {
                     sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
                 <TextField
-                    label="Phone Mobile"
+                    label="Phone (Mobile)"
                     fullWidth
                     variant="outlined"
                     value={phoneOffice}
@@ -335,7 +334,7 @@ function AddPrty() {
                         style={{ display: 'block',border: '1px solid lightgrey', marginTop: '10px',marginBottom: '10px',padding: '8px',width: '100%',}}
                     ></textarea>
                 </Box> */}
-                <Box sx={{ marginTop: 3, }}>
+                <Box sx={{ marginTop: 1, }}>
                 <TextField
                   label="Registered Office"
                   variant="outlined"
@@ -346,43 +345,46 @@ function AddPrty() {
                   onChange={(e) => setRegisteredOffice(e.target.value)}
                 />
                 </Box>
-                  <FormControl fullWidth sx={{ marginTop: 2, }}>
-                    <InputLabel id="select-director">Director 1</InputLabel>
-                    <Select
-                      labelId="select-director"
-                      id="select-director"
-                      value={directorOne}
-                      onChange={(e) => setDirectorOne(e.target.value)}
-                      variant="outlined"
-                      fullWidth
-                    >
-                      <MenuItem value="a">A</MenuItem>
-                      <MenuItem value="b">B</MenuItem>
-                      <MenuItem value="c">C</MenuItem>
-                    </Select>
-                  </FormControl>
-                  <FormControl fullWidth sx={{ marginTop: 2, }}>
-                    <InputLabel id="select-director-two">Director 2</InputLabel>
-                    <Select
-                      labelId="select-director-two"
-                      id="select-director-two"
-                      value={directorTwo}
-                      onChange={(e) => setDirectorTwo(e.target.value)}
-                      variant="outlined"
-                      fullWidth
-                    >
-                      <MenuItem value="a">A</MenuItem>
-                      <MenuItem value="b">B</MenuItem>
-                      <MenuItem value="c">C</MenuItem>
-                    </Select>
-                  </FormControl>
+                <FormControl fullWidth sx={{ marginTop: 2 }}>
+                  <InputLabel id="select-director-label">Director 1</InputLabel>
+                  <Select
+                    labelId="select-director-label"
+                    id="select-director"
+                    value={directorOne}
+                    onChange={(e) => setDirectorOne(e.target.value)}
+                    label="Director 1" 
+                    variant="outlined"
+                    fullWidth
+                  >
+                    <MenuItem value="a">A</MenuItem>
+                    <MenuItem value="b">B</MenuItem>
+                    <MenuItem value="c">C</MenuItem>
+                  </Select>
+                </FormControl>
+                <FormControl fullWidth sx={{ marginTop: 2 }}>
+                  <InputLabel id="select-director-two-label">Director 2</InputLabel>
+                  <Select
+                    labelId="select-director-two-label"
+                    id="select-director-two"
+                    value={directorTwo}
+                    onChange={(e) => setDirectorTwo(e.target.value)}
+                    label="Director 2"
+                    variant="outlined"
+                    fullWidth
+                  >
+                    <MenuItem value="a">A</MenuItem>
+                    <MenuItem value="b">B</MenuItem>
+                    <MenuItem value="c">C</MenuItem>
+                  </Select>
+                </FormControl>
                   <FormControl fullWidth sx={{ marginTop: 2, marginBottom: 2, }}>
-                    <InputLabel id="Secratory">Secratory</InputLabel>
+                    <InputLabel id="Secretary">Secretary</InputLabel>
                     <Select
-                      labelId="Secratory"
-                      id="Secratory"
-                      value={secratory}
-                      onChange={(e) => setSecratory(e.target.value)}
+                      labelId="Secretary"
+                      id="Secretary"
+                      value={secretary}
+                      onChange={(e) => setSecretary(e.target.value)}
+                      label="Secretary"
                       variant="outlined"
                       fullWidth
                     >
@@ -405,6 +407,7 @@ function AddPrty() {
                     labelId="optional-information-label"
                     value={optionalInformation}
                     onChange={(e) => setOptionalInformation(e.target.value)}
+                    label="Optional Information"
                   >
                     <MenuItem value="option1">Option 1</MenuItem>
                     <MenuItem value="option2">Option 2</MenuItem>
@@ -418,6 +421,7 @@ function AddPrty() {
                     labelId="more-information-label"
                     value={moreInformation}
                     onChange={(e) => setMoreInformation(e.target.value)}
+                    label="More Information"
                   >
                     <MenuItem value="info1">Information 1</MenuItem>
                     <MenuItem value="info2">Information 2</MenuItem>
@@ -431,14 +435,15 @@ function AddPrty() {
                     labelId="extra-addresses-label"
                     value={extraAddress}
                     onChange={(e) => setExtraAddress(e.target.value)}
+                    label="Extra Addresses"
                   >
                     <MenuItem value="address1">Address 1</MenuItem>
                     <MenuItem value="address2">Address 2</MenuItem>
                     <MenuItem value="address3">Address 3</MenuItem>
                   </Select>
                 </FormControl>
-                <FormControl fullWidth sx={{ marginBottom: 2 }}>
-                  <Typography variant='h5' sx={{ marginBottom: 1, marginTop: 5 }}>Office Use:</Typography>
+                <FormControl fullWidth>
+                  <Typography variant='h5' sx={{ marginBottom: 1, marginTop: 3 }}>Office Use:</Typography>
                   {/* <InputLabel id="office-use-label">Office Use</InputLabel> */}
                   <Select
                     labelId="office-use-label"
@@ -459,6 +464,7 @@ function AddPrty() {
                       fullWidth
                       value={enteredBy}
                       onChange={(e) => setEnteredBy(e.target.value)}
+                      sx={{ marginTop: 2 }}
                     />
                     <TextField
                       label="Updated By"
@@ -487,8 +493,8 @@ function AddPrty() {
                     />
                   </Box>
                 )}
-                <FormControl fullWidth sx={{ marginBottom: 2, marginTop: 5, }}>
-                  <Typography variant='h5'>Other Information:</Typography>
+                <FormControl fullWidth>
+                  <Typography variant='h5' sx={{ marginBottom: 1, marginTop: 3 }}>Other Information:</Typography>
                   <InputLabel id="other-information"></InputLabel>
                   <Select
                     labelId="other-information"
@@ -510,6 +516,7 @@ function AddPrty() {
                         labelId="citizenship-label"
                         value={citizenship}
                         onChange={(e) => setCitizenship(e.target.value)}
+                        sx={{ marginTop: 2 }}
                       >
                         <MenuItem value="default">Select Citizenship</MenuItem>
                         <MenuItem value="citizenship1">Citizenship 1</MenuItem>
@@ -538,11 +545,12 @@ function AddPrty() {
                     />
 
                     <FormControl fullWidth sx={{ marginBottom: 2 }}>
-                      {/* <InputLabel id="material-status-label">Material Status</InputLabel> */}
+                      <InputLabel id="material-status-label">Material Status</InputLabel>
                       <Select
                         labelId="material-status-label"
                         value={materialStatus}
                         onChange={(e) => setMaterialStatus(e.target.value)}
+                        label="Material Status"
                       >
                         <MenuItem value="default">Select Status</MenuItem>
                         <MenuItem value="single">Single</MenuItem>
@@ -560,11 +568,12 @@ function AddPrty() {
                     />
 
                     <FormControl fullWidth sx={{ marginBottom: 2 }}>
-                      {/* <InputLabel id="occupation-label">Occupation</InputLabel> */}
+                      <InputLabel id="occupation-label">Occupation</InputLabel>
                       <Select
                         labelId="occupation-label"
                         value={occupation}
                         onChange={(e) => setOccupation(e.target.value)}
+                        label="Occupation"
                       >
                         <MenuItem value="default">Select Occupation</MenuItem>
                         <MenuItem value="occupation1">Occupation 1</MenuItem>
@@ -581,11 +590,12 @@ function AddPrty() {
                     />
 
                     <FormControl fullWidth sx={{ marginBottom: 2 }}>
-                      {/* <InputLabel id="ird-branch-label">IRD Branch</InputLabel> */}
+                      <InputLabel id="ird-branch-label">IRD Branch</InputLabel>
                       <Select
                         labelId="ird-branch-label"
                         value={irdBranch}
                         onChange={(e) => setIrdBranch(e.target.value)}
+                        label="IRD Branch"
                       >
                         <MenuItem value="default">Select IRD Branch</MenuItem>
                         <MenuItem value="branch1">Branch 1</MenuItem>
@@ -594,11 +604,12 @@ function AddPrty() {
                     </FormControl>
 
                     <FormControl fullWidth sx={{ marginBottom: 2 }}>
-                      {/* <InputLabel id="customer-type-label">Customer Type</InputLabel> */}
+                      <InputLabel id="customer-type-label">Customer Type</InputLabel>
                       <Select
-                        // labelId="customer-type-label"
+                        labelId="customer-type-label"
                         value={customerType}
                         onChange={(e) => setCustomerType(e.target.value)}
+                        label="Customer Type"
                       >
                         <MenuItem value="default">Select Customer Type</MenuItem>
                         <MenuItem value="individual">Individual</MenuItem>
@@ -607,11 +618,12 @@ function AddPrty() {
                     </FormControl>
 
                     <FormControl fullWidth sx={{ marginBottom: 2 }}>
-                      {/* <InputLabel id="gov-department-label">Government Department</InputLabel> */}
+                      <InputLabel id="gov-department-label">Government Department</InputLabel>
                       <Select
                         labelId="gov-department-label"
                         value={govDepartment}
                         onChange={(e) => setGovDepartment(e.target.value)}
+                        label="Government Department"
                       >
                         <MenuItem value="default">Select Department</MenuItem>
                         <MenuItem value="department1">Department 1</MenuItem>
@@ -639,8 +651,8 @@ function AddPrty() {
                     />
                   </Box>
                 )}
-                <FormControl fullWidth sx={{ marginBottom: 2, paddingRight: 2 }}>
-                <Typography variant='h5' marginTop={'8px'}>GST Information</Typography>
+                <FormControl fullWidth sx={{ marginBottom: 2, marginTop: 3, }}>
+                <Typography variant='h5'>GST Information</Typography>
                 {/* <InputLabel id="gst-info-label">GST Information</InputLabel> */}
                 <Select
                   labelId="gst-info-label"
@@ -703,13 +715,13 @@ function AddPrty() {
                   </Link>
                 </Box>
               )}
-              <FormControl fullWidth sx={{ marginBottom: 2, paddingRight: 2 }}>
-              <Typography variant='h5' marginTop={'8px'}>Newsletter Inforamtion</Typography>
-              {/* <InputLabel id="gst-info-label">GST Information</InputLabel> */}
+              <FormControl fullWidth sx={{ marginBottom: 2, marginTop: 3,}}>
+              <Typography variant='h5'>Newsletter Information</Typography>
               <Select
                 labelId="news-info-label"
                 value={newsLetterSettings}
                 onChange={(e) => setNewsLetterSettings(e.target.value)}
+                // label="Newsletter Information"
               >
                 <MenuItem value="default">Select an option</MenuItem>
                 <MenuItem value="news-info">Newsletter Inforamtion</MenuItem>
@@ -717,11 +729,13 @@ function AddPrty() {
               </FormControl>
               {newsLetterSettings === "news-info" && (
                 <Box display="flex" flexDirection="column" gap={2}>
-                  <FormControl fullWidth sx={{ paddingRight: 2 }}>
+                  <FormControl fullWidth>
+                  <InputLabel id="gst-info-label">Select Email</InputLabel>
                     <Select
                       variant="outlined"
                       value={mailingList}
                       onChange={(e) => setMailingList(e.target.value)}
+                      label="Select Email"
                     >
                       <MenuItem value="default">Select Mailing List</MenuItem>
                       <MenuItem value="list1">Mailing List 1</MenuItem>
