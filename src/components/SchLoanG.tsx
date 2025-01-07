@@ -112,16 +112,6 @@ const purchaserarray = [
 
   const sections = [
     {
-      heading: "Developer",
-      fields: [
-      ]
-    },
-    {
-      heading: "Purchaser",
-      fields: [
-      ]
-    },
-    {
       heading: "Proprietor",
       fields: [
         "Proprietor name",
@@ -152,7 +142,7 @@ const purchaserarray = [
       ],
     },
     {
-      heading: "Master title",
+      heading: "Master Title",
       fields: [
         "Title type - Freehold / Leasehold",
         "Title description - H.S.(D) / H.S.(M) / PN / PM / Geran / Geran Mukim",
@@ -177,7 +167,7 @@ const purchaserarray = [
       ],
     },
     {
-      heading: "Property details",
+      heading: "Property Details",
       fields: [
         "Parcel/unit/lot number",
         "Title type - Freehold / Leasehold",
@@ -203,7 +193,7 @@ const purchaserarray = [
       ],
     },
     {
-      heading: "Developer solicitors",
+      heading: "Developer Solicitors",
       fields: [
         "Developer solicitors name",
         "Developer solicitors office address",
@@ -217,7 +207,7 @@ const purchaserarray = [
       ],
     },
     {
-      heading: "Purchaser solicitors",
+      heading: "Purchaser Solicitors",
       fields: [
         "Purchaser solicitors name",
         "Purchaser solicitors office address",
@@ -231,21 +221,21 @@ const purchaserarray = [
       ],
     },
     {
-      heading: "Purchase price",
+      heading: "Purchase Price",
       fields: [
         "Purchase price in words",
         "Purchase price in numerics",
       ],
     },
     {
-      heading: "Adjustment rate",
+      heading: "Adjustment Rate",
       fields: [
         "Adjustment rate in words",
         "Adjustment rate in numerics",
       ],
     },
     {
-      heading: "Developer stakeholder",
+      heading: "Developer Stakeholder",
       fields: [
         "Developer stakeholder name",
         "Developer stakeholder office address",
@@ -257,7 +247,7 @@ const purchaserarray = [
       ],
     },
     {
-      heading: "Summary of price (in RM)",
+      heading: "Summary Of Price (in RM)",
       fields: [
         "Approved purchase price in numerics",
         "Developer discount in numerics",
@@ -266,7 +256,7 @@ const purchaserarray = [
       ],
     },
     {
-      heading: "Schedule of payment(s)",
+      heading: "Schedule Of Payment(s)",
       fields: [
         "Purchase price (10%) in numerics",
         "Purchase price (15%) in numerics",
@@ -429,12 +419,16 @@ const purchaserarray = [
           maxHeight: 'calc(100vh - 100px)',  // Adjust this height to prevent it from occupying the entire page
         }}
       >
+      <div style={{marginTop: '10px', marginBottom: '40px'}}>
+        <h3>Developer</h3>
 <select style={{ padding: "10px", fontSize: "14px", borderRadius: "4px" }}>
   <option value="">Select a Developer</option>
   <option value="Field 1">Field 1</option>
   <option value="Field 2">Field 2</option>
   <option value="Field 3">Field 3</option>
 </select>
+      </div>
+
                   <Box sx={{ display: "flex", width: "100%", marginBottom: 2, marginTop: 1 }}>
         <Radio
           checked={selectedValue === "a"}
