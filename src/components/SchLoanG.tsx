@@ -112,6 +112,16 @@ const purchaserarray = [
 
   const sections = [
     {
+      heading: "Developer",
+      fields: [
+      ]
+    },
+    {
+      heading: "Purchaser",
+      fields: [
+      ]
+    },
+    {
       heading: "Proprietor",
       fields: [
         "Proprietor name",
@@ -374,16 +384,17 @@ const purchaserarray = [
                     key={index}
                     onClick={() => scrollToSection(index)}
                     style={{
-                        margin: "15px 5px",
-                        padding: "10px 0px",
+                        margin: "1px 5px",
+                        padding: "1px 0px",
                         cursor: "pointer",
+                        display: "inline-block",
                         color: "#007bff",
                     }}
                 >
-                  
-                    {sectionIcons[section.heading]} 
-                    {section.heading} |
-                   
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                     {sectionIcons[section.heading]}
+                    <span>{section.heading}</span>
+                    </div>           
                 </a>
             ))}
         </div>
@@ -418,6 +429,12 @@ const purchaserarray = [
           maxHeight: 'calc(100vh - 100px)',  // Adjust this height to prevent it from occupying the entire page
         }}
       >
+<select style={{ padding: "10px", fontSize: "14px", borderRadius: "4px" }}>
+  <option value="">Select a Developer</option>
+  <option value="Field 1">Field 1</option>
+  <option value="Field 2">Field 2</option>
+  <option value="Field 3">Field 3</option>
+</select>
                   <Box sx={{ display: "flex", width: "100%", marginBottom: 2, marginTop: 1 }}>
         <Radio
           checked={selectedValue === "a"}
@@ -451,27 +468,38 @@ const purchaserarray = [
       </Box>
 
       <div>
-        <h3>{selectedSection.heading}</h3>
-        {selectedSection.fields.map((field, index) => (
-          <div
-          key={index}
+  <h3>{selectedSection.heading}</h3>
+  <div
+    style={{
+      display: 'flex',
+      flexWrap: 'wrap', // Ensures wrapping to the next row
+      gap: '20px', // Space between items
+    }}
+  >
+    {selectedSection.fields.map((field, index) => (
+      <div
+        key={index}
+        style={{
+          flex: '1 1 calc(50% - 20px)', // Takes 50% of the width minus gap space
+          padding: '10px',
+          boxSizing: 'border-box',
+        }}
+      >
+        <input
+          type="text"
+          placeholder={field}
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            flex: '1 1 50%', // Adjusts width to 50% for 2 columns
             padding: '10px',
-            boxSizing: 'border-box',
+            width: '100%',
+            borderRadius: '4px',
+            border: '1px solid #ccc',
           }}
-        >
-          
-          <input
-            type="text"
-            placeholder={field}
-            style={{ padding: '10px', width: '100%' }}
-          />
-        </div>
-        ))}
+        />
       </div>
+    ))}
+  </div>
+</div>
+
       
         {sections.map((section, index) => (
           <div
