@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Box, Typography, TextField, Button, DialogActions } from '@mui/material';
+import { Box, Typography, TextField, Button, DialogActions,Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
 
 function AddTemplates() {
   // State hooks for each form field
+  const [bank, setBank] = useState('');
   const [templateName, setTemplateName] = useState('');
   const [description, setDescription] = useState('');
   const [uploadFile, setUploadFile] = useState<File | null>(null);
@@ -41,12 +42,27 @@ function AddTemplates() {
 
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3, maxWidth: 400, marginLeft: 70, marginTop: 10, border: 'solid 1px grey' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3, maxWidth: 400, marginLeft: 70, marginTop: 13, border: 'solid 1px grey' }}>
         <DrawerComponent />
         <HeaderComponent />
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h6" gutterBottom>
         Add New Templates
       </Typography>
+      <FormControl fullWidth variant="outlined" sx={{ marginBottom: 2, }}>
+        <InputLabel id="select-bank-label">Select Bank</InputLabel>
+        <Select
+          labelId="select-bank-label"
+          value={bank}
+          onChange={(e) => setBank(e.target.value)}
+          label="Select Bank"
+        >
+          <MenuItem value="default">Select Bank</MenuItem>
+          <MenuItem value="bank1">Bank 1</MenuItem>
+          <MenuItem value="bank2">Bank 2</MenuItem>
+          <MenuItem value="bank3">Bank 3</MenuItem>
+          {/* Add more states as needed */}
+        </Select>
+      </FormControl>
       <TextField
         label="Template Name"
         fullWidth
@@ -55,14 +71,17 @@ function AddTemplates() {
         onChange={(e) => setTemplateName(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
-      <TextField
-        label="Description"
-        fullWidth
-        variant="outlined"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        sx={{ marginBottom: 2 }}
-      />
+      {/* <Box sx={{ marginTop: 1, }}> */}
+        <TextField
+          label="Description"
+          variant="outlined"
+          fullWidth
+          multiline
+          rows={4}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      {/* </Box> */}
       <input
           type="file"
           onChange={(e) => {
@@ -70,7 +89,7 @@ function AddTemplates() {
                   setUploadFile(e.target.files[0]);
               }
           }}
-          style={{ marginBottom: '16px' }}
+          style={{ marginBottom: '16px', marginTop: '16px', width: '385px', }}
       />
       <DialogActions>
         <Button variant="contained" color="primary" onClick={handleAddTemplatesSubmit}>

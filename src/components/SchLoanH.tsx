@@ -1,12 +1,16 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import DrawerComponent from './DrawerComponent';
 import HeaderComponent from './HeaderComponent';
-import { Box, Toolbar, CssBaseline, Button, CircularProgress } from '@mui/material';
+import { Box, TextField, Toolbar, CssBaseline, Button, CircularProgress,MenuItem, Select, InputLabel, FormControl, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper, } from '@mui/material';
+import { Search } from '@mui/icons-material';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 const SchLoanH: React.FC = () => {
 	const [value, setValue] = React.useState('one');
+	const [templates, setTemplates] = useState([]);
+	const [toggleBoxVisible, setToggleBoxVisible] = useState(false); // For showing/hiding the toggle box
+	const [selectedBank, setSelectedBank] = useState('');
 	const handleChange = (event: React.SyntheticEvent, newValue: string) => {
 		setValue(newValue);
 	};
@@ -835,6 +839,35 @@ const SchLoanH: React.FC = () => {
 		}
 	};
 
+	useEffect(() => {
+		// Fetch templates from API
+		const fetchTemplates = async () => {
+		  try {
+			const response = await fetch('http://localhost:5000/get-templates');
+			const result = await response.json();
+			if (response.ok) {
+			  setTemplates(result);
+			} else {
+			  console.error(result);
+			}
+		  } catch (error) {
+			console.error('Error fetching templates:', error);
+		  }
+		};
+	
+		fetchTemplates();
+	  }, []);
+	
+	  // Toggle the visibility of the box
+	  const handleToggleBox = () => {
+		setToggleBoxVisible(!toggleBoxVisible);
+	  };
+	
+	  // Handle the dropdown selection
+	  const handleDropdownChange = (event) => {
+		setSelectedBank(event.target.value);
+	  };
+
 	return (
 		<Box sx={{ display: 'flex' }}>
 			<CssBaseline />
@@ -990,7 +1023,9 @@ const SchLoanH: React.FC = () => {
 											color: "#007bff",
 										}}
 									>
-										{section.heading2}  | {section.heading3}  {section.heading4} {section.heading5} {section.heading6} {section.heading7} {section.heading8} {section.heading9} {section.heading10} {section.heading11} {section.heading12} {section.heading13} {section.heading14} {section.heading15} {section.heading16} {section.heading17} {section.heading18} {section.heading19} {section.heading20} {section.heading21} {section.heading22} {section.heading23} {section.heading24}
+										{section.heading}
+										{index !== sections.length - 1 && " |"}
+										{/* {section.heading2} {section.heading3}  {section.heading4} {section.heading5} {section.heading6} {section.heading7} {section.heading8} {section.heading9} {section.heading10} {section.heading11} {section.heading12} {section.heading13} {section.heading14} {section.heading15} {section.heading16} {section.heading17} {section.heading18} {section.heading19} {section.heading20} {section.heading21} {section.heading22} {section.heading23} {section.heading24} */}
 									</a>
 								))}
 							</div>
@@ -1015,6 +1050,65 @@ const SchLoanH: React.FC = () => {
 								<Button variant="contained" color="primary" onClick={UploadFile}>
 									Fill From Doc
 								</Button>
+								
+								
+
+									
+							</Box>
+							<Box sx={{ width: 400,  }}>
+							<Button variant="contained" color="primary" onClick={handleToggleBox} sx={{ marginLeft: 5, }}>
+									Add Doc Templates
+								</Button>
+								{/* Toggle Box */}
+								{toggleBoxVisible && (
+									<Box sx={{ border: '1px solid #ccc', borderRadius: '8px', padding: 3, marginBottom: 2 }}>
+										{/* Dropdown */}
+										<FormControl fullWidth sx={{ marginBottom: 2 }}>
+										<InputLabel>Select Bank</InputLabel>
+										<Select value={selectedBank} onChange={handleDropdownChange} label="Select Bank">
+											<MenuItem value="Bank1">Bank1</MenuItem>
+											<MenuItem value="Bank2">Bank2</MenuItem>
+											<MenuItem value="Bank3">Bank3</MenuItem>
+										</Select>
+										</FormControl>
+
+										<Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
+											<TextField
+												fullWidth
+												placeholder="Find Template"
+												variant="outlined"
+												size="small"
+											/>
+											{/* <Button variant="contained" color="primary" startIcon={<Search />}>
+												Find
+											</Button> */}
+										</Box>
+
+										{/* Templates List */}
+										<TableContainer component={Paper}>
+										<Table>
+											<TableHead>
+											<TableRow>
+												<TableCell>Template Name</TableCell>
+												<TableCell align="right">Action</TableCell>
+											</TableRow>
+											</TableHead>
+											<TableBody>
+											{templates.map((template, index) => (
+												<TableRow key={index}>
+												<TableCell>{template.templateName}</TableCell>
+												<TableCell align="right">
+													<Button variant="contained" color="primary">
+													Add
+													</Button>
+												</TableCell>
+												</TableRow>
+											))}
+											</TableBody>
+										</Table>
+										</TableContainer>
+									</Box>
+									)}
 							</Box>
 							<Box
 								sx={{
