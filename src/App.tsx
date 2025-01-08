@@ -64,6 +64,13 @@ import SchLoanH from './components/SchLoanH';
 import SchLoanG from './components/SchLoanG';
 import SchLoanI from './components/SchLoanI';
 import SchLoanJ from './components/SchLoanJ';
+import ViewBranch from './components/ViewBranch';
+import BankBranchListing from './components/BankBranchListing';
+import ViewBankCac from './components/ViewBankCac';
+import BankCACListing from './components/BankCacListing';
+import AddMasterCac from './components/AddMasterBank';
+import ViewMasterBank from './components/ViewMasterBank';
+import MatterBankListing from './components/MatterBankListing';
 
 const AppWithDarkMode: React.FC = () => {
   const { darkMode } = useDarkMode(); // Access dark mode state
@@ -138,6 +145,13 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/bank-cac" element={<PrivateRoute element={<BankCAC />} />} />        
         <Route path="/general-form" element={<PrivateRoute element={<GeneralForm />} />} />        
         <Route path="/reportgen" element={<ReportGen />} />
+        <Route path="/view-bank-branch" element={<ViewBranch />} />
+        <Route path="/bank-branch-listing" element={<BankBranchListing />} />
+        <Route path="/view-bank-cac" element={<ViewBankCac />} />
+        <Route path="/bank-cac-listing" element={<BankCACListing />} />
+        <Route path="/add-master-bank" element={<AddMasterCac />} />
+        <Route path="/view-master-bank" element={<ViewMasterBank />} />
+        <Route path="/matter-bank-listing" element={<MatterBankListing />} />
       </Routes>
     </ThemeProvider>
   );
