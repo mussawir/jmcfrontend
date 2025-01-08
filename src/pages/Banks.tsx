@@ -24,7 +24,7 @@ function Banks() {
 
         {/* Center the Headline */}
         <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
-          Banks
+          Add New Bank
         </Typography>
 
         

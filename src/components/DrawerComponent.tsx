@@ -160,7 +160,7 @@ const DrawerComponent = () => {
     }
   />
   {/* <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f' }} /> */}
-      </ListItem>
+</ListItem>
 
       {/* <ListItem
   component={Link}
@@ -206,44 +206,45 @@ const DrawerComponent = () => {
       cursor: 'pointer',
     },
   }}
-  onClick={handleClick}
+  // onClick={handleClick}
 >
   <ListItemIcon>
     <AssignmentIcon />
   </ListItemIcon>
-  
   <Button
     onClick={handleClick}
     sx={{
-      color: 'inherit', // Inherit color from ListItem
-      textTransform: 'none', // Prevent text from being transformed to uppercase
-      fontWeight: 'normal', // Normal font weight
-      fontSize: 'inherit', // Inherit font size from parent
+      color: 'inherit', 
+      textTransform: 'none', 
+      fontWeight: 'normal', 
+      fontSize: 'inherit',
+      marginLeft: '-8px', 
     }}
   >
     Matters
   </Button>
   
   {/* Main Menu */}
-  <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+  <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
     <MenuItem onClick={handleMattersClick}>
       Conveyancing
       <KeyboardArrowRightIcon  
-        onClick={handleClick} 
         sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} 
       />
     </MenuItem>
 
     {/* Matters Submenu */}
-    {/* Matters Submenu */}
     <Menu
       anchorEl={mattersAnchorEl}
-      open={openMattersMenu}
+      open={Boolean(mattersAnchorEl)}
       onClose={handleMattersClose}
       sx={{
         mt: 1, // Add margin top to create space below main menu
         ml: 12, // Add margin left to move submenu to the right
       }}
+      // MenuListProps={{
+      //   onMouseLeave: () => setMattersAnchorEl(null), // Optional: Close submenu on mouse leave
+      // }}
     >
       {[
         { label: 'New Schedule', route: '/new-schedule' },
@@ -274,25 +275,24 @@ const DrawerComponent = () => {
     <MenuItem onClick={() => handleItemClick('Estate & Family', '/estate')}>
       Estate & Family
       <KeyboardArrowRightIcon  
-        onClick={handleClick} 
+        // onClick={handleClick} 
         sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} 
       />
     </MenuItem>
     
     {/* Additional Menu Items */}
-    <MenuItem onClick={handleBankClick}>
+    <MenuItem>
       Litigation
       <KeyboardArrowRightIcon  
-        onClick={handleClick} 
+        // onClick={handleClick} 
         sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} 
       />
     </MenuItem>
-    <MenuItem onClick={handleBankClick}>Corporate Secretarial</MenuItem>
-    <MenuItem onClick={handleBankClick}>General</MenuItem>
+    <MenuItem>Corporate Secretarial</MenuItem>
+    <MenuItem>General</MenuItem>
   </Menu>
 
   <KeyboardArrowDownIcon 
-    onClick={handleClick} 
     sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} 
   />
   {/* Modal for "New Schedule" */}
@@ -420,6 +420,7 @@ const DrawerComponent = () => {
           backgroundColor: 'rgba(173, 216, 230, 0.5)',
         },
       }}
+      // onClick={handleBankClick}
     >
       <ListItemIcon sx={{ color: selectedBankItem === 'Banks' ? '#1E90FF' : '#5f5f5f' }}>
         <AccountBalanceIcon />
@@ -438,7 +439,7 @@ const DrawerComponent = () => {
           fontFamily: 'sans-serif',
           color: selectedBankItem === 'Banks' ? '#1E90FF' : '#5f5f5f',
           textTransform: 'none',
-          marginLeft: '0px',
+          marginLeft: '-10px',
           minWidth: 'unset',
         }}
       >
@@ -453,6 +454,8 @@ const DrawerComponent = () => {
       open={openBankMenu} // Open if bankAnchorEl is not null
       onClose={handleBankClose}
       sx={{
+        // marginLeft: '130px',
+        // marginTop: '70px',
         '& .MuiPaper-root': {
           borderRadius: '12px',
           backgroundColor: '#ffffff',
@@ -475,6 +478,7 @@ const DrawerComponent = () => {
         { label: 'Add Master Bank', route: '/add-master-bank' },
         { label: 'View Master Bank', route: '/view-master-bank' },
         { label: 'Matter Bank Listing', route: '/matter-bank-listing' }, // Keep this if needed
+        { label: 'Tamplates', route: '/templates' }, // Keep this if needed
       ].map((item, index) => (
         <React.Fragment key={index}>
           <MenuItem 
@@ -831,7 +835,7 @@ const DrawerComponent = () => {
     }
   />
 </ListItem>
-<ListItem
+{/* <ListItem
   component={Link}
   to="/templates"
   // onClick={() => handleItemClick('SPAH')}
@@ -862,9 +866,9 @@ const DrawerComponent = () => {
         Templates
       </Typography>
     }
-  />
+  /> */}
   {/* <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }} /> */}
-</ListItem>
+{/* </ListItem> */}
 <ListItem
   component={Link}
   to="/developerbuilder"
