@@ -110,7 +110,7 @@ function AddPrty() {
         },
       });
 
-      console.log("File uploaded successfully:", response.data);
+      console.log("Party added successfully:", response.data);
       alert(response.data.message);
     } catch (error) {
       alert('Form submitting error');
@@ -291,7 +291,7 @@ function AddPrty() {
                     label="Phone (Mobile)"
                     fullWidth
                     variant="outlined"
-                    value={phoneOffice}
+                    value={phoneMobile}
                     onChange={(e) => setPhoneMobile(e.target.value)}
                     sx={{ marginBottom: 2, paddingRight: 2, }}
                   />
