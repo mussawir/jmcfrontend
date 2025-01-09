@@ -500,7 +500,6 @@ const purchaserarray = [
             key={index}
             ref={sectionRefs[index]}
             style={{
-              minHeight: '70vh',
               paddingLeft: '20px',
               paddingright: '20px',
               marginTop: '0px',
@@ -633,7 +632,7 @@ const purchaserarray = [
                 name="radio-buttons"
                 inputProps={{ 'aria-label': 'C' }}
             />
-            <GroupIcon style={{ marginLeft: '0px', marginRight: '5px', marginTop: '8px' }} />
+            <GroupIcon style={{ marginLeft: '0px', marginRight: '5px', }} />
             <Typography style={{ marginTop: '10px' }}>Purchaser company</Typography>
         </Box>
                     {sections.map((section, index) => (
@@ -641,7 +640,6 @@ const purchaserarray = [
                         key={index}
                         ref={sectionRefs[index]}
                         style={{
-                          minHeight: '70vh',
                           paddingLeft: '20px',
                           paddingright: '20px',
                           marginTop: '0px',
