@@ -68,9 +68,11 @@ import ViewBranch from './components/ViewBranch';
 import BankBranchListing from './components/BankBranchListing';
 import ViewBankCac from './components/ViewBankCac';
 import BankCACListing from './components/BankCacListing';
-import AddMasterCac from './components/AddMasterBank';
+import AddMasterBank from './components/AddMasterBank';
 import ViewMasterBank from './components/ViewMasterBank';
-import MatterBankListing from './components/MatterBankListing';
+import MasterBankListing from './components/MasterBankListing';
+import ScheduleGList from './components/ScheduleGList';
+import ScheduleHList from './components/ScheduleHList';
 
 const AppWithDarkMode: React.FC = () => {
   const { darkMode } = useDarkMode(); // Access dark mode state
@@ -149,9 +151,11 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/bank-branch-listing" element={<BankBranchListing />} />
         <Route path="/view-bank-cac" element={<ViewBankCac />} />
         <Route path="/bank-cac-listing" element={<BankCACListing />} />
-        <Route path="/add-master-bank" element={<AddMasterCac />} />
+        <Route path="/add-master-bank" element={<AddMasterBank />} />
         <Route path="/view-master-bank" element={<ViewMasterBank />} />
-        <Route path="/matter-bank-listing" element={<MatterBankListing />} />
+        <Route path="/master-bank-listing" element={<MasterBankListing />} />
+        <Route path="/schedule-g-list" element={<ScheduleGList />} />
+        <Route path="/schedule-h-list" element={<ScheduleHList />} />
       </Routes>
     </ThemeProvider>
   );
