@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Toolbar, CssBaseline, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper, Button, Link, TextField, InputAdornment } from '@mui/material';
-import { Search,  } from '@mui/icons-material';
+import { AccountBalance, AccountBalanceWallet, MonetizationOn, Search,  } from '@mui/icons-material';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ function ScheduleHList() {
   const navigate = useNavigate();
   
   const handleAddNew = () => {
-    navigate(''); 
+    navigate('/sch-loan-h'); 
   };
 
   // Fetch the master bank data
@@ -46,7 +46,21 @@ function ScheduleHList() {
         <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
          Schedule H List
         </Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
+         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+              <Link href="" target="_blank" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+                <AccountBalance sx={{ marginRight: 0.5 }} />
+                Bookmark1
+              </Link>
+              <Link href="" target="_blank" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+                <AccountBalanceWallet sx={{ marginRight: 0.5 }} />
+                Bookmark2
+              </Link>
+              <Link href="" target="_blank" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+                <MonetizationOn sx={{ marginRight: 0.5 }} />
+                Bookmark3
+              </Link>
+            </Box>
             <Button
                 variant="contained"
                 color="primary"
