@@ -1,54 +1,103 @@
-import React, { useState } from 'react';
-import { Box, Typography, TextField, Button, DialogActions,Select, MenuItem, InputLabel, FormControl } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  DialogActions,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+} from '@mui/material';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
 
 function AddTemplates() {
-  // State hooks for each form field
   const [bank, setBank] = useState('');
   const [templateName, setTemplateName] = useState('');
   const [description, setDescription] = useState('');
   const [uploadFile, setUploadFile] = useState<File | null>(null);
+  const [banks, setBanks] = useState([]);
+
+  // Fetch bank data on component load
+  useEffect(() => {
+    const fetchBanks = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/master-bank');
+        
+        // Check if the response is OK (status 200)
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+    
+        const data = await response.json();  // Parse JSON
+    
+        // Check if data is as expected
+        if (data.banks) {
+          setBanks(data.banks);
+        } else {
+          console.error('Data structure is not correct:', data);
+        }
+      } catch (error) {
+        console.error('Error fetching banks:', error);
+      }
+    };
+
+    fetchBanks();
+  }, []);
+
   const handleAddTemplatesSubmit = async () => {
     if (!uploadFile) {
-        alert("Please select a file before submitting.");
-        return;
+      alert('Please select a file before submitting.');
+      return;
     }
 
     const formData = new FormData();
+    formData.append('bank', bank);
     formData.append('templateName', templateName);
     formData.append('description', description);
     formData.append('uploadFile', uploadFile);
 
     try {
-        const response = await fetch('http://localhost:5000/add-templates', {
-            method: 'POST',
-            body: formData,
-        });
+      const response = await fetch('http://localhost:5000/add-templates', {
+        method: 'POST',
+        body: formData,
+      });
 
-        const result = await response.json();
+      const result = await response.json();
 
-        if (response.ok) {
-            alert('Template added successfully');
-        } else {
-            alert('Failed to add template');
-            console.error(result);
-        }
+      if (response.ok) {
+        alert('Template added successfully');
+      } else {
+        alert('Failed to add template');
+        console.error(result);
+      }
     } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred');
+      console.error('Error:', error);
+      alert('An error occurred');
     }
-};
-
+  };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3, maxWidth: 400, marginLeft: 70, marginTop: 13, border: 'solid 1px grey' }}>
-        <DrawerComponent />
-        <HeaderComponent />
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        p: 3,
+        maxWidth: 400,
+        marginLeft: 70,
+        marginTop: 13,
+        border: 'solid 1px grey',
+      }}
+    >
+      <DrawerComponent />
+      <HeaderComponent />
       <Typography variant="h6" gutterBottom>
         Add New Templates
       </Typography>
-      <FormControl fullWidth variant="outlined" sx={{ marginBottom: 2, }}>
+      <FormControl fullWidth variant="outlined" sx={{ marginBottom: 2 }}>
         <InputLabel id="select-bank-label">Select Bank</InputLabel>
         <Select
           labelId="select-bank-label"
@@ -56,11 +105,12 @@ function AddTemplates() {
           onChange={(e) => setBank(e.target.value)}
           label="Select Bank"
         >
-          <MenuItem value="default">Select Bank</MenuItem>
-          <MenuItem value="bank1">Bank 1</MenuItem>
-          <MenuItem value="bank2">Bank 2</MenuItem>
-          <MenuItem value="bank3">Bank 3</MenuItem>
-          {/* Add more states as needed */}
+          <MenuItem value="">Select Bank</MenuItem>
+          {banks.map((bankItem) => (
+            <MenuItem key={bankItem._id} value={bankItem.bankName}>
+              {bankItem.bankName}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
       <TextField
@@ -71,25 +121,27 @@ function AddTemplates() {
         onChange={(e) => setTemplateName(e.target.value)}
         sx={{ marginBottom: 2 }}
       />
-      {/* <Box sx={{ marginTop: 1, }}> */}
-        <TextField
-          label="Description"
-          variant="outlined"
-          fullWidth
-          multiline
-          rows={4}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      {/* </Box> */}
+      <TextField
+        label="Description"
+        variant="outlined"
+        fullWidth
+        multiline
+        rows={4}
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
       <input
-          type="file"
-          onChange={(e) => {
-              if (e.target.files && e.target.files.length > 0) {
-                  setUploadFile(e.target.files[0]);
-              }
-          }}
-          style={{ marginBottom: '16px', marginTop: '16px', width: '385px', }}
+        type="file"
+        onChange={(e) => {
+          if (e.target.files && e.target.files.length > 0) {
+            setUploadFile(e.target.files[0]);
+          }
+        }}
+        style={{
+          marginBottom: '16px',
+          marginTop: '16px',
+          width: '385px',
+        }}
       />
       <DialogActions>
         <Button variant="contained" color="primary" onClick={handleAddTemplatesSubmit}>

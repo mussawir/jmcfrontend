@@ -250,6 +250,8 @@ const DrawerComponent = () => {
     >
       {[
         { label: 'New Schedule', route: '/new-schedule' },
+        { label: 'Schedule G List', route: '/schedule-g-list' },
+        { label: 'Schedule H List', route: '/schedule-h-list' },
         { label: 'SubSale', route: '/subsale' },
         { label: 'SPA Loan/ SUBSALE || SPA Related Loan', route: '/spaloan' },
         { label: 'SPA Loan/ Developer', route: '/developerloan' },
@@ -477,7 +479,8 @@ const DrawerComponent = () => {
         { label: 'Bank CAC Listing', route: '/bank-cac-listing' },
         { label: 'Add Master Bank', route: '/add-master-bank' },
         { label: 'View Master Bank', route: '/view-master-bank' },
-        { label: 'Matter Bank Listing', route: '/matter-bank-listing' }, // Keep this if needed
+        { label: 'Master Bank Listing', route: '/master-bank-listing' }, // Keep this if needed
+        { label: 'Templates', route: '/templates' }, // Keep this if needed
       ].map((item, index) => (
         <React.Fragment key={index}>
           <MenuItem 
@@ -834,7 +837,7 @@ const DrawerComponent = () => {
     }
   />
 </ListItem>
-<ListItem
+{/* <ListItem
   component={Link}
   to="/templates"
   // onClick={() => handleItemClick('SPAH')}
@@ -865,9 +868,9 @@ const DrawerComponent = () => {
         Templates
       </Typography>
     }
-  />
+  /> */}
   {/* <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'SPAG' ? '#1E90FF' : '#5f5f5f' }} /> */}
-</ListItem>
+{/* </ListItem> */}
 <ListItem
   component={Link}
   to="/developerbuilder"
