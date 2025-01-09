@@ -1,15 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Box,
-  Typography,
-  TextField,
-  Button,
-  DialogActions,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl,
-} from '@mui/material';
+
+import React, { useState } from 'react';
+import { Box, Typography, TextField, Button, DialogActions,Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
 
@@ -142,6 +133,7 @@ function AddTemplates() {
           marginTop: '16px',
           width: '385px',
         }}
+
       />
       <DialogActions>
         <Button variant="contained" color="primary" onClick={handleAddTemplatesSubmit}>
