@@ -1,20 +1,179 @@
 import React, { useMemo, useState, useEffect } from "react";
 import DrawerComponent from './DrawerComponent';
 import HeaderComponent from './HeaderComponent';
-import { Box, TextField, Toolbar, CssBaseline, Button, CircularProgress,MenuItem, Select, InputLabel, FormControl, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper, } from '@mui/material';
-import { Search } from '@mui/icons-material';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import { Box, TextField, Toolbar, CssBaseline, Button, CircularProgress, MenuItem, Select, InputLabel, FormControl, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper, Tabs, Tab, DialogActions } from '@mui/material';
 
 const SchLoanH: React.FC = () => {
 	const [value, setValue] = React.useState('one');
 	const [templates, setTemplates] = useState([]);
-	const [toggleBoxVisible, setToggleBoxVisible] = useState(false); // For showing/hiding the toggle box
+	// For Showing / Hiding the Toggle Box
+	const [toggleBoxVisible, setToggleBoxVisible] = useState(false);
 	const [selectedBank, setSelectedBank] = useState('');
 	const handleChange = (event: React.SyntheticEvent, newValue: string) => {
 		setValue(newValue);
 	};
 	const [loading, setLoading] = useState(false);
+
+	// First Purchaser
+	const [firstPurchaserName, setFirstPurchaserName] = useState('');
+	const [firstPurchaserIdentityCard, setFirstPurchaserIdentityCard] = useState('');
+	const [firstPurchaserContactNo, setFirstPurchaserContactNo] = useState('');
+	const [firstPurchaserEmailAddress, setFirstPurchaserEmailAddress] = useState('');
+
+	// Second Purchaser
+	const [secondPurchaserName, setSecondPurchaserName] = useState('');
+	const [secondPurchaserIdentityCard, setSecondPurchaserIdentityCard] = useState('');
+	const [secondPurchaserContactNo, setSecondPurchaserContactNo] = useState('');
+	const [secondPurchaserEmailAddress, setSecondPurchaserEmailAddress] = useState('');
+
+	// // Third Purchaser
+	// const [thirdPurchaserName, setThirdPurchaserName] = useState('');
+	// const [thirdPurchaserIdentityCard, setThirdPurchaserIdentityCard] = useState('');
+	// const [thirdPurchaserContactNo, setThirdPurchaserContactNo] = useState('');
+	// const [thirdPurchaserEmailAddress, setThirdPurchaserEmailAddress] = useState('');
+
+	// // Fourth
+	// const [fourthPurchaserName, setFourthPurchaserName] = useState('');
+	// const [fourthPurchaserIdentityCard, setFourthPurchaserIdentityCard] = useState('');
+	// const [fourthPurchaserContactNo, setFourthPurchaserContactNo] = useState('');
+	// const [fourthPurchaserEmailAddress, setFourthPurchaserEmailAddress] = useState('');
+
+	// // Fifth Purchaser
+	// const [fifthPurchaserName, setFifthPurchaserName] = useState('');
+	// const [fifthPurchaserIdentityCard, setFifthPurchaserIdentityCard] = useState('');
+	// const [fifthPurchaserContactNo, setFifthPurchaserContactNo] = useState('');
+	// const [fifthPurchaserEmailAddress, setFifthPurchaserEmailAddress] = useState('');
+
+	// If Purchaser is Company
+	const [purchaserCorrespondenceAddress, setPurchaserCorrespondenceAddress] = useState('');
+
+	// Properitor Details
+	const [proprietorName, setProprietorName] = useState('');
+	const [proprietorCompanyRegistrationNo, setProprietorCompanyRegistrationNo] = useState('');
+	const [proprietorRegisteredOfficeAddress, setProprietorRegisteredOfficeAddress] = useState('');
+	const [proprietorPlaceBusinessAddress, setProprietorPlaceBusinessAddress] = useState('');
+	const [proprietorAuthorisedFirstSignatoryName, setProprietorAuthorisedFirstSignatoryName] = useState('');
+	const [proprietorAuthorisedFirstIdentityCardNo, setProprietorAuthorisedFirstIdentityCardNo] = useState('');
+	const [proprietorAuthorisedSecondSignatoryName, setProprietorAuthorisedSecondSignatoryName] = useState('');
+	const [proprietorAuthorisedSecondIdentityCardNo, setProprietorAuthorisedSecondIdentityCardNo] = useState('');
+
+	// Purchase Price
+	const [purchasePriceWords, setPurchasePriceWords] = useState('');
+	const [purchasePriceNumerics, setPurchasePriceNumerics] = useState('');
+	const [parcelUnitLotNo, setParcelUnitLotNo] = useState('');
+	const [storeyNo, setStoreyNo] = useState('');
+	const [buildingBlockNo, setBuildingBlockNo] = useState('');
+	const [parcelUnitLotArea, setParcelUnitLotArea] = useState('');
+	const [parcelUnitLotBuiltUpArea, setParcelUnitLotBuiltUpArea] = useState('');
+	const [accessoryParcelsNo, setAccessoryParcelsNo] = useState('');
+	const [accessoryParcelsBuildingBlockNo, setAccessoryParcelsBuildingBlockNo] = useState('');
+	const [airCondLedgeParcelsNo, setAirCondLedgeParcelsNo] = useState('');
+	const [carParkLotsNo, setCarParkLotsNo] = useState('');
+	const [carParkBuildingBlockNo, setCarParkBuildingBlockNo] = useState('');
+
+	// Housing Development Account (HDA) Details
+	const [developerHDANo, setDeveloperHDANo] = useState('');
+	const [bankName, setBankName] = useState('');
+	const [bankRegisteredOfficeAddress, setBankRegisteredOfficeAddress] = useState('');
+	const [bankFileReferenceNo, setBankFileReferenceNo] = useState('');
+
+	// Adjustment Rate
+	const [adjustmentRateWords, setAdjustmentRateWords] = useState('');
+	const [adjustmentRateNumerics, setAdjustmentRateNumerics] = useState('');
+
+	// Summary Of Purchase Price
+	const [approvedPurchasePriceNumerics, setApprovedPurchasePriceNumerics] = useState('');
+	const [developerDiscountNumerics, setDeveloperDiscountNumerics] = useState('');
+	const [bumiputeraLotDiscountNumerics, setBumiputeraLotDiscountNumerics] = useState('');
+	const [governmentInitiativeNumerics, setGovernmentInitiativeNumerics] = useState('');
+
+	const [projectName, setProjectName] = useState('');
+	const [phaseNo, setPhaseNo] = useState('');
+	const [townVillageMukim, setTownVillageMukim] = useState('');
+	const [district, setDistrict] = useState('');
+	const [state, setState] = useState('');
+
+	type KeyValue = { key: string; value: string };
+	const convertToArray = (text: string): KeyValue[] => {
+		return text
+			.trim()
+			.split('\n')
+			.map(line => {
+				const [key, ...value] = line.split(':');
+				return { key: key.trim(), value: value.join(':').trim() };
+			});
+	};
+
+	const handleAddScheduleSubmit = async () => {
+		const scheduleData = {
+			firstPurchaserName,
+			firstPurchaserIdentityCard,
+			firstPurchaserContactNo,
+			firstPurchaserEmailAddress,
+			secondPurchaserName,
+			secondPurchaserIdentityCard,
+			secondPurchaserContactNo,
+			secondPurchaserEmailAddress,
+			purchaserCorrespondenceAddress,
+			proprietorName,
+			proprietorCompanyRegistrationNo,
+			proprietorRegisteredOfficeAddress,
+			proprietorPlaceBusinessAddress,
+			proprietorAuthorisedFirstSignatoryName,
+			proprietorAuthorisedFirstIdentityCardNo,
+			proprietorAuthorisedSecondSignatoryName,
+			proprietorAuthorisedSecondIdentityCardNo,
+			purchasePriceWords,
+			purchasePriceNumerics,
+			parcelUnitLotNo,
+			storeyNo,
+			buildingBlockNo,
+			parcelUnitLotArea,
+			parcelUnitLotBuiltUpArea,
+			accessoryParcelsNo,
+			accessoryParcelsBuildingBlockNo,
+			airCondLedgeParcelsNo,
+			carParkLotsNo,
+			carParkBuildingBlockNo,
+			developerHDANo,
+			bankName,
+			bankRegisteredOfficeAddress,
+			bankFileReferenceNo,
+			adjustmentRateWords,
+			adjustmentRateNumerics,
+			approvedPurchasePriceNumerics,
+			developerDiscountNumerics,
+			bumiputeraLotDiscountNumerics,
+			governmentInitiativeNumerics,
+			projectName,
+			phaseNo,
+			townVillageMukim,
+			district,
+			state,
+		};
+
+		try {
+			const response = await fetch('http://localhost:5000/add-schedule-h', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(scheduleData),
+			});
+
+			const result = await response.json();
+
+			if (response.ok) {
+				alert('Schedule H form added successfully');
+			} else {
+				alert('Failed to add schedule H form');
+				console.error(result);
+			}
+		} catch (error) {
+			console.error('Error:', error);
+			alert('An error occurred');
+		}
+	};
 
 	const sections = [
 		{
@@ -824,9 +983,194 @@ const SchLoanH: React.FC = () => {
 			const result = await response.json();
 
 			if (response.ok) {
-				console.log(result.response);
+				const receivedData = convertToArray(result.response);
+				receivedData.forEach(data => {
+					console.log(`${data.key}: ${data.value}`);
+					const key = data.key;
+					switch (key) {
+						case '1st Purchaser name':
+							setFirstPurchaserName(data.value);
+							break;
+						case '1st Purchaser identity card':
+							setFirstPurchaserIdentityCard(data.value);
+							break;
+						case '1st Purchaser contact number':
+							setFirstPurchaserContactNo(data.value);
+							break;
+						case '1st Purchaser email address':
+							setFirstPurchaserEmailAddress(data.value);
+							break;
+
+						case '2nd Purchaser name':
+							setSecondPurchaserName(data.value);
+							break;
+						case '2nd Purchaser identity card':
+							setSecondPurchaserIdentityCard(data.value);
+							break;
+						case '2nd Purchaser contact number':
+							setSecondPurchaserContactNo(data.value);
+							break;
+						case '2nd Purchaser email address':
+							setSecondPurchaserEmailAddress(data.value);
+							break;
+
+						// case '3rd Purchaser name':
+						// 	setThirdPurchaserName(data.value);
+						// 	break;
+						// case '3rd Purchaser identity card':
+						// 	setThirdPurchaserIdentityCard(data.value);
+						// 	break;
+						// case '3rd Purchaser contact number':
+						// 	setThirdPurchaserContactNo(data.value);
+						// 	break;
+						// case '3rd Purchaser email address':
+						// 	setThirdPurchaserEmailAddress(data.value);
+						// 	break;
+
+						// case '4th Purchaser name':
+						// 	setFourthPurchaserName(data.value);
+						// 	break;
+						// case '4th Purchaser identity card':
+						// 	setFourthPurchaserIdentityCard(data.value);
+						// 	break;
+						// case '4th Purchaser contact number':
+						// 	setFourthPurchaserContactNo(data.value);
+						// 	break;
+						// case '4th Purchaser email address':
+						// 	setFourthPurchaserEmailAddress(data.value);
+						// 	break;
+
+						// case '5th Purchaser name':
+						// 	setFifthPurchaserName(data.value);
+						// 	break;
+						// case '5th Purchaser identity card':
+						// 	setFifthPurchaserIdentityCard(data.value);
+						// 	break;
+						// case '5th Purchaser contact number':
+						// 	setFifthPurchaserContactNo(data.value);
+						// 	break;
+						// case '5th Purchaser email address':
+						// 	setFifthPurchaserEmailAddress(data.value);
+						// 	break;
+
+						case 'Purchaser correspondence address':
+							setPurchaserCorrespondenceAddress(data.value);
+							break;
+
+						case 'Proprietor name':
+							setProprietorName(data.value);
+							break;
+						case 'Proprietor company registration number':
+							setProprietorCompanyRegistrationNo(data.value);
+							break;
+						case 'Proprietor registered office address':
+							setProprietorRegisteredOfficeAddress(data.value);
+							break;
+						case 'Proprietor place of business address':
+							setProprietorPlaceBusinessAddress(data.value);
+							break;
+						case 'Proprietor authorised 1st signatory name':
+							setProprietorAuthorisedFirstSignatoryName(data.value);
+							break;
+						case 'Proprietor authorised 1st identity card number':
+							setProprietorAuthorisedFirstIdentityCardNo(data.value);
+							break;
+						case 'Proprietor authorised 2nd signatory name':
+							setProprietorAuthorisedSecondSignatoryName(data.value);
+							break;
+						case 'Proprietor authorised 2nd identity card number':
+							setProprietorAuthorisedSecondIdentityCardNo(data.value);
+							break;
+
+						case 'Purchase price in words':
+							setPurchasePriceWords(data.value);
+							break;
+						case 'Purchase price in numerics':
+							setPurchasePriceNumerics(data.value);
+							break;
+						
+						case 'Adjustment rate in words':
+							setAdjustmentRateWords(data.value);
+							break;
+						case 'Adjustment rate in numerics':
+							setAdjustmentRateNumerics(data.value);
+							break;
+						
+						case 'Parcel/unit/lot number':
+							setParcelUnitLotNo(data.value);
+							break;
+						case 'Storey number':
+							setStoreyNo(data.value);
+							break;
+						case 'Building/block number':
+							setBuildingBlockNo(data.value);
+							break;
+						case 'Parcel/unit/lot area':
+							setParcelUnitLotArea(data.value);
+							break;
+						case 'Parcel/unit/lot built up area':
+							setParcelUnitLotBuiltUpArea(data.value);
+							break;
+						case 'Accessory parcel(s) number':
+							setAccessoryParcelsNo(data.value);
+							break;
+						case 'Accessory parcel(s) building/block number':
+							setAccessoryParcelsBuildingBlockNo(data.value);
+							break;
+						case 'Air-cond ledge parcel(s) number':
+							setAirCondLedgeParcelsNo(data.value);
+							break;
+						case 'Car park lot(s) number':
+							setCarParkLotsNo(data.value);
+							break;
+						case 'Car park building/block number':
+							setCarParkBuildingBlockNo(data.value);
+							break;
+
+						case 'Developer HDA number':
+							setDeveloperHDANo(data.value);
+							break;
+						case 'Bank/financial institution name':
+							setBankName(data.value);
+							break;
+						case 'Bank/financial institution registered office address':
+							setBankRegisteredOfficeAddress(data.value);
+							break;
+						case 'Bank/financial institution file reference number':
+							setBankFileReferenceNo(data.value);
+							break;
+						
+						case 'Approved purchase price in numerics':
+							setApprovedPurchasePriceNumerics(data.value);
+							break;
+						case 'Developer discount in numerics':
+							setDeveloperDiscountNumerics(data.value);
+							break;
+						case 'Bumiputera lot discount in numerics':
+							setBumiputeraLotDiscountNumerics(data.value);
+							break;
+						case 'Government initiative in numerics':
+							setGovernmentInitiativeNumerics(data.value);
+							break;
+
+						case 'Project name':
+							setProjectName(data.value);
+							break;
+						case 'Phase number':
+							setPhaseNo(data.value);
+							break;
+						case 'Town/Village/Mukim':
+							setTownVillageMukim(data.value);
+							break;
+						case 'District':
+							setDistrict(data.value);
+							break;
+						case 'State':
+							setState(data.value);
+							break;
+					}
+				});
 				alert('Files uploaded successfully');
-				// const scheduleDetails = JSON.parse(result.response);
 				setLoading(false);
 			} else {
 				alert('Failed to upload files');
@@ -842,31 +1186,31 @@ const SchLoanH: React.FC = () => {
 	useEffect(() => {
 		// Fetch templates from API
 		const fetchTemplates = async () => {
-		  try {
-			const response = await fetch('http://localhost:5000/get-templates');
-			const result = await response.json();
-			if (response.ok) {
-			  setTemplates(result);
-			} else {
-			  console.error(result);
+			try {
+				const response = await fetch('http://localhost:5000/get-templates');
+				const result = await response.json();
+				if (response.ok) {
+					setTemplates(result);
+				} else {
+					console.error(result);
+				}
+			} catch (error) {
+				console.error('Error fetching templates:', error);
 			}
-		  } catch (error) {
-			console.error('Error fetching templates:', error);
-		  }
 		};
-	
+
 		fetchTemplates();
-	  }, []);
-	
-	  // Toggle the visibility of the box
-	  const handleToggleBox = () => {
+	}, []);
+
+	// Toggle the visibility of the box
+	const handleToggleBox = () => {
 		setToggleBoxVisible(!toggleBoxVisible);
-	  };
-	
-	  // Handle the dropdown selection
-	  const handleDropdownChange = (event) => {
+	};
+
+	// Handle the dropdown selection
+	const handleDropdownChange = (event) => {
 		setSelectedBank(event.target.value);
-	  };
+	};
 
 	return (
 		<Box sx={{ display: 'flex' }}>
@@ -945,6 +1289,12 @@ const SchLoanH: React.FC = () => {
 									<Button variant="contained" color="primary" onClick={UploadFile}>
 										Fill From Doc
 									</Button>
+
+									<DialogActions>
+										<Button variant="contained" color="primary" onClick={handleAddScheduleSubmit}>
+											Submit
+										</Button>
+									</DialogActions>
 								</Box>
 								{loading && (
 									<Box sx={{ display: 'flex', marginTop: 2, marginBottom: 2 }}>
@@ -956,10 +1306,521 @@ const SchLoanH: React.FC = () => {
 										marginTop: '0px',
 										position: 'fixed',
 										overflowY: 'auto',
-										maxHeight: 'calc(100vh - 100px)',
+										maxHeight: 'calc(70vh - 100px)',
 									}}
 								>
-									{sections.map((section, index) => (
+									{/* Identation is wrongly set for below text fields */}
+									<div
+										style={{
+											minHeight: '70vh',
+											padding: '20px',
+											marginTop: '0px',
+											borderBottom: '1px solid #ddd',
+										}}
+									>
+									<h2>Purchaser</h2>
+									<TextField
+										label="1st Purchaser name"
+										fullWidth
+										variant="outlined"
+										value={firstPurchaserName}
+										onChange={(e) => setFirstPurchaserName(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									<TextField
+										label="1st Purchaser identity card"
+										fullWidth
+										variant="outlined"
+										value={firstPurchaserIdentityCard}
+										onChange={(e) => setFirstPurchaserIdentityCard(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									<TextField
+										label="1st Purchaser contact number"
+										fullWidth
+										variant="outlined"
+										value={firstPurchaserContactNo}
+										onChange={(e) => setFirstPurchaserContactNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									<TextField
+										label="1st Purchaser email address"
+										fullWidth
+										variant="outlined"
+										value={firstPurchaserEmailAddress}
+										onChange={(e) => setFirstPurchaserEmailAddress(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+
+									<TextField
+										label="2nd Purchaser name"
+										fullWidth
+										variant="outlined"
+										value={secondPurchaserName}
+										onChange={(e) => setSecondPurchaserName(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									<TextField
+										label="2nd Purchaser identity card"
+										fullWidth
+										variant="outlined"
+										value={secondPurchaserIdentityCard}
+										onChange={(e) => setSecondPurchaserIdentityCard(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									<TextField
+										label="2nd Purchaser contact number"
+										fullWidth
+										variant="outlined"
+										value={secondPurchaserContactNo}
+										onChange={(e) => setSecondPurchaserContactNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									<TextField
+										label="2nd Purchaser email address"
+										fullWidth
+										variant="outlined"
+										value={secondPurchaserEmailAddress}
+										onChange={(e) => setSecondPurchaserEmailAddress(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+
+									{/* <TextField
+										label="3rd Purchaser name"
+										fullWidth
+										variant="outlined"
+										value={thirdPurchaserName}
+										onChange={(e) => setThirdPurchaserName(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									<TextField
+										label="3rd Purchaser identity card"
+										fullWidth
+										variant="outlined"
+										value={thirdPurchaserIdentityCard}
+										onChange={(e) => setThirdPurchaserIdentityCard(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									<TextField
+										label="3rd Purchaser contact number"
+										fullWidth
+										variant="outlined"
+										value={thirdPurchaserContactNo}
+										onChange={(e) => setThirdPurchaserContactNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									<TextField
+										label="3rd Purchaser email address"
+										fullWidth
+										variant="outlined"
+										value={thirdPurchaserEmailAddress}
+										onChange={(e) => setThirdPurchaserEmailAddress(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+
+									<TextField
+										label="4th Purchaser name"
+										fullWidth
+										variant="outlined"
+										value={fourthPurchaserName}
+										onChange={(e) => setFourthPurchaserName(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									<TextField
+										label="4th Purchaser identity card"
+										fullWidth
+										variant="outlined"
+										value={fourthPurchaserIdentityCard}
+										onChange={(e) => setFourthPurchaserIdentityCard(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									<TextField
+										label="4th Purchaser contact number"
+										fullWidth
+										variant="outlined"
+										value={fourthPurchaserContactNo}
+										onChange={(e) => setFourthPurchaserContactNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									<TextField
+										label="4th Purchaser email address"
+										fullWidth
+										variant="outlined"
+										value={fourthPurchaserEmailAddress}
+										onChange={(e) => setFourthPurchaserEmailAddress(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+
+									<TextField
+										label="5th Purchaser name"
+										fullWidth
+										variant="outlined"
+										value={fifthPurchaserName}
+										onChange={(e) => setFifthPurchaserName(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									<TextField
+										label="5th Purchaser identity card"
+										fullWidth
+										variant="outlined"
+										value={fifthPurchaserIdentityCard}
+										onChange={(e) => setFifthPurchaserIdentityCard(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									<TextField
+										label="5th Purchaser contact number"
+										fullWidth
+										variant="outlined"
+										value={fifthPurchaserContactNo}
+										onChange={(e) => setFifthPurchaserContactNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									<TextField
+										label="5th Purchaser email address"
+										fullWidth
+										variant="outlined"
+										value={fifthPurchaserEmailAddress}
+										onChange={(e) => setFifthPurchaserEmailAddress(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/> */}
+
+									<TextField
+										label="Purchaser Correspondence Address"
+										fullWidth
+										variant="outlined"
+										value={purchaserCorrespondenceAddress}
+										onChange={(e) => setPurchaserCorrespondenceAddress(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+
+									<h2>Proprietor</h2>
+									<TextField
+										label="Proprietor Name"
+										fullWidth
+										variant="outlined"
+										value={proprietorName}
+										onChange={(e) => setProprietorName(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+
+									<TextField
+										label="Proprietor Company Registration Number"
+										fullWidth
+										variant="outlined"
+										value={proprietorCompanyRegistrationNo}
+										onChange={(e) => setProprietorCompanyRegistrationNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+
+									<TextField
+										label="Proprietor Registered Office Address"
+										fullWidth
+										variant="outlined"
+										value={proprietorRegisteredOfficeAddress}
+										onChange={(e) => setProprietorRegisteredOfficeAddress(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+
+									
+									<TextField
+										label="Proprietor Place of Business Address"
+										fullWidth
+										variant="outlined"
+										value={proprietorPlaceBusinessAddress}
+										onChange={(e) => setProprietorPlaceBusinessAddress(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Proprietor Authorised 1st Signatory Name"
+										fullWidth
+										variant="outlined"
+										value={proprietorAuthorisedFirstSignatoryName}
+										onChange={(e) => setProprietorAuthorisedFirstSignatoryName(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Proprietor Authorised 1st Identity Card Number"
+										fullWidth
+										variant="outlined"
+										value={proprietorAuthorisedFirstIdentityCardNo}
+										onChange={(e) => setProprietorAuthorisedFirstIdentityCardNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Proprietor Authorised 2nd Signatory Name"
+										fullWidth
+										variant="outlined"
+										value={proprietorAuthorisedSecondSignatoryName}
+										onChange={(e) => setProprietorAuthorisedSecondSignatoryName(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Proprietor Authorised 2nd Identity Card Number"
+										fullWidth
+										variant="outlined"
+										value={proprietorAuthorisedSecondIdentityCardNo}
+										onChange={(e) => setProprietorAuthorisedSecondIdentityCardNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<h2>Purchase Price</h2>
+									<TextField
+										label="Purchase Price in Words"
+										fullWidth
+										variant="outlined"
+										value={purchasePriceWords}
+										onChange={(e) => setPurchasePriceWords(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Purchase Price in Numerics"
+										fullWidth
+										variant="outlined"
+										value={purchasePriceNumerics}
+										onChange={(e) => setPurchasePriceNumerics(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+
+									<h2>Adjustment Rate</h2>
+									<TextField
+										label="Adjustment Rate in Words"
+										fullWidth
+										variant="outlined"
+										value={adjustmentRateWords}
+										onChange={(e) => setAdjustmentRateWords(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Adjustment Rate in Numerics"
+										fullWidth
+										variant="outlined"
+										value={adjustmentRateNumerics}
+										onChange={(e) => setAdjustmentRateNumerics(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<h2>Property Details</h2>
+									<TextField
+										label="Parcel/Unit/Lot Number"
+										fullWidth
+										variant="outlined"
+										value={parcelUnitLotNo}
+										onChange={(e) => setParcelUnitLotNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Storey Number"
+										fullWidth
+										variant="outlined"
+										value={storeyNo}
+										onChange={(e) => setStoreyNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Building/Block Number"
+										fullWidth
+										variant="outlined"
+										value={buildingBlockNo}
+										onChange={(e) => setBuildingBlockNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Parcel/Unit/Lot Area"
+										fullWidth
+										variant="outlined"
+										value={parcelUnitLotArea}
+										onChange={(e) => setParcelUnitLotArea(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Parcel/Unit/Lot Built Up Area"
+										fullWidth
+										variant="outlined"
+										value={parcelUnitLotBuiltUpArea}
+										onChange={(e) => setParcelUnitLotBuiltUpArea(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Accessory Parcel(s) Number"
+										fullWidth
+										variant="outlined"
+										value={accessoryParcelsNo}
+										onChange={(e) => setAccessoryParcelsNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Accessory Parcel(s) Building/Block Number"
+										fullWidth
+										variant="outlined"
+										value={accessoryParcelsBuildingBlockNo}
+										onChange={(e) => setAccessoryParcelsBuildingBlockNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Air-Cond Ledge Parcel(s) Number"
+										fullWidth
+										variant="outlined"
+										value={airCondLedgeParcelsNo}
+										onChange={(e) => setAirCondLedgeParcelsNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Car Park Lot(s) Number"
+										fullWidth
+										variant="outlined"
+										value={carParkLotsNo}
+										onChange={(e) => setCarParkLotsNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Car Park Building/Block Number"
+										fullWidth
+										variant="outlined"
+										value={carParkBuildingBlockNo}
+										onChange={(e) => setCarParkBuildingBlockNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<h2>
+										Housing Development Account (HDA) Details
+									</h2>
+									<TextField
+										label="Housing Development Account No"
+										fullWidth
+										variant="outlined"
+										value={developerHDANo}
+										onChange={(e) => setDeveloperHDANo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Bank or Financial Institution"
+										fullWidth
+										variant="outlined"
+										value={bankName}
+										onChange={(e) => setBankName(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Bank or Financial Institution Registered Office Address"
+										fullWidth
+										variant="outlined"
+										value={bankRegisteredOfficeAddress}
+										onChange={(e) => setBankRegisteredOfficeAddress(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Bank or Financial Institution File Reference Number"
+										fullWidth
+										variant="outlined"
+										value={bankFileReferenceNo}
+										onChange={(e) => setBankFileReferenceNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<h2>
+										Summary of purchase price (in RM)
+									</h2>
+									<TextField
+										label="Approved Purchase Price in Numerics"
+										fullWidth
+										variant="outlined"
+										value={approvedPurchasePriceNumerics}
+										onChange={(e) => setApprovedPurchasePriceNumerics(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Developer Discount in Numerics"
+										fullWidth
+										variant="outlined"
+										value={developerDiscountNumerics}
+										onChange={(e) => setDeveloperDiscountNumerics(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Bumiputera Lot Discount in Numerics"
+										fullWidth
+										variant="outlined"
+										value={bumiputeraLotDiscountNumerics}
+										onChange={(e) => setBumiputeraLotDiscountNumerics(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Government Initiative in Numerics"
+										fullWidth
+										variant="outlined"
+										value={governmentInitiativeNumerics}
+										onChange={(e) => setGovernmentInitiativeNumerics(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<h2>Project Details</h2>
+									<TextField
+										label="Project Name"
+										fullWidth
+										variant="outlined"
+										value={projectName}
+										onChange={(e) => setProjectName(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Phase Number"
+										fullWidth
+										variant="outlined"
+										value={phaseNo}
+										onChange={(e) => setPhaseNo(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="Town/Village/Mukim"
+										fullWidth
+										variant="outlined"
+										value={townVillageMukim}
+										onChange={(e) => setTownVillageMukim(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="District"
+										fullWidth
+										variant="outlined"
+										value={district}
+										onChange={(e) => setDistrict(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+									
+									<TextField
+										label="State"
+										fullWidth
+										variant="outlined"
+										value={state}
+										onChange={(e) => setState(e.target.value)}
+										sx={{ marginBottom: 2 }}
+									/>
+								</div>
+									{/* {sections.map((section, index) => (
 										<div
 											key={index}
 											ref={sectionRefs[index]}
@@ -992,7 +1853,7 @@ const SchLoanH: React.FC = () => {
 												))}
 											</div>
 										</div>
-									))}
+									))} */}
 								</Box>
 							</Box>
 						</Box>
@@ -1050,13 +1911,13 @@ const SchLoanH: React.FC = () => {
 								<Button variant="contained" color="primary" onClick={UploadFile}>
 									Fill From Doc
 								</Button>
-								
-								
 
-									
+
+
+
 							</Box>
-							<Box sx={{ width: 400,  }}>
-							<Button variant="contained" color="primary" onClick={handleToggleBox} sx={{ marginLeft: 5, }}>
+							<Box sx={{ width: 400, }}>
+								<Button variant="contained" color="primary" onClick={handleToggleBox} sx={{ marginLeft: 5, }}>
 									Add Doc Templates
 								</Button>
 								{/* Toggle Box */}
@@ -1064,12 +1925,12 @@ const SchLoanH: React.FC = () => {
 									<Box sx={{ border: '1px solid #ccc', borderRadius: '8px', padding: 3, marginBottom: 2 }}>
 										{/* Dropdown */}
 										<FormControl fullWidth sx={{ marginBottom: 2 }}>
-										<InputLabel>Select Bank</InputLabel>
-										<Select value={selectedBank} onChange={handleDropdownChange} label="Select Bank">
-											<MenuItem value="Bank1">Bank1</MenuItem>
-											<MenuItem value="Bank2">Bank2</MenuItem>
-											<MenuItem value="Bank3">Bank3</MenuItem>
-										</Select>
+											<InputLabel>Select Bank</InputLabel>
+											<Select value={selectedBank} onChange={handleDropdownChange} label="Select Bank">
+												<MenuItem value="Bank1">Bank1</MenuItem>
+												<MenuItem value="Bank2">Bank2</MenuItem>
+												<MenuItem value="Bank3">Bank3</MenuItem>
+											</Select>
 										</FormControl>
 
 										<Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
@@ -1086,29 +1947,29 @@ const SchLoanH: React.FC = () => {
 
 										{/* Templates List */}
 										<TableContainer component={Paper}>
-										<Table>
-											<TableHead>
-											<TableRow>
-												<TableCell>Template Name</TableCell>
-												<TableCell align="right">Action</TableCell>
-											</TableRow>
-											</TableHead>
-											<TableBody>
-											{templates.map((template, index) => (
-												<TableRow key={index}>
-												<TableCell>{template.templateName}</TableCell>
-												<TableCell align="right">
-													<Button variant="contained" color="primary">
-													Add
-													</Button>
-												</TableCell>
-												</TableRow>
-											))}
-											</TableBody>
-										</Table>
+											<Table>
+												<TableHead>
+													<TableRow>
+														<TableCell>Template Name</TableCell>
+														<TableCell align="right">Action</TableCell>
+													</TableRow>
+												</TableHead>
+												<TableBody>
+													{templates.map((template, index) => (
+														<TableRow key={index}>
+															<TableCell>{template.templateName}</TableCell>
+															<TableCell align="right">
+																<Button variant="contained" color="primary">
+																	Add
+																</Button>
+															</TableCell>
+														</TableRow>
+													))}
+												</TableBody>
+											</Table>
 										</TableContainer>
 									</Box>
-									)}
+								)}
 							</Box>
 							<Box
 								sx={{
