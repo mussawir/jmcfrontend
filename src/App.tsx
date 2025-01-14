@@ -73,6 +73,7 @@ import ViewMasterBank from './components/ViewMasterBank';
 import MasterBankListing from './components/MasterBankListing';
 import ScheduleGList from './components/ScheduleGList';
 import ScheduleHList from './components/ScheduleHList';
+import Subsale from './components/Subsale';
 
 const AppWithDarkMode: React.FC = () => {
   const { darkMode } = useDarkMode(); // Access dark mode state
@@ -156,6 +157,7 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/master-bank-listing" element={<MasterBankListing />} />
         <Route path="/schedule-g-list" element={<ScheduleGList />} />
         <Route path="/schedule-h-list" element={<ScheduleHList />} />
+        <Route path="/subsale" element={<Subsale />} />
       </Routes>
     </ThemeProvider>
   );
