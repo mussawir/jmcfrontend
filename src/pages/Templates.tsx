@@ -34,7 +34,8 @@ function TemplatesList() {
 
   // Filter templates based on the search query
   const filteredTemplates = templates.filter((template) =>
-    template.templateName.toLowerCase().includes(searchQuery.toLowerCase())
+    template.templateName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    template.bank.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -99,6 +100,7 @@ function TemplatesList() {
               <TableRow>
                 <TableCell>Template Name</TableCell>
                 <TableCell>Description</TableCell>
+                <TableCell>Bank Name</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -106,6 +108,7 @@ function TemplatesList() {
                 <TableRow key={index}>
                   <TableCell>{template.templateName}</TableCell>
                   <TableCell>{template.description}</TableCell>
+                  <TableCell>{template.bank}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

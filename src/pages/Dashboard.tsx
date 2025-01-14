@@ -1,100 +1,147 @@
-import React from 'react';
-import { Box, Grid, Card, CardContent,Divider , Typography, Toolbar, CssBaseline, Button, } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Box, InputAdornment, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper,  TextField, Grid, Card, CardContent,Divider , Typography, Toolbar, CssBaseline, Button, } from '@mui/material';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import DrawerComponent from '../components/DrawerComponent';
 import HeaderComponent from '../components/HeaderComponent';
 import { PieChart, Pie, Cell } from 'recharts';
 import { Facebook, LinkedIn, Instagram, Google, ShoppingCart, AccountBalance, CreditCard, Laptop, PhoneAndroid } from '@mui/icons-material';
 import { LinearProgress, List, ListItem, ListItemAvatar, ListItemText, CircularProgress } from '@mui/material';
+import { AccountBalanceWallet, MonetizationOn, Search,  } from '@mui/icons-material';
 
 
-const caseTrendData = [
-  { month: 'Jan', cases: 30 },
-  { month: 'Feb', cases: 45 },
-  { month: 'Mar', cases: 60 },
-  { month: 'Apr', cases: 80 },
-  { month: 'May', cases: 90 },
-  { month: 'Jun', cases: 75 },
-];
+// const caseTrendData = [
+//   { month: 'Jan', cases: 30 },
+//   { month: 'Feb', cases: 45 },
+//   { month: 'Mar', cases: 60 },
+//   { month: 'Apr', cases: 80 },
+//   { month: 'May', cases: 90 },
+//   { month: 'Jun', cases: 75 },
+// ];
  
-const weeklySalesData = [
-  { week: "Mon", sales: 40 },
-  { week: "Tue", sales: 50 },
-  { week: "Wed", sales: 70 },
-  { week: "Thu", sales: 30 },
-  { week: "Fri", sales: 90 },
-  { week: "Sat", sales: 20 },
-  { week: "Sun", sales: 60 },
-];
+// const weeklySalesData = [
+//   { week: "Mon", sales: 40 },
+//   { week: "Tue", sales: 50 },
+//   { week: "Wed", sales: 70 },
+//   { week: "Thu", sales: 30 },
+//   { week: "Fri", sales: 90 },
+//   { week: "Sat", sales: 20 },
+//   { week: "Sun", sales: 60 },
+// ];
 
-const chartData = [
-  { value: 10 },
-  { value: 25 },
-  { value: 15 },
-  { value: 40 },
-  { value: 30 },
-  { value: 50 },
-  { value: 20 },
-];
-const data = [
-  { name: 'Jan', Sales: 10, Views: 15 },
-  { name: 'Feb', Sales: 5, Views: 10 },
-  { name: 'Mar', Sales: 60, Views: 50 },
-  { name: 'Apr', Sales: 20, Views: 25 },
-  { name: 'May', Sales: 25, Views: 30 },
-  { name: 'Jun', Sales: 15, Views: 20 },
-  { name: 'Jul', Sales: 30, Views: 40 },
-  { name: 'Aug', Sales: 10, Views: 20 },
-  { name: 'Sep', Sales: 20, Views: 30 },
-];
+// const chartData = [
+//   { value: 10 },
+//   { value: 25 },
+//   { value: 15 },
+//   { value: 40 },
+//   { value: 30 },
+//   { value: 50 },
+//   { value: 20 },
+// ];
+// const data = [
+//   { name: 'Jan', Sales: 10, Views: 15 },
+//   { name: 'Feb', Sales: 5, Views: 10 },
+//   { name: 'Mar', Sales: 60, Views: 50 },
+//   { name: 'Apr', Sales: 20, Views: 25 },
+//   { name: 'May', Sales: 25, Views: 30 },
+//   { name: 'Jun', Sales: 15, Views: 20 },
+//   { name: 'Jul', Sales: 30, Views: 40 },
+//   { name: 'Aug', Sales: 10, Views: 20 },
+//   { name: 'Sep', Sales: 20, Views: 30 },
+// ];
 
-const products = [
-  { name: 'Apple Hand Watch', sales: 258, price: 199, image: 'path_to_image' },
-  { name: 'Mobile Phone Set', sales: 169, price: 159, image: 'path_to_image' },
-  { name: 'Fancy Chair', sales: 268, price: 678, image: 'path_to_image' },
-  { name: 'Blue Shoes Pair', sales: 859, price: 279, image: 'path_to_image' },
-  { name: 'Blue Yoga Mat', sales: 328, price: 389, image: 'path_to_image' },
-  { name: 'White Water Bottle', sales: 992, price: 584, image: 'path_to_image' },
-  { name: 'Laptop Full HD', sales: 489, price: 398, image: 'path_to_image' },
-];
+// const products = [
+//   { name: 'Apple Hand Watch', sales: 258, price: 199, image: 'path_to_image' },
+//   { name: 'Mobile Phone Set', sales: 169, price: 159, image: 'path_to_image' },
+//   { name: 'Fancy Chair', sales: 268, price: 678, image: 'path_to_image' },
+//   { name: 'Blue Shoes Pair', sales: 859, price: 279, image: 'path_to_image' },
+//   { name: 'Blue Yoga Mat', sales: 328, price: 389, image: 'path_to_image' },
+//   { name: 'White Water Bottle', sales: 992, price: 584, image: 'path_to_image' },
+//   { name: 'Laptop Full HD', sales: 489, price: 398, image: 'path_to_image' },
+// ];
 
-const projects = [
-  { name: 'Angular 12', type: 'Admin Template', progress: 95, color: '#f44336' },
-  { name: 'React Js', type: 'eCommerce Admin', progress: 90, color: '#00bcd4' },
-  { name: 'Vue Js', type: 'Dashboard Template', progress: 85, color: '#4caf50' },
-  { name: 'Bootstrap 5', type: 'Corporate Website', progress: 75, color: '#673ab7' },
-  { name: 'Magento', type: 'Shopping Portal', progress: 65, color: '#ff9800' },
-  { name: 'Django', type: 'Backend Admin', progress: 55, color: '#009688' },
-  { name: 'Python', type: 'User Panel', progress: 45, color: '#3f51b5' },
-];
+// const projects = [
+//   { name: 'Angular 12', type: 'Admin Template', progress: 95, color: '#f44336' },
+//   { name: 'React Js', type: 'eCommerce Admin', progress: 90, color: '#00bcd4' },
+//   { name: 'Vue Js', type: 'Dashboard Template', progress: 85, color: '#4caf50' },
+//   { name: 'Bootstrap 5', type: 'Corporate Website', progress: 75, color: '#673ab7' },
+//   { name: 'Magento', type: 'Shopping Portal', progress: 65, color: '#ff9800' },
+//   { name: 'Django', type: 'Backend Admin', progress: 55, color: '#009688' },
+//   { name: 'Python', type: 'User Panel', progress: 45, color: '#3f51b5' },
+// ];
 
-const campaigns = [
-  { name: 'Facebook', percentage: 55, icon: <Facebook sx={{ color: '#3b5998' }} /> },
-  { name: 'LinkedIn', percentage: 67, icon: <LinkedIn sx={{ color: '#0077b5' }} /> },
-  { name: 'Instagram', percentage: 78, icon: <Instagram sx={{ color: '#e4405f' }} /> },
-  { name: 'Google', percentage: 38, icon: <Google sx={{ color: '#db4437' }} /> },
-];
+// const campaigns = [
+//   { name: 'Facebook', percentage: 55, icon: <Facebook sx={{ color: '#3b5998' }} /> },
+//   { name: 'LinkedIn', percentage: 67, icon: <LinkedIn sx={{ color: '#0077b5' }} /> },
+//   { name: 'Instagram', percentage: 78, icon: <Instagram sx={{ color: '#e4405f' }} /> },
+//   { name: 'Google', percentage: 38, icon: <Google sx={{ color: '#db4437' }} /> },
+// ];
 
-const transactions = [
-  { name: 'Online Purchase', date: '03/10/2022', amount: '$97,896', icon: <ShoppingCart sx={{ color: '#f44336' }} /> },
-  { name: 'Bank Transfer', date: '03/10/2022', amount: '$86,469', icon: <AccountBalance sx={{ color: '#2196f3' }} /> },
-  { name: 'Credit Card', date: '03/10/2022', amount: '$45,259', icon: <CreditCard sx={{ color: '#4caf50' }} /> },
-  { name: 'Laptop Payment', date: '03/10/2022', amount: '$35,249', icon: <Laptop sx={{ color: '#9c27b0' }} /> },
-  { name: 'iPhone Purchase', date: '03/10/2022', amount: '$55,128', icon: <PhoneAndroid sx={{ color: '#ff9800' }} /> },
-];
+// const transactions = [
+//   { name: 'Online Purchase', date: '03/10/2022', amount: '$97,896', icon: <ShoppingCart sx={{ color: '#f44336' }} /> },
+//   { name: 'Bank Transfer', date: '03/10/2022', amount: '$86,469', icon: <AccountBalance sx={{ color: '#2196f3' }} /> },
+//   { name: 'Credit Card', date: '03/10/2022', amount: '$45,259', icon: <CreditCard sx={{ color: '#4caf50' }} /> },
+//   { name: 'Laptop Payment', date: '03/10/2022', amount: '$35,249', icon: <Laptop sx={{ color: '#9c27b0' }} /> },
+//   { name: 'iPhone Purchase', date: '03/10/2022', amount: '$55,128', icon: <PhoneAndroid sx={{ color: '#ff9800' }} /> },
+// ];
 
-const monthlyData = [{ name: 'Monthly', value: 65 }];
-const yearlyData = [{ name: 'Yearly', value: 984 }];
+// const monthlyData = [{ name: 'Monthly', value: 65 }];
+// const yearlyData = [{ name: 'Yearly', value: 984 }];
 
-const COLORS = ['#0088FE', '#FFBB28'];
 
-const caseStatusData = [
-  { status: 'Resolved', value: 320 },
-  { status: 'Pending', value: 90 },
-  { status: 'New', value: 40 },
-];
+// const COLORS = ['#0088FE', '#FFBB28'];
+
+// const caseStatusData = [
+//   { status: 'Resolved', value: 320 },
+//   { status: 'Pending', value: 90 },
+//   { status: 'New', value: 40 },
+// ];
 
 const Dashboard = () => {
+  const [masterTitleList, setMasterTitleList] = useState([]);
+  const [titlesList, setTitlesList] = useState([]);
+  const [individualList, setIndividualList] = useState([]);
+  const [strataList, setStrataList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const responses = await Promise.all([
+          fetch('/master-title-list'),
+        ]);
+  
+        const data = await Promise.all(
+          responses.map(async (res) => {
+            if (!res.ok) {
+              throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+            const contentType = res.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+              return res.json();
+            } else {
+              console.warn(`Non-JSON response from ${res.url}`);
+              return null;
+            }
+          })
+        );
+  
+        setMasterTitleList(data[0] || []);
+      } catch (err) {
+        console.error(err.message || 'Failed to fetch data');
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchData();
+  }, []);
+  
+  
+
+
+// const Dashboard = () => {
   return (
     <Box sx={{ display: 'flex', backgroundColor: '#f7f9fc', minHeight: '100vh' }}>
       <CssBaseline />
@@ -103,22 +150,80 @@ const Dashboard = () => {
         <HeaderComponent />
         <Box component="main" sx={{ p: 3 }}>
           <Toolbar />
-          {/* Dashboard Header */}
+       
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-            <Typography variant="h6" sx={{ fontWeight: 500, fontFamily: 'Roboto, sans-serif', color: '#5b6166' }}>
-              Dashboard
+            <Typography variant="h6" sx={{ fontWeight: 500, fontFamily: 'Roboto, sans-serif', color: '#5b6166', textAlign: 'center,' }}>
+              Conveyancing Master List
             </Typography>
-            <Button
-        variant="contained"
-        color="primary"
-        sx={{ ml: 'auto', textTransform:'initial' }} // This will push the button to the right
-      >
-        Settings
-      </Button>
+            
+            {/* <Typography variant="h6" sx={{ fontWeight: 500, fontFamily: 'Roboto, sans-serif', color: '#5b6166' }}>
+              Dashboard
+            </Typography> */}
+            {/* <Button
+              variant="contained"
+              color="primary"
+              sx={{ ml: 'auto', textTransform:'initial' }} // This will push the button to the right
+            >
+              Settings
+            </Button> */}
+          </Box>
+          <Box>
+          <TextField
+                  fullWidth
+                  variant="outlined"
+                  placeholder="Search..."
+                  // value={searchQuery}
+                  // onChange={(e) => setSearchQuery(e.target.value)}
+                  sx={{ marginBottom: 2 }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Search />
+                      </InputAdornment>
+                    ),
+                  }}
+                  />
+              {loading && <Typography>Loading...</Typography>}
+              {error && <Typography color="error">{error}</Typography>}
+              <TableContainer component={Paper}>
+                <Table>
+                  {/* Master Title List */}
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Matter Code</TableCell>
+                      <TableCell>Master Title</TableCell>
+                      <TableCell>Title Type</TableCell>
+                      <TableCell>Title No</TableCell>
+                      <TableCell>Schedule Type</TableCell>
+                      <TableCell>Lot/PT No</TableCell>
+                      <TableCell>Action</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {masterTitleList.length > 0 ? (
+                      masterTitleList.map((item, index) => (
+                        <TableRow key={index}>
+                          <TableCell>{item.matterCode}</TableCell>
+                          <TableCell>{item.masterTitle}</TableCell>
+                          <TableCell>{item.titleType}</TableCell>
+                          <TableCell>{item.titleNo}</TableCell>
+                          <TableCell>{item.scheduleType}</TableCell>
+                          <TableCell>{item.lotPtNo}</TableCell>
+                          <TableCell>View</TableCell>
+                        </TableRow>
+                      ))
+                    ) : (
+                      <TableRow>
+                        <TableCell colSpan={7}>No data available</TableCell>
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </TableContainer>
           </Box>
 
-          {/* Summary Section */}
-          <Grid container spacing={3} sx={{ mb: 3 }}>
+         
+          {/* <Grid container spacing={3} sx={{ mb: 3 }}>
             <Grid item xs={12} sm={6} md={3}>
             <Card
             sx={{
@@ -203,11 +308,11 @@ const Dashboard = () => {
                 </CardContent>
               </Card>
             </Grid>
-          </Grid>
+          </Grid> */}
 
-          {/* Charts Section */}
-          <Grid container spacing={3}>
-            {/* Case Trends */}
+          
+          {/* <Grid container spacing={3}>
+           
             <Grid item xs={12} md={6}>
               <Card sx={{ backgroundColor: 'white', borderRadius: '16px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
                 <CardContent>
@@ -227,7 +332,7 @@ const Dashboard = () => {
               </Card>
             </Grid>
 
-            {/* Case Status */}
+           
             <Grid item xs={12} md={6}>
               <Card sx={{ backgroundColor: 'white',  borderRadius: '16px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
                 <CardContent>
@@ -262,16 +367,16 @@ const Dashboard = () => {
     }}
   >
     <CardContent>
-      {/* Value */}
+      
       <Typography variant="h4" sx={{ fontWeight: 500, color: '#333' }}>
         96
       </Typography>
-      {/* Title */}
+      
       <Typography variant="subtitle2" sx={{ color: '#777', mb: 2 }}>
         Total Projects
       </Typography>
 
-      {/* Chart */}
+      
       <Box sx={{ height: '70px', marginTop: 2 }}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={chartData}>
@@ -286,7 +391,7 @@ const Dashboard = () => {
         </ResponsiveContainer>
       </Box>
 
-      {/* Percentage Change */}
+      
       <Typography
         variant="body2"
         sx={{
@@ -323,16 +428,16 @@ const Dashboard = () => {
     }}
   >
     <CardContent>
-      {/* Value */}
+      
       <Typography variant="h4" sx={{ fontWeight: 500, color: '#333' }}>
         120
       </Typography>
-      {/* Title */}
+      
       <Typography variant="subtitle2" sx={{ color: '#777', mb: 2 }}>
         Active Users
       </Typography>
 
-      {/* Chart */}
+      
       <Box sx={{ height: '70px', marginTop: 2 }}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={chartData}>
@@ -347,7 +452,7 @@ const Dashboard = () => {
         </ResponsiveContainer>
       </Box>
 
-      {/* Percentage Change */}
+      
       <Typography
         variant="body2"
         sx={{
@@ -370,12 +475,12 @@ const Dashboard = () => {
 </Grid>
 <Grid item xs={12} sm={6} md={7}>
 <Card sx={{ padding: 3, borderRadius: '16px',boxShadow: '0 4px 10px rgba(0,0,0,0.1)' }}>
-      {/* Title */}
+    
       <Typography variant="h6" sx={{ fontWeight: 500, color: '#333', mb: 3 }}>
         Sales & Views
       </Typography>
 
-      {/* Bar Chart */}
+      
       <Box sx={{ height: '200px' }}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} margin={{ top: 10, right: 20, left: 0, bottom: 10 }}>
@@ -388,7 +493,7 @@ const Dashboard = () => {
         </ResponsiveContainer>
       </Box>
 
-      {/* Doughnut Charts */}
+      
       <Grid container spacing={2} sx={{ mt: 3 }}>
         <Grid item xs={6}>
           <Box sx={{ textAlign: 'center' }}>
@@ -450,10 +555,10 @@ const Dashboard = () => {
     </Card>
 </Grid>
 
-          </Grid>
+          </Grid> */}
 
-          <Grid container spacing={3}>
-      {/* Ongoing Projects */}
+          {/* <Grid container spacing={3}>
+      
       <Grid item xs={12} md={4} sx={{mt: 2}}>
         <Card sx={{ padding: 2 , borderRadius: '16px',  height: '100%'}}>
           <Typography variant="h6" sx={{ mb: 2 }}>
@@ -484,7 +589,7 @@ const Dashboard = () => {
         </Card>
       </Grid>
 
-      {/* Campaign */}
+      
       <Grid item xs={12} md={4} sx={{ mt: 2 }}>
   <Card sx={{ padding: 2, height: '100%', borderRadius: '16px' }}>
     <Typography variant="h6" sx={{ mb: 2 }}>
@@ -509,7 +614,7 @@ const Dashboard = () => {
   </Card>
 </Grid>
 
-      {/* Recent Transactions */}
+      
       <Grid item xs={12} md={4} sx={{mt: 2}}>
         <Card sx={{ padding: 2, height: '100%', borderRadius: '16px' }}>
           <Typography variant="h6" sx={{ mb: 2 }}>
@@ -528,8 +633,8 @@ const Dashboard = () => {
           </List>
         </Card>
       </Grid>
-    </Grid>
-    <Grid container spacing={2}>
+    </Grid> */}
+    {/* <Grid container spacing={2}>
       <Grid item xs={12}>
 
         <Card sx={{ padding: 2, height: '100%', borderRadius: '16px', mt: '14px' }}>
@@ -550,7 +655,7 @@ const Dashboard = () => {
     </Card>
 
     </Grid>
-    </Grid>
+    </Grid> */}
 
         </Box>
       </Box>

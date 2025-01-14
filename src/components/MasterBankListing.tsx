@@ -42,6 +42,11 @@ function MatterBankListing() {
       fetchBanks();
     }, []);
 
+     // Filter banks based on the search query
+  const filteredBanks = banks.filter((bank) =>
+    bank.bankName?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -83,7 +88,7 @@ function MatterBankListing() {
                 <TextField
                   fullWidth
                   variant="outlined"
-                  placeholder="Search template by name, by bank name"
+                  placeholder="Search..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   sx={{ marginBottom: 2 }}
@@ -104,7 +109,7 @@ function MatterBankListing() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {banks.map((bank, index) => (
+              {filteredBanks.map((bank, index) => (
                 <TableRow key={index}>
                   <TableCell>{bank.bankName}</TableCell>
                   <TableCell>{bank.address}</TableCell> {/* Assuming 'address' is part of the bank object */}

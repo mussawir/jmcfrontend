@@ -1,65 +1,118 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Toolbar, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
+import { Box, Typography, Toolbar, CssBaseline, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper, Button, Link, TextField, InputAdornment } from '@mui/material';
+import { AccountBalance, AccountBalanceWallet, MonetizationOn, Search,  } from '@mui/icons-material';
+import DrawerComponent from '../components/DrawerComponent';
+import HeaderComponent from '../components/HeaderComponent';
 import { useNavigate } from 'react-router-dom';
 
-// Example data, replace with actual data or fetch from API
-const bankBranches = [
-  { id: 1, name: 'Bank A', location: 'Location A', contact: '123-456-7890' },
-  { id: 2, name: 'Bank B', location: 'Location B', contact: '987-654-3210' },
-  { id: 3, name: 'Bank C', location: 'Location C', contact: '555-555-5555' },
-];
-
 function BankBranchListing() {
-  
+  const [bank, setBank] = useState('');
+  const [banks, setBanks] = useState<any[]>([]); // State for storing the banks list
+  const [searchQuery, setSearchQuery] = useState(''); // State for the search query
   const navigate = useNavigate();
-
-  const handleAddNew = () => {
-    navigate('/add-new-bank-branch'); // Redirect to add new bank branch form
+  
+  const addNew = () => {
+    navigate('/banks');
   };
+
+  // Fetch the master bank data
+  useEffect(() => {
+      const fetchBanks = async () => {
+        try {
+          const response = await fetch('http://localhost:5000/bank-branch');
+          
+          // Check if the response is OK (status 200)
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+      
+          const data = await response.json();  // Parse JSON
+      
+          // Check if data is as expected
+          if (data.banks) {
+            setBanks(data.banks);
+          } else {
+            console.error('Data structure is not correct:', data);
+          }
+        } catch (error) {
+          console.error('Error fetching banks:', error);
+        }
+      };
+  
+      fetchBanks();
+    }, []);
+
+    // Filter banks based on the search query
+  const filteredBanks = banks.filter((bank) =>
+    bank.bankName?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <Box sx={{ display: 'flex' }}>
-      {/* <CssBaseline />
+      <CssBaseline />
       <DrawerComponent />
-      <HeaderComponent /> */}
+      <HeaderComponent />
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
 
         {/* Center the Headline */}
         <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
-          Bank Branch Listing
+         Bank Branch Listing
         </Typography>
-
-        {/* Add New Button */}
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 2 }}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleAddNew}
-          >
-            Add New
-          </Button>
-        </Box>
-
-        {/* Table for Bank Branch Listing */}
+        {/* Add Template Button aligned to the right */}
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}>
+                  {/* Anchor Links on the left */}
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+                    <Link href="" target="_blank" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+                      <AccountBalance sx={{ marginRight: 0.5 }} />
+                      Bank1
+                    </Link>
+                    <Link href="" target="_blank" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+                      <AccountBalanceWallet sx={{ marginRight: 0.5 }} />
+                      Bank2
+                    </Link>
+                    <Link href="" target="_blank" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+                      <MonetizationOn sx={{ marginRight: 0.5 }} />
+                      Bank3
+                    </Link>
+                  </Box>
+        
+                  {/* Add New Button on the right */}
+                  <Button variant="contained" color="primary" onClick={addNew}>
+                    Add New
+                  </Button>
+                </Box>
+        
+                {/* Search Bar */}
+                <TextField
+                  fullWidth
+                  variant="outlined"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  sx={{ marginBottom: 2 }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Search />
+                      </InputAdornment>
+                    ),
+                  }}
+                  />
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="bank branch table">
+          <Table>
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>Branch Name</TableCell>
-                <TableCell>Location</TableCell>
-                <TableCell>Contact</TableCell>
+                <TableCell>Bank Name</TableCell>
+                <TableCell>Address</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {bankBranches.map((branch) => (
-                <TableRow key={branch.id}>
-                  <TableCell>{branch.id}</TableCell>
-                  <TableCell>{branch.name}</TableCell>
-                  <TableCell>{branch.location}</TableCell>
-                  <TableCell>{branch.contact}</TableCell>
+              {filteredBanks.map((bank, index) => (
+                <TableRow key={index}>
+                  <TableCell>{bank.bankName}</TableCell>
+                  <TableCell>{bank.address}</TableCell> {/* Assuming 'address' is part of the bank object */}
                 </TableRow>
               ))}
             </TableBody>
