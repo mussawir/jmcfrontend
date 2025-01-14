@@ -841,7 +841,7 @@ const SchLoanH: React.FC = () => {
           inputProps={{ "aria-label": "B" }}
         />
         <AccountCircleIcon style={{ marginRight: "5px", marginTop: "8px" }} />
-        <Typography style={{ marginTop: "10px" }}>Statra</Typography>
+        <Typography style={{ marginTop: "10px" }}>Stratra Title</Typography>
 
         {/* <Radio
           checked={selectedValue === "c"}
@@ -853,7 +853,7 @@ const SchLoanH: React.FC = () => {
         <GroupIcon style={{ marginRight: "5px", marginTop: "8px" }} />
         <Typography style={{ marginTop: "10px" }}>Purchaser company</Typography> */}
       </Box>
-	  <h2>Purchaser</h2>
+	  {/* <h2>Purchaser</h2>
 	  <Grid container spacing={2}>
 									<Grid item xs={12} sm={6}>
 									<TextField
@@ -935,7 +935,7 @@ const SchLoanH: React.FC = () => {
 										onChange={(e) => setSecondPurchaserEmailAddress(e.target.value)}
 										sx={{ marginBottom: 2 }}
 									/>
-									</Grid>
+									</Grid> */}
 
 									{/* <TextField
 										label="3rd Purchaser name"
@@ -1035,7 +1035,7 @@ const SchLoanH: React.FC = () => {
 										onChange={(e) => setFifthPurchaserEmailAddress(e.target.value)}
 										sx={{ marginBottom: 2 }}
 									/> */}
-									<Grid item xs={12} sm={6}>
+									{/* <Grid item xs={12} sm={6}>
 									<TextField
 										label="Purchaser Correspondence Address"
 										fullWidth
@@ -1045,7 +1045,7 @@ const SchLoanH: React.FC = () => {
 										sx={{ marginBottom: 2 }}
 									/>
 									</Grid>
-								</Grid>
+								</Grid> */}
 									<h2>Proprietor</h2>
 									<TextField
 										label="Proprietor Name"
