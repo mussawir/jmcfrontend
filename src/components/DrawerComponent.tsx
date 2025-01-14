@@ -250,8 +250,8 @@ const DrawerComponent = () => {
     >
       {[
         { label: 'New Schedule', route: '/new-schedule' },
-        { label: 'Schedule G List', route: '/schedule-g-list' },
-        { label: 'Schedule H List', route: '/schedule-h-list' },
+        // { label: 'Schedule G List', route: '/schedule-g-list' },
+        // { label: 'Schedule H List', route: '/schedule-h-list' },
         { label: 'SubSale', route: '/subsale' },
         { label: 'SPA Loan/ SUBSALE || SPA Related Loan', route: '/spaloan' },
         { label: 'SPA Loan/ Developer', route: '/developerloan' },

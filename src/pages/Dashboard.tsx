@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Box, InputAdornment, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper,  TextField, Grid, Card, CardContent,Divider , Typography, Toolbar, CssBaseline, Button, } from '@mui/material';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 import DrawerComponent from '../components/DrawerComponent';
@@ -7,7 +8,7 @@ import { PieChart, Pie, Cell } from 'recharts';
 import { Facebook, LinkedIn, Instagram, Google, ShoppingCart, AccountBalance, CreditCard, Laptop, PhoneAndroid } from '@mui/icons-material';
 import { LinearProgress, List, ListItem, ListItemAvatar, ListItemText, CircularProgress } from '@mui/material';
 import { AccountBalanceWallet, MonetizationOn, Search,  } from '@mui/icons-material';
-
+import Checkbox from '@mui/material/Checkbox';
 
 // const caseTrendData = [
 //   { month: 'Jan', cases: 30 },
@@ -103,7 +104,21 @@ const Dashboard = () => {
   const [strataList, setStrataList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedValues, setSelectedValues] = React.useState([]);
+  const navigate = useNavigate();
 
+  const handleAddClick = () => {
+    navigate('/add-purchaser'); // Replace with your desired route
+  };
+
+
+  const handleCheckboxChange = (event) => {
+    const value = event.target.value;
+    setSelectedValues((prev) =>
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
+    );
+  };
+  
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -152,37 +167,60 @@ const Dashboard = () => {
           <Toolbar />
        
           <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-            <Typography variant="h6" sx={{ fontWeight: 500, fontFamily: 'Roboto, sans-serif', color: '#5b6166', textAlign: 'center,' }}>
-              Conveyancing Master List
-            </Typography>
-            
+          <Typography variant="h6" sx={{ fontWeight: 500, fontFamily: 'Roboto, sans-serif', color: '#5b6166', textAlign: 'center,', alignItme: 'center', }}>
+            Conveyancing Master List
+          </Typography>
             {/* <Typography variant="h6" sx={{ fontWeight: 500, fontFamily: 'Roboto, sans-serif', color: '#5b6166' }}>
               Dashboard
-            </Typography> */}
+              </Typography> */}
             {/* <Button
               variant="contained"
               color="primary"
               sx={{ ml: 'auto', textTransform:'initial' }} // This will push the button to the right
-            >
+              >
               Settings
-            </Button> */}
+              </Button> */}
           </Box>
-          <Box>
-          <TextField
-                  fullWidth
-                  variant="outlined"
-                  placeholder="Search..."
-                  // value={searchQuery}
-                  // onChange={(e) => setSearchQuery(e.target.value)}
-                  sx={{ marginBottom: 2 }}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <Search />
-                      </InputAdornment>
-                    ),
-                  }}
-                  />
+          <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
+    <TextField
+    size="small"
+      fullWidth
+      variant="outlined"
+      placeholder="Search..."
+      sx={{marginRight: 2, '& .MuiOutlinedInput-root': { borderRadius: 40, }, '& .MuiOutlinedInput-input': { padding: '10px 16px', }, }}
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <Search />
+          </InputAdornment>
+        ),
+      }}
+    />
+    <Checkbox
+      checked={selectedValues.includes('a')}
+      onChange={handleCheckboxChange}
+      value="a"
+      inputProps={{ 'aria-label': 'A' }}
+    />
+    <Typography sx={{ marginRight: 2 }}>Master</Typography>
+    <Checkbox
+      checked={selectedValues.includes('b')}
+      onChange={handleCheckboxChange}
+      value="b"
+      inputProps={{ 'aria-label': 'B' }}
+    />
+    <Typography sx={{ marginRight: 2 }}>Individual</Typography>
+    <Checkbox
+      checked={selectedValues.includes('c')}
+      onChange={handleCheckboxChange}
+      value="c"
+      inputProps={{ 'aria-label': 'C' }}
+    />
+    <Typography>Strata</Typography>
+  </Box>
+
+  {/* Second Row: Table */}
+  <Box>
               {loading && <Typography>Loading...</Typography>}
               {error && <Typography color="error">{error}</Typography>}
               <TableContainer component={Paper}>
@@ -209,7 +247,11 @@ const Dashboard = () => {
                           <TableCell>{item.titleNo}</TableCell>
                           <TableCell>{item.scheduleType}</TableCell>
                           <TableCell>{item.lotPtNo}</TableCell>
-                          <TableCell>View</TableCell>
+                          <TableCell>
+                            <Button variant="contained" color="primary" onClick={handleAddClick}>
+                              Add Purchaser
+                            </Button>
+                          </TableCell>
                         </TableRow>
                       ))
                     ) : (

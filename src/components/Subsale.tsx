@@ -204,9 +204,10 @@ function Subsale() {
                   </Select>
                 </FormControl>
                   <TextField
-                    label="Name *"
+                    label="Turnaround (Days)"
                     fullWidth
                     variant="outlined"
+                    type="number"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     sx={{ marginBottom: 2, paddingRight: 2, }}
@@ -383,7 +384,7 @@ function Subsale() {
                     }
                     label="Representing Developer"
                   />
-                  <TextField
+                  {/* <TextField
                     // label="Last GST Status Verified Date"
                     variant="outlined"
                     fullWidth
@@ -391,7 +392,7 @@ function Subsale() {
                     value={lastGstVerifiedDate}
                     onChange={(e) => setLastGstVerifiedDate(e.target.value)}
                     sx= {{ paddingRight: 2 }}
-                  />
+                  /> */}
                 <FormControl fullWidth sx={{ marginTop: 2 }}>
                   <InputLabel id="select-director-label">Enter Name or IC</InputLabel>
                   <Select
@@ -434,6 +435,14 @@ function Subsale() {
                     sx={{ marginBottom: 2, }}
                   />
                 <TextField
+                    label="F Location"
+                    fullWidth
+                    variant="outlined"
+                    value={phoneMobile}
+                    onChange={(e) => setPhoneMobile(e.target.value)}
+                    sx={{ marginBottom: 2, }}
+                  />
+                {/* <TextField
                   label="Registered Office"
                   variant="outlined"
                   fullWidth
@@ -441,8 +450,24 @@ function Subsale() {
                   rows={4}
                   value={registeredOffice}
                   onChange={(e) => setRegisteredOffice(e.target.value)}
-                />
+                /> */}
                 </Box>
+                <FormControl fullWidth sx={{ marginTop: 2 }}>
+                  <InputLabel id="select-director-label">Solicitors Ref.</InputLabel>
+                  <Select
+                    labelId="select-director-label"
+                    id="select-director"
+                    value={directorOne}
+                    onChange={(e) => setDirectorOne(e.target.value)}
+                    label="Solicitors Ref." 
+                    variant="outlined"
+                    fullWidth
+                  >
+                    <MenuItem value="a">A</MenuItem>
+                    <MenuItem value="b">B</MenuItem>
+                    <MenuItem value="c">C</MenuItem>
+                  </Select>
+                </FormControl>
                 <FormControl fullWidth sx={{ marginTop: 2 }}>
                   <InputLabel id="select-director-label">Director 1</InputLabel>
                   <Select
