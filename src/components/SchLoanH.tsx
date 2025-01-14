@@ -1,8 +1,20 @@
 import React, { useMemo, useState, useEffect } from "react";
 import DrawerComponent from './DrawerComponent';
 import HeaderComponent from './HeaderComponent';
-import { Box, TextField, Toolbar, CssBaseline, Button, CircularProgress, MenuItem, Select, InputLabel, FormControl, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper, Tabs, Tab, DialogActions } from '@mui/material';
-
+import { Box, TextField, Typography, Grid, Toolbar, CssBaseline, Button, CircularProgress, MenuItem, Select, InputLabel, FormControl, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper, Tabs, Tab, DialogActions } from '@mui/material';
+import Radio from '@mui/material/Radio';
+import PersonIcon from '@mui/icons-material/Person';
+import GroupIcon from '@mui/icons-material/Group';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import BusinessIcon from '@mui/icons-material/Business';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import HouseIcon from '@mui/icons-material/House';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import GavelIcon from '@mui/icons-material/Gavel';
+import PaymentIcon from '@mui/icons-material/Payment';
+import SummaryIcon from '@mui/icons-material/Summarize';
 const SchLoanH: React.FC = () => {
 	const [value, setValue] = React.useState('one');
 	const [templates, setTemplates] = useState([]);
@@ -12,7 +24,10 @@ const SchLoanH: React.FC = () => {
 	const handleChange = (event: React.SyntheticEvent, newValue: string) => {
 		setValue(newValue);
 	};
+	  const [selectedValue, setSelectedValues] = useState("a");
+
 	const [loading, setLoading] = useState(false);
+	const [values, setValues] = React.useState('one');
 
 	// First Purchaser
 	const [firstPurchaserName, setFirstPurchaserName] = useState('');
@@ -174,780 +189,257 @@ const SchLoanH: React.FC = () => {
 			alert('An error occurred');
 		}
 	};
-
+	const sectionIcons = {
+		"Purchaser": <PersonIcon style={{ fontSize: 15, }} />,
+		"Proprietor": <BusinessIcon style={{ fontSize: 15 }} />,
+		"Master Chargee / Assignee": <AssignmentIcon style={{ fontSize: 15 }} />,
+		"Master Title": <HouseIcon style={{ fontSize: 15 }} />,
+		"Project": <LocationCityIcon style={{ fontSize: 15 }} />,
+		"Property Details": <HouseIcon style={{ fontSize: 15 }} />,
+		"HDA": <AccountBalanceIcon style={{ fontSize: 15 }} />,
+		"Developer Solicitors": <GavelIcon style={{ fontSize: 15 }} />,
+		"Purchaser Solicitors": <GavelIcon style={{ fontSize: 15 }} />,
+		"Purchase Price": <MonetizationOnIcon style={{ fontSize: 15 }} />,
+		"Adjustment Rate": <MonetizationOnIcon style={{ fontSize: 15 }} />,
+		"Developer Stakeholder": <BusinessIcon style={{ fontSize: 15 }} />,
+		"Summary Of Price (in RM)": <SummaryIcon style={{ fontSize: 15 }} />,
+		"Schedule Of Payment(s)": <PaymentIcon style={{ fontSize: 15 }} />,
+	};
 	const sections = [
 		{
-			heading: "Purchaser",
-			fields: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading2: "End financier",
-			fields2: [
-				"End financier name",
-				"End financier company registration number",
-				"End financier registered office address",
-				"End financier branch office address",
-				"End financier CAC/SDC office address",
-				"End financier branch file reference number",
-				"End financier CAC/SDC file reference number",
-				"End financier branch contact number",
-				"End financier branch email address",
-				"End financier CAC/SDC contact number",
-				"End financier CAC/SDC email address",
-				"End financier CAC/SDC person in charge name",
-				"End financier CAC/SDC person in charge name contact number",
-				"End financier CAC/SDC person in charge email address",
-				"End financier 1st attorney name",
-				"End financier 1st attorney identity card number",
-				"End financier 1st attorney designation",
-				"End financier 2nd attorney name",
-				"End financier 2nd attorney identity card number",
-				"End financier 2nd attorney designation",
-				"End financier noting PA number registered in which land registry",
-			],
-			heading3: "Assignor individual(s)",
-			fields3: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading4: "Assignor foreigner",
-			fields4: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading5: "Assignor company",
-			fields5: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading6: "Borrower individual(s)",
-			fields6: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading7: "Borrower foreigner",
-			fields7: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading8: "Borrower company",
-			fields8: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading9: "Guarantor individual(s)",
-			fields9: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading10: "Guarantor foreigner",
-			fields10: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading11: "Guarantor company",
-			fields11: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading12: "Developer",
-			fields12: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading13: "Proprietor",
-			fields13: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading14: "Master chargee",
-			fields14: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading15: "Master title details",
-			fields15: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading16: "Project details",
-			fields16: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading17: "Property details",
-			fields17: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading18: "HDA",
-			fields18: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading19: "Developer solicitors",
-			fields19: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading20: "Purchaser solicitors",
-			fields20: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading21: "End financier solicitors",
-			fields21: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading22: "Developer stakeholder",
-			fields22: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading23: "Purchase price",
-			fields23: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
-			heading24: "Facility(ies) details",
-			fields24: [
-				"1st Purchaser name",
-				"1st Purchaser identity card",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser identity card",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser identity card",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"4th Purchaser name",
-				"4th Purchaser identity card",
-				"4th Purchaser contact number",
-				"4th Purchaser email address",
-				"5th Purchaser name",
-				"5th Purchaser identity card",
-				"5th Purchaser contact number",
-				"5th Purchaser email address",
-				"Purchaser correspondance address",
-			],
+		  heading: "Proprietor",
+		  fields: [
+			"Proprietor name",
+			"Proprietor company registration number",
+			"Proprietor registered office address",
+			"Proprietor place of business address",
+			"Proprietor authorised 1st signatory name",
+			"Proprietor authorised 1st identity card number",
+			"Proprietor authorised 2nd signatory name",
+			"Proprietor authorised 2nd identity card number",
+			"Proprietor PA number registered in High Court",
+			"Proprietor Noting PA registered in which land registry",
+		  ],
 		},
 		{
-			heading: "Purchaser individual(s)",
-			fields: [
-				"1st Purchaser name",
-				"1st Purchaser passport number",
-				"1st Purchaser contact number",
-				"1st Purchaser email address",
-				"2nd Purchaser name",
-				"2nd Purchaser passport number",
-				"2nd Purchaser contact number",
-				"2nd Purchaser email address",
-				"3rd Purchaser name",
-				"3rd Purchaser passport number",
-				"3rd Purchaser contact number",
-				"3rd Purchaser email address",
-				"Purchaser correspondance address",
-				"Purchaser correspondance address in Malaysia",
-			],
+		  heading: "Master Chargee / Assignee",
+		  fields: [
+			"Master Chargee / Assignee name",
+			"Master Chargee / Assignee company registration number",
+			"Master Chargee / Assignee registered office address",
+			"Master Chargee / Assignee place of business address",
+			"Master Chargee / Assignee file reference number",
+			"Master Chargee / Assignee contact number",
+			"Master Chargee / Assignee email address",
+			"Master Chargee / Assignee person in charge name",
+			"Master Chargee / Assignee person in charge name contact number",
+			"Master Chargee / Assignee person in charge email address",
+		  ],
 		},
 		{
-			heading: "Purchaser company",
-			fields: [
-				"Purchaser name",
-				"Purchaser company registration number",
-				"Purchaser registered office address",
-				"Purchaser place of business address",
-				"Purchaser contact number",
-				"Purchaser email address",
-				"Purchaser person in charge name",
-				"Purchaser person in charge name contact number",
-				"Purchaser person in charge email address",
-				"Purchaser authorised 1st signatory name",
-				"Purchaser authorised 1st identity card number",
-				"Purchaser authorised 1st signatory designation",
-				"Purchaser authorised 2nd signatory name",
-				"Purchaser authorised 2nd identity card number",
-				"Purchaser authorised 2nd signatory designation",
-			],
+		  heading: "Master Title",
+		  fields: [
+			"Title type - Freehold / Leasehold",
+			"Title description - H.S.(D) / H.S.(M) / PN / PM / Geran / Geran Mukim",
+			"Title number",
+			"Lot/PT number",
+			"Mukim/Bandar/Pekan",
+			"Daerah",
+			"Negeri",
+			"If leasehold, numbers of years and expiration date",
+			"Land area",
+		  ],
 		},
 		{
-			heading: "Proprietor",
-			fields: [
-				"Proprietor name",
-				"Proprietor company registration number",
-				"Proprietor registered office address",
-				"Proprietor place of business address",
-				"Proprietor authorised 1st signatory name",
-				"Proprietor authorised 1st identity card number",
-				"Proprietor authorised 2nd signatory name",
-				"Proprietor authorised 2nd identity card number",
-				"Proprietor PA number registered in High Court",
-				"Proprietor Noting PA registered in which land registry",
-			],
+		  heading: "Project",
+		  fields: [
+			"Type of building",
+			"Project name",
+			"Phase number",
+			"Advertisement & sale permit number",
+			"Approved layout plan reference number",
+			"Local municipal name",
+		  ],
 		},
 		{
-			heading: "Master Chargee / Assignee",
-			fields: [
-				"Master Chargee / Assignee name",
-				"Master Chargee / Assignee company registration number",
-				"Master Chargee / Assignee registered office address",
-				"Master Chargee / Assignee place of business address",
-				"Master Chargee / Assignee file reference number",
-				"Master Chargee / Assignee contact number",
-				"Master Chargee / Assignee email address",
-				"Master Chargee / Assignee person in charge name",
-				"Master Chargee / Assignee person in charge name contact number",
-				"Master Chargee / Assignee person in charge email address",
-			],
+		  heading: "Property Details",
+		  fields: [
+			"Parcel/unit/lot number",
+			"Title type - Freehold / Leasehold",
+			"Title description - H.S.(D) / H.S.(M) / PN / PM / Geran / Geran Mukim",
+			"Title number",
+			"Lot/PT number",
+			"Mukim/Bandar/Pekan",
+			"Daerah",
+			"Negeri",
+			"If leasehold, numbers of years and expiration date",
+			"Parcel/unit/lot area",
+			"Parcel/unit/lot built up area",
+			"Property address",
+		  ],
 		},
 		{
-			heading: "Master title",
-			fields: [
-				"Title type - Freehold / Leasehold",
-				"Title description - H.S.(D) / H.S.(M) / PN / PM / Geran / Geran Mukim",
-				"Title number",
-				"Lot/PT number",
-				"Mukim/Bandar/Pekan",
-				"Daerah",
-				"Negeri",
-				"If leasehold, numbers of years and expiration date",
-				"Land area",
-			],
+		  heading: "HDA",
+		  fields: [
+			"Developer HDA number",
+			"Bank/financial institution name",
+			"Bank/financial institution registered office address",
+			"Bank/financial institution file reference number",
+		  ],
 		},
 		{
-			heading: "Project",
-			fields: [
-				"Type of building",
-				"Project name",
-				"Phase number",
-				"Advertisement & sale permit number",
-				"Approved layout plan reference number",
-				"Local municipal name",
-			],
+		  heading: "Developer Solicitors",
+		  fields: [
+			"Developer solicitors name",
+			"Developer solicitors office address",
+			"Developer solicitors file reference number",
+			"Developer solicitors contact number",
+			"Developer solicitors email address",
+			"Developer attestation lawyer name",
+			"Developer attestation lawyer identity card number",
+			"Developer solicitors lawyer & clerk in charge contact number",
+			"Developer solicitors lawyer and clerk in charge email address",
+		  ],
 		},
 		{
-			heading: "Property details",
-			fields: [
-				"Parcel/unit/lot number",
-				"Storey number",
-				"Building/block number",
-				"Parcel/unit/lot area",
-				"Parcel/unit/lot built up area",
-				"Accessory parcel(s) number",
-				"Accessory parcel(s) building/block number",
-				"Air-cond ledge parcel(s) number",
-				"Car park lot(s) number",
-				"Car park building/block number",
-			],
+		  heading: "Purchaser Solicitors",
+		  fields: [
+			"Purchaser solicitors name",
+			"Purchaser solicitors office address",
+			"Purchaser solicitors file reference number",
+			"Purchaser solicitors contact number",
+			"Purchaser solicitors email address",
+			"Purchaser attestation lawyer name",
+			"Purchaser attestation lawyer identity card number",
+			"Purchaser solicitors lawyer & clerk in charge contact number",
+			"Purchaser solicitors lawyer and clerk in charge email address",
+		  ],
 		},
 		{
-			heading: "HDA",
-			fields: [
-				"Developer HDA number",
-				"Bank/financial institution name",
-				"Bank/financial institution registered office address",
-				"Bank/financial institution file reference number",
-			],
+		  heading: "Purchase Price",
+		  fields: [
+			"Purchase price in words",
+			"Purchase price in numerics",
+		  ],
 		},
 		{
-			heading: "Developer solicitors",
-			fields: [
-				"Developer solicitors name",
-				"Developer solicitors office address",
-				"Developer solicitors file reference number",
-				"Developer solicitors contact number",
-				"Developer solicitors email address",
-				"Developer attestation lawyer name",
-				"Developer attestation lawyer identity card number",
-				"Developer solicitors lawyer & clerk in charge contact number",
-				"Developer solicitors lawyer and clerk in charge email address",
-			],
+		  heading: "Adjustment Rate",
+		  fields: [
+			"Adjustment rate in words",
+			"Adjustment rate in numerics",
+		  ],
 		},
 		{
-			heading: "Purchaser solicitors",
-			fields: [
-				"Purchaser solicitors name",
-				"Purchaser solicitors office address",
-				"Purchaser solicitors file reference number",
-				"Purchaser solicitors contact number",
-				"Purchaser solicitors email address",
-				"Purchaser attestation lawyer name",
-				"Purchaser attestation lawyer identity card number",
-				"Purchaser solicitors lawyer & clerk in charge contact number",
-				"Purchaser solicitors lawyer and clerk in charge email address",
-			],
+		  heading: "Developer Stakeholder",
+		  fields: [
+			"Developer stakeholder name",
+			"Developer stakeholder office address",
+			"Developer stakeholder file reference number",
+			"Developer stakeholder contact number",
+			"Developer stakeholder email address",
+			"Developer stakeholder person in charge contact number",
+			"Developer stakeholder person in charge email address",
+		  ],
 		},
 		{
-			heading: "Purchase price",
-			fields: [
-				"Purchase price in words",
-				"Purchase price in numerics",
-			],
+		  heading: "Summary Of Price (in RM)",
+		  fields: [
+			"Approved purchase price in numerics",
+			"Developer discount in numerics",
+			"Bumiputera lot discount in numerics",
+			"Government initiative in numerics",
+		  ],
 		},
 		{
-			heading: "Adjustment rate",
-			fields: [
-				"Adjustment rate in words",
-				"Adjustment rate in numerics",
-			],
+		  heading: "Schedule Of Payment(s)",
+		  fields: [
+			"Purchase price (10%) in numerics",
+			"Purchase price (15%) in numerics",
+			"Purchase price (5%) in numerics",
+			"Purchase price (2.5%) in numerics",
+			"Purchase price (17.5%) in numerics",
+			"Purchase price (100%) in numerics",
+		  ],
+		},
+	  ];
+	const purchaserarray = [
+		{
+		  heading: "Purchaser",
+		  fields: [
+			"1st Purchaser name",
+			"1st Purchaser identity card",
+			"1st Purchaser contact number",
+			"1st Purchaser email address",
+			"2nd Purchaser name",
+			"2nd Purchaser identity card",
+			"2nd Purchaser contact number",
+			"2nd Purchaser email address",
+			"3rd Purchaser name",
+			"3rd Purchaser identity card",
+			"3rd Purchaser contact number",
+			"3rd Purchaser email address",
+			"4th Purchaser name",
+			"4th Purchaser identity card",
+			"4th Purchaser contact number",
+			"4th Purchaser email address",
+			"5th Purchaser name",
+			"5th Purchaser identity card",
+			"5th Purchaser contact number",
+			"5th Purchaser email address",
+			"Purchaser correspondance address",
+		  ],
 		},
 		{
-			heading: "Developer stakeholder",
-			fields: [
-				"Developer stakeholder name",
-				"Developer stakeholder office address",
-				"Developer stakeholder file reference number",
-				"Developer stakeholder contact number",
-				"Developer stakeholder email address",
-				"Developer stakeholder person in charge contact number",
-				"Developer stakeholder person in charge email address",
-			],
+		  heading: "Purchaser individual(s)",
+		  fields: [
+			"1st Purchaser name",
+			"1st Purchaser passport number",
+			"1st Purchaser contact number",
+			"1st Purchaser email address",
+			"2nd Purchaser name",
+			"2nd Purchaser passport number",
+			"2nd Purchaser contact number",
+			"2nd Purchaser email address",
+			"3rd Purchaser name",
+			"3rd Purchaser passport number",
+			"3rd Purchaser contact number",
+			"3rd Purchaser email address",
+			"Purchaser correspondance address",
+			"Purchaser correspondance address in Malaysia",
+		  ],
 		},
 		{
-			heading: "Summary of price (in RM)",
-			fields: [
-				"Approved purchase price in numerics",
-				"Developer discount in numerics",
-				"Bumiputera lot discount in numerics",
-				"Government initiative in numerics",
-			],
+		  heading: "Purchaser company",
+		  fields: [
+			"Purchaser name",
+			"Purchaser company registration number",
+			"Purchaser registered office address",
+			"Purchaser place of business address",
+			"Purchaser contact number",
+			"Purchaser email address",
+			"Purchaser person in charge name",
+			"Purchaser person in charge name contact number",
+			"Purchaser person in charge email address",
+			"Purchaser authorised 1st signatory name",
+			"Purchaser authorised 1st identity card number",
+			"Purchaser authorised 1st signatory designation",
+			"Purchaser authorised 2nd signatory name",
+			"Purchaser authorised 2nd identity card number",
+			"Purchaser authorised 2nd signatory designation",
+		  ],
 		},
-		{
-			heading: "Schedule of payment(s)",
-			fields: [
-				"Purchase price (10%) in numerics",
-				"Purchase price (15%) in numerics",
-				"Purchase price (5%) in numerics",
-				"Purchase price (2.5%) in numerics",
-				"Purchase price (17.5%) in numerics",
-				"Purchase price (100%) in numerics",
-			],
-		},
-	];
+	  ];
 
+  const handleChanges = (event: React.SyntheticEvent, newValue: string) => {
+	setSelectedValues(event.target.values);
+  };
+  const selectedSection =
+  selectedValue === "a"
+	? purchaserarray[0] // Purchaser individual(s) (Malaysian)
+	: selectedValue === "b"
+	? purchaserarray[1] // Purchaser individual(s) (Foreigner)
+	: purchaserarray[2]; // Purchaser company
+	
 	const sectionRefs = useMemo(
 		() => sections.map(() => React.createRef<HTMLDivElement>()),
 		[]
@@ -1237,35 +729,34 @@ const SchLoanH: React.FC = () => {
 						<Box sx={{ display: 'flex' }}>
 							<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 								<div
-									style={{
+									 style={{
 										position: "sticky",
 										top: 0,
-										width: "97%",
+										width: "100%",
 										backgroundColor: "#fff",
-										boxShadow: "2px 2px 5px 5px rgba(77, 77, 77, 0.1)",
 										zIndex: 1000,
 										borderRadius: '4px',
 										padding: "15px 10px",
-										fontSize: "15px",
+										fontSize: "14px",
 									}}
 								>
 									{sections.map((section, index) => (
-										<button
+										<a
 											key={index}
 											onClick={() => scrollToSection(index)}
 											style={{
-												margin: "15px 5px",
-												padding: "10px 0px",
+												margin: "1px 5px",
+												padding: "1px 0px",
 												cursor: "pointer",
+												display: "inline-block",
 												color: "#007bff",
-												background: "none",
-												border: "none",
-												fontSize: "1em",
 											}}
 										>
-											{section.heading}
-											{index !== sections.length - 1 && " |"}
-										</button>
+										   <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                   							  {sectionIcons[section.heading]}
+                  							  <span>{section.heading}</span>
+                 						   </div>          
+										</a>
 									))}
 								</div>
 								<Box
@@ -1296,11 +787,14 @@ const SchLoanH: React.FC = () => {
 										</Button>
 									</DialogActions>
 								</Box>
+						
+
 								{loading && (
 									<Box sx={{ display: 'flex', marginTop: 2, marginBottom: 2 }}>
 										<CircularProgress />
 									</Box>
 								)}
+								
 								<Box
 									sx={{
 										marginTop: '0px',
@@ -1318,7 +812,50 @@ const SchLoanH: React.FC = () => {
 											borderBottom: '1px solid #ddd',
 										}}
 									>
-									<h2>Purchaser</h2>
+												{/* <div style={{marginTop: '10px', marginBottom: '40px'}}>
+        <h3>Developer</h3>
+<select style={{ padding: "10px", fontSize: "14px", borderRadius: "4px" }}>
+  <option value="">Select a Developer</option>
+  <option value="Field 1">Field 1</option>
+  <option value="Field 2">Field 2</option>
+  <option value="Field 3">Field 3</option>
+</select>
+      </div> */}
+
+                  <Box sx={{ display: "flex", width: "100%", marginBottom: 2, marginTop: 1 }}>
+        <Radio
+          checked={selectedValue === "a"}
+          onChange={handleChanges}
+          value="a"
+          name="radio-buttons"
+          inputProps={{ "aria-label": "A" }}
+        />
+        <PersonIcon style={{ marginRight: "5px", marginTop: "8px" }} />
+        <Typography style={{ marginTop: "10px" }}>Master Title</Typography>
+
+        <Radio
+          checked={selectedValue === "b"}
+          onChange={handleChanges}
+          value="b"
+          name="radio-buttons"
+          inputProps={{ "aria-label": "B" }}
+        />
+        <AccountCircleIcon style={{ marginRight: "5px", marginTop: "8px" }} />
+        <Typography style={{ marginTop: "10px" }}>Statra</Typography>
+
+        {/* <Radio
+          checked={selectedValue === "c"}
+          onChange={handleChanges}
+          value="c"
+          name="radio-buttons"
+          inputProps={{ "aria-label": "C" }}
+        />
+        <GroupIcon style={{ marginRight: "5px", marginTop: "8px" }} />
+        <Typography style={{ marginTop: "10px" }}>Purchaser company</Typography> */}
+      </Box>
+	  <h2>Purchaser</h2>
+	  <Grid container spacing={2}>
+									<Grid item xs={12} sm={6}>
 									<TextField
 										label="1st Purchaser name"
 										fullWidth
@@ -1327,6 +864,9 @@ const SchLoanH: React.FC = () => {
 										onChange={(e) => setFirstPurchaserName(e.target.value)}
 										sx={{ marginBottom: 2 }}
 									/>
+									</Grid>
+									  <Grid item xs={12} sm={6}>
+
 									<TextField
 										label="1st Purchaser identity card"
 										fullWidth
@@ -1335,6 +875,8 @@ const SchLoanH: React.FC = () => {
 										onChange={(e) => setFirstPurchaserIdentityCard(e.target.value)}
 										sx={{ marginBottom: 2 }}
 									/>
+										</Grid>
+										<Grid item xs={12} sm={6}>
 									<TextField
 										label="1st Purchaser contact number"
 										fullWidth
@@ -1343,6 +885,8 @@ const SchLoanH: React.FC = () => {
 										onChange={(e) => setFirstPurchaserContactNo(e.target.value)}
 										sx={{ marginBottom: 2 }}
 									/>
+									</Grid>
+										<Grid item xs={12} sm={6}>
 									<TextField
 										label="1st Purchaser email address"
 										fullWidth
@@ -1351,7 +895,8 @@ const SchLoanH: React.FC = () => {
 										onChange={(e) => setFirstPurchaserEmailAddress(e.target.value)}
 										sx={{ marginBottom: 2 }}
 									/>
-
+									</Grid>
+									<Grid item xs={12} sm={6}>
 									<TextField
 										label="2nd Purchaser name"
 										fullWidth
@@ -1360,6 +905,8 @@ const SchLoanH: React.FC = () => {
 										onChange={(e) => setSecondPurchaserName(e.target.value)}
 										sx={{ marginBottom: 2 }}
 									/>
+									</Grid>
+									<Grid item xs={12} sm={6}>
 									<TextField
 										label="2nd Purchaser identity card"
 										fullWidth
@@ -1368,6 +915,8 @@ const SchLoanH: React.FC = () => {
 										onChange={(e) => setSecondPurchaserIdentityCard(e.target.value)}
 										sx={{ marginBottom: 2 }}
 									/>
+									</Grid>
+									<Grid item xs={12} sm={6}>
 									<TextField
 										label="2nd Purchaser contact number"
 										fullWidth
@@ -1376,6 +925,8 @@ const SchLoanH: React.FC = () => {
 										onChange={(e) => setSecondPurchaserContactNo(e.target.value)}
 										sx={{ marginBottom: 2 }}
 									/>
+									</Grid>
+									<Grid item xs={12} sm={6}>
 									<TextField
 										label="2nd Purchaser email address"
 										fullWidth
@@ -1384,6 +935,7 @@ const SchLoanH: React.FC = () => {
 										onChange={(e) => setSecondPurchaserEmailAddress(e.target.value)}
 										sx={{ marginBottom: 2 }}
 									/>
+									</Grid>
 
 									{/* <TextField
 										label="3rd Purchaser name"
@@ -1483,7 +1035,7 @@ const SchLoanH: React.FC = () => {
 										onChange={(e) => setFifthPurchaserEmailAddress(e.target.value)}
 										sx={{ marginBottom: 2 }}
 									/> */}
-
+									<Grid item xs={12} sm={6}>
 									<TextField
 										label="Purchaser Correspondence Address"
 										fullWidth
@@ -1492,7 +1044,8 @@ const SchLoanH: React.FC = () => {
 										onChange={(e) => setPurchaserCorrespondenceAddress(e.target.value)}
 										sx={{ marginBottom: 2 }}
 									/>
-
+									</Grid>
+								</Grid>
 									<h2>Proprietor</h2>
 									<TextField
 										label="Proprietor Name"
