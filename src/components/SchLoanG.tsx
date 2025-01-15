@@ -43,32 +43,32 @@ const SchLoanG: React.FC = () => {
 };
    
 const purchaserarray = [
-  {
-    heading: "Purchaser",
-    fields: [
-      "1st Purchaser name",
-      "1st Purchaser identity card",
-      "1st Purchaser contact number",
-      "1st Purchaser email address",
-      "2nd Purchaser name",
-      "2nd Purchaser identity card",
-      "2nd Purchaser contact number",
-      "2nd Purchaser email address",
-      "3rd Purchaser name",
-      "3rd Purchaser identity card",
-      "3rd Purchaser contact number",
-      "3rd Purchaser email address",
-      "4th Purchaser name",
-      "4th Purchaser identity card",
-      "4th Purchaser contact number",
-      "4th Purchaser email address",
-      "5th Purchaser name",
-      "5th Purchaser identity card",
-      "5th Purchaser contact number",
-      "5th Purchaser email address",
-      "Purchaser correspondance address",
-    ],
-  },
+  // {
+  //   heading: "Purchaser",
+  //   fields: [
+  //     "1st Purchaser name",
+  //     "1st Purchaser identity card",
+  //     "1st Purchaser contact number",
+  //     "1st Purchaser email address",
+  //     "2nd Purchaser name",
+  //     "2nd Purchaser identity card",
+  //     "2nd Purchaser contact number",
+  //     "2nd Purchaser email address",
+  //     "3rd Purchaser name",
+  //     "3rd Purchaser identity card",
+  //     "3rd Purchaser contact number",
+  //     "3rd Purchaser email address",
+  //     "4th Purchaser name",
+  //     "4th Purchaser identity card",
+  //     "4th Purchaser contact number",
+  //     "4th Purchaser email address",
+  //     "5th Purchaser name",
+  //     "5th Purchaser identity card",
+  //     "5th Purchaser contact number",
+  //     "5th Purchaser email address",
+  //     "Purchaser correspondance address",
+  //   ],
+  // },
   {
     heading: "Purchaser individual(s)",
     fields: [
@@ -419,17 +419,17 @@ const purchaserarray = [
           maxHeight: 'calc(100vh - 100px)',  // Adjust this height to prevent it from occupying the entire page
         }}
       >
-      <div style={{marginTop: '10px', marginBottom: '40px'}}>
+      {/* <div style={{marginTop: '10px', marginBottom: '40px'}}>
         <h3>Developer</h3>
-<select style={{ padding: "10px", fontSize: "14px", borderRadius: "4px" }}>
-  <option value="">Select a Developer</option>
-  <option value="Field 1">Field 1</option>
-  <option value="Field 2">Field 2</option>
-  <option value="Field 3">Field 3</option>
-</select>
-      </div>
+        <select style={{ padding: "10px", fontSize: "14px", borderRadius: "4px" }}>
+          <option value="">Select a Developer</option>
+          <option value="Field 1">Field 1</option>
+          <option value="Field 2">Field 2</option>
+          <option value="Field 3">Field 3</option>
+        </select>
+      </div> */}
 
-                  <Box sx={{ display: "flex", width: "100%", marginBottom: 2, marginTop: 1 }}>
+      <Box sx={{ display: "flex", width: "100%", marginBottom: 2, marginTop: 1 }}>
         <Radio
           checked={selectedValue === "a"}
           onChange={handleChange}
@@ -438,7 +438,7 @@ const purchaserarray = [
           inputProps={{ "aria-label": "A" }}
         />
         <PersonIcon style={{ marginRight: "5px", marginTop: "8px" }} />
-        <Typography style={{ marginTop: "10px" }}>Purchaser individual(s) (Malaysian)</Typography>
+        <Typography style={{ marginTop: "10px" }}>Master Title</Typography>
 
         <Radio
           checked={selectedValue === "b"}
@@ -448,9 +448,9 @@ const purchaserarray = [
           inputProps={{ "aria-label": "B" }}
         />
         <AccountCircleIcon style={{ marginRight: "5px", marginTop: "8px" }} />
-        <Typography style={{ marginTop: "10px" }}>Purchaser individual(s) (Foreigner)</Typography>
+        <Typography style={{ marginTop: "10px" }}>Strata Title</Typography>
 
-        <Radio
+        {/* <Radio
           checked={selectedValue === "c"}
           onChange={handleChange}
           value="c"
@@ -458,41 +458,41 @@ const purchaserarray = [
           inputProps={{ "aria-label": "C" }}
         />
         <GroupIcon style={{ marginRight: "5px", marginTop: "8px" }} />
-        <Typography style={{ marginTop: "10px" }}>Purchaser company</Typography>
+        <Typography style={{ marginTop: "10px" }}>Purchaser company</Typography> */}
       </Box>
 
-      <div>
-  <h3>{selectedSection.heading}</h3>
-  <div
-    style={{
-      display: 'flex',
-      flexWrap: 'wrap', // Ensures wrapping to the next row
-      gap: '20px', // Space between items
-    }}
-  >
-    {selectedSection.fields.map((field, index) => (
-      <div
-        key={index}
-        style={{
-          flex: '1 1 calc(50% - 20px)', // Takes 50% of the width minus gap space
-          padding: '10px',
-          boxSizing: 'border-box',
-        }}
-      >
-        <input
-          type="text"
-          placeholder={field}
+      {/* <div>
+        <h3>{selectedSection.heading}</h3>
+        <div
           style={{
-            padding: '10px',
-            width: '100%',
-            borderRadius: '4px',
-            border: '1px solid #ccc',
+            display: 'flex',
+            flexWrap: 'wrap', // Ensures wrapping to the next row
+            gap: '20px', // Space between items
           }}
-        />
-      </div>
-    ))}
-  </div>
-</div>
+        >
+          {selectedSection.fields.map((field, index) => (
+            <div
+              key={index}
+              style={{
+                flex: '1 1 calc(50% - 20px)', // Takes 50% of the width minus gap space
+                padding: '10px',
+                boxSizing: 'border-box',
+              }}
+            >
+              <input
+                type="text"
+                placeholder={field}
+                style={{
+                  padding: '10px',
+                  width: '100%',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc',
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      </div> */}
 
       
         {sections.map((section, index) => (
