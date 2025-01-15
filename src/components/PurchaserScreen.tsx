@@ -364,7 +364,7 @@ const PurchaserScreen: React.FC = () => {
 	  ];
 	const purchaserarray = [
 		{
-		  heading: "Purchaser",
+		  heading: "Purchaser individual(s) Malaysia",
 		  fields: [
 			"1st Purchaser name",
 			"1st Purchaser identity card",
@@ -390,7 +390,7 @@ const PurchaserScreen: React.FC = () => {
 		  ],
 		},
 		{
-		  heading: "Purchaser individual(s)",
+		  heading: "Purchaser Foreinger",
 		  fields: [
 			"1st Purchaser name",
 			"1st Purchaser passport number",
@@ -728,37 +728,6 @@ const PurchaserScreen: React.FC = () => {
 					{value === "one" && <div style={{ marginTop: "20px" }}>
 						<Box sx={{ display: 'flex' }}>
 							<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-								<div
-									 style={{
-										position: "sticky",
-										top: 0,
-										width: "100%",
-										backgroundColor: "#fff",
-										zIndex: 1000,
-										borderRadius: '4px',
-										padding: "15px 10px",
-										fontSize: "14px",
-									}}
-								>
-									{sections.map((section, index) => (
-										<a
-											key={index}
-											onClick={() => scrollToSection(index)}
-											style={{
-												margin: "1px 5px",
-												padding: "1px 0px",
-												cursor: "pointer",
-												display: "inline-block",
-												color: "#007bff",
-											}}
-										>
-										   <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                   							  {sectionIcons[section.heading]}
-                  							  <span>{section.heading}</span>
-                 						   </div>          
-										</a>
-									))}
-								</div>
 								<Box
 									sx={{
 										display: 'flex',
@@ -831,7 +800,7 @@ const PurchaserScreen: React.FC = () => {
           inputProps={{ "aria-label": "A" }}
         />
         <PersonIcon style={{ marginRight: "5px", marginTop: "8px" }} />
-        <Typography style={{ marginTop: "10px" }}>Master Title</Typography>
+        <Typography style={{ marginTop: "10px" }}>Purchaser Individual Malaysia</Typography>
 
         <Radio
           checked={selectedValue === "b"}
@@ -841,9 +810,9 @@ const PurchaserScreen: React.FC = () => {
           inputProps={{ "aria-label": "B" }}
         />
         <AccountCircleIcon style={{ marginRight: "5px", marginTop: "8px" }} />
-        <Typography style={{ marginTop: "10px" }}>Stratra Title</Typography>
+        <Typography style={{ marginTop: "10px" }}>Purchaser Foreigner</Typography>
 
-        {/* <Radio
+        <Radio
           checked={selectedValue === "c"}
           onChange={handleChanges}
           value="c"
@@ -851,7 +820,7 @@ const PurchaserScreen: React.FC = () => {
           inputProps={{ "aria-label": "C" }}
         />
         <GroupIcon style={{ marginRight: "5px", marginTop: "8px" }} />
-        <Typography style={{ marginTop: "10px" }}>Purchaser company</Typography> */}
+        <Typography style={{ marginTop: "10px" }}>Purchaser company</Typography>
       </Box>
 	  <h2>Purchaser</h2>
 	  <Grid container spacing={2}>
@@ -1046,367 +1015,8 @@ const PurchaserScreen: React.FC = () => {
 									/>
 									</Grid>
 								</Grid>
-									{/* <h2>Proprietor</h2>
-									<TextField
-										label="Proprietor Name"
-										fullWidth
-										variant="outlined"
-										value={proprietorName}
-										onChange={(e) => setProprietorName(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-
-									<TextField
-										label="Proprietor Company Registration Number"
-										fullWidth
-										variant="outlined"
-										value={proprietorCompanyRegistrationNo}
-										onChange={(e) => setProprietorCompanyRegistrationNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-
-									<TextField
-										label="Proprietor Registered Office Address"
-										fullWidth
-										variant="outlined"
-										value={proprietorRegisteredOfficeAddress}
-										onChange={(e) => setProprietorRegisteredOfficeAddress(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-
-									
-									<TextField
-										label="Proprietor Place of Business Address"
-										fullWidth
-										variant="outlined"
-										value={proprietorPlaceBusinessAddress}
-										onChange={(e) => setProprietorPlaceBusinessAddress(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Proprietor Authorised 1st Signatory Name"
-										fullWidth
-										variant="outlined"
-										value={proprietorAuthorisedFirstSignatoryName}
-										onChange={(e) => setProprietorAuthorisedFirstSignatoryName(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Proprietor Authorised 1st Identity Card Number"
-										fullWidth
-										variant="outlined"
-										value={proprietorAuthorisedFirstIdentityCardNo}
-										onChange={(e) => setProprietorAuthorisedFirstIdentityCardNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Proprietor Authorised 2nd Signatory Name"
-										fullWidth
-										variant="outlined"
-										value={proprietorAuthorisedSecondSignatoryName}
-										onChange={(e) => setProprietorAuthorisedSecondSignatoryName(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Proprietor Authorised 2nd Identity Card Number"
-										fullWidth
-										variant="outlined"
-										value={proprietorAuthorisedSecondIdentityCardNo}
-										onChange={(e) => setProprietorAuthorisedSecondIdentityCardNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<h2>Purchase Price</h2>
-									<TextField
-										label="Purchase Price in Words"
-										fullWidth
-										variant="outlined"
-										value={purchasePriceWords}
-										onChange={(e) => setPurchasePriceWords(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Purchase Price in Numerics"
-										fullWidth
-										variant="outlined"
-										value={purchasePriceNumerics}
-										onChange={(e) => setPurchasePriceNumerics(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-
-									<h2>Adjustment Rate</h2>
-									<TextField
-										label="Adjustment Rate in Words"
-										fullWidth
-										variant="outlined"
-										value={adjustmentRateWords}
-										onChange={(e) => setAdjustmentRateWords(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Adjustment Rate in Numerics"
-										fullWidth
-										variant="outlined"
-										value={adjustmentRateNumerics}
-										onChange={(e) => setAdjustmentRateNumerics(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<h2>Property Details</h2>
-									<TextField
-										label="Parcel/Unit/Lot Number"
-										fullWidth
-										variant="outlined"
-										value={parcelUnitLotNo}
-										onChange={(e) => setParcelUnitLotNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Storey Number"
-										fullWidth
-										variant="outlined"
-										value={storeyNo}
-										onChange={(e) => setStoreyNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Building/Block Number"
-										fullWidth
-										variant="outlined"
-										value={buildingBlockNo}
-										onChange={(e) => setBuildingBlockNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Parcel/Unit/Lot Area"
-										fullWidth
-										variant="outlined"
-										value={parcelUnitLotArea}
-										onChange={(e) => setParcelUnitLotArea(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Parcel/Unit/Lot Built Up Area"
-										fullWidth
-										variant="outlined"
-										value={parcelUnitLotBuiltUpArea}
-										onChange={(e) => setParcelUnitLotBuiltUpArea(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Accessory Parcel(s) Number"
-										fullWidth
-										variant="outlined"
-										value={accessoryParcelsNo}
-										onChange={(e) => setAccessoryParcelsNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Accessory Parcel(s) Building/Block Number"
-										fullWidth
-										variant="outlined"
-										value={accessoryParcelsBuildingBlockNo}
-										onChange={(e) => setAccessoryParcelsBuildingBlockNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Air-Cond Ledge Parcel(s) Number"
-										fullWidth
-										variant="outlined"
-										value={airCondLedgeParcelsNo}
-										onChange={(e) => setAirCondLedgeParcelsNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Car Park Lot(s) Number"
-										fullWidth
-										variant="outlined"
-										value={carParkLotsNo}
-										onChange={(e) => setCarParkLotsNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Car Park Building/Block Number"
-										fullWidth
-										variant="outlined"
-										value={carParkBuildingBlockNo}
-										onChange={(e) => setCarParkBuildingBlockNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<h2>
-										Housing Development Account (HDA) Details
-									</h2>
-									<TextField
-										label="Housing Development Account No"
-										fullWidth
-										variant="outlined"
-										value={developerHDANo}
-										onChange={(e) => setDeveloperHDANo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Bank or Financial Institution"
-										fullWidth
-										variant="outlined"
-										value={bankName}
-										onChange={(e) => setBankName(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Bank or Financial Institution Registered Office Address"
-										fullWidth
-										variant="outlined"
-										value={bankRegisteredOfficeAddress}
-										onChange={(e) => setBankRegisteredOfficeAddress(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Bank or Financial Institution File Reference Number"
-										fullWidth
-										variant="outlined"
-										value={bankFileReferenceNo}
-										onChange={(e) => setBankFileReferenceNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<h2>
-										Summary of purchase price (in RM)
-									</h2>
-									<TextField
-										label="Approved Purchase Price in Numerics"
-										fullWidth
-										variant="outlined"
-										value={approvedPurchasePriceNumerics}
-										onChange={(e) => setApprovedPurchasePriceNumerics(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Developer Discount in Numerics"
-										fullWidth
-										variant="outlined"
-										value={developerDiscountNumerics}
-										onChange={(e) => setDeveloperDiscountNumerics(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Bumiputera Lot Discount in Numerics"
-										fullWidth
-										variant="outlined"
-										value={bumiputeraLotDiscountNumerics}
-										onChange={(e) => setBumiputeraLotDiscountNumerics(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Government Initiative in Numerics"
-										fullWidth
-										variant="outlined"
-										value={governmentInitiativeNumerics}
-										onChange={(e) => setGovernmentInitiativeNumerics(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<h2>Project Details</h2>
-									<TextField
-										label="Project Name"
-										fullWidth
-										variant="outlined"
-										value={projectName}
-										onChange={(e) => setProjectName(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Phase Number"
-										fullWidth
-										variant="outlined"
-										value={phaseNo}
-										onChange={(e) => setPhaseNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="Town/Village/Mukim"
-										fullWidth
-										variant="outlined"
-										value={townVillageMukim}
-										onChange={(e) => setTownVillageMukim(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="District"
-										fullWidth
-										variant="outlined"
-										value={district}
-										onChange={(e) => setDistrict(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									
-									<TextField
-										label="State"
-										fullWidth
-										variant="outlined"
-										value={state}
-										onChange={(e) => setState(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/> */}
+						
 								</div>
-									{/* {sections.map((section, index) => (
-										<div
-											key={index}
-											ref={sectionRefs[index]}
-											style={{
-												minHeight: '70vh',
-												padding: '20px',
-												marginTop: '0px',
-												borderBottom: '1px solid #ddd',
-											}}
-										>
-											<h2>{section.heading}</h2>
-											<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-												{section.fields.map((field, fieldIndex) => (
-													<div
-														key={fieldIndex}
-														style={{
-															display: 'flex',
-															flexDirection: 'column',
-															flex: '1 1 50%',
-															padding: '10px',
-															boxSizing: 'border-box',
-														}}
-													>
-														<input
-															type="text"
-															placeholder={field}
-															style={{ padding: '10px', width: '100%' }}
-														/>
-													</div>
-												))}
-											</div>
-										</div>
-									))} */}
 								</Box>
 							</Box>
 						</Box>
