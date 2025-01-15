@@ -108,7 +108,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const handleAddClick = () => {
-    navigate('/add-purchaser'); // Replace with your desired route
+    navigate('/purchaser-screen'); 
   };
 
 
