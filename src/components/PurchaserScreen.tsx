@@ -562,7 +562,7 @@ const PurchaserScreen: React.FC = () => {
 											borderBottom: '1px solid #ddd',
 										}}
 									>
-										{/* <div style={{marginTop: '10px', marginBottom: '40px'}}>
+										<div style={{marginTop: '10px', marginBottom: '40px'}}>
 											<h3>Developer</h3>
 											<select style={{ padding: "10px", fontSize: "14px", borderRadius: "4px" }}>
 												<option value="">
@@ -578,7 +578,7 @@ const PurchaserScreen: React.FC = () => {
 													Field 3
 												</option>
 											</select>
-										</div> */}
+										</div>
 
 										<Box sx={{ display: "flex", width: "100%", marginBottom: 2, marginTop: 1 }}>
 											<Radio

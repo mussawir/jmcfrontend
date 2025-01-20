@@ -573,6 +573,23 @@ const SchLoanH: React.FC = () => {
 											borderBottom: '1px solid #ddd',
 										}}
 									>
+										<div style={{marginTop: '10px', marginBottom: '40px'}}>
+											<h3>Developer</h3>
+											<select style={{ padding: "10px", fontSize: "14px", borderRadius: "4px" }}>
+												<option value="">
+													Select a Developer
+												</option>
+												<option value="Field 1">
+													Field 1
+												</option>
+												<option value="Field 2">
+													Field 2
+												</option>
+												<option value="Field 3">
+													Field 3
+												</option>
+											</select>
+										</div>
 										<Box sx={{ display: "flex", width: "100%", marginBottom: 2, marginTop: 1 }}>
 											<Radio
 												checked={selectedValue === "a"}
