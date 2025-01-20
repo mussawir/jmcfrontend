@@ -6,105 +6,125 @@ import HeaderComponent from '../components/HeaderComponent';
 import { useNavigate } from 'react-router-dom';
 
 function ScheduleHList() {
-  const [banks, setBanks] = useState<any[]>([]); // State for storing the banks list
-  const [searchQuery, setSearchQuery] = useState(''); // State for the search query
-  const navigate = useNavigate();
-  
-  const handleAddNew = () => {
-    navigate('/sch-loan-h'); 
-  };
+	const [forms, setForms] = useState<any[]>([]);
+	const [searchQuery, setSearchQuery] = useState('');
+	const navigate = useNavigate();
 
-  // Fetch the master bank data
-  useEffect(() => {
-    const fetchBanks = async () => {
-      const response = await fetch('http://localhost:5000/schedule-h-list'); // Your backend API endpoint
-      if (response.ok) {
-        const data = await response.json();
-        setBanks(data); // Set the banks data
-      } else {
-        console.error('Error fetching banks');
-      }
-    };
+	const handleAddNew = () => {
+		navigate('/sch-loan-h');
+	};
 
-    fetchBanks();
-  }, []);
+	useEffect(() => {
+		const fetchForms = async () => {
+			const response = await fetch('http://localhost:5000/schedule-h-list');
+			if (response.ok) {
+				const scheduleHForms = await response.json();
+				// console.log(scheduleHForms);
+				setForms(scheduleHForms);
+			} else {
+				console.error('Error fetching schedule H forms');
+			}
+		};
 
-  const filteredBanks = banks.filter((bank) =>
-    bank.bankName.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+		fetchForms();
+	}, []);
 
-  return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <DrawerComponent />
-      <HeaderComponent />
+	const filteredForms = forms.filter((form) =>
+		form.firstPurchaserName.toLowerCase().includes(searchQuery.toLowerCase())
+	);
 
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Toolbar />
+	return (
+		<Box sx={{ display: 'flex' }}>
+			<CssBaseline />
+			<DrawerComponent />
+			<HeaderComponent />
 
-        {/* Center the Headline */}
-        <Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
-         Schedule H List
-        </Typography>
-         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-              <Link href="" target="_blank" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
-                <AccountBalance sx={{ marginRight: 0.5 }} />
-                Bookmark1
-              </Link>
-              <Link href="" target="_blank" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
-                <AccountBalanceWallet sx={{ marginRight: 0.5 }} />
-                Bookmark2
-              </Link>
-              <Link href="" target="_blank" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
-                <MonetizationOn sx={{ marginRight: 0.5 }} />
-                Bookmark3
-              </Link>
-            </Box>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={handleAddNew} // Trigger navigate
-                >
-                Add New
-            </Button>
-        </Box>
-        <TextField
-            fullWidth
-            variant="outlined"
-            placeholder="Search"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            sx={{ marginBottom: 2 }}
-            InputProps={{
-            startAdornment: (
-                <InputAdornment position="start">
-                <Search />
-                </InputAdornment>
-            ),
-            }}
-            />
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Address</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredBanks.map((bank, index) => (
-                <TableRow key={index}>
-                  <TableCell>{bank.bankName}</TableCell>
-                  <TableCell>{bank.address}</TableCell> {/* Assuming 'address' is part of the bank object */}
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
-    </Box>
-  );
+			<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+				<Toolbar />
+				<Typography variant="h4" gutterBottom sx={{ textAlign: 'center' }}>
+					Schedule H List
+				</Typography>
+				<Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}>
+					<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+							<Link href="" target="_blank" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+								<AccountBalance sx={{ marginRight: 0.5 }} />
+								Bookmark1
+							</Link>
+							<Link href="" target="_blank" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+								<AccountBalanceWallet sx={{ marginRight: 0.5 }} />
+								Bookmark2
+							</Link>
+							<Link href="" target="_blank" sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
+								<MonetizationOn sx={{ marginRight: 0.5 }} />
+								Bookmark3
+							</Link>
+						</Box>
+						<Button
+								variant="contained"
+								color="primary"
+								onClick={handleAddNew}
+								>
+								Add New
+						</Button>
+				</Box>
+				<TextField
+						fullWidth
+						variant="outlined"
+						placeholder="Search"
+						value={searchQuery}
+						onChange={(e) => setSearchQuery(e.target.value)}
+						sx={{ marginBottom: 2 }}
+						InputProps={{
+						startAdornment: (
+								<InputAdornment position="start">
+								<Search />
+								</InputAdornment>
+						),
+						}}
+						/>
+				<TableContainer component={Paper}>
+					<Table>
+						<TableHead>
+							<TableRow>
+								<TableCell>Purchasers Name</TableCell>
+								<TableCell>Purchasers Identity Card</TableCell>
+							</TableRow>
+						</TableHead>
+						<TableBody>
+							{filteredForms.map((form, index) => (
+								<TableRow key={index}>
+									<TableCell>
+										{form.firstPurchaserName && (
+											<div>
+												{form.firstPurchaserName}
+											</div>
+										)}
+										{form.secondPurchaserName && (
+											<div>
+												{form.secondPurchaserName}
+											</div>
+										)}
+									</TableCell>
+									<TableCell>
+										{form.firstPurchaserIdentityCard && (
+											<div>
+												{form.firstPurchaserIdentityCard}
+											</div>
+										)}
+										{form.secondPurchaserIdentityCard && (
+											<div>
+												{form.secondPurchaserIdentityCard}
+											</div>
+										)}
+									</TableCell>
+								</TableRow>
+							))}
+						</TableBody>
+					</Table>
+				</TableContainer>
+			</Box>
+		</Box>
+	);
 }
 
 export default ScheduleHList;

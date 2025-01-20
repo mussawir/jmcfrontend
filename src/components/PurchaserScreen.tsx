@@ -1,33 +1,36 @@
 import React, { useMemo, useState, useEffect } from "react";
 import DrawerComponent from './DrawerComponent';
 import HeaderComponent from './HeaderComponent';
-import { Box, TextField, Typography, Grid, Toolbar, CssBaseline, Button, CircularProgress, MenuItem, Select, InputLabel, FormControl, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper, Tabs, Tab, DialogActions } from '@mui/material';
-import Radio from '@mui/material/Radio';
+import { Box, TextField, Typography, Toolbar, CssBaseline, Button, CircularProgress, MenuItem, Select, InputLabel, FormControl, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper, Tabs, Tab, DialogActions, Radio } from '@mui/material';
+import Grid from '@mui/material/Grid2';
 import PersonIcon from '@mui/icons-material/Person';
 import GroupIcon from '@mui/icons-material/Group';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import BusinessIcon from '@mui/icons-material/Business';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import HouseIcon from '@mui/icons-material/House';
-import LocationCityIcon from '@mui/icons-material/LocationCity';
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import GavelIcon from '@mui/icons-material/Gavel';
-import PaymentIcon from '@mui/icons-material/Payment';
-import SummaryIcon from '@mui/icons-material/Summarize';
+// import BusinessIcon from '@mui/icons-material/Business';
+// import AssignmentIcon from '@mui/icons-material/Assignment';
+// import HouseIcon from '@mui/icons-material/House';
+// import LocationCityIcon from '@mui/icons-material/LocationCity';
+// import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+// import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+// import GavelIcon from '@mui/icons-material/Gavel';
+// import PaymentIcon from '@mui/icons-material/Payment';
+// import SummaryIcon from '@mui/icons-material/Summarize';
+
 const PurchaserScreen: React.FC = () => {
 	const [value, setValue] = React.useState('one');
 	const [templates, setTemplates] = useState([]);
+
 	// For Showing / Hiding the Toggle Box
 	const [toggleBoxVisible, setToggleBoxVisible] = useState(false);
 	const [selectedBank, setSelectedBank] = useState('');
 	const handleChange = (event: React.SyntheticEvent, newValue: string) => {
 		setValue(newValue);
 	};
-	  const [selectedValue, setSelectedValues] = useState("a");
 
+	const [selectedValue, setSelectedValues] = useState("a");
 	const [loading, setLoading] = useState(false);
-	const [values, setValues] = React.useState('one');
+
+	const [matterCode, setMatterCode] = useState('');
 
 	// First Purchaser
 	const [firstPurchaserName, setFirstPurchaserName] = useState('');
@@ -41,72 +44,16 @@ const PurchaserScreen: React.FC = () => {
 	const [secondPurchaserContactNo, setSecondPurchaserContactNo] = useState('');
 	const [secondPurchaserEmailAddress, setSecondPurchaserEmailAddress] = useState('');
 
-	// // Third Purchaser
-	// const [thirdPurchaserName, setThirdPurchaserName] = useState('');
-	// const [thirdPurchaserIdentityCard, setThirdPurchaserIdentityCard] = useState('');
-	// const [thirdPurchaserContactNo, setThirdPurchaserContactNo] = useState('');
-	// const [thirdPurchaserEmailAddress, setThirdPurchaserEmailAddress] = useState('');
-
-	// // Fourth
-	// const [fourthPurchaserName, setFourthPurchaserName] = useState('');
-	// const [fourthPurchaserIdentityCard, setFourthPurchaserIdentityCard] = useState('');
-	// const [fourthPurchaserContactNo, setFourthPurchaserContactNo] = useState('');
-	// const [fourthPurchaserEmailAddress, setFourthPurchaserEmailAddress] = useState('');
-
-	// // Fifth Purchaser
-	// const [fifthPurchaserName, setFifthPurchaserName] = useState('');
-	// const [fifthPurchaserIdentityCard, setFifthPurchaserIdentityCard] = useState('');
-	// const [fifthPurchaserContactNo, setFifthPurchaserContactNo] = useState('');
-	// const [fifthPurchaserEmailAddress, setFifthPurchaserEmailAddress] = useState('');
-
 	// If Purchaser is Company
 	const [purchaserCorrespondenceAddress, setPurchaserCorrespondenceAddress] = useState('');
-
-	// Properitor Details
-	const [proprietorName, setProprietorName] = useState('');
-	const [proprietorCompanyRegistrationNo, setProprietorCompanyRegistrationNo] = useState('');
-	const [proprietorRegisteredOfficeAddress, setProprietorRegisteredOfficeAddress] = useState('');
-	const [proprietorPlaceBusinessAddress, setProprietorPlaceBusinessAddress] = useState('');
-	const [proprietorAuthorisedFirstSignatoryName, setProprietorAuthorisedFirstSignatoryName] = useState('');
-	const [proprietorAuthorisedFirstIdentityCardNo, setProprietorAuthorisedFirstIdentityCardNo] = useState('');
-	const [proprietorAuthorisedSecondSignatoryName, setProprietorAuthorisedSecondSignatoryName] = useState('');
-	const [proprietorAuthorisedSecondIdentityCardNo, setProprietorAuthorisedSecondIdentityCardNo] = useState('');
 
 	// Purchase Price
 	const [purchasePriceWords, setPurchasePriceWords] = useState('');
 	const [purchasePriceNumerics, setPurchasePriceNumerics] = useState('');
-	const [parcelUnitLotNo, setParcelUnitLotNo] = useState('');
-	const [storeyNo, setStoreyNo] = useState('');
-	const [buildingBlockNo, setBuildingBlockNo] = useState('');
-	const [parcelUnitLotArea, setParcelUnitLotArea] = useState('');
-	const [parcelUnitLotBuiltUpArea, setParcelUnitLotBuiltUpArea] = useState('');
-	const [accessoryParcelsNo, setAccessoryParcelsNo] = useState('');
-	const [accessoryParcelsBuildingBlockNo, setAccessoryParcelsBuildingBlockNo] = useState('');
-	const [airCondLedgeParcelsNo, setAirCondLedgeParcelsNo] = useState('');
-	const [carParkLotsNo, setCarParkLotsNo] = useState('');
-	const [carParkBuildingBlockNo, setCarParkBuildingBlockNo] = useState('');
-
-	// Housing Development Account (HDA) Details
-	const [developerHDANo, setDeveloperHDANo] = useState('');
-	const [bankName, setBankName] = useState('');
-	const [bankRegisteredOfficeAddress, setBankRegisteredOfficeAddress] = useState('');
-	const [bankFileReferenceNo, setBankFileReferenceNo] = useState('');
 
 	// Adjustment Rate
 	const [adjustmentRateWords, setAdjustmentRateWords] = useState('');
 	const [adjustmentRateNumerics, setAdjustmentRateNumerics] = useState('');
-
-	// Summary Of Purchase Price
-	const [approvedPurchasePriceNumerics, setApprovedPurchasePriceNumerics] = useState('');
-	const [developerDiscountNumerics, setDeveloperDiscountNumerics] = useState('');
-	const [bumiputeraLotDiscountNumerics, setBumiputeraLotDiscountNumerics] = useState('');
-	const [governmentInitiativeNumerics, setGovernmentInitiativeNumerics] = useState('');
-
-	const [projectName, setProjectName] = useState('');
-	const [phaseNo, setPhaseNo] = useState('');
-	const [townVillageMukim, setTownVillageMukim] = useState('');
-	const [district, setDistrict] = useState('');
-	const [state, setState] = useState('');
 
 	type KeyValue = { key: string; value: string };
 	const convertToArray = (text: string): KeyValue[] => {
@@ -120,7 +67,7 @@ const PurchaserScreen: React.FC = () => {
 	};
 
 	const handleAddScheduleSubmit = async () => {
-		const scheduleData = {
+		const purchaserData = {
 			firstPurchaserName,
 			firstPurchaserIdentityCard,
 			firstPurchaserContactNo,
@@ -130,58 +77,27 @@ const PurchaserScreen: React.FC = () => {
 			secondPurchaserContactNo,
 			secondPurchaserEmailAddress,
 			purchaserCorrespondenceAddress,
-			proprietorName,
-			proprietorCompanyRegistrationNo,
-			proprietorRegisteredOfficeAddress,
-			proprietorPlaceBusinessAddress,
-			proprietorAuthorisedFirstSignatoryName,
-			proprietorAuthorisedFirstIdentityCardNo,
-			proprietorAuthorisedSecondSignatoryName,
-			proprietorAuthorisedSecondIdentityCardNo,
 			purchasePriceWords,
 			purchasePriceNumerics,
-			parcelUnitLotNo,
-			storeyNo,
-			buildingBlockNo,
-			parcelUnitLotArea,
-			parcelUnitLotBuiltUpArea,
-			accessoryParcelsNo,
-			accessoryParcelsBuildingBlockNo,
-			airCondLedgeParcelsNo,
-			carParkLotsNo,
-			carParkBuildingBlockNo,
-			developerHDANo,
-			bankName,
-			bankRegisteredOfficeAddress,
-			bankFileReferenceNo,
 			adjustmentRateWords,
 			adjustmentRateNumerics,
-			approvedPurchasePriceNumerics,
-			developerDiscountNumerics,
-			bumiputeraLotDiscountNumerics,
-			governmentInitiativeNumerics,
-			projectName,
-			phaseNo,
-			townVillageMukim,
-			district,
-			state,
 		};
 
 		try {
-			const response = await fetch('http://localhost:5000/add-schedule-h', {
+			const response = await fetch('http://localhost:5000/add-purchaser', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify(scheduleData),
+				body: JSON.stringify(purchaserData),
 			});
 
 			const result = await response.json();
 
 			if (response.ok) {
-				alert('Schedule H form added successfully');
+				alert('Purchaser added successfully');
 			} else {
-				alert('Failed to add schedule H form');
+				alert('Failed to add purchaser');
 				console.error(result);
 			}
 		} catch (error) {
@@ -189,257 +105,255 @@ const PurchaserScreen: React.FC = () => {
 			alert('An error occurred');
 		}
 	};
-	const sectionIcons = {
-		"Purchaser": <PersonIcon style={{ fontSize: 15, }} />,
-		"Proprietor": <BusinessIcon style={{ fontSize: 15 }} />,
-		"Master Chargee / Assignee": <AssignmentIcon style={{ fontSize: 15 }} />,
-		"Master Title": <HouseIcon style={{ fontSize: 15 }} />,
-		"Project": <LocationCityIcon style={{ fontSize: 15 }} />,
-		"Property Details": <HouseIcon style={{ fontSize: 15 }} />,
-		"HDA": <AccountBalanceIcon style={{ fontSize: 15 }} />,
-		"Developer Solicitors": <GavelIcon style={{ fontSize: 15 }} />,
-		"Purchaser Solicitors": <GavelIcon style={{ fontSize: 15 }} />,
-		"Purchase Price": <MonetizationOnIcon style={{ fontSize: 15 }} />,
-		"Adjustment Rate": <MonetizationOnIcon style={{ fontSize: 15 }} />,
-		"Developer Stakeholder": <BusinessIcon style={{ fontSize: 15 }} />,
-		"Summary Of Price (in RM)": <SummaryIcon style={{ fontSize: 15 }} />,
-		"Schedule Of Payment(s)": <PaymentIcon style={{ fontSize: 15 }} />,
-	};
+
+	// const sectionIcons = {
+	// 	"Purchaser": <PersonIcon style={{ fontSize: 15, }} />,
+	// 	"Proprietor": <BusinessIcon style={{ fontSize: 15 }} />,
+	// 	"Master Chargee / Assignee": <AssignmentIcon style={{ fontSize: 15 }} />,
+	// 	"Master Title": <HouseIcon style={{ fontSize: 15 }} />,
+	// 	"Project": <LocationCityIcon style={{ fontSize: 15 }} />,
+	// 	"Property Details": <HouseIcon style={{ fontSize: 15 }} />,
+	// 	"HDA": <AccountBalanceIcon style={{ fontSize: 15 }} />,
+	// 	"Developer Solicitors": <GavelIcon style={{ fontSize: 15 }} />,
+	// 	"Purchaser Solicitors": <GavelIcon style={{ fontSize: 15 }} />,
+	// 	"Purchase Price": <MonetizationOnIcon style={{ fontSize: 15 }} />,
+	// 	"Adjustment Rate": <MonetizationOnIcon style={{ fontSize: 15 }} />,
+	// 	"Developer Stakeholder": <BusinessIcon style={{ fontSize: 15 }} />,
+	// 	"Summary Of Price (in RM)": <SummaryIcon style={{ fontSize: 15 }} />,
+	// 	"Schedule Of Payment(s)": <PaymentIcon style={{ fontSize: 15 }} />,
+	// };
+
 	const sections = [
 		{
-		  heading: "Proprietor",
-		  fields: [
-			"Proprietor name",
-			"Proprietor company registration number",
-			"Proprietor registered office address",
-			"Proprietor place of business address",
-			"Proprietor authorised 1st signatory name",
-			"Proprietor authorised 1st identity card number",
-			"Proprietor authorised 2nd signatory name",
-			"Proprietor authorised 2nd identity card number",
-			"Proprietor PA number registered in High Court",
-			"Proprietor Noting PA registered in which land registry",
-		  ],
+			heading: "Proprietor",
+			fields: [
+				"Proprietor name",
+				"Proprietor company registration number",
+				"Proprietor registered office address",
+				"Proprietor place of business address",
+				"Proprietor authorised 1st signatory name",
+				"Proprietor authorised 1st identity card number",
+				"Proprietor authorised 2nd signatory name",
+				"Proprietor authorised 2nd identity card number",
+				"Proprietor PA number registered in High Court",
+				"Proprietor Noting PA registered in which land registry",
+			],
 		},
 		{
-		  heading: "Master Chargee / Assignee",
-		  fields: [
-			"Master Chargee / Assignee name",
-			"Master Chargee / Assignee company registration number",
-			"Master Chargee / Assignee registered office address",
-			"Master Chargee / Assignee place of business address",
-			"Master Chargee / Assignee file reference number",
-			"Master Chargee / Assignee contact number",
-			"Master Chargee / Assignee email address",
-			"Master Chargee / Assignee person in charge name",
-			"Master Chargee / Assignee person in charge name contact number",
-			"Master Chargee / Assignee person in charge email address",
-		  ],
+			heading: "Master Chargee / Assignee",
+			fields: [
+				"Master Chargee / Assignee name",
+				"Master Chargee / Assignee company registration number",
+				"Master Chargee / Assignee registered office address",
+				"Master Chargee / Assignee place of business address",
+				"Master Chargee / Assignee file reference number",
+				"Master Chargee / Assignee contact number",
+				"Master Chargee / Assignee email address",
+				"Master Chargee / Assignee person in charge name",
+				"Master Chargee / Assignee person in charge name contact number",
+				"Master Chargee / Assignee person in charge email address",
+			],
 		},
 		{
-		  heading: "Master Title",
-		  fields: [
-			"Title type - Freehold / Leasehold",
-			"Title description - H.S.(D) / H.S.(M) / PN / PM / Geran / Geran Mukim",
-			"Title number",
-			"Lot/PT number",
-			"Mukim/Bandar/Pekan",
-			"Daerah",
-			"Negeri",
-			"If leasehold, numbers of years and expiration date",
-			"Land area",
-		  ],
+			heading: "Master Title",
+			fields: [
+				"Title type - Freehold / Leasehold",
+				"Title description - H.S.(D) / H.S.(M) / PN / PM / Geran / Geran Mukim",
+				"Title number",
+				"Lot/PT number",
+				"Mukim/Bandar/Pekan",
+				"Daerah",
+				"Negeri",
+				"If leasehold, numbers of years and expiration date",
+				"Land area",
+			],
 		},
 		{
-		  heading: "Project",
-		  fields: [
-			"Type of building",
-			"Project name",
-			"Phase number",
-			"Advertisement & sale permit number",
-			"Approved layout plan reference number",
-			"Local municipal name",
-		  ],
+			heading: "Project",
+			fields: [
+				"Type of building",
+				"Project name",
+				"Phase number",
+				"Advertisement & sale permit number",
+				"Approved layout plan reference number",
+				"Local municipal name",
+			],
 		},
 		{
-		  heading: "Property Details",
-		  fields: [
-			"Parcel/unit/lot number",
-			"Title type - Freehold / Leasehold",
-			"Title description - H.S.(D) / H.S.(M) / PN / PM / Geran / Geran Mukim",
-			"Title number",
-			"Lot/PT number",
-			"Mukim/Bandar/Pekan",
-			"Daerah",
-			"Negeri",
-			"If leasehold, numbers of years and expiration date",
-			"Parcel/unit/lot area",
-			"Parcel/unit/lot built up area",
-			"Property address",
-		  ],
+			heading: "Property Details",
+			fields: [
+				"Parcel/unit/lot number",
+				"Title type - Freehold / Leasehold",
+				"Title description - H.S.(D) / H.S.(M) / PN / PM / Geran / Geran Mukim",
+				"Title number",
+				"Lot/PT number",
+				"Mukim/Bandar/Pekan",
+				"Daerah",
+				"Negeri",
+				"If leasehold, numbers of years and expiration date",
+				"Parcel/unit/lot area",
+				"Parcel/unit/lot built up area",
+				"Property address",
+			],
 		},
 		{
-		  heading: "HDA",
-		  fields: [
-			"Developer HDA number",
-			"Bank/financial institution name",
-			"Bank/financial institution registered office address",
-			"Bank/financial institution file reference number",
-		  ],
+			heading: "HDA",
+			fields: [
+				"Developer HDA number",
+				"Bank/financial institution name",
+				"Bank/financial institution registered office address",
+				"Bank/financial institution file reference number",
+			],
 		},
 		{
-		  heading: "Developer Solicitors",
-		  fields: [
-			"Developer solicitors name",
-			"Developer solicitors office address",
-			"Developer solicitors file reference number",
-			"Developer solicitors contact number",
-			"Developer solicitors email address",
-			"Developer attestation lawyer name",
-			"Developer attestation lawyer identity card number",
-			"Developer solicitors lawyer & clerk in charge contact number",
-			"Developer solicitors lawyer and clerk in charge email address",
-		  ],
+			heading: "Developer Solicitors",
+			fields: [
+				"Developer solicitors name",
+				"Developer solicitors office address",
+				"Developer solicitors file reference number",
+				"Developer solicitors contact number",
+				"Developer solicitors email address",
+				"Developer attestation lawyer name",
+				"Developer attestation lawyer identity card number",
+				"Developer solicitors lawyer & clerk in charge contact number",
+				"Developer solicitors lawyer and clerk in charge email address",
+			],
 		},
 		{
-		  heading: "Purchaser Solicitors",
-		  fields: [
-			"Purchaser solicitors name",
-			"Purchaser solicitors office address",
-			"Purchaser solicitors file reference number",
-			"Purchaser solicitors contact number",
-			"Purchaser solicitors email address",
-			"Purchaser attestation lawyer name",
-			"Purchaser attestation lawyer identity card number",
-			"Purchaser solicitors lawyer & clerk in charge contact number",
-			"Purchaser solicitors lawyer and clerk in charge email address",
-		  ],
+			heading: "Purchaser Solicitors",
+			fields: [
+				"Purchaser solicitors name",
+				"Purchaser solicitors office address",
+				"Purchaser solicitors file reference number",
+				"Purchaser solicitors contact number",
+				"Purchaser solicitors email address",
+				"Purchaser attestation lawyer name",
+				"Purchaser attestation lawyer identity card number",
+				"Purchaser solicitors lawyer & clerk in charge contact number",
+				"Purchaser solicitors lawyer and clerk in charge email address",
+			],
 		},
 		{
-		  heading: "Purchase Price",
-		  fields: [
-			"Purchase price in words",
-			"Purchase price in numerics",
-		  ],
+			heading: "Purchase Price",
+			fields: [
+				"Purchase price in words",
+				"Purchase price in numerics",
+			],
 		},
 		{
-		  heading: "Adjustment Rate",
-		  fields: [
-			"Adjustment rate in words",
-			"Adjustment rate in numerics",
-		  ],
+			heading: "Adjustment Rate",
+			fields: [
+				"Adjustment rate in words",
+				"Adjustment rate in numerics",
+			],
 		},
 		{
-		  heading: "Developer Stakeholder",
-		  fields: [
-			"Developer stakeholder name",
-			"Developer stakeholder office address",
-			"Developer stakeholder file reference number",
-			"Developer stakeholder contact number",
-			"Developer stakeholder email address",
-			"Developer stakeholder person in charge contact number",
-			"Developer stakeholder person in charge email address",
-		  ],
+			heading: "Developer Stakeholder",
+			fields: [
+				"Developer stakeholder name",
+				"Developer stakeholder office address",
+				"Developer stakeholder file reference number",
+				"Developer stakeholder contact number",
+				"Developer stakeholder email address",
+				"Developer stakeholder person in charge contact number",
+				"Developer stakeholder person in charge email address",
+			],
 		},
 		{
-		  heading: "Summary Of Price (in RM)",
-		  fields: [
-			"Approved purchase price in numerics",
-			"Developer discount in numerics",
-			"Bumiputera lot discount in numerics",
-			"Government initiative in numerics",
-		  ],
+			heading: "Summary Of Price (in RM)",
+			fields: [
+				"Approved purchase price in numerics",
+				"Developer discount in numerics",
+				"Bumiputera lot discount in numerics",
+				"Government initiative in numerics",
+			],
 		},
 		{
-		  heading: "Schedule Of Payment(s)",
-		  fields: [
-			"Purchase price (10%) in numerics",
-			"Purchase price (15%) in numerics",
-			"Purchase price (5%) in numerics",
-			"Purchase price (2.5%) in numerics",
-			"Purchase price (17.5%) in numerics",
-			"Purchase price (100%) in numerics",
-		  ],
+			heading: "Schedule Of Payment(s)",
+			fields: [
+				"Purchase price (10%) in numerics",
+				"Purchase price (15%) in numerics",
+				"Purchase price (5%) in numerics",
+				"Purchase price (2.5%) in numerics",
+				"Purchase price (17.5%) in numerics",
+				"Purchase price (100%) in numerics",
+			],
 		},
-	  ];
+	];
 	const purchaserarray = [
 		{
-		  heading: "Purchaser individual(s) Malaysia",
-		  fields: [
-			"1st Purchaser name",
-			"1st Purchaser identity card",
-			"1st Purchaser contact number",
-			"1st Purchaser email address",
-			"2nd Purchaser name",
-			"2nd Purchaser identity card",
-			"2nd Purchaser contact number",
-			"2nd Purchaser email address",
-			"3rd Purchaser name",
-			"3rd Purchaser identity card",
-			"3rd Purchaser contact number",
-			"3rd Purchaser email address",
-			"4th Purchaser name",
-			"4th Purchaser identity card",
-			"4th Purchaser contact number",
-			"4th Purchaser email address",
-			"5th Purchaser name",
-			"5th Purchaser identity card",
-			"5th Purchaser contact number",
-			"5th Purchaser email address",
-			"Purchaser correspondance address",
-		  ],
+			heading: "Purchaser individual(s) Malaysia",
+			fields: [
+				"1st Purchaser name",
+				"1st Purchaser identity card",
+				"1st Purchaser contact number",
+				"1st Purchaser email address",
+				"2nd Purchaser name",
+				"2nd Purchaser identity card",
+				"2nd Purchaser contact number",
+				"2nd Purchaser email address",
+				"3rd Purchaser name",
+				"3rd Purchaser identity card",
+				"3rd Purchaser contact number",
+				"3rd Purchaser email address",
+				"4th Purchaser name",
+				"4th Purchaser identity card",
+				"4th Purchaser contact number",
+				"4th Purchaser email address",
+				"5th Purchaser name",
+				"5th Purchaser identity card",
+				"5th Purchaser contact number",
+				"5th Purchaser email address",
+				"Purchaser correspondance address",
+			],
 		},
 		{
-		  heading: "Purchaser Foreinger",
-		  fields: [
-			"1st Purchaser name",
-			"1st Purchaser passport number",
-			"1st Purchaser contact number",
-			"1st Purchaser email address",
-			"2nd Purchaser name",
-			"2nd Purchaser passport number",
-			"2nd Purchaser contact number",
-			"2nd Purchaser email address",
-			"3rd Purchaser name",
-			"3rd Purchaser passport number",
-			"3rd Purchaser contact number",
-			"3rd Purchaser email address",
-			"Purchaser correspondance address",
-			"Purchaser correspondance address in Malaysia",
-		  ],
+			heading: "Purchaser Foreinger",
+			fields: [
+				"1st Purchaser name",
+				"1st Purchaser passport number",
+				"1st Purchaser contact number",
+				"1st Purchaser email address",
+				"2nd Purchaser name",
+				"2nd Purchaser passport number",
+				"2nd Purchaser contact number",
+				"2nd Purchaser email address",
+				"3rd Purchaser name",
+				"3rd Purchaser passport number",
+				"3rd Purchaser contact number",
+				"3rd Purchaser email address",
+				"Purchaser correspondance address",
+				"Purchaser correspondance address in Malaysia",
+			],
 		},
 		{
-		  heading: "Purchaser company",
-		  fields: [
-			"Purchaser name",
-			"Purchaser company registration number",
-			"Purchaser registered office address",
-			"Purchaser place of business address",
-			"Purchaser contact number",
-			"Purchaser email address",
-			"Purchaser person in charge name",
-			"Purchaser person in charge name contact number",
-			"Purchaser person in charge email address",
-			"Purchaser authorised 1st signatory name",
-			"Purchaser authorised 1st identity card number",
-			"Purchaser authorised 1st signatory designation",
-			"Purchaser authorised 2nd signatory name",
-			"Purchaser authorised 2nd identity card number",
-			"Purchaser authorised 2nd signatory designation",
-		  ],
+			heading: "Purchaser company",
+			fields: [
+				"Purchaser name",
+				"Purchaser company registration number",
+				"Purchaser registered office address",
+				"Purchaser place of business address",
+				"Purchaser contact number",
+				"Purchaser email address",
+				"Purchaser person in charge name",
+				"Purchaser person in charge name contact number",
+				"Purchaser person in charge email address",
+				"Purchaser authorised 1st signatory name",
+				"Purchaser authorised 1st identity card number",
+				"Purchaser authorised 1st signatory designation",
+				"Purchaser authorised 2nd signatory name",
+				"Purchaser authorised 2nd identity card number",
+				"Purchaser authorised 2nd signatory designation",
+			],
 		},
-	  ];
+	];
 
-  const handleChanges = (event: React.SyntheticEvent, newValue: string) => {
-	setSelectedValues(event.target.values);
-  };
-  const selectedSection =
-  selectedValue === "a"
-	? purchaserarray[0] // Purchaser individual(s) (Malaysian)
-	: selectedValue === "b"
-	? purchaserarray[1] // Purchaser individual(s) (Foreigner)
-	: purchaserarray[2]; // Purchaser company
-	
+	const handleChanges = (event: React.SyntheticEvent, newValue: string) => {
+		setSelectedValues(event.target.values);
+	};
+	const selectedSection =
+		selectedValue === "a" ? purchaserarray[0] : selectedValue === "b" ? purchaserarray[1] : purchaserarray[2];
+
 	const sectionRefs = useMemo(
 		() => sections.map(() => React.createRef<HTMLDivElement>()),
 		[]
@@ -457,6 +371,11 @@ const PurchaserScreen: React.FC = () => {
 	};
 
 	const UploadFile = async (event: React.FormEvent) => {
+		// For matter code
+		// if (uploadFiles.length === 0) {
+		// 	alert('Please select at least one file');
+		// 	return;
+		// }
 		if (uploadFiles.length === 0) {
 			alert('Please select at least one file');
 			return;
@@ -505,73 +424,8 @@ const PurchaserScreen: React.FC = () => {
 						case '2nd Purchaser email address':
 							setSecondPurchaserEmailAddress(data.value);
 							break;
-
-						// case '3rd Purchaser name':
-						// 	setThirdPurchaserName(data.value);
-						// 	break;
-						// case '3rd Purchaser identity card':
-						// 	setThirdPurchaserIdentityCard(data.value);
-						// 	break;
-						// case '3rd Purchaser contact number':
-						// 	setThirdPurchaserContactNo(data.value);
-						// 	break;
-						// case '3rd Purchaser email address':
-						// 	setThirdPurchaserEmailAddress(data.value);
-						// 	break;
-
-						// case '4th Purchaser name':
-						// 	setFourthPurchaserName(data.value);
-						// 	break;
-						// case '4th Purchaser identity card':
-						// 	setFourthPurchaserIdentityCard(data.value);
-						// 	break;
-						// case '4th Purchaser contact number':
-						// 	setFourthPurchaserContactNo(data.value);
-						// 	break;
-						// case '4th Purchaser email address':
-						// 	setFourthPurchaserEmailAddress(data.value);
-						// 	break;
-
-						// case '5th Purchaser name':
-						// 	setFifthPurchaserName(data.value);
-						// 	break;
-						// case '5th Purchaser identity card':
-						// 	setFifthPurchaserIdentityCard(data.value);
-						// 	break;
-						// case '5th Purchaser contact number':
-						// 	setFifthPurchaserContactNo(data.value);
-						// 	break;
-						// case '5th Purchaser email address':
-						// 	setFifthPurchaserEmailAddress(data.value);
-						// 	break;
-
 						case 'Purchaser correspondence address':
 							setPurchaserCorrespondenceAddress(data.value);
-							break;
-
-						case 'Proprietor name':
-							setProprietorName(data.value);
-							break;
-						case 'Proprietor company registration number':
-							setProprietorCompanyRegistrationNo(data.value);
-							break;
-						case 'Proprietor registered office address':
-							setProprietorRegisteredOfficeAddress(data.value);
-							break;
-						case 'Proprietor place of business address':
-							setProprietorPlaceBusinessAddress(data.value);
-							break;
-						case 'Proprietor authorised 1st signatory name':
-							setProprietorAuthorisedFirstSignatoryName(data.value);
-							break;
-						case 'Proprietor authorised 1st identity card number':
-							setProprietorAuthorisedFirstIdentityCardNo(data.value);
-							break;
-						case 'Proprietor authorised 2nd signatory name':
-							setProprietorAuthorisedSecondSignatoryName(data.value);
-							break;
-						case 'Proprietor authorised 2nd identity card number':
-							setProprietorAuthorisedSecondIdentityCardNo(data.value);
 							break;
 
 						case 'Purchase price in words':
@@ -580,85 +434,12 @@ const PurchaserScreen: React.FC = () => {
 						case 'Purchase price in numerics':
 							setPurchasePriceNumerics(data.value);
 							break;
-						
+
 						case 'Adjustment rate in words':
 							setAdjustmentRateWords(data.value);
 							break;
 						case 'Adjustment rate in numerics':
 							setAdjustmentRateNumerics(data.value);
-							break;
-						
-						case 'Parcel/unit/lot number':
-							setParcelUnitLotNo(data.value);
-							break;
-						case 'Storey number':
-							setStoreyNo(data.value);
-							break;
-						case 'Building/block number':
-							setBuildingBlockNo(data.value);
-							break;
-						case 'Parcel/unit/lot area':
-							setParcelUnitLotArea(data.value);
-							break;
-						case 'Parcel/unit/lot built up area':
-							setParcelUnitLotBuiltUpArea(data.value);
-							break;
-						case 'Accessory parcel(s) number':
-							setAccessoryParcelsNo(data.value);
-							break;
-						case 'Accessory parcel(s) building/block number':
-							setAccessoryParcelsBuildingBlockNo(data.value);
-							break;
-						case 'Air-cond ledge parcel(s) number':
-							setAirCondLedgeParcelsNo(data.value);
-							break;
-						case 'Car park lot(s) number':
-							setCarParkLotsNo(data.value);
-							break;
-						case 'Car park building/block number':
-							setCarParkBuildingBlockNo(data.value);
-							break;
-
-						case 'Developer HDA number':
-							setDeveloperHDANo(data.value);
-							break;
-						case 'Bank/financial institution name':
-							setBankName(data.value);
-							break;
-						case 'Bank/financial institution registered office address':
-							setBankRegisteredOfficeAddress(data.value);
-							break;
-						case 'Bank/financial institution file reference number':
-							setBankFileReferenceNo(data.value);
-							break;
-						
-						case 'Approved purchase price in numerics':
-							setApprovedPurchasePriceNumerics(data.value);
-							break;
-						case 'Developer discount in numerics':
-							setDeveloperDiscountNumerics(data.value);
-							break;
-						case 'Bumiputera lot discount in numerics':
-							setBumiputeraLotDiscountNumerics(data.value);
-							break;
-						case 'Government initiative in numerics':
-							setGovernmentInitiativeNumerics(data.value);
-							break;
-
-						case 'Project name':
-							setProjectName(data.value);
-							break;
-						case 'Phase number':
-							setPhaseNo(data.value);
-							break;
-						case 'Town/Village/Mukim':
-							setTownVillageMukim(data.value);
-							break;
-						case 'District':
-							setDistrict(data.value);
-							break;
-						case 'State':
-							setState(data.value);
 							break;
 					}
 				});
@@ -756,14 +537,14 @@ const PurchaserScreen: React.FC = () => {
 										</Button>
 									</DialogActions>
 								</Box>
-						
+
 
 								{loading && (
 									<Box sx={{ display: 'flex', marginTop: 2, marginBottom: 2 }}>
 										<CircularProgress />
 									</Box>
 								)}
-								
+
 								<Box
 									sx={{
 										marginTop: '0px',
@@ -781,242 +562,216 @@ const PurchaserScreen: React.FC = () => {
 											borderBottom: '1px solid #ddd',
 										}}
 									>
-												{/* <div style={{marginTop: '10px', marginBottom: '40px'}}>
-        <h3>Developer</h3>
-<select style={{ padding: "10px", fontSize: "14px", borderRadius: "4px" }}>
-  <option value="">Select a Developer</option>
-  <option value="Field 1">Field 1</option>
-  <option value="Field 2">Field 2</option>
-  <option value="Field 3">Field 3</option>
-</select>
-      </div> */}
+										{/* <div style={{marginTop: '10px', marginBottom: '40px'}}>
+											<h3>Developer</h3>
+											<select style={{ padding: "10px", fontSize: "14px", borderRadius: "4px" }}>
+												<option value="">
+													Select a Developer
+												</option>
+												<option value="Field 1">
+													Field 1
+												</option>
+												<option value="Field 2">
+													Field 2
+												</option>
+												<option value="Field 3">
+													Field 3
+												</option>
+											</select>
+										</div> */}
 
-                  <Box sx={{ display: "flex", width: "100%", marginBottom: 2, marginTop: 1 }}>
-        <Radio
-          checked={selectedValue === "a"}
-          onChange={handleChanges}
-          value="a"
-          name="radio-buttons"
-          inputProps={{ "aria-label": "A" }}
-        />
-        <PersonIcon style={{ marginRight: "5px", marginTop: "8px" }} />
-        <Typography style={{ marginTop: "10px" }}>Purchaser Individual Malaysia</Typography>
+										<Box sx={{ display: "flex", width: "100%", marginBottom: 2, marginTop: 1 }}>
+											<Radio
+												checked={selectedValue === "a"}
+												onChange={handleChanges}
+												value="a"
+												name="radio-buttons"
+												inputProps={{ "aria-label": "A" }}
+											/>
+											<PersonIcon style={{ marginRight: "5px", marginTop: "8px" }} />
+											<Typography style={{ marginTop: "10px" }}>
+												Purchaser Individual Malaysia
+											</Typography>
 
-        <Radio
-          checked={selectedValue === "b"}
-          onChange={handleChanges}
-          value="b"
-          name="radio-buttons"
-          inputProps={{ "aria-label": "B" }}
-        />
-        <AccountCircleIcon style={{ marginRight: "5px", marginTop: "8px" }} />
-        <Typography style={{ marginTop: "10px" }}>Purchaser Foreigner</Typography>
+											<Radio
+												checked={selectedValue === "b"}
+												onChange={handleChanges}
+												value="b"
+												name="radio-buttons"
+												inputProps={{ "aria-label": "B" }}
+											/>
+											<AccountCircleIcon style={{ marginRight: "5px", marginTop: "8px" }} />
+											<Typography style={{ marginTop: "10px" }}>
+												Purchaser Foreigner
+											</Typography>
 
-        <Radio
-          checked={selectedValue === "c"}
-          onChange={handleChanges}
-          value="c"
-          name="radio-buttons"
-          inputProps={{ "aria-label": "C" }}
-        />
-        <GroupIcon style={{ marginRight: "5px", marginTop: "8px" }} />
-        <Typography style={{ marginTop: "10px" }}>Purchaser company</Typography>
-      </Box>
-	  <h2>Purchaser</h2>
-	  <Grid container spacing={2}>
-									<Grid item xs={12} sm={6}>
-									<TextField
-										label="1st Purchaser name"
-										fullWidth
-										variant="outlined"
-										value={firstPurchaserName}
-										onChange={(e) => setFirstPurchaserName(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									</Grid>
-									  <Grid item xs={12} sm={6}>
-
-									<TextField
-										label="1st Purchaser identity card"
-										fullWidth
-										variant="outlined"
-										value={firstPurchaserIdentityCard}
-										onChange={(e) => setFirstPurchaserIdentityCard(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
+											<Radio
+												checked={selectedValue === "c"}
+												onChange={handleChanges}
+												value="c"
+												name="radio-buttons"
+												inputProps={{ "aria-label": "C" }}
+											/>
+											<GroupIcon style={{ marginRight: "5px", marginTop: "8px" }} />
+											<Typography style={{ marginTop: "10px" }}>
+												Purchaser company
+											</Typography>
+										</Box>
+										<h2>Matter Code</h2>
+										<Grid container spacing={2}>
+											<Grid size={3}>
+												<TextField
+													label="Matter Code"
+													fullWidth
+													variant="outlined"
+													value={firstPurchaserName}
+													onChange={(e) => setFirstPurchaserName(e.target.value)}
+													sx={{ marginBottom: 2 }}
+												/>
+											</Grid>
 										</Grid>
-										<Grid item xs={12} sm={6}>
-									<TextField
-										label="1st Purchaser contact number"
-										fullWidth
-										variant="outlined"
-										value={firstPurchaserContactNo}
-										onChange={(e) => setFirstPurchaserContactNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									</Grid>
-										<Grid item xs={12} sm={6}>
-									<TextField
-										label="1st Purchaser email address"
-										fullWidth
-										variant="outlined"
-										value={firstPurchaserEmailAddress}
-										onChange={(e) => setFirstPurchaserEmailAddress(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									</Grid>
-									<Grid item xs={12} sm={6}>
-									<TextField
-										label="2nd Purchaser name"
-										fullWidth
-										variant="outlined"
-										value={secondPurchaserName}
-										onChange={(e) => setSecondPurchaserName(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									</Grid>
-									<Grid item xs={12} sm={6}>
-									<TextField
-										label="2nd Purchaser identity card"
-										fullWidth
-										variant="outlined"
-										value={secondPurchaserIdentityCard}
-										onChange={(e) => setSecondPurchaserIdentityCard(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									</Grid>
-									<Grid item xs={12} sm={6}>
-									<TextField
-										label="2nd Purchaser contact number"
-										fullWidth
-										variant="outlined"
-										value={secondPurchaserContactNo}
-										onChange={(e) => setSecondPurchaserContactNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									</Grid>
-									<Grid item xs={12} sm={6}>
-									<TextField
-										label="2nd Purchaser email address"
-										fullWidth
-										variant="outlined"
-										value={secondPurchaserEmailAddress}
-										onChange={(e) => setSecondPurchaserEmailAddress(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									</Grid>
-
-									{/* <TextField
-										label="3rd Purchaser name"
-										fullWidth
-										variant="outlined"
-										value={thirdPurchaserName}
-										onChange={(e) => setThirdPurchaserName(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									<TextField
-										label="3rd Purchaser identity card"
-										fullWidth
-										variant="outlined"
-										value={thirdPurchaserIdentityCard}
-										onChange={(e) => setThirdPurchaserIdentityCard(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									<TextField
-										label="3rd Purchaser contact number"
-										fullWidth
-										variant="outlined"
-										value={thirdPurchaserContactNo}
-										onChange={(e) => setThirdPurchaserContactNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									<TextField
-										label="3rd Purchaser email address"
-										fullWidth
-										variant="outlined"
-										value={thirdPurchaserEmailAddress}
-										onChange={(e) => setThirdPurchaserEmailAddress(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-
-									<TextField
-										label="4th Purchaser name"
-										fullWidth
-										variant="outlined"
-										value={fourthPurchaserName}
-										onChange={(e) => setFourthPurchaserName(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									<TextField
-										label="4th Purchaser identity card"
-										fullWidth
-										variant="outlined"
-										value={fourthPurchaserIdentityCard}
-										onChange={(e) => setFourthPurchaserIdentityCard(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									<TextField
-										label="4th Purchaser contact number"
-										fullWidth
-										variant="outlined"
-										value={fourthPurchaserContactNo}
-										onChange={(e) => setFourthPurchaserContactNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									<TextField
-										label="4th Purchaser email address"
-										fullWidth
-										variant="outlined"
-										value={fourthPurchaserEmailAddress}
-										onChange={(e) => setFourthPurchaserEmailAddress(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-
-									<TextField
-										label="5th Purchaser name"
-										fullWidth
-										variant="outlined"
-										value={fifthPurchaserName}
-										onChange={(e) => setFifthPurchaserName(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									<TextField
-										label="5th Purchaser identity card"
-										fullWidth
-										variant="outlined"
-										value={fifthPurchaserIdentityCard}
-										onChange={(e) => setFifthPurchaserIdentityCard(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									<TextField
-										label="5th Purchaser contact number"
-										fullWidth
-										variant="outlined"
-										value={fifthPurchaserContactNo}
-										onChange={(e) => setFifthPurchaserContactNo(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									<TextField
-										label="5th Purchaser email address"
-										fullWidth
-										variant="outlined"
-										value={fifthPurchaserEmailAddress}
-										onChange={(e) => setFifthPurchaserEmailAddress(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/> */}
-									<Grid item xs={12} sm={6}>
-									<TextField
-										label="Purchaser Correspondence Address"
-										fullWidth
-										variant="outlined"
-										value={purchaserCorrespondenceAddress}
-										onChange={(e) => setPurchaserCorrespondenceAddress(e.target.value)}
-										sx={{ marginBottom: 2 }}
-									/>
-									</Grid>
-								</Grid>
-						
-								</div>
+										<h2>Purchaser</h2>
+										<Grid container spacing={2}>
+											<Grid size={4}>
+												<TextField
+													label="1st Purchaser name"
+													fullWidth
+													variant="outlined"
+													value={firstPurchaserName}
+													onChange={(e) => setFirstPurchaserName(e.target.value)}
+													sx={{ marginBottom: 2 }}
+												/>
+											</Grid>
+											<Grid size={4}>
+												<TextField
+													label="1st Purchaser identity card"
+													fullWidth
+													variant="outlined"
+													value={firstPurchaserIdentityCard}
+													onChange={(e) => setFirstPurchaserIdentityCard(e.target.value)}
+													sx={{ marginBottom: 2 }}
+												/>
+											</Grid>
+											<Grid size={4}>
+												<TextField
+													label="1st Purchaser contact number"
+													fullWidth
+													variant="outlined"
+													value={firstPurchaserContactNo}
+													onChange={(e) => setFirstPurchaserContactNo(e.target.value)}
+													sx={{ marginBottom: 2 }}
+												/>
+											</Grid>
+											<Grid size={4}>
+												<TextField
+													label="1st Purchaser email address"
+													fullWidth
+													variant="outlined"
+													value={firstPurchaserEmailAddress}
+													onChange={(e) => setFirstPurchaserEmailAddress(e.target.value)}
+													sx={{ marginBottom: 2 }}
+												/>
+											</Grid>
+										</Grid>
+										<Grid container spacing={2}>
+											<Grid size={4}>
+												<TextField
+													label="2nd Purchaser name"
+													fullWidth
+													variant="outlined"
+													value={secondPurchaserName}
+													onChange={(e) => setSecondPurchaserName(e.target.value)}
+													sx={{ marginBottom: 2 }}
+												/>
+											</Grid>
+											<Grid size={4}>
+												<TextField
+													label="2nd Purchaser identity card"
+													fullWidth
+													variant="outlined"
+													value={secondPurchaserIdentityCard}
+													onChange={(e) => setSecondPurchaserIdentityCard(e.target.value)}
+													sx={{ marginBottom: 2 }}
+												/>
+											</Grid>
+											<Grid size={4}>
+												<TextField
+													label="2nd Purchaser contact number"
+													fullWidth
+													variant="outlined"
+													value={secondPurchaserContactNo}
+													onChange={(e) => setSecondPurchaserContactNo(e.target.value)}
+													sx={{ marginBottom: 2 }}
+												/>
+											</Grid>
+											<Grid size={4}>
+												<TextField
+													label="2nd Purchaser email address"
+													fullWidth
+													variant="outlined"
+													value={secondPurchaserEmailAddress}
+													onChange={(e) => setSecondPurchaserEmailAddress(e.target.value)}
+													sx={{ marginBottom: 2 }}
+												/>
+											</Grid>
+											<Grid size={4}>
+												<TextField
+													label="Purchaser Correspondence Address"
+													fullWidth
+													variant="outlined"
+													value={purchaserCorrespondenceAddress}
+													onChange={(e) => setPurchaserCorrespondenceAddress(e.target.value)}
+													sx={{ marginBottom: 2 }}
+												/>
+											</Grid>
+										</Grid>
+										<h2>Purchase Price</h2>
+										<Grid container spacing={2}>
+											<Grid size={4}>
+												<TextField
+													label="Purchase Price in Words"
+													fullWidth
+													variant="outlined"
+													value={purchasePriceWords}
+													onChange={(e) => setPurchasePriceWords(e.target.value)}
+													sx={{ marginBottom: 2 }}
+												/>
+											</Grid>
+											<Grid size={4}>
+												<TextField
+													label="Purchase Price in Numerics"
+													fullWidth
+													variant="outlined"
+													value={purchasePriceNumerics}
+													onChange={(e) => setPurchasePriceNumerics(e.target.value)}
+													sx={{ marginBottom: 2 }}
+												/>
+											</Grid>
+										</Grid>
+										<h2>Adjustment Rate</h2>
+										<Grid container spacing={2}>
+											<Grid size={4}>
+												<TextField
+													label="Adjustment Rate in Words"
+													fullWidth
+													variant="outlined"
+													value={adjustmentRateWords}
+													onChange={(e) => setAdjustmentRateWords(e.target.value)}
+													sx={{ marginBottom: 2 }}
+												/>
+											</Grid>
+											<Grid size={4}>
+												<TextField
+													label="Adjustment Rate in Numerics"
+													fullWidth
+													variant="outlined"
+													value={adjustmentRateNumerics}
+													onChange={(e) => setAdjustmentRateNumerics(e.target.value)}
+													sx={{ marginBottom: 2 }}
+												/>
+											</Grid>
+										</Grid>
+									</div>
 								</Box>
 							</Box>
 						</Box>
