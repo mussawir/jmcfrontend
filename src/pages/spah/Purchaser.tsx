@@ -39,7 +39,8 @@ const PurchaserForm: React.FC<PurchaserFormProps> = ({ shortHeading, questions }
     formData.append('searchQuery', prompt);
     
     try {
-      const response = await axios.post("http://127.0.0.1:5000/search-purchaser", formData, {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.post(`${apiUrl}/search-purchaser`, formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
         },
@@ -93,7 +94,8 @@ const PurchaserForm: React.FC<PurchaserFormProps> = ({ shortHeading, questions }
     formData.append('pId', pId);
     setLoading(true);
     try {
-      const response = await axios.post("http://127.0.0.1:5000/search-purchaser", formData, {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.post(`${apiUrl}/search-purchaser`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -135,9 +137,10 @@ const PurchaserForm: React.FC<PurchaserFormProps> = ({ shortHeading, questions }
   });
   
     try {
-      const response = await axios.put('http://127.0.0.1:5000/purchaserinfo', {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.put(`${apiUrl}/purchaserinfo`, {
         project_id: pId, // The unique project ID
-        formData: mappedFormData,        // The form data object with new values
+        formData: mappedFormData,
       });
       // alert(response.data.message);
       if (response.status === 200) {

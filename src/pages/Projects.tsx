@@ -51,7 +51,8 @@ function Projects() {
  
   //   setLoading(true); // Set loading state to true when fetching
   //   try {
-  //     const response = await axios.get('http://127.0.0.1:5000/developer-message'); // Adjust the endpoint accordingly
+        //const apiUrl = process.env.REACT_APP_API_URL;
+  //     const response = await axios.get(`${apiUrl}/developer-message`); // Adjust the endpoint accordingly
   //     setDeveloperMessage(response.data.message); // Store the response message
   //     // alert(response.data.message);
   //   } catch (error) {
@@ -70,7 +71,8 @@ function Projects() {
   
   //   useEffect(() => {
   //     // Fetching message from the backend
-  //     fetch(`${apiUrl}/`'http://127.0.0.1:5000/extractdn')
+        //const apiUrl = process.env.REACT_APP_API_URL;
+  //     fetch(`${apiUrl}/`${apiUrl}/extractdn`)
   //       .then((response) => {
   //         if (!response.ok) {
   //           throw new Error('Network response was not ok');
@@ -136,7 +138,8 @@ function Projects() {
     formData.append('matterCode', matterCode);
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/createproject", formData, {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.post(`${apiUrl}/createproject`, formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
         },
