@@ -104,7 +104,8 @@ function AddPrty() {
     formData.append("updatedBy", updatedBy);
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/add-party", formData, {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.post(`${apiUrl}/add-party`, formData, {
         headers: {
           "Content-Type": "multipart/form-data", 
         },

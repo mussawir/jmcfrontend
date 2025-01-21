@@ -64,7 +64,8 @@ function DeveloperForm() {
     
     //   const fetchCaseData = async (token: string) => {
     //     try {
-    //       const response = await fetch(`${apiUrl}/`'http://127.0.0.1:5000/extract-spah', {
+            //const apiUrl = process.env.REACT_APP_API_URL;
+    //       const response = await fetch(`${apiUrl}/extract-spah`, {
     //         headers: {
     //           Authorization: `Bearer ${token}`,
     //         },
@@ -106,7 +107,8 @@ function DeveloperForm() {
       event.preventDefault();
       
       try {
-        const response = await axios.put("http://127.0.0.1:5000/updateinfo", formData, {
+        const apiUrl = process.env.REACT_APP_API_URL;
+        const response = await axios.put(`${apiUrl}/updateinfo`, formData, {
           headers: { "Content-Type": "application/json" },
         });
         // alert(response.data.Message)
@@ -126,7 +128,8 @@ function DeveloperForm() {
         formData.append('pId', pId);
         
         try {
-          const response = await axios.post("http://127.0.0.1:5000/search-developer", formData, {
+          const apiUrl = process.env.REACT_APP_API_URL;
+          const response = await axios.post(`${apiUrl}/search-developer`, formData, {
             headers: {
               "Content-Type": "multipart/form-data", // Make sure the Content-Type is set to multipart/form-data
             },
@@ -149,7 +152,8 @@ function DeveloperForm() {
       formData.append('searchQuery', prompt);
       
       try {
-        const response = await axios.post("http://127.0.0.1:5000/search-developer", formData, {
+        const apiUrl = process.env.REACT_APP_API_URL;
+        const response = await axios.post(`${apiUrl}/search-developer`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

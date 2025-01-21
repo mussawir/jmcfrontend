@@ -27,7 +27,8 @@ const FinancierForm: React.FC<FinancierFormProps> = ({ shortHeading, questions }
     formData.append('searchQuery', searchQuery);
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/search-financier", formData, {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.post(`${apiUrl}/search-financier`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

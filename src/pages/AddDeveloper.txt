@@ -50,7 +50,8 @@
 //     };
 
 //     try {
-//       const response = await fetch('http://localhost:5000/add-developer', {
+        //const apiUrl = process.env.REACT_APP_API_URL;
+//       const response = await fetch(`${apiUrl}/add-developer`, {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -88,7 +89,8 @@
 //     formData.append('uploadFile', uploadFile);
   
 //     try {
-//       const response = await fetch('http://localhost:5000/add-document', {
+        //const apiUrl = process.env.REACT_APP_API_URL;
+//       const response = await fetch(`${apiUrl}/add-document`, {
 //         method: 'POST',
 //         body: formData,
 //       });
