@@ -28,7 +28,7 @@ function Document() {
 
   const fetchCaseData = async (token: string) => {
     try {
-      const apiUrl = process.env.API_URL;
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await fetch(`${apiUrl}/cases`, {
         headers: {
           Authorization: `Bearer ${token}`,

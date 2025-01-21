@@ -24,7 +24,7 @@ function LoginForm() {
     try {
       console.log("Email:", email, "Password:", password); // Debugging
   
-      const apiUrl = process.env.API_URL;
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await api.post(`${apiUrl}/login`, { email, password });
   
       if (response.status === 200) {

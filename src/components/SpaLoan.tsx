@@ -55,7 +55,7 @@ function SpaLoan() {
     };
 
     try {
-      const apiUrl = process.env.API_URL;
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await fetch(`${apiUrl}/spa-loan`, {
         method: 'POST',
         headers: {

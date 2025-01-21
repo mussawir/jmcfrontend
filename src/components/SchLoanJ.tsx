@@ -263,7 +263,7 @@ const SchLoanJ: React.FC = () => {
     uploadFiles.forEach((file) => formData.append('uploadFiles', file));
 
     try {
-      const apiUrl = process.env.API_URL;
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await fetch(`${apiUrl}/add-documents`, {
         method: 'POST',
         body: formData,

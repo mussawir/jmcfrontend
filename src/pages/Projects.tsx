@@ -159,7 +159,7 @@ function Projects() {
   useEffect(() => {
     const fetchDevelopers = async () => {
       try {
-        const apiUrl = process.env.API_URL;
+        const apiUrl = process.env.REACT_APP_API_URL;
         const response = await axios.get(`${apiUrl}/get-developers`);
         setDevelopers(response.data); 
       } catch (error) {
@@ -173,7 +173,7 @@ function Projects() {
   useEffect(() => {
     const fetchParty = async () => {
       try {
-        const apiUrl = process.env.API_URL;
+        const apiUrl = process.env.REACT_APP_API_URL;
         const response = await axios.get(`${apiUrl}/get-parties`); 
         setParties(response.data);
       } catch (error) {

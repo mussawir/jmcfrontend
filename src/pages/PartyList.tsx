@@ -14,7 +14,7 @@ function Party() {
     // Fetch the developers list on component mount
     const fetchParties = async () => {
       try {
-        const apiUrl = process.env.API_URL;
+        const apiUrl = process.env.REACT_APP_API_URL;
         const response = await fetch(`${apiUrl}/get-parties`);
         const result = await response.json();
         if (response.ok) {
