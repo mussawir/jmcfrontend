@@ -58,7 +58,8 @@ function GeneralForm() {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/spaloan', {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await fetch(`${apiUrl}/spaloan`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -90,7 +91,8 @@ function GeneralForm() {
     const formData = new FormData();
     formData.append('uploadFile', uploadFile);
     try {
-      const response = await fetch('http://localhost:5000/spaloana', {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await fetch(`${apiUrl}/spaloana`, {
         method: 'POST',
         body: formData,
       });

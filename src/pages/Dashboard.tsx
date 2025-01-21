@@ -123,7 +123,8 @@ const Dashboard = () => {
 		const fetchData = async () => {
 			setLoading(true);
 			try {
-				const response = await fetch('http://localhost:5000/master-title-list');
+				const apiUrl = process.env.API_URL;
+				const response = await fetch(`${apiUrl}/master-title-list`);
 	
 				if (!response.ok) {
 					throw new Error(`HTTP error! Status: ${response.status}`);

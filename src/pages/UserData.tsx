@@ -27,7 +27,8 @@ const UserData = () => {
     if (pdf) formData.append('pdf', pdf);
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/upload', {
+      const apiUrl = process.env.API_URL;
+      const response = await fetch(`${apiUrl}/upload`, {
         method: 'POST',
         body: formData,
       });

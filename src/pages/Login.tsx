@@ -24,7 +24,8 @@ function LoginForm() {
     try {
       console.log("Email:", email, "Password:", password); // Debugging
   
-      const response = await api.post('/login', { email, password });
+      const apiUrl = process.env.API_URL;
+      const response = await api.post(`${apiUrl}/login`, { email, password });
   
       if (response.status === 200) {
         localStorage.setItem('authToken', response.data.access_token);

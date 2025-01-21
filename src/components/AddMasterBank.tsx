@@ -37,7 +37,8 @@ function AddMasterBank() {
     console.log('Form Submitted', formData);
   
     try {
-      const response = await fetch('http://localhost:5000/master-bank', {
+      const apiUrl = process.env.API_URL;
+      const response = await fetch(`${apiUrl}/master-bank`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -97,7 +97,8 @@ const SchLoanH: React.FC = () => {
 		};
 
 		try {
-			const response = await fetch('http://localhost:5000/add-schedule-h-master-title', {
+			const apiUrl = process.env.REACT_APP_API_URL;
+			const response = await fetch(`${apiUrl}/add-schedule-h-master-title`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -348,7 +349,8 @@ const SchLoanH: React.FC = () => {
 		uploadFiles.forEach((file) => formData.append('uploadFiles', file));
 
 		try {
-			const response = await fetch('http://localhost:5000/add-master-title', {
+			const apiUrl = process.env.REACT_APP_API_URL;
+			const response = await fetch(`${apiUrl}/add-master-title`, {
 				method: 'POST',
 				body: formData,
 			});
@@ -441,7 +443,8 @@ const SchLoanH: React.FC = () => {
 		// Fetch templates from API
 		const fetchTemplates = async () => {
 			try {
-				const response = await fetch('http://localhost:5000/get-templates');
+				const apiUrl = process.env.REACT_APP_API_URL;
+				const response = await fetch(`${apiUrl}/get-templates`);
 				const result = await response.json();
 				if (response.ok) {
 					setTemplates(result);

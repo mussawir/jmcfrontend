@@ -12,7 +12,8 @@ function Developer() {
     // Fetch the developers list on component mount
     const fetchDevelopers = async () => {
       try {
-        const response = await fetch('http://localhost:5000/get-developers');
+        const apiUrl = process.env.API_URL;
+        const response = await fetch(`${apiUrl}/get-developers`);
         const result = await response.json();
         if (response.ok) {
           setDevelopers(result); // Assume result is an array of developers

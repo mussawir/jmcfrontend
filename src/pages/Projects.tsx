@@ -70,7 +70,7 @@ function Projects() {
   
   //   useEffect(() => {
   //     // Fetching message from the backend
-  //     fetch('http://127.0.0.1:5000/extractdn')
+  //     fetch(`${apiUrl}/`'http://127.0.0.1:5000/extractdn')
   //       .then((response) => {
   //         if (!response.ok) {
   //           throw new Error('Network response was not ok');
@@ -156,7 +156,8 @@ function Projects() {
   useEffect(() => {
     const fetchDevelopers = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/get-developers');
+        const apiUrl = process.env.API_URL;
+        const response = await axios.get(`${apiUrl}/get-developers`);
         setDevelopers(response.data); 
       } catch (error) {
         console.error('Error fetching developers:', error);
@@ -169,7 +170,8 @@ function Projects() {
   useEffect(() => {
     const fetchParty = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/get-parties'); 
+        const apiUrl = process.env.API_URL;
+        const response = await axios.get(`${apiUrl}/get-parties`); 
         setParties(response.data);
       } catch (error) {
         console.error('Error fetching developers:', error);

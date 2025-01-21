@@ -84,7 +84,8 @@ const PurchaserScreen: React.FC = () => {
 		};
 
 		try {
-			const response = await fetch('http://localhost:5000/add-purchaser', {
+			const apiUrl = process.env.REACT_APP_API_URL;
+			const response = await fetch(`${apiUrl}/add-purchaser`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -387,7 +388,8 @@ const PurchaserScreen: React.FC = () => {
 		uploadFiles.forEach((file) => formData.append('uploadFiles', file));
 
 		try {
-			const response = await fetch('http://localhost:5000/add-documents', {
+			const apiUrl = process.env.REACT_APP_API_URL;
+			const response = await fetch(`${apiUrl}/add-documents`, {
 				method: 'POST',
 				body: formData,
 			});
@@ -460,7 +462,8 @@ const PurchaserScreen: React.FC = () => {
 		// Fetch templates from API
 		const fetchTemplates = async () => {
 			try {
-				const response = await fetch('http://localhost:5000/get-templates');
+				const apiUrl = process.env.REACT_APP_API_URL;
+				const response = await fetch(`${apiUrl}/get-templates`);
 				const result = await response.json();
 				if (response.ok) {
 					setTemplates(result);

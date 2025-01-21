@@ -17,7 +17,8 @@ function ScheduleGList() {
   // Fetch the master bank data
   useEffect(() => {
     const fetchBanks = async () => {
-      const response = await fetch('http://localhost:5000/schedule-g-list'); // Your backend API endpoint
+      const apiUrl = process.env.API_URL;
+      const response = await fetch(`${apiUrl}/schedule-g-list`);
       if (response.ok) {
         const data = await response.json();
         setBanks(data); // Set the banks data
