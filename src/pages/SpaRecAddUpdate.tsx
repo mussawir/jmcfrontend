@@ -8,7 +8,7 @@ const SpaRecAddUpdate: React.FC = () => {
 
   const spaSave = async () => {
     try {
-      const apiUrl = process.env.API_URL;
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await fetch(`${apiUrl}/spaops`, {
         method: 'POST',
         headers: {
@@ -41,7 +41,7 @@ const SpaRecAddUpdate: React.FC = () => {
         alert('Please provide a valid document ID for update.');
         return;
       }
-      const apiUrl = process.env.API_URL;
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await fetch(`${apiUrl}/spaops`, {
         method: 'PUT',
         headers: {

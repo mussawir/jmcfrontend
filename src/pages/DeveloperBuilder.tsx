@@ -12,7 +12,7 @@ function Developer() {
     // Fetch the developers list on component mount
     const fetchDevelopers = async () => {
       try {
-        const apiUrl = process.env.API_URL;
+        const apiUrl = process.env.REACT_APP_API_URL;
         const response = await fetch(`${apiUrl}/get-developers`);
         const result = await response.json();
         if (response.ok) {

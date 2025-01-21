@@ -17,7 +17,7 @@ function ScheduleGList() {
   // Fetch the master bank data
   useEffect(() => {
     const fetchBanks = async () => {
-      const apiUrl = process.env.API_URL;
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await fetch(`${apiUrl}/schedule-g-list`);
       if (response.ok) {
         const data = await response.json();

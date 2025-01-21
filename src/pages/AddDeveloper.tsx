@@ -58,7 +58,7 @@ function AddDeveloper() {
 		};
 
 		try {
-			const apiUrl = process.env.API_URL;
+			const apiUrl = process.env.REACT_APP_API_URL;
 			const response = await fetch(`${apiUrl}/add-developer`, {
 				method: 'POST',
 				headers: {
@@ -91,7 +91,7 @@ function AddDeveloper() {
 		const formData = new FormData();
 		formData.append('uploadFile', uploadFile);
 		try {
-			const apiUrl = process.env.API_URL;
+			const apiUrl = process.env.REACT_APP_API_URL;
 			const response = await fetch(`${apiUrl}/add-document`, {
 				method: 'POST',
 				body: formData,

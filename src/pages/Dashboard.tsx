@@ -123,7 +123,7 @@ const Dashboard = () => {
 		const fetchData = async () => {
 			setLoading(true);
 			try {
-				const apiUrl = process.env.API_URL;
+				const apiUrl = process.env.REACT_APP_API_URL;
 				const response = await fetch(`${apiUrl}/master-title-list`);
 	
 				if (!response.ok) {

@@ -50,7 +50,7 @@ function Dashboard() {
 
   const fetchCaseData = async (token: string) => {
     try {
-      const apiUrl = process.env.API_URL;
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await fetch(`${apiUrl}/extract-spah/project_id=${project_id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
