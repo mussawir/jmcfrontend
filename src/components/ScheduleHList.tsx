@@ -16,7 +16,8 @@ function ScheduleHList() {
 
 	useEffect(() => {
 		const fetchForms = async () => {
-			const response = await fetch('http://localhost:5000/schedule-h-list');
+			const apiUrl = process.env.REACT_APP_API_URL;
+			const response = await fetch(`${apiUrl}/schedule-h-list`);
 			if (response.ok) {
 				const scheduleHForms = await response.json();
 				// console.log(scheduleHForms);

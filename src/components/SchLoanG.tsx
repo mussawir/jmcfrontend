@@ -312,7 +312,8 @@ const purchaserarray = [
     uploadFiles.forEach((file) => formData.append('uploadFiles', file));
 
     try {
-      const response = await fetch('http://localhost:5000/add-documents', {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await fetch(`${apiUrl}/add-documents`, {
         method: 'POST',
         body: formData,
       });

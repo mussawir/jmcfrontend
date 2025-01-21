@@ -64,7 +64,7 @@ function DeveloperForm() {
     
     //   const fetchCaseData = async (token: string) => {
     //     try {
-    //       const response = await fetch('http://127.0.0.1:5000/extract-spah', {
+    //       const response = await fetch(`${apiUrl}/`'http://127.0.0.1:5000/extract-spah', {
     //         headers: {
     //           Authorization: `Bearer ${token}`,
     //         },

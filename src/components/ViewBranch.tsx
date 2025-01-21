@@ -19,7 +19,8 @@ function BankBranchListing() {
   useEffect(() => {
       const fetchBanks = async () => {
         try {
-          const response = await fetch('http://localhost:5000/master-bank');
+          const apiUrl = process.env.API_URL;
+          const response = await fetch(`${apiUrl}/master-bank`);
           
           // Check if the response is OK (status 200)
           if (!response.ok) {

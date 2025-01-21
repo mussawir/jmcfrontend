@@ -55,7 +55,8 @@ function SpaLoan() {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/spa-loan', {
+      const apiUrl = process.env.API_URL;
+      const response = await fetch(`${apiUrl}/spa-loan`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

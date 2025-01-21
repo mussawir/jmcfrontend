@@ -13,7 +13,8 @@ function TemplatesList() {
   useEffect(() => {
     const fetchTemplates = async () => {
       try {
-        const response = await fetch('http://localhost:5000/get-templates');
+        const apiUrl = process.env.API_URL;
+        const response = await fetch(`${apiUrl}/get-templates`);
         const result = await response.json();
         if (response.ok) {
           setTemplates(result);

@@ -24,7 +24,7 @@ const FileUpload: React.FC = () => {
 
     try {
       // Send file to backend for upload and data extraction
-      const result = await axios.post('http://localhost:5000/upload', formData, {
+      const result = await axios.post(upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

@@ -37,7 +37,8 @@ function Banks() {
     console.log('Form Submitted', formData);
   
     try {
-      const response = await fetch('http://localhost:5000/add-bank-branch', {
+      const apiUrl = process.env.API_URL;
+      const response = await fetch(`${apiUrl}/add-bank-branch`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -26,8 +26,6 @@ function Properties() {
   const [parcelUnitArea, setParcelUnitArea] = useState('');
   const [parcelUnitBuiltUp, setParcelUnitBuiltUp] = useState('');
   const [propertyAddress, setPropertyAddress] = useState('');
-  
-  
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -50,7 +48,8 @@ function Properties() {
     };
 
     try {
-      const response = await fetch('http://localhost:5000/add-property', {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await fetch(`${apiUrl}/add-property`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

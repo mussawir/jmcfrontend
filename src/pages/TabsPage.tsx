@@ -46,7 +46,8 @@ function TabsPage() {
 
   const fetchCaseData = async (token: string) => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/cases', {
+      const apiUrl = process.env.API_URL;
+      const response = await fetch(`${apiUrl}/cases`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
