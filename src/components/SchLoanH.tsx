@@ -1,8 +1,8 @@
 import React, { useMemo, useState, useEffect } from "react";
 import DrawerComponent from './DrawerComponent';
 import HeaderComponent from './HeaderComponent';
-import { Box, TextField, Typography, Toolbar, CssBaseline, Button, CircularProgress, MenuItem, Select, InputLabel, FormControl, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper, Tabs, Tab, DialogActions } from '@mui/material';
-import Radio from '@mui/material/Radio';
+import { Box, TextField, Typography, Toolbar, CssBaseline, Button, MenuItem, Select, InputLabel, FormControl, Table, TableHead, TableBody, TableRow, TableCell, TableContainer, Paper, Tabs, Tab, DialogActions, LinearProgress, Radio } from '@mui/material';
+import Grid from '@mui/material/Grid2';
 import PersonIcon from '@mui/icons-material/Person';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import BusinessIcon from '@mui/icons-material/Business';
@@ -16,7 +16,7 @@ import PaymentIcon from '@mui/icons-material/Payment';
 import SummaryIcon from '@mui/icons-material/Summarize';
 
 const SchLoanH: React.FC = () => {
-	const [value, setValue] = React.useState('one');
+	const [value, setValue] = React.useState('schedule-h');
 	const [templates, setTemplates] = useState([]);
 
 	// For Showing / Hiding the Toggle Box
@@ -66,6 +66,35 @@ const SchLoanH: React.FC = () => {
 				return { key: key.trim(), value: value.join(':').trim() };
 			});
 	};
+
+	const capitalizeFirstLetter = (str: string) => {
+		return str
+			.toLowerCase()
+			.replace(/\b\w/g, (char) => char.toUpperCase());
+	};
+
+	const [developers, setDevelopers] = useState<{ id: string; name: string }[]>([]);
+	const [selectedDeveloper, setSelectedDeveloper] = useState<string>('');
+
+	useEffect(() => {
+		const fetchDevelopers = async () => {
+			try {
+				const apiUrl = process.env.REACT_APP_API_URL;
+				const response = await fetch(`${apiUrl}/get-developers-for-schedule-h`);
+				const result = await response.json();
+	
+				if (response.ok) {
+					setDevelopers(result);
+				} else {
+					console.error('Error fetching developers:', result);
+				}
+			} catch (error) {
+				console.error('Error fetching developers:', error);
+			}
+		};
+	
+		fetchDevelopers();
+	}, []);
 
 	const handleAddScheduleSubmit = async () => {
 		const randomCode = Math.floor(100 + Math.random() * 900);
@@ -159,6 +188,7 @@ const SchLoanH: React.FC = () => {
 		"Schedule Of Payment(s)": <PaymentIcon style={{ fontSize: 15 }} />,
 	};
 
+	// Redundant?
 	const sections = [
 		{
 			heading: "Proprietor",
@@ -362,67 +392,68 @@ const SchLoanH: React.FC = () => {
 				receivedData.forEach(data => {
 					// console.log(`${data.key}: ${data.value}`);
 					const key = data.key;
+					const value = capitalizeFirstLetter(data.value);
 
 					switch (key) {
 						case 'Proprietor name':
-							setProprietorName(data.value);
+							setProprietorName(value);
 							break;
 						case 'Proprietor company registration number':
-							setProprietorCompanyRegistrationNo(data.value);
+							setProprietorCompanyRegistrationNo(value);
 							break;
 						case 'Proprietor registered office address':
-							setProprietorRegisteredOfficeAddress(data.value);
+							setProprietorRegisteredOfficeAddress(value);
 							break;
 						case 'Proprietor place of business address':
-							setProprietorPlaceBusinessAddress(data.value);
+							setProprietorPlaceBusinessAddress(value);
 							break;
 						case 'Title type':
-							setTitleType(data.value);
+							setTitleType(value);
 							break;
 						case 'Description of title':
-							setTitleDescription(data.value);
+							setTitleDescription(value);
 							break;
 						case 'No. of Title':
-							setTitleNumber(data.value);
+							setTitleNumber(value);
 							break;
 						case 'Lot No./L.O. No.':
-							setLotPTNumber(data.value);
+							setLotPTNumber(value);
 							break;
 						case 'Town/Village/Mukim':
-							setMukim(data.value);
+							setMukim(value);
 							break;
 						case 'District':
-							setDistrict(data.value);
+							setDistrict(value);
 							break;
 						case 'State':
-							setState(data.value);
+							setState(value);
 							break;
 						case 'Leasehold land years':
-							setNumberOfYears(data.value);
+							setNumberOfYears(value);
 							break;
 						case 'Leasehold expiring on date':
-							setExpirationDate(data.value);
+							setExpirationDate(value);
 							break;
 						case 'Land area':
-							setLandArea(data.value);
+							setLandArea(value);
 							break;
 						case 'Property type':
-							setTypeOfBuilding(data.value);
+							setTypeOfBuilding(value);
 							break;
 						case 'Project name':
-							setProjectName(data.value);
+							setProjectName(value);
 							break;
 						case 'Phase number':
-							setPhaseNumber(data.value);
+							setPhaseNumber(value);
 							break;
 						case 'Advertisement and Sale Permit No.':
-							setAdSalePermitNumber(data.value);
+							setAdSalePermitNumber(value);
 							break;
 						case 'Approved Layout Plan Reference No.':
-							setLayoutPlanReferenceNo(data.value);
+							setLayoutPlanReferenceNo(value);
 							break;
 						case 'Local municipal name':
-							setLocalMunicipalName(data.value);
+							setLocalMunicipalName(value);
 							break;
 					}
 				});
@@ -435,7 +466,7 @@ const SchLoanH: React.FC = () => {
 			}
 		} catch (error) {
 			console.error('Error:', error);
-			alert('An error occurred during the file upload');
+			alert(error);
 		}
 	};
 
@@ -485,12 +516,12 @@ const SchLoanH: React.FC = () => {
 					aria-label="secondary tabs example"
 					sx={{ position: 'fixed' }}
 				>
-					<Tab value="one" label="Schedule H" />
-					<Tab value="two" label="Loan H" />
+					<Tab value="schedule-h" label="Schedule H" />
+					<Tab value="loan-h" label="Loan H" />
 				</Tabs>
 
 				<Box sx={{ padding: 3, }}>
-					{value === "one" && <div style={{ marginTop: "20px" }}>
+					{value === "schedule-h" && <div style={{ marginTop: "20px" }}>
 						<Box sx={{ display: 'flex' }}>
 							<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 								<div
@@ -530,8 +561,7 @@ const SchLoanH: React.FC = () => {
 										justifyContent: 'center',
 										alignItems: 'center',
 										width: '100%',
-										marginBottom: 2,
-										marginTop: 2,
+										my: 2,
 									}}
 								>
 									<input
@@ -553,16 +583,21 @@ const SchLoanH: React.FC = () => {
 									</DialogActions>
 								</Box>
 
-
 								{loading && (
-									<Box sx={{ display: 'flex', marginTop: 2, marginBottom: 2 }}>
-										<CircularProgress />
+									<Box sx={{ width: '100%' }}>
+										<LinearProgress />
 									</Box>
 								)}
 
+								{/* {loading && (
+									<Box sx={{ display: 'flex' }}>
+										<CircularProgress size="30px" />
+									</Box>
+								)} */}
+
 								<Box
 									sx={{
-										marginTop: '0px',
+										mt: 0,
 										position: 'fixed',
 										overflowY: 'auto',
 										maxHeight: 'calc(70vh - 100px)',
@@ -576,24 +611,35 @@ const SchLoanH: React.FC = () => {
 											borderBottom: '1px solid #ddd',
 										}}
 									>
-										<div style={{marginTop: '10px', marginBottom: '40px'}}>
-											<h3>Developer</h3>
-											<select style={{ padding: "10px", fontSize: "14px", borderRadius: "4px" }}>
-												<option value="">
-													Select a Developer
-												</option>
-												<option value="Field 1">
-													Field 1
-												</option>
-												<option value="Field 2">
-													Field 2
-												</option>
-												<option value="Field 3">
-													Field 3
-												</option>
-											</select>
-										</div>
-										<Box sx={{ display: "flex", width: "100%", marginBottom: 2, marginTop: 1 }}>
+										<Box
+											component="section"
+											sx={{ mb: 2 }}
+										>
+											<Typography variant="h4" component="h4" sx={{ mb: 1 }}>
+												Developer
+											</Typography>
+											<FormControl
+												sx={{ m: 1, minWidth: 300 }}
+											>
+												<InputLabel id="developer-select">
+													Developer
+												</InputLabel>
+												<Select
+													labelId="developer-select"
+													id="developer-select"
+													value={selectedDeveloper}
+													onChange={(event) => setSelectedDeveloper(event.target.value)}
+													label="Developer"
+												>
+													{developers.map((dev) => (
+														<MenuItem key={dev.id} value={dev.id}>
+															{dev.name}
+														</MenuItem>
+													))}
+												</Select>
+											</FormControl>
+										</Box>
+										<Box sx={{ display: "flex", width: "100%", mb: 2, mt: 1 }}>
 											<Radio
 												checked={selectedValue === "a"}
 												onChange={handleChanges}
@@ -624,176 +670,223 @@ const SchLoanH: React.FC = () => {
 										</Box>
 
 										<h2>Master Title Details</h2>
-										<TextField
-											label="Title Type"
-											fullWidth
-											variant="outlined"
-											value={titleType}
-											onChange={(e) => setTitleType(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="Title Description"
-											fullWidth
-											variant="outlined"
-											value={titleDescription}
-											onChange={(e) => setTitleDescription(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="Title Number"
-											fullWidth
-											variant="outlined"
-											value={titleNumber}
-											onChange={(e) => setTitleNumber(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="Lot/PT Number"
-											fullWidth
-											variant="outlined"
-											value={lotPTNumber}
-											onChange={(e) => setLotPTNumber(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="Town/Village/Mukim"
-											fullWidth
-											variant="outlined"
-											value={mukim}
-											onChange={(e) => setMukim(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="District"
-											fullWidth
-											variant="outlined"
-											value={district}
-											onChange={(e) => setDistrict(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="State"
-											fullWidth
-											variant="outlined"
-											value={state}
-											onChange={(e) => setState(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="Leasehold No. of Years"
-											fullWidth
-											variant="outlined"
-											value={numberOfYears}
-											onChange={(e) => setNumberOfYears(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="Leasehold Expiration Date"
-											fullWidth
-											variant="outlined"
-											value={expirationDate}
-											onChange={(e) => setExpirationDate(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="Land Area"
-											fullWidth
-											variant="outlined"
-											value={landArea}
-											onChange={(e) => setLandArea(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-
+										<Grid
+											container
+											rowSpacing={1}
+											columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+											sx={{ my: 3 }}
+										>
+											<Grid size={6}>
+												<TextField
+													label="Title Type"
+													fullWidth
+													variant="outlined"
+													value={titleType}
+													onChange={(e) => setTitleType(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+											<Grid size={6}>
+												<TextField
+													label="Title Description"
+													fullWidth
+													variant="outlined"
+													value={titleDescription}
+													onChange={(e) => setTitleDescription(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+											<Grid size={6}>
+												<TextField
+													label="Title Number"
+													fullWidth
+													variant="outlined"
+													value={titleNumber}
+													onChange={(e) => setTitleNumber(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+											<Grid size={6}>
+												<TextField
+													label="Lot/PT Number"
+													fullWidth
+													variant="outlined"
+													value={lotPTNumber}
+													onChange={(e) => setLotPTNumber(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+											<Grid size={6}>
+												<TextField
+													label="District"
+													fullWidth
+													variant="outlined"
+													value={district}
+													onChange={(e) => setDistrict(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+											<Grid size={6}>
+												<TextField
+													label="State"
+													fullWidth
+													variant="outlined"
+													value={state}
+													onChange={(e) => setState(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+											<Grid size={6}>
+												<TextField
+													label="Leasehold No. of Years"
+													fullWidth
+													variant="outlined"
+													value={numberOfYears}
+													onChange={(e) => setNumberOfYears(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+											<Grid size={6}>
+												<TextField
+													label="Leasehold Expiration Date"
+													fullWidth
+													variant="outlined"
+													value={expirationDate}
+													onChange={(e) => setExpirationDate(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+											<Grid size={6}>
+												<TextField
+													label="Land Area"
+													fullWidth
+													variant="outlined"
+													value={landArea}
+													onChange={(e) => setLandArea(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+										</Grid>
 										<h2>Proprietor</h2>
-										<TextField
-											label="Proprietor Name"
-											fullWidth
-											variant="outlined"
-											value={proprietorName}
-											onChange={(e) => setProprietorName(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="Proprietor Company Registration Number"
-											fullWidth
-											variant="outlined"
-											value={proprietorCompanyRegistrationNo}
-											onChange={(e) => setProprietorCompanyRegistrationNo(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="Proprietor Registered Office Address"
-											fullWidth
-											variant="outlined"
-											value={proprietorRegisteredOfficeAddress}
-											onChange={(e) => setProprietorRegisteredOfficeAddress(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="Proprietor Place of Business Address"
-											fullWidth
-											variant="outlined"
-											value={proprietorPlaceBusinessAddress}
-											onChange={(e) => setProprietorPlaceBusinessAddress(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-
+										<Grid
+											container
+											rowSpacing={1}
+											columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+										>
+											<Grid size={6}>
+												<TextField
+													label="Proprietor Name"
+													fullWidth
+													variant="outlined"
+													value={proprietorName}
+													onChange={(e) => setProprietorName(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+											<Grid size={6}>
+												<TextField
+													label="Proprietor Company Registration Number"
+													fullWidth
+													variant="outlined"
+													value={proprietorCompanyRegistrationNo}
+													onChange={(e) => setProprietorCompanyRegistrationNo(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+											<Grid size={6}>
+												<TextField
+													label="Proprietor Registered Office Address"
+													fullWidth
+													variant="outlined"
+													value={proprietorRegisteredOfficeAddress}
+													onChange={(e) => setProprietorRegisteredOfficeAddress(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+											<Grid size={6}>
+												<TextField
+													label="Proprietor Place of Business Address"
+													fullWidth
+													variant="outlined"
+													value={proprietorPlaceBusinessAddress}
+													onChange={(e) => setProprietorPlaceBusinessAddress(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+										</Grid>
 										<h2>Project Details</h2>
-										<TextField
-											label="Type of Building"
-											fullWidth
-											variant="outlined"
-											value={typeOfBuilding}
-											onChange={(e) => setTypeOfBuilding(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="Project Name"
-											fullWidth
-											variant="outlined"
-											value={projectName}
-											onChange={(e) => setProjectName(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="Phase Number"
-											fullWidth
-											variant="outlined"
-											value={phaseNumber}
-											onChange={(e) => setPhaseNumber(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="Advertisement & Sale Permit Number"
-											fullWidth
-											variant="outlined"
-											value={adSalePermitNumber}
-											onChange={(e) => setAdSalePermitNumber(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="Approved Layout Plan Reference Number"
-											fullWidth
-											variant="outlined"
-											value={layoutPlanReferenceNo}
-											onChange={(e) => setLayoutPlanReferenceNo(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
-										<TextField
-											label="Local Municipal Name"
-											fullWidth
-											variant="outlined"
-											value={localMunicipalName}
-											onChange={(e) => setLocalMunicipalName(e.target.value)}
-											sx={{ marginBottom: 2 }}
-										/>
+										<Grid
+											container
+											rowSpacing={1}
+											columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+										>
+											<Grid size={6}>
+												<TextField
+													label="Type of Building"
+													fullWidth
+													variant="outlined"
+													value={typeOfBuilding}
+													onChange={(e) => setTypeOfBuilding(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+											<Grid size={6}>
+												<TextField
+													label="Project Name"
+													fullWidth
+													variant="outlined"
+													value={projectName}
+													onChange={(e) => setProjectName(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+											<Grid size={6}>
+												<TextField
+													label="Phase Number"
+													fullWidth
+													variant="outlined"
+													value={phaseNumber}
+													onChange={(e) => setPhaseNumber(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+											<Grid size={6}>
+												<TextField
+													label="Advertisement & Sale Permit Number"
+													fullWidth
+													variant="outlined"
+													value={adSalePermitNumber}
+													onChange={(e) => setAdSalePermitNumber(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+											<Grid size={6}>
+												<TextField
+													label="Approved Layout Plan Reference Number"
+													fullWidth
+													variant="outlined"
+													value={layoutPlanReferenceNo}
+													onChange={(e) => setLayoutPlanReferenceNo(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+											<Grid size={6}>
+												<TextField
+													label="Local Municipal Name"
+													fullWidth
+													variant="outlined"
+													value={localMunicipalName}
+													onChange={(e) => setLocalMunicipalName(e.target.value)}
+													sx={{ mb: 2 }}
+												/>
+											</Grid>
+										</Grid>
 									</div>
 								</Box>
 							</Box>
 						</Box>
 					</div>}
-					{value === "two" && <div style={{ marginTop: "20px" }} >  <Box sx={{ display: 'flex' }}>
+					{value === "loan-h" && <div style={{ marginTop: "20px" }} >  <Box sx={{ display: 'flex' }}>
 						<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 							<div
 								style={{
@@ -830,8 +923,7 @@ const SchLoanH: React.FC = () => {
 									justifyContent: 'center',
 									alignItems: 'center',
 									width: '100%',
-									marginBottom: 2,
-									marginTop: 2,
+									my: 2,
 								}}
 							>
 								<input
@@ -845,38 +937,37 @@ const SchLoanH: React.FC = () => {
 								<Button variant="contained" color="primary" onClick={UploadFile}>
 									Fill From Doc
 								</Button>
-
-
-
-
 							</Box>
-							<Box sx={{ width: 400, }}>
+							<Box sx={{ width: 400 }}>
 								<Button variant="contained" color="primary" onClick={handleToggleBox} sx={{ marginLeft: 5, }}>
 									Add Doc Templates
 								</Button>
 								{/* Toggle Box */}
 								{toggleBoxVisible && (
-									<Box sx={{ border: '1px solid #ccc', borderRadius: '8px', padding: 3, marginBottom: 2 }}>
+									<Box sx={{ border: '1px solid #ccc', borderRadius: '8px', padding: 3, mb: 2 }}>
 										{/* Dropdown */}
-										<FormControl fullWidth sx={{ marginBottom: 2 }}>
+										<FormControl fullWidth sx={{ mb: 2 }}>
 											<InputLabel>Select Bank</InputLabel>
 											<Select value={selectedBank} onChange={handleDropdownChange} label="Select Bank">
-												<MenuItem value="Bank1">Bank1</MenuItem>
-												<MenuItem value="Bank2">Bank2</MenuItem>
-												<MenuItem value="Bank3">Bank3</MenuItem>
+												<MenuItem value="Bank1">
+													Bank Name 1
+												</MenuItem>
+												<MenuItem value="Bank2">
+													Bank Name 2
+												</MenuItem>
+												<MenuItem value="Bank3">
+													Bank Name 3
+												</MenuItem>
 											</Select>
 										</FormControl>
 
-										<Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
+										<Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
 											<TextField
 												fullWidth
 												placeholder="Find Template"
 												variant="outlined"
 												size="small"
 											/>
-											{/* <Button variant="contained" color="primary" startIcon={<Search />}>
-												Find
-											</Button> */}
 										</Box>
 
 										{/* Templates List */}
@@ -884,14 +975,20 @@ const SchLoanH: React.FC = () => {
 											<Table>
 												<TableHead>
 													<TableRow>
-														<TableCell>Template Name</TableCell>
-														<TableCell align="right">Action</TableCell>
+														<TableCell>
+															Template Name
+														</TableCell>
+														<TableCell align="right">
+															Action
+														</TableCell>
 													</TableRow>
 												</TableHead>
 												<TableBody>
 													{templates.map((template, index) => (
 														<TableRow key={index}>
-															<TableCell>{template.templateName}</TableCell>
+															<TableCell>
+																{template.templateName}
+															</TableCell>
 															<TableCell align="right">
 																<Button variant="contained" color="primary">
 																	Add
@@ -907,510 +1004,419 @@ const SchLoanH: React.FC = () => {
 							</Box>
 							<Box
 								sx={{
-									marginTop: '0px',
+									mt: 0,
 									position: 'fixed',
 									overflowY: 'auto',
-									maxHeight: 'calc(100vh - 100px)',
+									maxHeight: 'calc(70vh - 100px)',
 								}}
 							>
-								{sections.map((section, index) => (
-									<div
-										key={index}
-										ref={sectionRefs[index]}
-										style={{
-											minHeight: '70vh',
-											padding: '20px',
-											marginTop: '0px',
-											borderBottom: '1px solid #ddd',
-										}}
-									>
-										<h2>{section.heading2}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field2, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
+								<h2>Proprietor</h2>
+								<Grid
+									container
+									rowSpacing={1}
+									columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+									sx={{ my: 3 }}
+								>
+									<Grid size={6}>
+										<TextField
+											label="Proprietor Name"
+											fullWidth
+											variant="outlined"
+											value={proprietorName}
+											onChange={(e) => setProprietorName(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Proprietor Company Registration Number"
+											fullWidth
+											variant="outlined"
+											value={proprietorCompanyRegistrationNo}
+											onChange={(e) => setProprietorCompanyRegistrationNo(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Proprietor Registered Office Address"
+											fullWidth
+											variant="outlined"
+											value={proprietorRegisteredOfficeAddress}
+											onChange={(e) => setProprietorRegisteredOfficeAddress(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Proprietor Place Business Address"
+											fullWidth
+											variant="outlined"
+											value={proprietorPlaceBusinessAddress}
+											onChange={(e) => setProprietorPlaceBusinessAddress(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Proprietor Authorised 1st Signatory Name"
+											fullWidth
+											variant="outlined"
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Proprietor Authorised 1st Identity Card Number"
+											fullWidth
+											variant="outlined"
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Proprietor Authorised 2nd Signatory Name"
+											fullWidth
+											variant="outlined"
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Proprietor Authorised 2nd Identity Card Number"
+											fullWidth
+											variant="outlined"
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Proprietor PA Number Registered in High Court"
+											fullWidth
+											variant="outlined"
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Proprietor Noting PA Registered in which Land Registry"
+											fullWidth
+											variant="outlined"
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+								</Grid>
+								<h2>Master Title Details</h2>
+								<Grid
+									container
+									rowSpacing={1}
+									columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+									sx={{ my: 3 }}
+								>
+									<Grid size={6}>
+										<TextField
+											label="Title Type"
+											fullWidth
+											variant="outlined"
+											value={titleType}
+											onChange={(e) => setTitleType(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Title Description"
+											fullWidth
+											variant="outlined"
+											value={titleDescription}
+											onChange={(e) => setTitleDescription(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Title Number"
+											fullWidth
+											variant="outlined"
+											value={titleNumber}
+											onChange={(e) => setTitleNumber(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Lot/PT Number"
+											fullWidth
+											variant="outlined"
+											value={lotPTNumber}
+											onChange={(e) => setLotPTNumber(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Mukim"
+											fullWidth
+											variant="outlined"
+											value={mukim}
+											onChange={(e) => setMukim(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="District"
+											fullWidth
+											variant="outlined"
+											value={district}
+											onChange={(e) => setDistrict(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="State"
+											fullWidth
+											variant="outlined"
+											value={state}
+											onChange={(e) => setState(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Number of Years"
+											fullWidth
+											variant="outlined"
+											value={numberOfYears}
+											onChange={(e) => setNumberOfYears(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Expiration Date"
+											fullWidth
+											variant="outlined"
+											value={expirationDate}
+											onChange={(e) => setExpirationDate(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Land Area"
+											fullWidth
+											variant="outlined"
+											value={landArea}
+											onChange={(e) => setLandArea(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+								</Grid>
+								<h2>Project Details</h2>
+								<Grid
+									container
+									rowSpacing={1}
+									columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+									sx={{ my: 3 }}
+								>
+									<Grid size={6}>
+										<TextField
+											label="Type of Building"
+											fullWidth
+											variant="outlined"
+											value={typeOfBuilding}
+											onChange={(e) => setTypeOfBuilding(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Project Name"
+											fullWidth
+											variant="outlined"
+											value={projectName}
+											onChange={(e) => setProjectName(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Phase Number"
+											fullWidth
+											variant="outlined"
+											value={phaseNumber}
+											onChange={(e) => setPhaseNumber(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="AdSale Permit Number"
+											fullWidth
+											variant="outlined"
+											value={adSalePermitNumber}
+											onChange={(e) => setAdSalePermitNumber(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Approved Layout Plan Reference Number"
+											fullWidth
+											variant="outlined"
+											value={layoutPlanReferenceNo}
+											onChange={(e) => setLayoutPlanReferenceNo(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Local Municipal Name"
+											fullWidth
+											variant="outlined"
+											value={localMunicipalName}
+											onChange={(e) => setLocalMunicipalName(e.target.value)}
+											InputProps={{ readOnly: true }}
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+								</Grid>
+								<h2>Property Details</h2>
+								<Grid
+									container
+									rowSpacing={1}
+									columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+									sx={{ my: 3 }}
+								>
+									<Grid size={6}>
+										<TextField
+											label="Parcel/Unit/Lot Number"
+											fullWidth
+											variant="outlined"
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Storey Number"
+											fullWidth
+											variant="outlined"
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Building/Block Number"
+											fullWidth
+											variant="outlined"
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Parcel/Unit/Lot Area"
+											fullWidth
+											variant="outlined"
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Parcel/Unit/Lot Built up Area"
+											fullWidth
+											variant="outlined"
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Accessory Parcel(s) Number"
+											fullWidth
+											variant="outlined"
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Accessory Parcel(s) Building/Block Number"
+											fullWidth
+											variant="outlined"
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Air-cond Ledge Parcel(s) Number"
+											fullWidth
+											variant="outlined"
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Car Park Lot(s) Number"
+											fullWidth
+											variant="outlined"
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+									<Grid size={6}>
+										<TextField
+											label="Car Park Building/Block Number"
+											fullWidth
+											variant="outlined"
+											sx={{ mb: 2 }}
+										/>
+									</Grid>
+								</Grid>
+								{sections.map((section) => (
+									<React.Fragment key={section.heading}>
+										<Typography variant="h6" sx={{ mt: 3, mb: 2 }}>
+											{section.heading}
+										</Typography>
+										<Grid
+											container
+											rowSpacing={1}
+											columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+										>
+											{section.fields.map((field) => (
+												<Grid
+													size={6}
+													// key={field}
 												>
-													<input
-														type="text"
-														placeholder={field2}
-														style={{ padding: '10px', width: '100%' }}
+													<TextField
+														label={field}
+														fullWidth
+														variant="outlined"
+														sx={{ mb: 2 }}
 													/>
-												</div>
+												</Grid>
 											))}
-										</div>
-										<h2>{section.heading3}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field3, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field3}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading4}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field4, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field4}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading5}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field5, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field5}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading6}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field6, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field6}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading7}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field7, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field7}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading8}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field8, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field8}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading9}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field9, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field9}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading10}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field10, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field10}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading11}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field11, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field11}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading12}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field12, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field12}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading13}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field13, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field13}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading14}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field14, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field14}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading15}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field15, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field15}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading16}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field16, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field16}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading17}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field17, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field17}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading18}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field18, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field18}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading19}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field19, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field19}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading20}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field20, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field20}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading21}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field21, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field21}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading22}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field22, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field22}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading23}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field23, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field23}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-										<h2>{section.heading24}</h2>
-										<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-											{section.fields.map((field24, fieldIndex) => (
-												<div
-													key={fieldIndex}
-													style={{
-														display: 'flex',
-														flexDirection: 'column',
-														flex: '1 1 50%',
-														padding: '10px',
-														boxSizing: 'border-box',
-													}}
-												>
-													<input
-														type="text"
-														placeholder={field24}
-														style={{ padding: '10px', width: '100%' }}
-													/>
-												</div>
-											))}
-										</div>
-									</div>
+										</Grid>
+									</React.Fragment>
 								))}
 							</Box>
-
 						</Box>
 					</Box>
 					</div>}
