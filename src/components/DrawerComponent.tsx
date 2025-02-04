@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography, Divider, Button, Menu, MenuItem } from '@mui/material';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'; // For Ecommerce
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'; // Already outlined
@@ -71,7 +70,30 @@ const DrawerComponent = () => {
     setBankAnchorEl(event.currentTarget);
   };
 
+//Bill Functionality
+const [selectedBillItem, setSelectedBillItem] = useState<string>(''); // Unique state for Banks
+  const [billAnchorEl, setBillAnchorEl] = useState<null | HTMLElement>(null); // Unique anchor element for Banks
+  const openBillMenu = Boolean(billAnchorEl); // Determine if the Banks menu is open
+  // const navigate = useNavigate(); // Navigation hook
 
+  // Handle closing the Banks menu
+  const handleBillClose = () => {
+    setBillAnchorEl(null);
+  };
+
+  // Handle item click in the Banks menu
+  const handleBillItemClick = (item: string, route: string) => {
+    setSelectedBillItem(item);
+    navigate(route); // Navigate to the desired route
+    handleBillClose(); // Close the menu
+  };
+
+  // Handle opening the Banks menu
+  const handleBillClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setBillAnchorEl(event.currentTarget);
+  };
+
+//Mater Functionality
   const [selectedMattersMenu, setSelectedMattersMenu] = useState<string | null>(null);
   const [mattersAnchorEl, setMattersAnchorEl] = useState<null | HTMLElement>(null);
   const openMattersMenu = Boolean(mattersAnchorEl);
@@ -507,39 +529,99 @@ const DrawerComponent = () => {
         </React.Fragment>
       ))}
     </Menu>
-    </ListItem>
+</ListItem>
 <ListItem
-  component={Link}
-  to="/billing"
-  onClick={() => handleItemClick('Projects', '/projects')}
-  sx={{
-    backgroundColor: selectedItem === 'Projects' ? 'rgba(30, 144, 255, 0.2)' : 'transparent', // Background color if selected
-    color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f', // Icon and text color if selected
-    '&:hover': {
-      backgroundColor: 'rgba(173, 216, 230, 0.5)', // Hover background color
-    },
-  }}
->
-<ListItemIcon sx={{ color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }}>
-  <PaymentIcon  />
-</ListItemIcon>
-  <ListItemText
-    primary={
-      <Typography
+      sx={{
+        backgroundColor: selectedBillItem === 'Bills' ? 'rgba(30, 144, 255, 0.2)' : 'transparent',
+        color: selectedBillItem === 'Bills' ? '#1E90FF' : '#5f5f5f',
+        '&:hover': {
+          backgroundColor: 'rgba(173, 216, 230, 0.5)',
+        },
+      }}
+    >
+      <ListItemIcon sx={{ color: selectedBillItem === 'Bills' ? '#1E90FF' : '#5f5f5f' }}>
+        <PaymentIcon />
+      </ListItemIcon>
+      <Button
+        id="bills-button"
+        aria-controls={openBillMenu ? 'bills-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={openBillMenu ? 'true' : undefined}
+        onClick={handleBillClick}
         sx={{
-          fontSize: '14px', 
+          fontSize: '14px',
           fontWeight: 400,
           lineHeight: 1.5,
           letterSpacing: '0.5px',
           fontFamily: 'sans-serif',
-          color: selectedItem === 'Dashboard' ? '#1E90FF' : '#5f5f5f', 
+          color: selectedBillItem === 'Bills' ? '#1E90FF' : '#5f5f5f',
+          textTransform: 'none',
+          width: '100%', 
+          transform: 'translateX(-35px)', 
         }}
       >
         Billing
-      </Typography>
-    }
-  />
-  {/* <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedItem === 'Projects' ? '#1E90FF' : '#5f5f5f' }} /> */}
+      </Button>
+
+      <KeyboardArrowDownIcon sx={{ marginLeft: 'auto', color: selectedBillItem === 'Bills' ? '#1E90FF' : '#5f5f5f' }} />
+
+      <Menu
+      id="bills-menu"
+      anchorEl={billAnchorEl}
+      open={openBillMenu} // Open if bankAnchorEl is not null
+      onClose={handleBillClose}
+      sx={{
+        '& .MuiPaper-root': {
+          borderRadius: '12px',
+          backgroundColor: '#ffffff',
+          boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+          minWidth: '240px', // Set a minimum width for the menu
+          transition: 'width 0.3s ease', // Animation for width change
+          '&:hover': {
+            boxShadow: '0px 8px 24px rgba(0, 0, 0, 0.2)', // Change shadow on hover
+          },
+        },
+      }}
+    >
+      {[
+        { label: 'Add Bill', route: '/add-bill' },
+        { label: 'View Bill', route: '/view-bill' },
+        { label: 'Bill Listing', route: '/bill-listing' },
+        { label: 'Outstanding Bill Listing', route: '/outstanding-bill' },
+        { label: 'UnBilled File Listing', route: '/unbilled-file' },
+        { label: 'Bill Item Listing', route: '/bill-item' },
+        { label: 'Add Preset Bill', route: '/add-preset-bill' },
+        { label: 'View Parset Bill', route: '/view-parset-bill' },
+        { label: 'Preset Bill Listing', route: '/preset-bill-listing' }, 
+        { label: 'Quotation', route: '/quotation', hasArrow: true }, 
+        { label: 'Bill Analysis', route: '/bill-analysis', hasArrow: true }, 
+      ].map((item, index) => (
+        <React.Fragment key={index}>
+          <MenuItem 
+            onClick={() => handleBillItemClick(item.label, item.route)}
+            sx={{
+              paddingY: '10px', // Add vertical padding for better spacing
+              paddingX: '16px', // Add horizontal padding for better spacing
+              fontSize: '14px', // Font size for menu items
+              fontWeight: 500,
+              transition: 'background-color 0.3s ease', // Animation for background color change
+              '&:hover': {
+                backgroundColor: '#e3f2fd', // Lighter hover background color for menu items
+                color: '#1E90FF', // Change text color on hover
+              },
+            }}
+          >
+            <Typography variant="body2" sx={{ flexGrow: 1 }}>
+              {item.label}
+            </Typography>
+            {item.hasArrow && <KeyboardArrowRightIcon sx={{ color: '#5f5f5f' }} />}
+          </MenuItem>
+
+          {/* Add Divider after specific items */}
+          {(item.label === 'View Bill' || item.label === 'UnBilled File Listing' || item.label === 'Bill Item Listing' || item.label === 'Preset Bill Listing' || item.label === 'Quotation') && <Divider />}
+        </React.Fragment>
+      ))}
+    </Menu>
 </ListItem>
 <ListItem
   component={Link}
