@@ -457,7 +457,7 @@ const SchLoanH: React.FC = () => {
 							break;
 					}
 				});
-				alert('Files uploaded successfully');
+				// alert('Files uploaded successfully');
 				setLoading(false);
 			} else {
 				alert('Failed to upload files');
