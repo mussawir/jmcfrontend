@@ -75,6 +75,17 @@ import ScheduleGList from './components/ScheduleGList';
 import ScheduleHList from './components/ScheduleHList';
 import Subsale from './components/Subsale';
 import PurchaserScreen from './components/PurchaserScreen';
+import AddBill from './components/AddBill';
+import ViewBill from './components/ViewBill';
+import BillListing from './components/BillListing';
+import OutstandingBillListing from './components/OutstandingBillListing';
+import UnBilledFileList from './components/UnBilledFileList';
+import BillItemListing from './components/BillItemListing';
+import AddPresetBill from './components/AddPresetBill';
+import ViewPresetBill from './components/ViewPresetBill';
+import PresetBillListing from './components/PresetBillListing';
+import Quotation from './components/Quotation';
+import BillAnalysis from './components/BillAnalysis';
 
 const AppWithDarkMode: React.FC = () => {
   const { darkMode } = useDarkMode(); // Access dark mode state
@@ -160,6 +171,17 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/schedule-h-list" element={<ScheduleHList />} />
         <Route path="/subsale" element={<Subsale />} />
         <Route path="/purchaser-screen" element={<PurchaserScreen />} />
+        <Route path="/add-bill" element={<AddBill />} />
+        <Route path="/view-bill" element={<ViewBill />} />
+        <Route path="/bill-listing" element={<BillListing />} />
+        <Route path="/outstanding-bill" element={<OutstandingBillListing />} />
+        <Route path="/unbilled-file" element={<UnBilledFileList />} />
+        <Route path="/bill-item" element={<BillItemListing />} />
+        <Route path="/add-preset-bill" element={<AddPresetBill />} />
+        <Route path="/view-parset-bill" element={<ViewPresetBill />} />
+        <Route path="/preset-bill-listing" element={<PresetBillListing />} />
+        <Route path="/quotation" element={<Quotation />} />
+        <Route path="/bill-analysis" element={<BillAnalysis />} />
       </Routes>
     </ThemeProvider>
   );
