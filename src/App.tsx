@@ -86,6 +86,8 @@ import ViewPresetBill from './components/ViewPresetBill';
 import PresetBillListing from './components/PresetBillListing';
 import Quotation from './components/Quotation';
 import BillAnalysis from './components/BillAnalysis';
+import GenerateImage from './pages/GenerateImage';
+import AddHandbook from './pages/AddHandbook';
 
 const AppWithDarkMode: React.FC = () => {
   const { darkMode } = useDarkMode(); // Access dark mode state
@@ -182,6 +184,8 @@ const AppWithDarkMode: React.FC = () => {
         <Route path="/preset-bill-listing" element={<PresetBillListing />} />
         <Route path="/quotation" element={<Quotation />} />
         <Route path="/bill-analysis" element={<BillAnalysis />} />
+        <Route path="/generate-image" element={<GenerateImage />} />
+        <Route path="/add-handbook" element={<AddHandbook />} />
       </Routes>
     </ThemeProvider>
   );
