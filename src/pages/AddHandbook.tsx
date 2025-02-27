@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { Box, Typography, CssBaseline, Button, Link } from '@mui/material';
-import DrawerComponent from '../components/DrawerComponent';
-import HeaderComponent from '../components/HeaderComponent';
 import { useNavigate } from 'react-router-dom';
 
 function AddHandbook() {
 	const [file, setFile] = useState(null);
-	const [fileId, setFileId] = useState('');
 	const navigate = useNavigate();
 
-	const generateImage = (event) => {
+	const runbookAISearch = (event) => {
 		event.preventDefault();
 		navigate('/generate-image');
 	};
@@ -28,14 +25,14 @@ function AddHandbook() {
 		formData.append("uploadFile", file);
 	
 		try {
-			const response = await fetch("http://localhost:5000/add-handbook", {
+			const apiUrl = process.env.REACT_APP_API_URL;
+			const response = await fetch(`${apiUrl}/add-handbook`, {
 				method: "POST",
 				body: formData
 			});
 	
 			const data = await response.json();
-			console.log("File ID:", data.file_id);
-			setFileId(data.file_id);
+			console.log("File Name:", data.file_name);
 			alert("File uploaded and processed successfully!");
 		} catch (error) {
 			console.error("Error:", error);
@@ -46,8 +43,8 @@ function AddHandbook() {
 	return (
 		<Box sx={{ display: 'flex' }}>
 			<CssBaseline />
-			<DrawerComponent />
-			<HeaderComponent />
+			{/* <DrawerComponent /> */}
+			{/* <HeaderComponent /> */}
 
 			<Box 
 				component="main" 
@@ -55,18 +52,18 @@ function AddHandbook() {
 			>
 				{/* Form Box */}
 				<Box 
-					sx={{ 
-						width: '400px', 
-						p: 4, 
-						boxShadow: 3, 
-						borderRadius: 2, 
-						textAlign: 'center', 
-						bgcolor: 'background.paper' 
+					sx={{
+						width: '400px',
+						p: 8,
+						boxShadow: 6,
+						borderRadius: 4,
+						textAlign: 'center',
+						bgcolor: 'background.paper'
 					}}
 				>
 					{/* Headline */}
-					<Typography variant="h6" gutterBottom>
-						Add Handbook
+					<Typography variant="h5" gutterBottom>
+						Upload Handbook
 					</Typography>
 
 					{/* File Upload Input */}
@@ -79,14 +76,14 @@ function AddHandbook() {
 
 					{/* Upload Button */}
 					<Button variant="contained" sx={{ mt: 2, width: '100%' }} onClick={handleUpload}>
-						Add
+						Upload
 					</Button>
 				</Box>
 
 				{/* Generate Image Link (Centered Below Form) */}
 				<Box sx={{ mt: 2, textAlign: 'center' }}>
-					<Link href="#" onClick={generateImage} sx={{ textDecoration: 'none', color: 'primary.main', fontSize: '16px' }}>
-						Generate Image
+					<Link href="#" onClick={runbookAISearch} sx={{ textDecoration: 'none', color: 'primary.main', fontSize: '1.25em', fontWeight: 700, textDecorationLine: 'underline' }}>
+						Runbook AI Search
 					</Link>
 				</Box>
 			</Box>
