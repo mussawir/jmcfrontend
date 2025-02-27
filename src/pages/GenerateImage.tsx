@@ -17,7 +17,7 @@ function GenerateImage() {
 	};
 
 	const handleAskQuestion = async () => {
-		if (!fileId || !question) {
+		if (!question) {
 			alert("Please upload a file and provide a question!");
 			return;
 		}
@@ -29,13 +29,13 @@ function GenerateImage() {
 					"Content-Type": "application/json",
 				},
 				body: JSON.stringify({
-					file_id: fileId,
 					question: question,
 				}),
 			});
 	
 			const data = await response.json();
-			setResponse(data.response);
+			setResponse(data.response.result);
+			// console.log(data.response)
 		} catch (error) {
 			console.error("Error:", error);
 			alert("Failed to ask question!");
@@ -52,19 +52,19 @@ function GenerateImage() {
 				<Toolbar />
 
 				{/* Center the Headline */}
-				<Typography variant="h6" gutterBottom sx={{ textAlign: "center" }}>
+				{/* <Typography variant="h6" gutterBottom sx={{ textAlign: "center" }}>
 					Generate Images or Videos
-				</Typography>
+				</Typography> */}
 
 				{/* Add New Button */}
 				<Box sx={{ display: "flex", justifyContent: "flex-end", mb: 2 }}>
 					<Button variant="contained" onClick={handleHandbook}>
-						Add New
+						Upload Handbook
 					</Button>
 				</Box>
 
 				{/* Textarea for adding prompt */}
-				<TextField
+				{/* <TextField
 					label="Enter prompt"
 					multiline
 					rows={4}
@@ -73,12 +73,12 @@ function GenerateImage() {
 					value={prompt}
 					onChange={(e) => setPrompt(e.target.value)}
 					sx={{ mt: 2 }}
-				/>
+				/> */}
 
 				{/* Submit Button for Generating Images/Videos */}
-				<Button variant="contained" sx={{ mt: 2 }}>
+				{/* <Button variant="contained" sx={{ mt: 2 }}>
 					Generate
-				</Button>
+				</Button> */}
 
 				{/* Section for Asking Questions */}
 				<Box sx={{ mt: 4 }}>
@@ -87,17 +87,37 @@ function GenerateImage() {
 					</Typography>
 
 					{/* File ID Input */}
-					<TextField
+					{/* <TextField
 						label="File ID"
 						value={fileId}
 						onChange={(e) => setFileId(e.target.value)}
 						fullWidth
 						sx={{ mt: 2 }}
-					/>
+					/> */}
+					{/* Response Display */}
+					{/* {response && (
+						<Box sx={{ mt: 2 }}>
+							<Typography variant="body1">
+								<strong>Response:</strong> {response}
+							</Typography>
+						</Box>
+					)} */}
+
+				<TextField
+					// label="Enter prompt"
+					multiline
+					rows={12}
+					fullWidth
+					variant="outlined"
+					value={response || prompt} // Display response if available, else show prompt
+					onChange={(e) => setPrompt(e.target.value)}
+					sx={{ mt: 2 }}
+				/>
+
 
 					{/* Question Input */}
 					<TextField
-						label="Question"
+						label="Prompt"
 						value={question}
 						onChange={(e) => setQuestion(e.target.value)}
 						fullWidth
@@ -108,15 +128,6 @@ function GenerateImage() {
 					<Button variant="contained" sx={{ mt: 2 }} onClick={handleAskQuestion}>
 						Ask Question
 					</Button>
-
-					{/* Response Display */}
-					{response && (
-						<Box sx={{ mt: 2 }}>
-							<Typography variant="body1">
-								<strong>Response:</strong> {response}
-							</Typography>
-						</Box>
-					)}
 				</Box>
 			</Box>
 		</Box>
